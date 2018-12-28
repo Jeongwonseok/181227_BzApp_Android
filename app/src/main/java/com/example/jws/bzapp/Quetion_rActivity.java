@@ -31,6 +31,7 @@ public class Quetion_rActivity extends AppCompatActivity {
     Button btnResult;
     String questiontype = "";
 
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
