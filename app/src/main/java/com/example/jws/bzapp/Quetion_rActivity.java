@@ -1,5 +1,6 @@
 package com.example.jws.bzapp;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -31,7 +32,7 @@ public class Quetion_rActivity extends AppCompatActivity {
     Button btnResult;
     String questiontype = "";
 
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,16 +44,34 @@ public class Quetion_rActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Quetion_rActivity.this,MainActivity.class);
-                startActivity(intent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Quetion_rActivity.this);
+                builder.setMessage("작성중인 문의 정보를 모두 잃습니다. 메인 화면으로 이동하시겠습니까?");
+                builder.setPositiveButton("이동", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Quetion_rActivity.this,MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton("취소", null);
+                builder.show();
             }
         });
 
         btnList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Quetion_rActivity.this,QuestionActivity.class);
-                startActivity(intent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Quetion_rActivity.this);
+                builder.setMessage("작성중인 문의 정보를 모두 잃습니다. 문의사항 목록 화면으로 이동하시겠습니까?");
+                builder.setPositiveButton("이동", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Quetion_rActivity.this,QuestionActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton("취소", null);
+                builder.show();
             }
         });
 
@@ -103,7 +122,8 @@ public class Quetion_rActivity extends AppCompatActivity {
                                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-                                                finish();
+                                                Intent intent = new Intent(Quetion_rActivity.this,QuestionActivity.class);
+                                                startActivity(intent);
                                             }
                                         })
                                         .create()

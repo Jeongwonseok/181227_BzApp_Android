@@ -185,7 +185,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/back"
-                    android:hint="xxxxxx@xxxx.xxx 형식으로 작성하세요."
+                    android:hint=" xxxxxx@xxxx.xxx 형식으로 작성하세요."
                     android:inputType="textEmailAddress" />
 
             </LinearLayout>
@@ -206,14 +206,20 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="100">
+                android:layout_weight="70">
 
                 <Spinner
                     android:id="@+id/spinner1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:background="@drawable/back_spinner" />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="30"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -225,7 +231,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/back"
-                    android:hint="답변을 작성하시오." />
+                    android:hint=" 답변을 작성하시오." />
 
             </LinearLayout>
 
