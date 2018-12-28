@@ -30,6 +30,9 @@ import java.security.MessageDigest;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    ImageButton btnNotice;
+    ImageButton btnQuestion;
+
 
     private static final String TAG = "Login";
 
@@ -40,6 +43,25 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        btnNotice = (ImageButton) findViewById(R.id.btnNotice);
+        btnQuestion = (ImageButton) findViewById(R.id.btnQuestion);
+
+        btnNotice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, NoticeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Quetion_rActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
