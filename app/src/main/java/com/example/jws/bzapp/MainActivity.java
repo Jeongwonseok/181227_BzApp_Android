@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity
 
     ImageButton btnNotice;
     ImageButton btnQuestion;
+    ImageButton btnAnal;
 
 
     private static final String TAG = "Login";
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity
 
         btnNotice = (ImageButton) findViewById(R.id.btnNotice);
         btnQuestion = (ImageButton) findViewById(R.id.btnQuestion);
+        btnAnal = (ImageButton) findViewById(R.id.btnAnal);
+
 
         btnNotice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +66,14 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        btnAnal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -73,11 +84,11 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        getAppKeyHash();
+        //getAppKeyHash();
 
     }
 
-    private void getAppKeyHash() {
+    /*private void getAppKeyHash() {
         try {
             PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
             for (Signature signature : info.signatures) {
@@ -91,7 +102,7 @@ public class MainActivity extends AppCompatActivity
 // TODO Auto-generated catch block
             Log.e("name not found", e.toString());
         }
-    }
+    } */
 
 
     @Override
