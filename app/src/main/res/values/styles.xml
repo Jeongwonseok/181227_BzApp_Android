@@ -22,4 +22,9 @@
         <item name="colorControlNormal">#DCDCDC</item>
     </style>
 
+    <style name="EditTheme1" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">#ffffff</item>
+        <item name="colorControlNormal">#ffffff</item>
+    </style>
+
 </resources>
