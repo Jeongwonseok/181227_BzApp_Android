@@ -150,12 +150,14 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="300">
+                android:layout_weight="300"
+                android:layout_margin="5dp">
 
                 <ImageButton
                     android:id="@+id/btnNotice"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:background="@drawable/btnnotice"/>
 
             </LinearLayout>
 
@@ -170,12 +172,14 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="300">
+                android:layout_weight="300"
+                android:layout_margin="5dp">
 
                 <ImageButton
                     android:id="@+id/btnQuestion"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:background="@drawable/btnquestion"/>
 
             </LinearLayout>
 
@@ -190,12 +194,15 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="300">
+                android:layout_weight="300"
+                android:layout_margin="5dp">
+
 
                 <ImageButton
                     android:id="@+id/btnSurvey"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:background="@drawable/btnsurvey"/>
 
             </LinearLayout>
 
