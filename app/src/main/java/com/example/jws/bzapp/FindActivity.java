@@ -164,5 +164,85 @@ public class FindActivity extends AppCompatActivity {
             }
         });
 
+        pwFind = (Button)findViewById(R.id.pwFind);
+        pwFind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String id = Eid.getText().toString();
+                String answer = Eanswer.getText().toString();
+
+                //결과 리스너 생성
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(s);
+                            JSONArray jsonArray = jsonObject.getJSONArray("response");
+                            int count = 0;
+                            String fid = "비밀번호 : ";
+                            while (count < jsonArray.length()) {
+                                if(count >= 1) {
+                                    fid = fid + ", ";
+                                }
+                                JSONObject object = jsonArray.getJSONObject(count);
+                                fid = fid + object.getString("pw");
+                                count++;
+                            }
+                            if (jsonArray.length() > 0) {
+                                //등록후 응답받은 값이 true이면 성공 다이얼로그 출력
+                                AlertDialog.Builder builder = new AlertDialog.Builder(FindActivity.this);
+                                builder.setMessage(fid)
+                                        .setPositiveButton("로그인 이동", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Intent intent = new Intent(FindActivity.this, LoginActivity.class);
+                                                startActivity(intent);
+                                            }
+                                        })
+                                        .create()
+                                        .show();
+                            } else {
+                                //등록 실패 했을때 실패 다이얼로그 출력
+                                AlertDialog.Builder builder = new AlertDialog.Builder(FindActivity.this);
+                                builder.setMessage("비밀번호를 찾을수 없습니다. 다시 확인 부탁드립니다.")
+                                        .setPositiveButton("다시 시도", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Ename.setText("");
+                                                Eemail.setText("");
+                                                Ephone2.setText("");
+                                                Ephone3.setText("");
+                                                Eid.setText("");
+                                                Eanswer.setText("");
+                                            }
+                                        })
+                                        .create()
+                                        .show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+
+                //각 정보를 입력안했을때는 Toast메세지 출력 후 리턴
+                if (isEmpty(id)){
+                    Toast.makeText(getApplicationContext(),"아이디를 입력해주새요.", Toast.LENGTH_LONG).show();
+                    return;
+                } else if (question.equals("선택하세요.")){
+                    Toast.makeText(getApplicationContext(),"질문을 선택해주세요.", Toast.LENGTH_LONG).show();
+                    return;
+                } else if (isEmpty(answer)){
+                    Toast.makeText(getApplicationContext(),"답변을 입력해주세요.", Toast.LENGTH_LONG).show();
+                    return;
+                } else {
+                    //모든 값이 다 있으면 DB에 저장하는 메소드 실행
+                    Findpw findpw = new Findpw(id, question, answer, responseListener);
+                    RequestQueue queue = Volley.newRequestQueue(FindActivity.this);
+                    queue.add(findpw);
+                }
+            }
+        });
+
     }
 }
