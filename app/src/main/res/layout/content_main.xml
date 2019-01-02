@@ -24,19 +24,16 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="70"
-                android:background="#ffffff" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="940"
-                android:orientation="horizontal">
+                android:layout_weight="1080"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                android:background="#ffffff">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="313">
+                    android:layout_weight="360"
+                    android:layout_margin="3dp">
 
                     <ImageButton
                         android:id="@+id/btnAnal"
@@ -46,16 +43,12 @@
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="2px"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:background="#CDCDCD" />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="313">
+                    android:layout_weight="360"
+                    android:layout_margin="3dp">
 
                     <ImageButton
                         android:id="@+id/btnRec"
@@ -65,17 +58,12 @@
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="2px"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:background="#CDCDCD" />
-
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="313">
+                    android:layout_weight="360"
+                    android:layout_margin="3dp">
 
                     <ImageButton
                         android:id="@+id/btnPren"
@@ -87,11 +75,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="70"
-                android:background="#ffffff" />
 
         </LinearLayout>
 
@@ -106,7 +89,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="270">
+            android:layout_weight="270"
+            android:background="#ffffff">
 
             <LinearLayout
                 android:id="@+id/spotAd"
@@ -114,12 +98,10 @@
                 android:layout_height="match_parent"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="광고넣는자리"
-                    android:textColor="#000000"
-                    android:textSize="30dp" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/adver"/>
 
             </LinearLayout>
 
@@ -137,7 +119,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="250"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#ffffff">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -241,7 +224,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="940"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:background="#ffffff">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -274,7 +258,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:background="#ffffff">
 
                     <LinearLayout
                         android:layout_width="141dp"

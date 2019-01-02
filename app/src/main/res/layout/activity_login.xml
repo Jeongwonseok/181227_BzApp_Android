@@ -167,7 +167,7 @@
                     android:id="@+id/btnlogin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#ED3050"
+                    android:background="@drawable/round_button1"
                     android:text="로그인"
                     android:textColor="#ffffff" />
 
@@ -187,7 +187,7 @@
                     android:id="@+id/btnJoin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#ED3050"
+                    android:background="@drawable/round_button1"
                     android:text="회원가입"
                     android:textColor="#ffffff" />
 

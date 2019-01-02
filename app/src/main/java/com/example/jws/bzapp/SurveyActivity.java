@@ -26,21 +26,21 @@ public class SurveyActivity extends AppCompatActivity {
 
         String[] age = {"10대", "20대", "30대", "40대", "50대", "60대 이상"};
 
-        Spinner spinner = (Spinner)findViewById(R.id.age);
+        Spinner spinner = (Spinner) findViewById(R.id.age);
 
         ArrayAdapter<String> adapter;
-        adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,age);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, age);
         spinner.setAdapter(adapter);
 
-        Button btncancel = (Button)findViewById(R.id.cancel);
-        Button btnok = (Button)findViewById(R.id.ok);
+        Button btncancel = (Button) findViewById(R.id.cancel);
+        Button btnok = (Button) findViewById(R.id.ok);
 
-        btnBack = (ImageButton)findViewById(R.id.btnBack);
+        btnBack = (ImageButton) findViewById(R.id.btnBack);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SurveyActivity.this,MainActivity.class);
+                Intent intent = new Intent(SurveyActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -57,7 +57,7 @@ public class SurveyActivity extends AppCompatActivity {
                         finish();
                     }
                 });
-                builder.setNegativeButton("취소",null);
+                builder.setNegativeButton("취소", null);
                 builder.show();
             }
         });
@@ -72,11 +72,11 @@ public class SurveyActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
-                        Intent intent = new Intent(SurveyActivity.this,RecommendActivity.class);
+                        Intent intent = new Intent(SurveyActivity.this, RecommendActivity.class);
                         startActivity(intent);
                     }
                 });
-                builder.setNegativeButton("취소",null);
+                builder.setNegativeButton("취소", null);
                 builder.show();
             }
         });

@@ -212,7 +212,7 @@
                     android:layout_height="match_parent"
                     android:text="문의하기"
                     android:textColor="#ffffff"
-                    android:background="#ED3050" />
+                    android:background="@drawable/round_button1" />
 
             </LinearLayout>
 

@@ -264,9 +264,9 @@
                         android:id="@+id/idFind"
                         android:layout_width="250dp"
                         android:layout_height="match_parent"
-                        android:background="#ED3050"
                         android:text="ID 찾기"
-                        android:textColor="#ffffff"/>
+                        android:textColor="#ffffff"
+                        android:background="@drawable/round_button1"/>
 
                 </LinearLayout>
 
@@ -427,9 +427,9 @@
                         android:id="@+id/pwFind"
                         android:layout_width="250dp"
                         android:layout_height="match_parent"
-                        android:background="#ED3050"
                         android:text="PW 찾기"
-                        android:textColor="#ffffff"/>
+                        android:textColor="#ffffff"
+                        android:background="@drawable/round_button1"/>
 
                 </LinearLayout>
 

@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity
     ImageButton btnQuestion;
     ImageButton btnAnal;
     ImageButton btnSurvey;
+    ImageButton btnRec;
 
 
     private static final String TAG = "Login";
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity
         btnQuestion = (ImageButton) findViewById(R.id.btnQuestion);
         btnAnal = (ImageButton) findViewById(R.id.btnAnal);
         btnSurvey = (ImageButton) findViewById(R.id.btnSurvey);
+        btnRec = (ImageButton) findViewById(R.id.btnRec);
 
 
         btnNotice.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +83,14 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnRec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RecommendActivity.class);
                 startActivity(intent);
             }
         });
