@@ -1,6 +1,7 @@
 package com.example.jws.bzapp;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -243,11 +244,17 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.btnLog) {
+        if (id == R.id.btnHome) {
+            Intent intent = new Intent(MapActivity.this, MainActivity.class);
+            startActivity(intent);
+
+        } else if (id == R.id.btnLog) {
             Intent intent = new Intent(MapActivity.this, LoginActivity.class);
             startActivity(intent);
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.btnJoin) {
+            Intent intent = new Intent(MapActivity.this, JoinActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_slideshow) {
 
