@@ -1,5 +1,6 @@
 package com.example.jws.bzapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity
     ImageButton btnNotice;
     ImageButton btnQuestion;
     ImageButton btnAnal;
+    ImageButton btnSurvey;
 
 
     private static final String TAG = "Login";
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity
         btnNotice = (ImageButton) findViewById(R.id.btnNotice);
         btnQuestion = (ImageButton) findViewById(R.id.btnQuestion);
         btnAnal = (ImageButton) findViewById(R.id.btnAnal);
+        btnSurvey = (ImageButton) findViewById(R.id.btnSurvey);
 
 
         btnNotice.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +73,14 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnSurvey.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
                 startActivity(intent);
             }
         });
