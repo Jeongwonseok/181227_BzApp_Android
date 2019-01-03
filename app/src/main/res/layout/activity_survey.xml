@@ -42,7 +42,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1575"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#f8f8f8">
 
         <ScrollView
             android:layout_width="match_parent"

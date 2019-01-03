@@ -42,7 +42,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1575"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#f8f8f8">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -97,7 +98,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="이름"
-                        android:textSize="20dp" />
+                        android:textSize="15dp"
+                        android:textColor="#666666"/>
 
                 </LinearLayout>
 
@@ -110,7 +112,8 @@
                         android:id="@+id/name"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/back" />
+                        android:background="@drawable/round_edittext"
+                        android:paddingLeft="5dp"/>
 
                 </LinearLayout>
 
@@ -141,7 +144,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="이메일"
-                        android:textSize="20dp" />
+                        android:textSize="15dp"
+                        android:textColor="#666666"/>
 
                 </LinearLayout>
 
@@ -154,7 +158,8 @@
                         android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/back" />
+                        android:background="@drawable/round_edittext"
+                        android:paddingLeft="5dp"/>
 
                 </LinearLayout>
 
@@ -184,7 +189,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="H·P"
-                        android:textSize="20dp" />
+                        android:textSize="15dp"
+                        android:textColor="#666666"/>
 
                 </LinearLayout>
 
@@ -199,8 +205,9 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@drawable/back"
-                        android:text="010" />
+                        android:background="@drawable/back_spinner"
+                        android:text="010"
+                        android:paddingLeft="5dp"/>
 
                     <TextView
                         android:layout_width="0dp"
@@ -214,10 +221,11 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@drawable/back"
+                        android:background="@drawable/round_edittext"
                         android:hint="0000"
                         android:inputType="number"
-                        android:maxLength="4" />
+                        android:maxLength="4"
+                        android:paddingLeft="5dp"/>
 
                     <TextView
                         android:layout_width="0dp"
@@ -231,10 +239,11 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@drawable/back"
+                        android:background="@drawable/round_edittext"
                         android:hint="0000"
                         android:inputType="number"
-                        android:maxLength="4" />
+                        android:maxLength="4"
+                        android:paddingLeft="5dp"/>
 
                 </LinearLayout>
 
@@ -321,7 +330,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="아이디"
-                        android:textSize="20dp" />
+                        android:textSize="15dp"
+                        android:textColor="#666666"/>
 
                 </LinearLayout>
 
@@ -334,7 +344,8 @@
                         android:id="@+id/id"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/back" />
+                        android:background="@drawable/round_edittext"
+                        android:paddingLeft="5dp"/>
 
                 </LinearLayout>
 
@@ -359,7 +370,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="비밀번호 찾기 질문"
-                    android:textSize="20dp" />
+                    android:textSize="15dp"
+                    android:textColor="#666666"/>
 
             </LinearLayout>
 
@@ -378,7 +390,9 @@
                 <Spinner
                     android:id="@+id/spinner1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:background="@drawable/back_spinner"
+                    android:paddingLeft="5dp"/>
 
             </LinearLayout>
 
@@ -398,8 +412,10 @@
                     android:id="@+id/answer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/back"
-                    android:hint="답변을 작성하시오." />
+                    android:background="@drawable/round_edittext"
+                    android:hint="답변을 작성하시오."
+                    android:textSize="15dp"
+                    android:paddingLeft="5dp"/>
 
             </LinearLayout>
 
