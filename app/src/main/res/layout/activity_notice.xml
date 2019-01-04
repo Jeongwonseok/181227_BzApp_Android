@@ -32,7 +32,7 @@
                 android:layout_gravity="center"
                 android:text="공지사항"
                 android:textColor="#ffffff"
-                android:textSize="30dp" />
+                android:textSize="25dp" />
 
         </android.support.v7.widget.Toolbar>
 

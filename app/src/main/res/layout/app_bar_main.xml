@@ -24,7 +24,7 @@
                 android:layout_gravity="center"
                 android:text="B·z"
                 android:textColor="#ffffff"
-                android:textSize="30dp" />
+                android:textSize="25dp" />
 
             <TextView
                 android:id="@+id/loginid"

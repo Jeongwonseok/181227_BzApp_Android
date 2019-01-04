@@ -32,7 +32,7 @@
                 android:layout_gravity="center"
                 android:text="설문조사"
                 android:textColor="#ffffff"
-                android:textSize="30dp" />
+                android:textSize="25dp" />
 
         </android.support.v7.widget.Toolbar>
 
@@ -83,23 +83,31 @@
                             android:gravity="center_vertical"
                             android:text="성별"
                             android:textColor="#000000"
-                            android:textSize="20dp" />
+                            android:textSize="15dp" />
 
-                        <ImageButton
-                            android:id="@+id/m"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/m" />
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
 
-                        <LinearLayout
-                            android:layout_width="23.33dp"
-                            android:layout_height="match_parent" />
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="남성"
+                                android:textColor="#000000"/>
 
-                        <ImageButton
-                            android:id="@+id/w"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/w" />
+                            <LinearLayout
+                                android:layout_width="30dp"
+                                android:layout_height="match_parent"/>
+
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="여성"
+                                android:textColor="#000000"/>
+
+                        </RadioGroup>
 
                     </LinearLayout>
 
@@ -115,7 +123,7 @@
                             android:gravity="center_vertical"
                             android:text="나이"
                             android:textColor="#000000"
-                            android:textSize="20dp" />
+                            android:textSize="15dp" />
 
                         <Spinner
                             android:id="@+id/age"
