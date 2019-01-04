@@ -40,11 +40,11 @@
             android:layout_weight="1.5"
             android:gravity="center">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/imgbtnUnder1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#808080" />
+                android:src="@drawable/under" />
 
         </LinearLayout>
 
