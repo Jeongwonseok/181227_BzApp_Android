@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 public class QuestionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageButton imgbtnUnder1;
+        ImageView imgbtnUnder1;
         LinearLayout updateView1;
         TextView TVtitle, TVdatetime, TVContent;
 
@@ -32,8 +33,10 @@ public class QuestionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 public void onClick(View v) {
                     if(updateView1.getVisibility() == View.VISIBLE) {
                         updateView1.setVisibility(View.GONE);
+                        imgbtnUnder1.setImageResource(R.drawable.under);
                     } else {
                         updateView1.setVisibility(View.VISIBLE);
+                        imgbtnUnder1.setImageResource(R.drawable.over);
                     }
                 }
             });
