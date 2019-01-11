@@ -1,6 +1,7 @@
 package com.example.jws.bzapp;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v4.app.FragmentActivity;
@@ -17,6 +18,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.IOException;
@@ -32,6 +34,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     ImageButton btnBack;
     ImageButton btnHome;
     Geocoder geocoder;
+    int a;
 
 
     @Override
@@ -81,6 +84,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         Intent intent = getIntent();
         mLat = intent.getDoubleExtra("mLat", 0);
         mLong = intent.getDoubleExtra("mLong", 0);
+        a = intent.getIntExtra("a",0);
         address(mLat,mLong);
     }
 
@@ -97,6 +101,15 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        if (a == 100) {
+            onAddCircle100(100);
+        } else if (a==200) {
+            onAddCircle100(200);
+        } else if (a==500) {
+            onAddCircle100(500);
+        } else if (a==1000) {
+            onAddCircle100(1000);
+        }
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(mLat, mLong);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 16));
@@ -124,6 +137,66 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 
     }
 
+    //
+    public void onAddCircle100(int a) {
+        LatLng position = new LatLng(mLat, mLong);
+
+        //나의 위치 마커
+        //MarkerOptions mymarker = new MarkerOptions().position(position);
+
+        //사이클 반경 설정
+        CircleOptions circle = new CircleOptions().center(position).radius(a)//반경
+                .strokeWidth(3)//선 넓이
+                .fillColor(0x44808080)
+                .strokeColor(Color.GRAY);
+        //this.mGoogleMap.addMarker(mymarker);
+        this.mMap.addCircle(circle);
+    }
+
+    public void onAddCircle200(int a) {
+        LatLng position = new LatLng(mLat, mLong);
+
+        //나의 위치 마커
+        //MarkerOptions mymarker = new MarkerOptions().position(position);
+
+        //사이클 반경 설정
+        CircleOptions circle = new CircleOptions().center(position).radius(a)//반경
+                .strokeWidth(3)//선 넓이
+                .fillColor(0x44808080)
+                .strokeColor(Color.GRAY);
+        //this.mGoogleMap.addMarker(mymarker);
+        this.mMap.addCircle(circle);
+    }
+
+    public void onAddCircle500(int a) {
+        LatLng position = new LatLng(mLat, mLong);
+
+        //나의 위치 마커
+        //MarkerOptions mymarker = new MarkerOptions().position(position);
+
+        //사이클 반경 설정
+        CircleOptions circle = new CircleOptions().center(position).radius(a)//반경
+                .strokeWidth(3)//선 넓이
+                .fillColor(0x44808080)
+                .strokeColor(Color.GRAY);
+        //this.mGoogleMap.addMarker(mymarker);
+        this.mMap.addCircle(circle);
+    }
+
+    public void onAddCircle1000(int a) {
+        LatLng position = new LatLng(mLat, mLong);
+
+        //나의 위치 마커
+        //MarkerOptions mymarker = new MarkerOptions().position(position);
+
+        //사이클 반경 설정
+        CircleOptions circle = new CircleOptions().center(position).radius(a)//반경
+                .strokeWidth(3)//선 넓이
+                .fillColor(0x44808080)
+                .strokeColor(Color.GRAY);
+        //this.mGoogleMap.addMarker(mymarker);
+        this.mMap.addCircle(circle);
+    }
 }
 
 //    public void onAddCircle(int a){

@@ -35,6 +35,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -88,7 +89,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     Marker mCenterMarker;
     private View mLayout;  // Snackbar 사용하기 위해서는 View가 필요합니다.
     // (참고로 Toast에서는 Context가 필요했습니다.)
-    int a = 100;
+    int radius = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,6 +146,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 Intent intent = new Intent(getApplicationContext(), AnalysisActivity.class);
                 intent.putExtra("mLat", mLat);
                 intent.putExtra("mLong", mLong);
+                String text = spinner.getSelectedItem().toString();
+                if (text.equals("100m")) {
+                    intent.putExtra("a",100);
+                } else if (text.equals("200m")) {
+                    intent.putExtra("a",200);
+                }  else if (text.equals("500m")) {
+                    intent.putExtra("a",500);
+                } else if (text.equals("1km")) {
+                    intent.putExtra("a",1000);
+                }
                 startActivity(intent);
             }
         });
@@ -206,31 +217,32 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView)parent.getChildAt(0)).setTextColor(0xffED3050);
                 String text = spinner.getSelectedItem().toString();
                 if (text.equals("100m")) {
                     CameraUpdate cameraUpdate = CameraUpdateFactory.zoomTo(18);
                     mGoogleMap.moveCamera(cameraUpdate);
                     mGoogleMap.clear();
-                    a = 100;
-                    onAddCircle100(a);
+                    radius = 100;
+                    onAddCircle100(radius);
                 } else if (text.equals("200m")) {
                     CameraUpdate cameraUpdate = CameraUpdateFactory.zoomTo(17);
                     mGoogleMap.moveCamera(cameraUpdate);
                     mGoogleMap.clear();
-                    a = 200;
-                    onAddCircle200(a);
+                    radius = 200;
+                    onAddCircle200(radius);
                 }  else if (text.equals("500m")) {
                     CameraUpdate cameraUpdate = CameraUpdateFactory.zoomTo(16);
                     mGoogleMap.moveCamera(cameraUpdate);
                     mGoogleMap.clear();
-                    a = 500;
-                    onAddCircle500(a);
+                    radius = 500;
+                    onAddCircle500(radius);
                 } else if (text.equals("1km")) {
                     CameraUpdate cameraUpdate = CameraUpdateFactory.zoomTo(15);
                     mGoogleMap.moveCamera(cameraUpdate);
                     mGoogleMap.clear();
-                    a = 1000;
-                    onAddCircle1000(a);
+                    radius = 1000;
+                    onAddCircle1000(radius);
                 }
 
             }
@@ -346,7 +358,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         //런타임 퍼미션 요청 대화상자나 GPS 활성 요청 대화상자 보이기전에
         //지도의 초기위치를 서울로 이동
         setDefaultLocation();
-        onAddCircle100(a);
+        onAddCircle100(100);
 
         //런타임 퍼미션 처리
         // 1. 위치 퍼미션을 가지고 있는지 체크합니다.
@@ -409,18 +421,18 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 mLong = mGoogleMap.getCameraPosition().target.longitude;
                 //Assign mCenterMarker reference:
 
-                if (a==100) {
+                if (radius==100) {
                     mGoogleMap.clear();
-                    onAddCircle100(a);
-                } else if (a==200) {
+                    onAddCircle100(radius);
+                } else if (radius==200) {
                     mGoogleMap.clear();
-                    onAddCircle200(a);
-                } else if (a==500) {
+                    onAddCircle200(radius);
+                } else if (radius==500) {
                     mGoogleMap.clear();
-                    onAddCircle500(a);
-                } else if (a==1000) {
+                    onAddCircle500(radius);
+                } else if (radius==1000) {
                     mGoogleMap.clear();
-                    onAddCircle1000(a);
+                    onAddCircle1000(radius);
                 }
             }
         });

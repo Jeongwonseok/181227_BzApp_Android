@@ -242,7 +242,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:background="#ffffff"
-                    android:text="실시간 Hot 상권"
+                    android:text="테마별 상권"
                     android:textColor="#000000"
                     android:textSize="15dp" />
 
