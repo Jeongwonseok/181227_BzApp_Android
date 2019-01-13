@@ -51,14 +51,15 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:layout_marginTop="5dp"
-            android:visibility="gone">
+            android:layout_marginTop="5dp">
 
             <ImageButton
+                android:id="@+id/btnMypage"
                 android:layout_width="70dp"
                 android:layout_height="35dp" />
 
             <ImageButton
+                android:id="@+id/btnLogout"
                 android:layout_width="70dp"
                 android:layout_height="35dp" />
 

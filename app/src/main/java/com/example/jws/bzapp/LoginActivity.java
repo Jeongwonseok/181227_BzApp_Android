@@ -1,6 +1,8 @@
 package com.example.jws.bzapp;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -103,6 +106,12 @@ public class LoginActivity extends AppCompatActivity {
                                 intent.putExtra("ID", ID);
                                 intent.putExtra("PW", PW);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                SharedPreferences test = getSharedPreferences("check", Activity.MODE_PRIVATE);
+                                SharedPreferences.Editor checkLogin = test.edit();
+                                checkLogin.putBoolean("check", true);
+                                checkLogin.putString("id",ID);
+                                //꼭 commit()을 해줘야 값이 저장됩니다 ㅎㅎ
+                                checkLogin.commit();
                                 startActivity(intent);
                                 finish();
                             } else {
