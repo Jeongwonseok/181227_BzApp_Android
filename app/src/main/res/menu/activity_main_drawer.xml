@@ -7,31 +7,31 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/btnHome"
-            android:icon="@drawable/home"
+            android:icon="@drawable/home2"
             android:title="홈" />
         <item
             android:id="@+id/btnLog"
-            android:icon="@drawable/login"
+            android:icon="@drawable/login2"
             android:title="로그인" />
         <item
             android:id="@+id/btnJoin"
-            android:icon="@drawable/jointest"
+            android:icon="@drawable/join"
             android:title="회원가입" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="관심 목록" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/clock"
             android:title="최근 본 상권" />
         <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/like"
+            android:title="관심 목록" />
+        <item
             android:id="@+id/nav_share"
-            android:icon="@drawable/ic_menu_share"
-            android:title="고객센터" />
+            android:icon="@drawable/info"
+            android:title="도움말" />
         <item
             android:id="@+id/nav_send"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@drawable/setting"
             android:title="설정" />
     </group>
 

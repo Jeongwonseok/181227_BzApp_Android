@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -29,8 +30,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     private GoogleMap mMap;
     double mLat = 0;
     double mLong = 0;
-    LinearLayout pLayout;
-    ImageButton pbtn;
+    LinearLayout pLayout1, pLayout2, pLayout3, pLayout4;
+    ImageView pbtn1, pbtn2, pbtn3, pbtn4;
     ImageButton btnBack;
     ImageButton btnHome;
     Geocoder geocoder;
@@ -52,16 +53,70 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         btnHome = (ImageButton) findViewById(R.id.btnHome);
 
-        pLayout = (LinearLayout) findViewById(R.id.pLayout);
-        pbtn = (ImageButton) findViewById(R.id.pbtn);
+        // 인구분석 버튼
+         final LinearLayout pLayout1 = (LinearLayout) findViewById(R.id.pLayout1);
+         final ImageView pbtn1 = (ImageView) findViewById(R.id.pbtn1);
 
-        pbtn.setOnClickListener(new View.OnClickListener() {
+        pbtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (pLayout.getVisibility() == View.VISIBLE) {
-                    pLayout.setVisibility(View.GONE);
+                if (pLayout1.getVisibility() == View.VISIBLE) {
+                    pLayout1.setVisibility(View.GONE);
+                    pbtn1.setImageResource(R.drawable.under);
                 } else {
-                    pLayout.setVisibility(View.VISIBLE);
+                    pLayout1.setVisibility(View.VISIBLE);
+                    pbtn1.setImageResource(R.drawable.over);
+                }
+            }
+        });
+
+        // 매출분석 버튼
+        final LinearLayout pLayout2 = (LinearLayout) findViewById(R.id.pLayout2);
+        final ImageView pbtn2 = (ImageView) findViewById(R.id.pbtn2);
+
+        pbtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (pLayout2.getVisibility() == View.VISIBLE) {
+                    pLayout2.setVisibility(View.GONE);
+                    pbtn2.setImageResource(R.drawable.under);
+                } else {
+                    pLayout2.setVisibility(View.VISIBLE);
+                    pbtn2.setImageResource(R.drawable.over);
+                }
+            }
+        });
+
+        // 상권분석 버튼
+        final LinearLayout pLayout3 = (LinearLayout) findViewById(R.id.pLayout3);
+        final ImageView pbtn3 = (ImageView) findViewById(R.id.pbtn3);
+
+        pbtn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (pLayout3.getVisibility() == View.VISIBLE) {
+                    pLayout3.setVisibility(View.GONE);
+                    pbtn3.setImageResource(R.drawable.under);
+                } else {
+                    pLayout3.setVisibility(View.VISIBLE);
+                    pbtn3.setImageResource(R.drawable.over);
+                }
+            }
+        });
+
+        // 점포현황 버튼
+        final LinearLayout pLayout4 = (LinearLayout) findViewById(R.id.pLayout4);
+        final ImageView pbtn4 = (ImageView) findViewById(R.id.pbtn4);
+
+        pbtn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (pLayout4.getVisibility() == View.VISIBLE) {
+                    pLayout4.setVisibility(View.GONE);
+                    pbtn4.setImageResource(R.drawable.under);
+                } else {
+                    pLayout4.setVisibility(View.VISIBLE);
+                    pbtn4.setImageResource(R.drawable.over);
                 }
             }
         });
@@ -84,8 +139,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         Intent intent = getIntent();
         mLat = intent.getDoubleExtra("mLat", 0);
         mLong = intent.getDoubleExtra("mLong", 0);
-        a = intent.getIntExtra("a",0);
-        address(mLat,mLong);
+        a = intent.getIntExtra("a", 0);
+        address(mLat, mLong);
     }
 
 
@@ -103,11 +158,11 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         mMap = googleMap;
         if (a == 100) {
             onAddCircle100(100);
-        } else if (a==200) {
+        } else if (a == 200) {
             onAddCircle100(200);
-        } else if (a==500) {
+        } else if (a == 500) {
             onAddCircle100(500);
-        } else if (a==1000) {
+        } else if (a == 1000) {
             onAddCircle100(1000);
         }
         // Add a marker in Sydney and move the camera
@@ -116,22 +171,22 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 //        onAddCircle(100);
     }
 
-    public void address(double mLat,double mLong){
+    public void address(double mLat, double mLong) {
         List<Address> list = null;
-        try{
-            double d1= mLat;
-            double d2=mLong;
-            list=geocoder.getFromLocation(d1,d2,1);
+        try {
+            double d1 = mLat;
+            double d2 = mLong;
+            list = geocoder.getFromLocation(d1, d2, 1);
         } catch (IOException e) {
             e.printStackTrace();
-            Log.e("test","입출력 오류");
+            Log.e("test", "입출력 오류");
         }
-        if(list!=null){
-            if(list.size()==0){
-                Toast.makeText(getApplicationContext(),"해당되는 주소 정보는 없습니다.",Toast.LENGTH_SHORT).show();
-            }else {
-                String address=list.get(0).getAddressLine(0).toString();
-                Toast.makeText(getApplicationContext(),address,Toast.LENGTH_SHORT).show();
+        if (list != null) {
+            if (list.size() == 0) {
+                Toast.makeText(getApplicationContext(), "해당되는 주소 정보는 없습니다.", Toast.LENGTH_SHORT).show();
+            } else {
+                String address = list.get(0).getAddressLine(0).toString();
+                Toast.makeText(getApplicationContext(), address, Toast.LENGTH_SHORT).show();
             }
         }
 
