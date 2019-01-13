@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
@@ -25,6 +26,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -58,6 +60,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import uk.co.senab.photoview.PhotoViewAttacher;
 
@@ -91,6 +94,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     // (참고로 Toast에서는 Context가 필요했습니다.)
     int radius = 100;
 
+    TextView textid;
+    ImageButton btnMypage;
+    ImageButton btnLogout;
+
+    Boolean logincheck;
+    String loginID;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,6 +130,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         editSearch = (EditText) findViewById(R.id.locationSearch);
         check = (Button) findViewById(R.id.checkbtn);
 
+        //로그인 체크와 아이디 값 가져옥;
+        SharedPreferences test = getSharedPreferences("check", Activity.MODE_PRIVATE);
+        logincheck = test.getBoolean("check", false);
+        loginID = test.getString("id",null);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -128,6 +144,39 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        View nav_header_view = navigationView.getHeaderView(0);
+
+        btnLogout = (ImageButton) nav_header_view.findViewById(R.id.btnLogout);
+        btnMypage = (ImageButton) nav_header_view.findViewById(R.id.btnMypage);
+        textid = (TextView)nav_header_view.findViewById(R.id.loginid);
+
+        if(logincheck){
+            Menu menu = navigationView.getMenu();
+            MenuItem item_Login = menu.findItem(R.id.btnLog);
+            item_Login.setVisible(false);//false가 안보임
+            MenuItem item_join = menu.findItem(R.id.btnJoin);
+            item_join.setVisible(false);
+            textid.setText(loginID+" 님");
+            btnLogout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LoginCheck loginCheck = new LoginCheck(MapActivity.this);
+                    loginCheck.Logout();
+                    Intent intent = getIntent();
+                    startActivity(intent);
+                    finish();
+                }
+            });
+            btnMypage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getApplicationContext(),"마이페이지",Toast.LENGTH_LONG).show();
+                }
+            });
+        } else{
+            btnLogout.setVisibility(View.INVISIBLE);
+            btnMypage.setVisibility(View.INVISIBLE);
+        }
 
         //GSP환경을 체크해서 자기위치를 뛰운다.
         check.setOnClickListener(new View.OnClickListener() {
