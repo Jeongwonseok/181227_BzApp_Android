@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //찾기 텍스트뷰 클릭
         txtfind = (TextView) findViewById(R.id.txtfind);
+        txtfind.setText(R.string.my_string);
 
         txtfind.setOnClickListener(new View.OnClickListener() {
             @Override

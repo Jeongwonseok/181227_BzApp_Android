@@ -39,7 +39,8 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="right"
-                android:background="@drawable/home" />
+                android:background="@drawable/home"
+                android:layout_marginRight="10dp"/>
 
         </android.support.v7.widget.Toolbar>
 
