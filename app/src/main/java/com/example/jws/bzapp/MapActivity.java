@@ -185,7 +185,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         lon = latlon.getLongitude();
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "검색입력바람", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 mLat = lat;
