@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity
     ImageButton btnAnal;
     ImageButton btnSurvey;
     ImageButton btnRec;
+    ImageButton btnPren;
 
     TextView textid;
     ImageButton btnMypage;
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity
         btnAnal = (ImageButton) findViewById(R.id.btnAnal);
         btnSurvey = (ImageButton) findViewById(R.id.btnSurvey);
         btnRec = (ImageButton) findViewById(R.id.btnRec);
+        btnPren = (ImageButton) findViewById(R.id.btnPren);
 
 
         //네비게이션 메뉴설정
@@ -149,6 +151,13 @@ public class MainActivity extends AppCompatActivity
                     startActivity(intent);
                 }
             });
+            btnPren.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, FranchiseActivity1.class);
+                    startActivity(intent);
+                }
+            });
 
             Menu menu = navigationView.getMenu();
             MenuItem item_Login = menu.findItem(R.id.btnLog);
@@ -197,6 +206,14 @@ public class MainActivity extends AppCompatActivity
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(MainActivity.this, RecommendActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            btnPren.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, FranchiseActivity1.class);
                     startActivity(intent);
                 }
             });
