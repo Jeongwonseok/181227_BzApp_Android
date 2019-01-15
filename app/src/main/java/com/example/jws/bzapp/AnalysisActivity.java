@@ -13,14 +13,22 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.List;
@@ -36,6 +44,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     ImageButton btnHome;
     Geocoder geocoder;
     int a;
+    TextView population;
 
 
     @Override
@@ -52,7 +61,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         mapFragment.getMapAsync(this);
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         btnHome = (ImageButton) findViewById(R.id.btnHome);
-
+        population = (TextView)findViewById(R.id.population);
         // 인구분석 버튼
          final LinearLayout pLayout1 = (LinearLayout) findViewById(R.id.pLayout1);
          final ImageView pbtn1 = (ImageView) findViewById(R.id.pbtn1);
@@ -171,26 +180,67 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 //        onAddCircle(100);
     }
 
-    public void address(double mLat, double mLong) {
+    public void address(double mLat,double mLong){
         List<Address> list = null;
-        try {
-            double d1 = mLat;
-            double d2 = mLong;
-            list = geocoder.getFromLocation(d1, d2, 1);
+        try{
+            double lat= mLat;
+            double lng=mLong;
+            list=geocoder.getFromLocation(lat,lng,1);
         } catch (IOException e) {
             e.printStackTrace();
-            Log.e("test", "입출력 오류");
+            Log.e("test","입출력 오류");
         }
-        if (list != null) {
-            if (list.size() == 0) {
-                Toast.makeText(getApplicationContext(), "해당되는 주소 정보는 없습니다.", Toast.LENGTH_SHORT).show();
-            } else {
-                String address = list.get(0).getAddressLine(0).toString();
-                Toast.makeText(getApplicationContext(), address, Toast.LENGTH_SHORT).show();
+        if(list!=null){
+            if(list.size()==0){
+                Toast.makeText(getApplicationContext(),"해당되는 주소 정보는 없습니다.",Toast.LENGTH_SHORT).show();
+            }else {
+                String address=list.get(0).getAddressLine(0).toString();
+                String address1=address.substring(5);
+                int su=address1.lastIndexOf("동");
+                address1=address1.substring(0,su+1);
+//
+//                boolean Seoul=address1.contains("서울특별시");
+//                boolean Gyeonggi=address1.contains("경기도");
+//                boolean Busan=address1.contains("부산광역시");
+//                boolean Daegu=address1.contains("대구광역시");
+//                boolean inchen=address1.contains("인쳔광역시");
+//                boolean Gangju=address1.contains("광주광역시");
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(s);
+                            JSONArray jsonArray = jsonObject.getJSONArray("response");
+                            int count = 0;
+                            String fid = "몇명 : ";
+                            while (count < jsonArray.length()) {
+                                if(count >= 1) {
+                                    fid = fid + ", ";
+                                }
+                                JSONObject object = jsonArray.getJSONObject(count);
+                                fid = fid + object.getString("population");
+                                count++;
+                            }
+                            if (jsonArray.length() > 0) {
+                                Toast.makeText(getApplicationContext(),fid,Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(),"실패",Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                population.setText(address1);
+                FindRpopulation findpopulation = new FindRpopulation(address1,responseListener);
+                RequestQueue queue = Volley.newRequestQueue(AnalysisActivity.this);
+                queue.add(findpopulation);
+
             }
         }
 
     }
+
 
     //
     public void onAddCircle100(int a) {
