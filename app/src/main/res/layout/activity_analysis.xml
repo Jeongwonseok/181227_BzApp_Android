@@ -98,13 +98,13 @@
                         android:gravity="center_vertical">
 
                         <TextView
-                            android:id="@+id/population"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:text="인구 분석"
+                            android:id="@+id/population"
                             android:textColor="#000000"
-                            android:textSize="15dp" />
+                            android:textSize="20dp" />
 
                     </LinearLayout>
 
@@ -128,7 +128,6 @@
                     android:id="@+id/pLayout1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#f4f4f4"
                     android:visibility="gone">
 
                     <ImageView
@@ -160,7 +159,7 @@
                             android:layout_marginLeft="10dp"
                             android:text="매출 분석"
                             android:textColor="#000000"
-                            android:textSize="15dp" />
+                            android:textSize="20dp" />
 
                     </LinearLayout>
 
@@ -184,7 +183,6 @@
                     android:id="@+id/pLayout2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#f4f4f4"
                     android:visibility="gone">
 
                     <ImageView
@@ -216,7 +214,7 @@
                             android:layout_marginLeft="10dp"
                             android:text="상권 분석"
                             android:textColor="#000000"
-                            android:textSize="15dp" />
+                            android:textSize="20dp" />
 
                     </LinearLayout>
 
@@ -240,7 +238,6 @@
                     android:id="@+id/pLayout3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#f4f4f4"
                     android:visibility="gone">
 
                     <ImageView
@@ -272,7 +269,7 @@
                             android:layout_marginLeft="10dp"
                             android:text="점포 현황"
                             android:textColor="#000000"
-                            android:textSize="15dp" />
+                            android:textSize="20dp" />
 
                     </LinearLayout>
 
@@ -296,63 +293,8 @@
                     android:id="@+id/pLayout4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#f4f4f4"
                     android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="20dp"
-                        android:text="반경 내 점포 현황"
-                        android:textColor="#000000"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="15dp"
-                        android:text="분석 범위"
-                        android:textSize="13dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="업종을 선택하시면 해당 업종의 현황과 상가 업소 현황 통계 데이터를 확인하실 수 있습니다."
-                        android:textSize="13dp" />
-
-
-                    <TextView
-                        android:id="@+id/txtArea"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:text="범위를 선택해주세요."
-                        android:textColor="#000000"
-                        android:background="@drawable/back_spinner2"
-                        android:paddingLeft="5dp"
-                        android:gravity="center"/>
-
-
-                    <TextView
-                        android:id="@+id/txtcategory"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:text="업종을 선택해주세요."
-                        android:textColor="#000000"
-                        android:background="@drawable/back_spinner2"
-                        android:paddingLeft="5dp"
-                        android:gravity="center"/>
-
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/txttest"
@@ -372,5 +314,6 @@
         </LinearLayout>
 
     </ScrollView>
+
 
 </LinearLayout>
