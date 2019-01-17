@@ -24,21 +24,20 @@ public class ShopApi extends Activity {
     String getXmlData(){
 
         StringBuffer buffer=new StringBuffer();
-        String radius = "500";
-        String mLat="33.449826";
-        String mLong="126.573301";
-        String Lcls="Q";
-        String Mcls="Q04";
-        String Scls="Q04A01";
+//        radius = "500";
+//        mLat="33.449826";
+//        mLong="126.573301";
+//        Lcls="Q";
+//        Mcls="Q04";
+//        Scls="Q04A01";
 
+//
+//        String url="http://apis.data.go.kr/B553077/api/open/sdsc/storeListInRadius?"+
+//        "radius="+500+"&cx="+126.573301+"&cy="+33.449826+"&ServiceKey="+"MxfED6C3Sd6Ja7QuU2BNU8xqBX5Yiy26t4sWS0PWUm%2B6WFjChgI3KoNQRMdO9LM5xvKfXOtMIh40XqadzCbTfw%3D%3D"
+//
 
-        // radius=500&cx=126.573301&cy=33.449826&indsLclsCd=Q
-        // &indsMclsCd=Q04&indsSclsCd=Q04A01&
-        // ServiceKey=MxfED6C3Sd6Ja7QuU2BNU8xqBX5Yiy26t4sWS0PWUm%2B6WFjChgI3KoNQRMdO9LM5xvKfXOtMIh40XqadzCbTfw%3D%3D
-
-        String queryUrl="http://apis.data.go.kr/B553077/api/open/sdsc/storeListInRadius?"//요청 URL
-                +"radius="+radius+"&cx="+mLong+"&cy="+mLat
-                +"&indsLclsCd="+Lcls+"&indsMclsCd="+Mcls+"&indsSclsCd="+Scls+"&ServiceKey="+key;
+        String queryUrl="http://apis.data.go.kr/B553077/api/open/sdsc/storeListInRadius?"+
+                "radius="+500+"&cx="+126.573301+"&cy="+33.449826+"&ServiceKey="+"MxfED6C3Sd6Ja7QuU2BNU8xqBX5Yiy26t4sWS0PWUm%2B6WFjChgI3KoNQRMdO9LM5xvKfXOtMIh40XqadzCbTfw%3D%3D";
 
         try {
             URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.

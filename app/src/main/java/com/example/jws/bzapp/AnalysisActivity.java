@@ -135,8 +135,25 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                 } else {
                     pLayout4.setVisibility(View.VISIBLE);
                     pbtn4.setImageResource(R.drawable.over);
-                    String test = shopapi.getXmlData();
-                    test1.setText(test);
+                    new Thread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            // TODO Auto-generated method stub
+                            final String test=shopapi.getXmlData();
+
+
+                            runOnUiThread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    // TODO Auto-generated method stub
+                                    test1.setText(test); //TextView에 문자열  data 출력
+                                }
+                            });
+
+                        }
+                    }).start();
                 }
             }
         });
