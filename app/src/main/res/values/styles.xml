@@ -27,4 +27,26 @@
         <item name="colorControlNormal">#ffffff</item>
     </style>
 
+    <style name="DialogFullScreen" parent="@android:style/Theme.Dialog">
+
+        <item name="android:windowFullscreen">true</item>
+
+        <item name="android:windowFrame">@null</item>
+
+        <item name="android:windowNoTitle">true</item>
+
+        <item name="android:windowIsFloating">true</item>
+
+        <item name="android:windowContentOverlay">@null</item>
+
+        <item name="android:windowBackground">@android:color/transparent</item>
+
+    </style>
+
+    <style name="CustomRadioButton" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">#ED3050</item>
+        <item name="colorControlNormal">#808080</item>
+    </style>
+
+
 </resources>

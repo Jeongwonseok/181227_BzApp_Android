@@ -7,4 +7,29 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="my_string"><u>ID/PW 찾기</u></string>
+    <string-array name="category">
+        <item>대분류</item>
+        <item>음식</item>
+        <item>소매</item>
+        <item>관광/여가/오락</item>
+        <item>생활서비스</item>
+        <item>학문/교육</item>
+        <item>부동산</item>
+        <item>숙박</item>
+        <item>도매/유통/무역</item>
+        <item>스포츠</item>
+        <item>의료</item>
+        <item>제조</item>
+        <item>문화/예술/종교</item>
+        <item>1차산업</item>
+        <item>교통/운송</item>
+        <item>언론/미디어</item>
+        <item>기술/건축/환경</item>
+        <item>국가기관/단체</item>
+        <item>금융</item>
+        <item>전기/가스/수도</item>
+        <item>전자/정보통신</item>
+        <item>복지</item>
+        <item>업종분류불능</item>
+    </string-array>
 </resources>
