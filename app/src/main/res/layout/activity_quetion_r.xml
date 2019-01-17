@@ -93,7 +93,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/round_edittext"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp"
+                    android:paddingLeft="5dp"/>
 
             </LinearLayout>
 
@@ -128,7 +129,8 @@
                     android:background="@drawable/round_edittext"
                     android:hint="xxxxxx@xxxx.xxx 형식으로 작성하세요."
                     android:inputType="textEmailAddress"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:paddingLeft="5dp"/>
 
             </LinearLayout>
 
@@ -160,7 +162,8 @@
                     android:id="@+id/spinner1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/back_spinner" />
+                    android:background="@drawable/back_spinner"
+                    android:paddingLeft="5dp"/>
 
             </LinearLayout>
 
@@ -197,7 +200,8 @@
                     android:maxLines="10"
                     android:minLines="1"
                     android:scrollbars="vertical"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp"
+                    android:paddingLeft="5dp"/>
 
             </LinearLayout>
 

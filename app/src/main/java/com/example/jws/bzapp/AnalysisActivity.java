@@ -45,6 +45,10 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     Geocoder geocoder;
     int a;
     TextView population;
+    //api 테스트
+    TextView test1;
+
+    ShopApi shopapi;
 
 
     @Override
@@ -59,6 +63,11 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        // api테스트
+        shopapi = new ShopApi();
+
+        test1 = (TextView) findViewById(R.id.txttest);
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         btnHome = (ImageButton) findViewById(R.id.btnHome);
         population = (TextView)findViewById(R.id.population);
@@ -126,6 +135,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                 } else {
                     pLayout4.setVisibility(View.VISIBLE);
                     pbtn4.setImageResource(R.drawable.over);
+                    String test = shopapi.getXmlData();
+                    test1.setText(test);
                 }
             }
         });
