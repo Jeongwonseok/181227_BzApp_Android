@@ -298,7 +298,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:background="#f4f4f4"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -326,8 +326,8 @@
                         android:textSize="13dp" />
 
 
-                    <TextView
-                        android:id="@+id/txtArea"
+                    <Button
+                        android:id="@+id/btnArea"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginLeft="10dp"
@@ -337,21 +337,25 @@
                         android:textColor="#000000"
                         android:background="@drawable/back_spinner2"
                         android:paddingLeft="5dp"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:textAllCaps="false"
+                        android:onClick="mOnPopupClick"/>
 
 
-                    <TextView
-                        android:id="@+id/txtcategory"
+                    <Button
+                        android:id="@+id/btnCategory"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
+                        android:layout_marginBottom="50dp"
                         android:text="업종을 선택해주세요."
                         android:textColor="#000000"
                         android:background="@drawable/back_spinner2"
                         android:paddingLeft="5dp"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:textAllCaps="false"/>
 
                 </LinearLayout>
 

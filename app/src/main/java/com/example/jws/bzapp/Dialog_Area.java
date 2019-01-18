@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -17,7 +18,6 @@ import android.widget.TextView;
 
 public class Dialog_Area extends Activity {
     Button btnCancel;
-    Button btnOk;
     String tv;
 
 
@@ -56,15 +56,38 @@ public class Dialog_Area extends Activity {
 
 
 
-        //확인 누르면 라디오 그룹의 라디오 버튼 아이디값 전달 >> 분석 액티비티로
 
-        btnOk = (Button) findViewById(R.id.btnOk);
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+    }
+
+    //확인 버튼 클릭시 라디오 그룹의 라디오 버튼 아이디값 전달
+    public void mOnClose(View v){
+        final RadioGroup radioGroup = (RadioGroup)findViewById(R.id.areaGroup);
+        int id = radioGroup.getCheckedRadioButtonId();
+        //getCheckedRadioButtonId() 의 리턴값은 선택된 RadioButton 의 id 값.
+        RadioButton rb = (RadioButton) findViewById(id);
+        tv  = rb.getText().toString();
+        //데이터 전달하기
+        Intent intent = new Intent();
+        intent.putExtra("result", tv);
+        setResult(RESULT_OK, intent);
+
+        //액티비티(팝업) 닫기
+        finish();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        //바깥레이어 클릭시 안닫히게
+        if(event.getAction()==MotionEvent.ACTION_OUTSIDE){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        //안드로이드 백버튼 막기
+        return;
     }
 }
 

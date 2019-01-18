@@ -1,5 +1,6 @@
 package com.example.jws.bzapp;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.location.Address;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -46,9 +48,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     Geocoder geocoder;
     int a;
     TextView population;
-    Spinner spinner1;
-    TextView txtcategory;
-    TextView txtArea;
+    Button btnArea;
+    Button btnCategory;
 
 
     @Override
@@ -66,55 +67,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 
 
         //업종 텍스트뷰 클릭 시 다이얼로그 생성
-        txtcategory = (TextView) findViewById(R.id.txtcategory);
-        txtArea = (TextView) findViewById(R.id.txtArea);
+        btnCategory = (Button) findViewById(R.id.btnCategory);
+        btnArea = (Button) findViewById(R.id.btnArea);
 
-        txtcategory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                /*
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(AnalysisActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.dialog_spinner, null);
-                mBuilder.setTitle("업종 선택");
-                final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinnertest);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(AnalysisActivity.this,android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.category));
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                mSpinner.setAdapter(adapter);
-
-                mBuilder.setPositiveButton("완료", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int which) {
-                        if (!mSpinner.getSelectedItem().toString().equalsIgnoreCase("대분류")){
-                            test2 = mSpinner.getSelectedItem().toString();
-                            txtcategory.setText(test2);
-                            Toast.makeText(AnalysisActivity.this,mSpinner.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
-                            dialogInterface.dismiss();
-                        }
-                    }
-                });
-
-                mBuilder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int which) {
-                        dialogInterface.dismiss();
-                    }
-                });
-
-                mBuilder.setView(mView);
-                AlertDialog dialog = mBuilder.create();
-                dialog.show();*/
-            }
-        });
-
-        // 반경 텍스트뷰 클릭 리스너
-        txtArea.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(AnalysisActivity.this, Dialog_Area.class));
-            }
-        });
 
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         btnHome = (ImageButton) findViewById(R.id.btnHome);
@@ -232,6 +187,23 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         address(mLat, mLong);
     }
 
+    //anal.xml의 android:onClick 이용해서 메서드 정의
+    public void mOnPopupClick(View v){
+        //데이터 담아서 팝업(액티비티) 호출
+        Intent intent = new Intent(this, Dialog_Area.class);
+        startActivityForResult(intent, 1);
+    }
+    //다이얼로그 실행후 결과값 받는 메서드
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==1){
+            if(resultCode==RESULT_OK){
+                //데이터 받기
+                String result = data.getStringExtra("result");
+                btnArea.setText(result);
+            }
+        }
+    }
 
     /**
      * Manipulates the map once available.
