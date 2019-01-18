@@ -4,9 +4,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -46,8 +45,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     int a;
     TextView population;
     //api 테스트
-    TextView test1;
-
+    TextView radiusText;
+    TextView sidoText;
+    TextView hangjungText;
     ShopApi shopapi;
 
 
@@ -67,7 +67,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         // api테스트
         shopapi = new ShopApi();
 
-        test1 = (TextView) findViewById(R.id.txttest);
+        radiusText = (TextView) findViewById(R.id.radiustest);
+        sidoText=(TextView)findViewById(R.id.sidotest);
+        hangjungText=(TextView)findViewById(R.id.hangtest);
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         btnHome = (ImageButton) findViewById(R.id.btnHome);
         population = (TextView)findViewById(R.id.population);
@@ -129,6 +131,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         pbtn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final String apiLat= String.valueOf(mLat);
+                final String apiLong=String.valueOf(mLong);
                 if (pLayout4.getVisibility() == View.VISIBLE) {
                     pLayout4.setVisibility(View.GONE);
                     pbtn4.setImageResource(R.drawable.under);
@@ -140,15 +144,17 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                         @Override
                         public void run() {
                             // TODO Auto-generated method stub
-                            final String test=shopapi.getXmlData();
-
-
+                            final String radiustest=shopapi.radiusData("500","126.573301","33.449826","Q","Q12","Q12A01");//반경
+                            final String sidotest=shopapi.sidoData("ctprvnCd","11","Q","Q04","Q04A01");//시도
+                            final String hangjung=shopapi.hangjungData("adongCd","4831057000","Q","Q04","Q04A01");//행정동
                             runOnUiThread(new Runnable() {
 
                                 @Override
                                 public void run() {
                                     // TODO Auto-generated method stub
-                                    test1.setText(test); //TextView에 문자열  data 출력
+                                    radiusText.setText(radiustest);
+                                    hangjungText.setText(hangjung);
+                                    sidoText.setText(sidotest);
                                 }
                             });
 

@@ -297,9 +297,18 @@
                     android:visibility="gone">
 
                     <TextView
-                        android:id="@+id/txttest"
+                        android:id="@+id/radiustest"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
+                    <TextView
+                        android:id="@+id/hangtest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:id="@+id/sidotest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
 
                     <ImageView
                         android:layout_width="match_parent"
