@@ -57,19 +57,11 @@ public class Dialog_Area extends Activity {
 
 
         //확인 누르면 라디오 그룹의 라디오 버튼 아이디값 전달 >> 분석 액티비티로
-        final RadioGroup rg = (RadioGroup) findViewById(R.id.areaGroup);
+
         btnOk = (Button) findViewById(R.id.btnOk);
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                int id = rg.getCheckedRadioButtonId();
-                //getCheckedRadioButtonId() 의 리턴값은 선택된 RadioButton 의 id 값.
-                RadioButton rb = (RadioButton) findViewById(id);
-                tv = rb.getText().toString();
-                Intent intent = new Intent(Dialog_Area.this,AnalysisActivity.class);
-                intent.putExtra("반경 : ",tv);
-                startActivity(intent);
                 finish();
             }
         });
