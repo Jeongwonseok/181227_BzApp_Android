@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,10 +46,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     Geocoder geocoder;
     int a;
     TextView population;
-    //api 테스트
-    TextView test1;
-
-    ShopApi shopapi;
+    Spinner spinner1;
+    TextView txtcategory;
+    TextView txtArea;
 
 
     @Override
@@ -64,13 +64,84 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        // api테스트
-        shopapi = new ShopApi();
 
-        test1 = (TextView) findViewById(R.id.txttest);
+        //업종 텍스트뷰 클릭 시 다이얼로그 생성
+        txtcategory = (TextView) findViewById(R.id.txtcategory);
+        txtArea = (TextView) findViewById(R.id.txtArea);
+
+        txtcategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                /*
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(AnalysisActivity.this);
+                View mView = getLayoutInflater().inflate(R.layout.dialog_spinner, null);
+                mBuilder.setTitle("업종 선택");
+                final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinnertest);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(AnalysisActivity.this,android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.category));
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                mSpinner.setAdapter(adapter);
+
+                mBuilder.setPositiveButton("완료", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        if (!mSpinner.getSelectedItem().toString().equalsIgnoreCase("대분류")){
+                            test2 = mSpinner.getSelectedItem().toString();
+                            txtcategory.setText(test2);
+                            Toast.makeText(AnalysisActivity.this,mSpinner.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
+                            dialogInterface.dismiss();
+                        }
+                    }
+                });
+
+                mBuilder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
+                mBuilder.setView(mView);
+                AlertDialog dialog = mBuilder.create();
+                dialog.show();*/
+            }
+        });
+
+        // 반경 텍스트뷰 클릭 리스너
+        txtArea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AnalysisActivity.this, Dialog_Area.class));
+            }
+        });
+
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         btnHome = (ImageButton) findViewById(R.id.btnHome);
         population = (TextView)findViewById(R.id.population);
+        /* final Spinner spinner1 = (Spinner) findViewById(R.id.spinner1);
+
+        //범위 배열
+        final String[] number1 = {"범위를 선택해주세요.", "100m", "200m", "500m", "1km"};
+
+        //스피너에 배열 입력
+        ArrayAdapter<String> adapter;
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, number1);
+        spinner1.setAdapter(adapter);
+        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //범위 값 변수
+                test1 = spinner1.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        }); */
+
+
         // 인구분석 버튼
          final LinearLayout pLayout1 = (LinearLayout) findViewById(R.id.pLayout1);
          final ImageView pbtn1 = (ImageView) findViewById(R.id.pbtn1);
@@ -135,25 +206,6 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                 } else {
                     pLayout4.setVisibility(View.VISIBLE);
                     pbtn4.setImageResource(R.drawable.over);
-                    new Thread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            // TODO Auto-generated method stub
-                            final String test=shopapi.getXmlData();
-
-
-                            runOnUiThread(new Runnable() {
-
-                                @Override
-                                public void run() {
-                                    // TODO Auto-generated method stub
-                                    test1.setText(test); //TextView에 문자열  data 출력
-                                }
-                            });
-
-                        }
-                    }).start();
                 }
             }
         });
