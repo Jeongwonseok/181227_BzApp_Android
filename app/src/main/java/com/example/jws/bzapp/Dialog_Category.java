@@ -61,64 +61,17 @@ public class Dialog_Category extends Activity {
         listview.setAdapter(adapter);
 
         // 첫 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.baseline_assignment_ind_black_18dp),
-                "Box", "Account Box Black 36dp") ;
+        adapter.addItem("Account Box Black 36dp") ;
         // 두 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.baseline_assignment_ind_black_18dp),
-                "Circle", "Account Circle Black 36dp") ;
+        adapter.addItem("Account Box Black 36dp") ;
         // 세 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.baseline_assignment_ind_black_18dp),
-                "Ind", "Assignment Ind Black 36dp") ;
+        adapter.addItem("Account Box Black 36dp") ;
+        adapter.addItem("Account Box Black 36dp") ;
+        adapter.addItem("Account Box Black 36dp") ;
+        adapter.addItem("Account Box Black 36dp") ;
+        adapter.addItem("Account Box Black 36dp") ;
+        adapter.addItem("Account Box Black 36dp") ;
+        adapter.addItem("Account Box Black 36dp") ;
 
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.baseline_assignment_ind_black_18dp),
-                "Ind", "Assignment Ind Black 36dp") ;
-
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.baseline_assignment_ind_black_18dp),
-                "Ind", "Assignment Ind Black 36dp") ;
-
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.baseline_assignment_ind_black_18dp),
-                "Ind", "Assignment Ind Black 36dp") ;
-
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.baseline_assignment_ind_black_18dp),
-                "Ind", "Assignment Ind Black 36dp") ;
-
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.baseline_assignment_ind_black_18dp),
-                "Ind", "Assignment Ind Black 36dp") ;
-
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.baseline_assignment_ind_black_18dp),
-                "Ind", "Assignment Ind Black 36dp") ;
-
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.baseline_assignment_ind_black_18dp),
-                "Ind", "Assignment Ind Black 36dp") ;
-
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.baseline_assignment_ind_black_18dp),
-                "Ind", "Assignment Ind Black 36dp") ;
-
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.baseline_assignment_ind_black_18dp),
-                "Ind", "Assignment Ind Black 36dp") ;
-
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.baseline_assignment_ind_black_18dp),
-                "Ind", "Assignment Ind Black 36dp") ;
-
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.baseline_assignment_ind_black_18dp),
-                "Ind", "Assignment Ind Black 36dp") ;
-
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.baseline_assignment_ind_black_18dp),
-                "Ind", "Assignment Ind Black 36dp") ;
-
-
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView parent, View v, int position, long id) {
-                // get item
-                ListViewItem item = (ListViewItem) parent.getItemAtPosition(position) ;
-
-                String titleStr = item.getTitle() ;
-                String descStr = item.getDesc() ;
-                Drawable iconDrawable = item.getIcon() ;
-
-                // TODO : use item data.
-            }
-        }) ;
     }
 }

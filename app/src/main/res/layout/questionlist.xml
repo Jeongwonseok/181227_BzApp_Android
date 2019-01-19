@@ -23,14 +23,15 @@
                 android:layout_marginLeft="10dp"
                 android:text="[문의] 최신 업데이트가 언제인가요?"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/TVdatetime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="2018.10.25" />
+                android:text="2018.10.25"
+                android:textSize="10dp" />
 
         </LinearLayout>
 
@@ -60,7 +61,7 @@
         android:id="@+id/updateView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#DCDCDC"
+        android:background="#f4f4f4"
         android:gravity="center_vertical"
         android:orientation="vertical"
         android:visibility="gone">
@@ -74,8 +75,14 @@
             android:layout_marginBottom="5dp"
             android:text=""
             android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textSize="15dp" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:layout_gravity="center_vertical"
+            android:background="#DCDCDC" />
 
     </LinearLayout>
+
 </LinearLayout>

@@ -21,7 +21,7 @@
             android:layout_weight="1"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:text="상권분석 반경 설정"
+            android:text="상권분석 반경 선택"
             android:textColor="#000000"
             android:textSize="15dp" />
 

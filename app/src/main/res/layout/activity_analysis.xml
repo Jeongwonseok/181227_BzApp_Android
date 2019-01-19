@@ -293,7 +293,7 @@
                     android:layout_height="wrap_content"
                     android:background="#f4f4f4"
                     android:orientation="vertical"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
 
                     <TextView
