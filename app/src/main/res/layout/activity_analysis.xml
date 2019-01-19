@@ -98,11 +98,11 @@
                         android:gravity="center_vertical">
 
                         <TextView
-                            android:id="@+id/population"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:text="인구 분석"
+                            android:id="@+id/population"
                             android:textColor="#000000"
                             android:textSize="15dp" />
 
@@ -128,116 +128,13 @@
                     android:id="@+id/pLayout1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:background="#f4f4f4"
                     android:visibility="gone">
 
-                    <LinearLayout
+                    <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="전체" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="0대" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="10대" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="20대" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="30대" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="40대" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="50대" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="60대" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tvtotal"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/tvchild"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/tvteenage"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/tvtwenty"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/tvthirty"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/tvforty"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/tvfifty"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/tvsixty"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-                    </LinearLayout>
+                        android:layout_height="match_parent"
+                        android:src="@drawable/wait" />
 
                 </LinearLayout>
 
@@ -399,8 +296,8 @@
                     android:id="@+id/pLayout4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#f4f4f4"
                     android:orientation="vertical"
+                    android:background="#f4f4f4"
                     android:visibility="gone">
 
                     <TextView
@@ -436,13 +333,13 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
-                        android:background="@drawable/back_spinner2"
-                        android:gravity="center"
-                        android:onClick="mOnPopupClick"
-                        android:paddingLeft="5dp"
                         android:text="범위를 선택해주세요."
+                        android:textColor="#000000"
+                        android:background="@drawable/back_spinner2"
+                        android:paddingLeft="5dp"
+                        android:gravity="center"
                         android:textAllCaps="false"
-                        android:textColor="#000000" />
+                        android:onClick="mOnPopupClick"/>
 
 
                     <Button
@@ -453,17 +350,12 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="50dp"
-                        android:background="@drawable/back_spinner2"
-                        android:gravity="center"
-<<<<<<< HEAD
-                        android:textAllCaps="false"
-                        android:onClick="mOnPopupClick2"/>
-=======
-                        android:paddingLeft="5dp"
                         android:text="업종을 선택해주세요."
-                        android:textAllCaps="false"
-                        android:textColor="#000000" />
->>>>>>> 724e81ccfc9f5456d569d13245bfec6ad1116357
+                        android:textColor="#000000"
+                        android:background="@drawable/back_spinner2"
+                        android:paddingLeft="5dp"
+                        android:gravity="center"
+                        android:textAllCaps="false"/>
 
                 </LinearLayout>
 
