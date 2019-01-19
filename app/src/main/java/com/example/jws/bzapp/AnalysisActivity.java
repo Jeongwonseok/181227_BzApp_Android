@@ -10,9 +10,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,19 +51,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     ImageButton btnHome;
     Geocoder geocoder;
     int a;
-    TextView population;
-<<<<<<< HEAD
     Button btnArea;
     Button btnCategory;
-    //인구분석
-    TextView tvtotal, tvchild, tvteenage, tvtwenty, tvthirty, tvforty, tvfifty, tvsixty;
-    String UTM_KX, UTM_KY, addr;
-=======
-    Spinner spinner1;
-    TextView txtcategory;
-    TextView txtArea;
->>>>>>> parent of 186893a... 반경 설정 텍스트값 받아오기 , 반경 다이얼로그
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,21 +65,13 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         mLat = intent.getDoubleExtra("mLat", 0);
         mLong = intent.getDoubleExtra("mLong", 0);
         a = intent.getIntExtra("a", 0);
-        address(mLat, mLong);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-
-        //업종 텍스트뷰 클릭 시 다이얼로그 생성
-        txtcategory = (TextView) findViewById(R.id.txtcategory);
-        txtArea = (TextView) findViewById(R.id.txtArea);
-
-        txtcategory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btnCategory = (Button) findViewById(R.id.btnCategory);
+        btnArea = (Button) findViewById(R.id.btnArea);
 
 
                 /*
@@ -122,20 +105,10 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                 mBuilder.setView(mView);
                 AlertDialog dialog = mBuilder.create();
                 dialog.show();*/
-            }
-        });
 
-        // 반경 텍스트뷰 클릭 리스너
-        txtArea.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(AnalysisActivity.this, Dialog_Area.class));
-            }
-        });
 
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         btnHome = (ImageButton) findViewById(R.id.btnHome);
-        population = (TextView) findViewById(R.id.population);
         /* final Spinner spinner1 = (Spinner) findViewById(R.id.spinner1);
 
         //범위 배열
@@ -158,20 +131,6 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
             }
         }); */
 
-        //인구분석
-        btnBack = (ImageButton) findViewById(R.id.btnBack);
-        btnHome = (ImageButton) findViewById(R.id.btnHome);
-        tvtotal = (TextView) findViewById(R.id.tvtotal);
-        tvchild = (TextView) findViewById(R.id.tvchild);
-        tvteenage = (TextView) findViewById(R.id.tvteenage);
-        tvtwenty = (TextView) findViewById(R.id.tvtwenty);
-        tvthirty = (TextView) findViewById(R.id.tvthirty);
-        tvforty = (TextView) findViewById(R.id.tvforty);
-        tvfifty = (TextView) findViewById(R.id.tvfifty);
-        tvsixty = (TextView) findViewById(R.id.tvsixty);
-
-        Change change = new Change(mLong, mLat);
-        change.execute();
 
         // 인구분석 버튼
         final LinearLayout pLayout1 = (LinearLayout) findViewById(R.id.pLayout1);
@@ -258,7 +217,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         });
     }
 
-<<<<<<< HEAD
+
     //anal.xml의 android:onClick 이용해서 메서드 정의
     public void mOnPopupClick(View v) {
         //데이터 담아서 팝업(액티비티) 호출
@@ -277,8 +236,6 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
             }
         }
     }
-=======
->>>>>>> parent of 186893a... 반경 설정 텍스트값 받아오기 , 반경 다이얼로그
 
     public void mOnPopupClick2(View v) {
         //데이터 담아서 팝업(액티비티) 호출
@@ -312,68 +269,6 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 16));
 //        onAddCircle(100);
     }
-
-    public void address(double mLat, double mLong) {
-        List<Address> list = null;
-        try {
-            double lat = mLat;
-            double lng = mLong;
-            list = geocoder.getFromLocation(lat, lng, 1);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e("test", "입출력 오류");
-        }
-        if (list != null) {
-            if (list.size() == 0) {
-                Toast.makeText(getApplicationContext(), "해당되는 주소 정보는 없습니다.", Toast.LENGTH_SHORT).show();
-            } else {
-                String address = list.get(0).getAddressLine(0).toString();
-                String address1 = address.substring(5);
-                int su = address1.lastIndexOf("동");
-                address1 = address1.substring(0, su + 1);
-//
-//                boolean Seoul=address1.contains("서울특별시");
-//                boolean Gyeonggi=address1.contains("경기도");
-//                boolean Busan=address1.contains("부산광역시");
-//                boolean Daegu=address1.contains("대구광역시");
-//                boolean inchen=address1.contains("인쳔광역시");
-//                boolean Gangju=address1.contains("광주광역시");
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String s) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(s);
-                            JSONArray jsonArray = jsonObject.getJSONArray("response");
-                            int count = 0;
-                            String fid = "몇명 : ";
-                            while (count < jsonArray.length()) {
-                                if (count >= 1) {
-                                    fid = fid + ", ";
-                                }
-                                JSONObject object = jsonArray.getJSONObject(count);
-                                fid = fid + object.getString("population");
-                                count++;
-                            }
-                            if (jsonArray.length() > 0) {
-                                Toast.makeText(getApplicationContext(), fid, Toast.LENGTH_LONG).show();
-                            } else {
-                                Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_LONG).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                };
-                population.setText(address1);
-                FindRpopulation findpopulation = new FindRpopulation(address1, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(AnalysisActivity.this);
-                queue.add(findpopulation);
-
-            }
-        }
-
-    }
-
 
     //
     public void onAddCircle100(int a) {
@@ -435,181 +330,5 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         //this.mGoogleMap.addMarker(mymarker);
         this.mMap.addCircle(circle);
 
-
-    public class Change extends AsyncTask<String, Void, String> {
-        double lat, lng;
-
-
-    
-    public class Change extends AsyncTask<String, Void, String> {
-        double lat, lng;
-
-
-        public Change(double lat, double lng) {
-            this.lat = lat;
-            this.lng = lng;
-        }
-
-        @Override
-        protected void onPreExecute() {
-        }
-
-        @Override
-        protected String doInBackground(String... voids) {
-            try {
-                //서버에 있는 php 실행
-                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/transformation/transcoord.json?accessToken=d18f5a3a-be61-425a-92f4-574ab3b72409&src=4326&dst=5179&posX=" + lat + "&posY=" + lng);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                String temp;
-                StringBuilder stringBuilder = new StringBuilder();
-                while ((temp = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(temp + "\n");
-                }
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                //결과 값을 리턴
-                return stringBuilder.toString().trim();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-            super.onProgressUpdate(values);
-        }
-
-        //결과값 출력 메소드
-        public void show(String s) {
-
-            try {
-                JSONObject jsonObject = new JSONObject(s);
-                JSONObject object = jsonObject.getJSONObject("result");
-
-
-                UTM_KX = object.getString("posX");
-                UTM_KY = object.getString("posY");
-//                Toast.makeText(getApplicationContext(), UTM_KX + "  " +UTM_KY, Toast.LENGTH_LONG).show();
-                Achange achange = new Achange(UTM_KX, UTM_KY);
-                achange.execute();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            show(s);
-        }
-
-
-    }
-
-    public class Achange extends AsyncTask<String, Void, String> {
-        String UTM_KX, UTM_KY;
-
-        public Achange(String UTM_KX, String UTM_KY) {
-            this.UTM_KX = UTM_KX;
-            this.UTM_KY = UTM_KY;
-        }
-
-
-        @Override
-        protected void onPreExecute() {
-        }
-
-        @Override
-        protected String doInBackground(String... voids) {
-            try {
-                //서버에 있는 php 실행
-                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/addr/rgeocode.json?accessToken=d18f5a3a-be61-425a-92f4-574ab3b72409&x_coor=" + UTM_KX + "&y_coor=" + UTM_KY + "1816238.1323095055&addr_type=20");
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                String temp;
-                StringBuilder stringBuilder = new StringBuilder();
-                while ((temp = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(temp + "\n");
-                }
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                //결과 값을 리턴
-                return stringBuilder.toString().trim();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-            super.onProgressUpdate(values);
-        }
-
-        //결과값 출력 메소드
-        public void show(String s) {
-
-            try {
-                JSONObject jsonObject = new JSONObject(s);
-                JSONArray jsonArray = jsonObject.getJSONArray("result");
-
-                for (int i = 0; i < jsonArray.length(); i++) {
-
-                    JSONObject item = jsonArray.getJSONObject(i);
-
-                    addr = item.getString("full_addr");
-                }
-                Population();
-//                Toast.makeText(getApplicationContext(), addr, Toast.LENGTH_LONG).show();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            show(s);
-        }
-
-
-    }
-
-    public void Population() {
-        Response.Listener<String> responseListener = new Response.Listener<String>() {
-            @Override
-            public void onResponse(String s) {
-                try {
-                    JSONObject jsonObject = new JSONObject(s);
-                    JSONArray jsonArray = jsonObject.getJSONArray("response");
-                    int count = 0;
-                    while (count < jsonArray.length()) {
-                        JSONObject object = jsonArray.getJSONObject(count);
-                        object.getString("address");
-                        tvtotal.setText(object.getString("total"));
-                        tvchild.setText(object.getString("child"));
-                        tvteenage.setText(object.getString("teenage"));
-                        tvtwenty.setText(object.getString("twenty"));
-                        tvthirty.setText(object.getString("thirty"));
-                        tvforty.setText(object.getString("forty"));
-                        tvfifty.setText(object.getString("fifty"));
-                        tvsixty.setText(object.getString("sixty"));
-                        count++;
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        FindApopulation findApopulation = new FindApopulation(addr, responseListener);
-        RequestQueue queue = Volley.newRequestQueue(AnalysisActivity.this);
-        queue.add(findApopulation);
     }
 }

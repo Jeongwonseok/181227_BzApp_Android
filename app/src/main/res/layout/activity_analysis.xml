@@ -98,7 +98,6 @@
                         android:gravity="center_vertical">
 
                         <TextView
-                            android:id="@+id/population"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -131,115 +130,6 @@
                     android:background="#f4f4f4"
                     android:orientation="vertical"
                     android:visibility="gone">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="전체" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="0대" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="10대" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="20대" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="30대" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="40대" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="50대" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="60대" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tvtotal"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/tvchild"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/tvteenage"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/tvtwenty"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/tvthirty"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/tvforty"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/tvfifty"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/tvsixty"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -402,12 +292,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#f4f4f4"
-<<<<<<< HEAD
                     android:orientation="vertical"
-                    android:visibility="gone">
-=======
                     android:visibility="visible">
->>>>>>> parent of 186893a... 반경 설정 텍스트값 받아오기 , 반경 다이얼로그
+
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -435,50 +322,39 @@
                         android:textSize="13dp" />
 
 
-                    <TextView
-                        android:id="@+id/txtArea"
+                    <Button
+                        android:id="@+id/btnArea"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:background="@drawable/back_spinner2"
-<<<<<<< HEAD
                         android:gravity="center"
-                        android:onClick="mOnPopupClick"
                         android:paddingLeft="5dp"
                         android:text="범위를 선택해주세요."
                         android:textAllCaps="false"
-                        android:textColor="#000000" />
-=======
-                        android:paddingLeft="5dp"
-                        android:gravity="center"/>
->>>>>>> parent of 186893a... 반경 설정 텍스트값 받아오기 , 반경 다이얼로그
+                        android:textColor="#000000"
+                        android:onClick="mOnPopupClick" />
 
 
-                    <TextView
-                        android:id="@+id/txtcategory"
+                    <Button
+                        android:id="@+id/btnCategory"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
-<<<<<<< HEAD
                         android:layout_marginBottom="50dp"
                         android:background="@drawable/back_spinner2"
                         android:gravity="center"
-                        android:onClick="mOnPopupClick2"
                         android:paddingLeft="5dp"
                         android:text="업종을 선택해주세요."
                         android:textAllCaps="false"
-                        android:textColor="#000000" />
-=======
-                        android:text="업종을 선택해주세요."
                         android:textColor="#000000"
-                        android:background="@drawable/back_spinner2"
-                        android:paddingLeft="5dp"
-                        android:gravity="center"/>
->>>>>>> parent of 186893a... 반경 설정 텍스트값 받아오기 , 반경 다이얼로그
+                        android:onClick="mOnPopupClick2" />
+
+
 
                 </LinearLayout>
 
