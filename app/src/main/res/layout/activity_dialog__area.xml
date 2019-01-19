@@ -26,7 +26,7 @@
             android:textSize="15dp" />
 
         <View
-            android:layout_width="300dp"
+            android:layout_width="900px"
             android:layout_height="2dp"
             android:layout_gravity="center"
             android:background="#f4f4f4" />
@@ -48,7 +48,7 @@
                     android:textColor="#4c4c4c"
                     android:theme="@style/CustomRadioButton"/>
             <View
-                android:layout_width="300dp"
+                android:layout_width="900px"
                 android:layout_height="2dp"
                 android:layout_gravity="center"
                 android:background="#f4f4f4" />
@@ -62,7 +62,7 @@
                     android:textColor="#4c4c4c"
                     android:theme="@style/CustomRadioButton"/>
             <View
-                android:layout_width="300dp"
+                android:layout_width="900px"
                 android:layout_height="2dp"
                 android:layout_gravity="center"
                 android:background="#f4f4f4" />
@@ -76,7 +76,7 @@
                     android:textColor="#4c4c4c"
                     android:theme="@style/CustomRadioButton"/>
             <View
-                android:layout_width="300dp"
+                android:layout_width="900px"
                 android:layout_height="2dp"
                 android:layout_gravity="center"
                 android:background="#f4f4f4" />
@@ -90,7 +90,7 @@
                     android:textColor="#4c4c4c"
                     android:theme="@style/CustomRadioButton" />
             <View
-                android:layout_width="300dp"
+                android:layout_width="900px"
                 android:layout_height="2dp"
                 android:layout_gravity="center"
                 android:background="#f4f4f4" />
@@ -115,7 +115,7 @@
             android:background="@drawable/round_button1"
             android:textColor="#ffffff"
             android:text="취소"
-            android:layout_gravity="center_vertical" />
+            android:layout_gravity="center_vertical"/>
 
         <LinearLayout
             android:layout_width="180dp"
@@ -123,13 +123,13 @@
             android:background="#ffffff"/>
 
         <Button
+            android:id="@+id/btnOk"
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:background="@drawable/round_button1"
             android:textColor="#ffffff"
             android:text="확인"
-            android:layout_gravity="center_vertical"
-            android:onClick="mOnClose"/>
+            android:layout_gravity="center_vertical"/>
 
     </LinearLayout>
 

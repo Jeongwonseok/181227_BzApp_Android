@@ -402,8 +402,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#f4f4f4"
+<<<<<<< HEAD
                     android:orientation="vertical"
                     android:visibility="gone">
+=======
+                    android:visibility="visible">
+>>>>>>> parent of 186893a... 반경 설정 텍스트값 받아오기 , 반경 다이얼로그
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -431,29 +435,35 @@
                         android:textSize="13dp" />
 
 
-                    <Button
-                        android:id="@+id/btnArea"
+                    <TextView
+                        android:id="@+id/txtArea"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:background="@drawable/back_spinner2"
+<<<<<<< HEAD
                         android:gravity="center"
                         android:onClick="mOnPopupClick"
                         android:paddingLeft="5dp"
                         android:text="범위를 선택해주세요."
                         android:textAllCaps="false"
                         android:textColor="#000000" />
+=======
+                        android:paddingLeft="5dp"
+                        android:gravity="center"/>
+>>>>>>> parent of 186893a... 반경 설정 텍스트값 받아오기 , 반경 다이얼로그
 
 
-                    <Button
-                        android:id="@+id/btnCategory"
+                    <TextView
+                        android:id="@+id/txtcategory"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
+<<<<<<< HEAD
                         android:layout_marginBottom="50dp"
                         android:background="@drawable/back_spinner2"
                         android:gravity="center"
@@ -462,6 +472,13 @@
                         android:text="업종을 선택해주세요."
                         android:textAllCaps="false"
                         android:textColor="#000000" />
+=======
+                        android:text="업종을 선택해주세요."
+                        android:textColor="#000000"
+                        android:background="@drawable/back_spinner2"
+                        android:paddingLeft="5dp"
+                        android:gravity="center"/>
+>>>>>>> parent of 186893a... 반경 설정 텍스트값 받아오기 , 반경 다이얼로그
 
                 </LinearLayout>
 
