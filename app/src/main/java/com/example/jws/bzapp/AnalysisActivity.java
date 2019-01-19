@@ -84,7 +84,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         btnHome = (ImageButton) findViewById(R.id.btnHome);
-        population = (TextView)findViewById(R.id.population);
+        population = (TextView) findViewById(R.id.population);
         /* final Spinner spinner1 = (Spinner) findViewById(R.id.spinner1);
 
         //범위 배열
@@ -123,8 +123,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         change.execute();
 
         // 인구분석 버튼
-         final LinearLayout pLayout1 = (LinearLayout) findViewById(R.id.pLayout1);
-         final ImageView pbtn1 = (ImageView) findViewById(R.id.pbtn1);
+        final LinearLayout pLayout1 = (LinearLayout) findViewById(R.id.pLayout1);
+        final ImageView pbtn1 = (ImageView) findViewById(R.id.pbtn1);
 
         pbtn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -208,16 +208,17 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     }
 
     //anal.xml의 android:onClick 이용해서 메서드 정의
-    public void mOnPopupClick(View v){
+    public void mOnPopupClick(View v) {
         //데이터 담아서 팝업(액티비티) 호출
         Intent intent = new Intent(this, Dialog_Area.class);
         startActivityForResult(intent, 1);
     }
+
     //다이얼로그 실행후 결과값 받는 메서드
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode==1){
-            if(resultCode==RESULT_OK){
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
                 //데이터 받기
                 String result = data.getStringExtra("result");
                 btnArea.setText(result);
@@ -225,7 +226,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         }
     }
 
-    public void mOnPopupClick2(View v){
+    public void mOnPopupClick2(View v) {
         //데이터 담아서 팝업(액티비티) 호출
         Intent intent = new Intent(this, Dialog_Category.class);
         startActivityForResult(intent, 1);
@@ -258,24 +259,24 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 //        onAddCircle(100);
     }
 
-    public void address(double mLat,double mLong){
+    public void address(double mLat, double mLong) {
         List<Address> list = null;
-        try{
-            double lat= mLat;
-            double lng=mLong;
-            list=geocoder.getFromLocation(lat,lng,1);
+        try {
+            double lat = mLat;
+            double lng = mLong;
+            list = geocoder.getFromLocation(lat, lng, 1);
         } catch (IOException e) {
             e.printStackTrace();
-            Log.e("test","입출력 오류");
+            Log.e("test", "입출력 오류");
         }
-        if(list!=null){
-            if(list.size()==0){
-                Toast.makeText(getApplicationContext(),"해당되는 주소 정보는 없습니다.",Toast.LENGTH_SHORT).show();
-            }else {
-                String address=list.get(0).getAddressLine(0).toString();
-                String address1=address.substring(5);
-                int su=address1.lastIndexOf("동");
-                address1=address1.substring(0,su+1);
+        if (list != null) {
+            if (list.size() == 0) {
+                Toast.makeText(getApplicationContext(), "해당되는 주소 정보는 없습니다.", Toast.LENGTH_SHORT).show();
+            } else {
+                String address = list.get(0).getAddressLine(0).toString();
+                String address1 = address.substring(5);
+                int su = address1.lastIndexOf("동");
+                address1 = address1.substring(0, su + 1);
 //
 //                boolean Seoul=address1.contains("서울특별시");
 //                boolean Gyeonggi=address1.contains("경기도");
@@ -292,7 +293,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                             int count = 0;
                             String fid = "몇명 : ";
                             while (count < jsonArray.length()) {
-                                if(count >= 1) {
+                                if (count >= 1) {
                                     fid = fid + ", ";
                                 }
                                 JSONObject object = jsonArray.getJSONObject(count);
@@ -300,9 +301,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                                 count++;
                             }
                             if (jsonArray.length() > 0) {
-                                Toast.makeText(getApplicationContext(),fid,Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), fid, Toast.LENGTH_LONG).show();
                             } else {
-                                Toast.makeText(getApplicationContext(),"실패",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -310,7 +311,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     }
                 };
                 population.setText(address1);
-                FindRpopulation findpopulation = new FindRpopulation(address1,responseListener);
+                FindRpopulation findpopulation = new FindRpopulation(address1, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(AnalysisActivity.this);
                 queue.add(findpopulation);
 
@@ -380,7 +381,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         //this.mGoogleMap.addMarker(mymarker);
         this.mMap.addCircle(circle);
     }
-    
+
     public class Change extends AsyncTask<String, Void, String> {
         double lat, lng;
 
