@@ -380,10 +380,16 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                 .strokeColor(Color.GRAY);
         //this.mGoogleMap.addMarker(mymarker);
         this.mMap.addCircle(circle);
-    }
+
 
     public class Change extends AsyncTask<String, Void, String> {
         double lat, lng;
+
+
+    
+    public class Change extends AsyncTask<String, Void, String> {
+        double lat, lng;
+
 
         public Change(double lat, double lng) {
             this.lat = lat;
