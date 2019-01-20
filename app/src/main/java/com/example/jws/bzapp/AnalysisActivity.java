@@ -45,8 +45,6 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     private GoogleMap mMap;
     double mLat = 0;
     double mLong = 0;
-    LinearLayout pLayout1, pLayout2, pLayout3, pLayout4;
-    ImageView pbtn1, pbtn2, pbtn3, pbtn4;
     ImageButton btnBack;
     ImageButton btnHome;
     Geocoder geocoder;
@@ -253,13 +251,19 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                 String result = data.getStringExtra("result");
                 btnArea.setText(result);
             }
+        } else if (requestCode == 2) {
+            if (resultCode == RESULT_OK) {
+                //데이터 받기
+                String result = data.getStringExtra("category");
+                btnCategory.setText(result);
+            }
         }
     }
 
     public void mOnPopupClick2(View v) {
         //데이터 담아서 팝업(액티비티) 호출
         Intent intent = new Intent(this, Dialog_Category.class);
-        startActivityForResult(intent, 1);
+        startActivityForResult(intent, 2);
     }
 
     /**
