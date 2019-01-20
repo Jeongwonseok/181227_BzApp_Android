@@ -54,6 +54,11 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     Button btnArea;
     Button btnCategory;
 
+    //인구분석
+    TextView tvtotal, tvchild, tvteenage, tvtwenty, tvthirty, tvforty, tvfifty, tvsixty;
+    String UTM_KX, UTM_KY, addr;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +70,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         mLat = intent.getDoubleExtra("mLat", 0);
         mLong = intent.getDoubleExtra("mLong", 0);
         a = intent.getIntExtra("a", 0);
+//        Toast.makeText(getApplicationContext(), String.valueOf(mLong) + " " + String.valueOf(mLat), Toast.LENGTH_LONG).show();
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -131,7 +137,20 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
             }
         }); */
 
+        //인구분석
+        btnBack = (ImageButton) findViewById(R.id.btnBack);
+        btnHome = (ImageButton) findViewById(R.id.btnHome);
+        tvtotal = (TextView) findViewById(R.id.tvtotal);
+        tvchild = (TextView) findViewById(R.id.tvchild);
+        tvteenage = (TextView) findViewById(R.id.tvteenage);
+        tvtwenty = (TextView) findViewById(R.id.tvtwenty);
+        tvthirty = (TextView) findViewById(R.id.tvthirty);
+        tvforty = (TextView) findViewById(R.id.tvforty);
+        tvfifty = (TextView) findViewById(R.id.tvfifty);
+        tvsixty = (TextView) findViewById(R.id.tvsixty);
 
+        Change change = new Change();
+        change.execute();
         // 인구분석 버튼
         final LinearLayout pLayout1 = (LinearLayout) findViewById(R.id.pLayout1);
         final ImageView pbtn1 = (ImageView) findViewById(R.id.pbtn1);
@@ -330,5 +349,150 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         //this.mGoogleMap.addMarker(mymarker);
         this.mMap.addCircle(circle);
 
+    }
+
+    public class Change extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected String doInBackground(String... voids) {
+            try {
+                //서버에 있는 php 실행
+                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/transformation/transcoord.json?accessToken=b8a0f9f8-fd2f-496d-8f02-a8c46fdaa23f&src=4326&dst=5179&posX=" + mLong + "&posY=" + mLat);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                String temp;
+                StringBuilder stringBuilder = new StringBuilder();
+                while ((temp = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(temp + "\n");
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                //결과 값을 리턴
+                return stringBuilder.toString().trim();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                JSONObject object = jsonObject.getJSONObject("result");
+
+                UTM_KX = object.getString("posX");
+                UTM_KY = object.getString("posY");
+//                Toast.makeText(getApplicationContext(), UTM_KX + "  " + UTM_KY, Toast.LENGTH_LONG).show();
+                Achange achange = new Achange();
+                achange.execute();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+    }
+
+    public class Achange extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected String doInBackground(String... voids) {
+            try {
+                //서버에 있는 php 실행
+                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/addr/rgeocode.json?accessToken=b8a0f9f8-fd2f-496d-8f02-a8c46fdaa23f&x_coor=" + UTM_KX + "&y_coor=" + UTM_KY + "&addr_type=20");
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                String temp;
+                StringBuilder stringBuilder = new StringBuilder();
+                while ((temp = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(temp + "\n");
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                //결과 값을 리턴
+                return stringBuilder.toString().trim();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                JSONArray jsonArray = jsonObject.getJSONArray("result");
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+
+                    JSONObject item = jsonArray.getJSONObject(i);
+
+                    addr = item.getString("full_addr");
+                }
+                Population();
+//                Toast.makeText(getApplicationContext(), addr, Toast.LENGTH_LONG).show();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+
+    }
+
+    public void Population() {
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                try {
+                    JSONObject jsonObject = new JSONObject(s);
+                    JSONArray jsonArray = jsonObject.getJSONArray("response");
+                    int count = 0;
+                    while (count < jsonArray.length()) {
+                        JSONObject object = jsonArray.getJSONObject(count);
+                        object.getString("address");
+                        tvtotal.setText(object.getString("total"));
+                        tvchild.setText(object.getString("child"));
+                        tvteenage.setText(object.getString("teenage"));
+                        tvtwenty.setText(object.getString("twenty"));
+                        tvthirty.setText(object.getString("thirty"));
+                        tvforty.setText(object.getString("forty"));
+                        tvfifty.setText(object.getString("fifty"));
+                        tvsixty.setText(object.getString("sixty"));
+                        count++;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        FindApopulation findApopulation = new FindApopulation(addr, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(AnalysisActivity.this);
+        queue.add(findApopulation);
     }
 }
