@@ -27,7 +27,7 @@
 
         <View
             android:layout_width="300dp"
-            android:layout_height="2dp"
+            android:layout_height="1px"
             android:layout_gravity="center"
             android:background="#f4f4f4" />
 
@@ -45,11 +45,11 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="100m"
-                    android:textColor="#4c4c4c"
+                    android:textColor="#000000"
                     android:theme="@style/CustomRadioButton"/>
             <View
                 android:layout_width="300dp"
-                android:layout_height="2dp"
+                android:layout_height="1px"
                 android:layout_gravity="center"
                 android:background="#f4f4f4" />
 
@@ -59,11 +59,11 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="200m"
-                    android:textColor="#4c4c4c"
+                    android:textColor="#000000"
                     android:theme="@style/CustomRadioButton"/>
             <View
                 android:layout_width="300dp"
-                android:layout_height="2dp"
+                android:layout_height="1px"
                 android:layout_gravity="center"
                 android:background="#f4f4f4" />
 
@@ -73,11 +73,11 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="500m"
-                    android:textColor="#4c4c4c"
+                    android:textColor="#000000"
                     android:theme="@style/CustomRadioButton"/>
             <View
                 android:layout_width="300dp"
-                android:layout_height="2dp"
+                android:layout_height="1px"
                 android:layout_gravity="center"
                 android:background="#f4f4f4" />
 
@@ -87,11 +87,11 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text=" 1km  "
-                    android:textColor="#4c4c4c"
+                    android:textColor="#000000"
                     android:theme="@style/CustomRadioButton" />
             <View
                 android:layout_width="300dp"
-                android:layout_height="2dp"
+                android:layout_height="1px"
                 android:layout_gravity="center"
                 android:background="#f4f4f4" />
 
@@ -130,7 +130,7 @@
             android:textColor="#ffffff"
             android:text="확인"
             android:layout_gravity="center_vertical"
-            android:onClick="mOnClose"/>
+            android:onClick="mOnOk"/>
 
     </LinearLayout>
 

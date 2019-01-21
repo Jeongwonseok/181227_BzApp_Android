@@ -4,77 +4,118 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#ffffff"
+    android:orientation="horizontal"
     tools:context="com.example.jws.bzapp.Dialog_Category">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        android:text="상권분석 업종 선택"
-        android:textColor="#000000"
-        android:textSize="15dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        android:text="대분류"
-        android:textColor="#000000"
-        android:textSize="15dp" />
-
-
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9"
-        android:orientation="vertical">
-
-        <ListView
-            android:id="@+id/listview1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:choiceMode="singleChoice"/>
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="30">
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal"
-        android:background="#ffffff">
-
-        <Button
-            android:id="@+id/btnCancel"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:background="@drawable/round_button1"
-            android:textColor="#ffffff"
-            android:text="취소"
-            android:layout_gravity="center_vertical"
-            android:onClick="mOnPopupClick3"/>
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1020"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="180dp"
-            android:layout_height="match_parent"
-            android:background="#ffffff"/>
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
 
-        <Button
-            android:id="@+id/btnNext"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:background="@drawable/round_button1"
-            android:textColor="#ffffff"
-            android:text="다음"
-            android:layout_gravity="center_vertical"
-            android:onClick="mOnPopupClick4"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="상권분석 업종 선택"
+                android:textColor="#000000"
+                android:textSize="15dp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/txtCat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="대분류"
+                android:textColor="#000000"
+                android:textSize="14dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/listview1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:choiceMode="singleChoice"
+                android:divider="#f4f4f4"
+                android:dividerHeight="1px"
+                android:overScrollMode="never"
+                android:listSelector="@drawable/listview_colors"
+                android:scrollbars="none"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/round_button1"
+                android:onClick="mOnPopupClick3"
+                android:text="취소"
+                android:textColor="#ffffff" />
+
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:background="#ffffff" />
+
+            <Button
+                android:id="@+id/btnNext"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/round_button1"
+                android:onClick="mOnPopupClick4"
+                android:text="다음"
+                android:textColor="#ffffff" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="30">
 
     </LinearLayout>
 

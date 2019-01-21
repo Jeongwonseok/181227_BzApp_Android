@@ -58,7 +58,7 @@ public class Dialog_Area extends Activity {
     }
 
     //확인 버튼 클릭시 라디오 그룹의 라디오 버튼 아이디값 전달
-    public void mOnClose(View v){
+    public void mOnOk(View v){
         final RadioGroup radioGroup = (RadioGroup)findViewById(R.id.areaGroup);
         int id = radioGroup.getCheckedRadioButtonId();
         //getCheckedRadioButtonId() 의 리턴값은 선택된 RadioButton 의 id 값.

@@ -45,7 +45,7 @@
 
     <style name="CustomRadioButton" parent="Theme.AppCompat.Light">
         <item name="colorAccent">#ED3050</item>
-        <item name="colorControlNormal">#808080</item>
+        <item name="colorControlNormal">#cdcdcd</item>
     </style>
 
 

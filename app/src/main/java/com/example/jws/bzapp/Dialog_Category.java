@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Dialog_Category extends Activity {
@@ -22,6 +23,8 @@ public class Dialog_Category extends Activity {
     Button btnNext;
     String tv;
     int i;
+    int count;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +76,8 @@ public class Dialog_Category extends Activity {
         });
         */
 
-        final ListView listview;
         ListViewAdapter adapter;
+        ListView listview;
 
         // Adapter 생성
         adapter = new ListViewAdapter();
@@ -109,6 +112,11 @@ public class Dialog_Category extends Activity {
         adapter.addItem("복지");
         adapter.addItem("업종분류불능");
 
+
+        //count = adapter.getCount();
+        //tv = adapter.getItem(count).toString();
+
+
         /*
         i = listview.getCheckedItemPosition();
         tv = adapter.getItem(i).toString();
@@ -122,29 +130,12 @@ public class Dialog_Category extends Activity {
         finish();
     }
 
-    //다이얼로그 실행후 결과값 받는 메서드
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 2) {
-            if (resultCode == RESULT_OK) {
-                //데이터 받기
-                String result = data.getStringExtra("category");
-            }
-        } else if (requestCode == 3) {
-            if (resultCode == RESULT_OK) {
-                //데이터 받기
-                String result = data.getStringExtra("category");
-            }
-        }
-    }
-
     public void mOnPopupClick4(View v) {
 
         Toast.makeText(getApplicationContext(), tv, Toast.LENGTH_SHORT).show();
 
-        final ListView listview;
         ListViewAdapter adapter;
-
+        ListView listview;
         // Adapter 생성
         adapter = new ListViewAdapter();
 
@@ -171,6 +162,8 @@ public class Dialog_Category extends Activity {
         adapter.addItem("음식배달서비스");
         adapter.addItem("기타음식업");
         final Button btnCancel = (Button) findViewById(R.id.btnCancel);
+        final TextView txtCat = (TextView)findViewById(R.id.txtCat);
+        txtCat.setText("중분류");
         btnCancel.setText("이전");
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,15 +178,17 @@ public class Dialog_Category extends Activity {
             public void onClick(View v) {
                 final Button btnCancel = (Button) findViewById(R.id.btnCancel);
                 btnCancel.setText("이전");
+                final TextView txtCat = (TextView)findViewById(R.id.txtCat);
+                txtCat.setText("소분류");
                 btnCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         //이전 리스트뷰로 돌아가게 해야함
                     }
                 });
-                final ListView listview;
-                ListViewAdapter adapter;
 
+                ListViewAdapter adapter;
+                ListView listview;
                 // Adapter 생성
                 adapter = new ListViewAdapter();
 

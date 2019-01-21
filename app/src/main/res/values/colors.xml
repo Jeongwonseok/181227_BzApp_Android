@@ -5,4 +5,6 @@
     <color name="colorAccent">#D81B60</color>
     <color name="cursorColor">#ffb65d</color>
     <color name="nomalColor">#ffcd54</color>
+
+    <color name="colour_highlight_grey">#f4f4f4</color>
 </resources>
