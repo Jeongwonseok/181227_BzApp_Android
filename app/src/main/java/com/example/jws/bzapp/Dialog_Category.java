@@ -111,10 +111,11 @@ public class Dialog_Category extends Activity {
         adapter.addItem("복지");
         adapter.addItem("업종분류불능");
 
-        txtCat = (TextView)findViewById(R.id.txtCat);
-        btnNext = (Button)findViewById(R.id.btnNext);
+        txtCat = (TextView) findViewById(R.id.txtCat);
+        btnNext = (Button) findViewById(R.id.btnNext);
         btnNext.setEnabled(false);
-        btnCancel = (Button)findViewById(R.id.btnCancel);
+        btnNext.setBackgroundResource(R.drawable.round_button2);
+        btnCancel = (Button) findViewById(R.id.btnCancel);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,6 +130,7 @@ public class Dialog_Category extends Activity {
                 ListViewItem listViewItem = adapter.getItem(i);
                 tv1 = listViewItem.getText();
                 btnNext.setEnabled(true);
+                btnNext.setBackgroundResource(R.drawable.round_button1);
                 btnNext.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -161,6 +163,7 @@ public class Dialog_Category extends Activity {
                         adapter.addItem("음식배달서비스");
                         adapter.addItem("기타음식업");
                         btnNext.setEnabled(false);
+                        btnNext.setBackgroundResource(R.drawable.round_button2);
                         btnCancel.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -175,11 +178,14 @@ public class Dialog_Category extends Activity {
                                 ListViewItem listViewItem = adapter.getItem(i);
                                 tv2 = listViewItem.getText();
                                 btnNext.setEnabled(true);
+                                btnNext.setBackgroundResource(R.drawable.round_button1);
                                 btnNext.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        final TextView txtCat = (TextView)findViewById(R.id.txtCat);
+                                        final TextView txtCat = (TextView) findViewById(R.id.txtCat);
                                         txtCat.setText("소분류");
+                                        btnNext.setEnabled(false);
+                                        btnNext.setBackgroundResource(R.drawable.round_button2);
                                         btnCancel.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
@@ -213,20 +219,20 @@ public class Dialog_Category extends Activity {
                                                 i = listview.getCheckedItemPosition();
                                                 ListViewItem listViewItem = adapter.getItem(i);
                                                 tv3 = listViewItem.getText();
+                                                btnNext.setEnabled(true);
+                                                btnNext.setBackgroundResource(R.drawable.round_button1);
+                                                btnNext.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View v) {
+
+                                                        Intent intent = new Intent();
+                                                        intent.putExtra("category", tv1 + " > " + tv2 + " > " + tv3);
+                                                        setResult(RESULT_OK, intent);
+                                                        finish();
+                                                    }
+                                                });
                                             }
                                         });
-
-                                        btnNext.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-
-                                                Intent intent = new Intent();
-                                                intent.putExtra("category", tv1+" > "+tv2+" > "+tv3);
-                                                setResult(RESULT_OK, intent);
-                                                finish();
-                                            }
-                                        });
-
                                     }
                                 });
 
