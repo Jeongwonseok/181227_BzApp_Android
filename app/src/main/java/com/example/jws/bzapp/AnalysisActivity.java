@@ -2,21 +2,17 @@ package com.example.jws.bzapp;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.location.Address;
 import android.location.Geocoder;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -33,12 +29,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
 
 public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -239,6 +233,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     public void mOnPopupClick(View v) {
         //데이터 담아서 팝업(액티비티) 호출
         Intent intent = new Intent(this, Dialog_Area.class);
+        intent.putExtra("area",a);
         startActivityForResult(intent, 1);
     }
 
@@ -415,7 +410,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         protected String doInBackground(String... voids) {
             try {
                 //서버에 있는 php 실행
-                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/transformation/transcoord.json?accessToken=b8a0f9f8-fd2f-496d-8f02-a8c46fdaa23f&src=4326&dst=5179&posX=" + mLong + "&posY=" + mLat);
+                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/transformation/transcoord.json?accessToken="+token+"&src=4326&dst=5179&posX=" + mLong + "&posY=" + mLat);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -471,7 +466,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         protected String doInBackground(String... voids) {
             try {
                 //서버에 있는 php 실행
-                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/addr/rgeocode.json?accessToken=b8a0f9f8-fd2f-496d-8f02-a8c46fdaa23f&x_coor=" + UTM_KX + "&y_coor=" + UTM_KY + "&addr_type=20");
+                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/addr/rgeocode.json?accessToken="+token+"&x_coor=" + UTM_KX + "&y_coor=" + UTM_KY + "&addr_type=20");
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));

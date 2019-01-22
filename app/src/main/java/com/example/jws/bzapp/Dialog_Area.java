@@ -3,7 +3,6 @@ package com.example.jws.bzapp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.Gravity;
@@ -14,12 +13,12 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 public class Dialog_Area extends Activity {
     Button btnCancel;
     Button btnOk;
     String tv;
+    int area;
 
 
     @Override
@@ -32,6 +31,19 @@ public class Dialog_Area extends Activity {
         layoutParams.dimAmount = 0.7f;
         getWindow().setAttributes(layoutParams);
         setContentView(R.layout.activity_dialog__area);
+        Intent intent = getIntent();
+        area = intent.getIntExtra("area",0);
+        RadioGroup radioGroup = (RadioGroup)findViewById(R.id.areaGroup);
+
+        if (area==100) {
+            radioGroup.check(R.id.rb100);
+        } else if (area==200) {
+            radioGroup.check(R.id.rb200);
+        } else if(area==500) {
+            radioGroup.check(R.id.rb500);
+        } else if(area==1000) {
+            radioGroup.check(R.id.rb1000);
+        }
 
 
         Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
@@ -63,6 +75,7 @@ public class Dialog_Area extends Activity {
         int id = radioGroup.getCheckedRadioButtonId();
         //getCheckedRadioButtonId() 의 리턴값은 선택된 RadioButton 의 id 값.
         RadioButton rb = (RadioButton) findViewById(id);
+
         tv  = rb.getText().toString();
         //데이터 전달하기
         Intent intent = new Intent();

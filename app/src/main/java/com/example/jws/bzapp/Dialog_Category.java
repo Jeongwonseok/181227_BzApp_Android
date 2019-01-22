@@ -3,9 +3,6 @@ package com.example.jws.bzapp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.Gravity;
@@ -16,12 +13,13 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Dialog_Category extends Activity {
     Button btnCancel;
     Button btnNext;
-    String tv;
+    String tv1;
+    String tv2;
+    String tv3;
     int i;
     int count;
 
@@ -76,8 +74,8 @@ public class Dialog_Category extends Activity {
         });
         */
 
-        ListViewAdapter adapter;
-        ListView listview;
+        final ListViewAdapter adapter;
+        final ListView listview;
 
         // Adapter 생성
         adapter = new ListViewAdapter();
@@ -111,17 +109,21 @@ public class Dialog_Category extends Activity {
         adapter.addItem("전자/정보통신");
         adapter.addItem("복지");
         adapter.addItem("업종분류불능");
+        btnNext = (Button)findViewById(R.id.btnNext);
+        btnNext.setEnabled(false);
 
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                i = listview.getCheckedItemPosition();
+                ListViewItem listViewItem = adapter.getItem(i);
+                tv1 = listViewItem.getText();
+                btnNext.setEnabled(true);
+            }
+        });
 
         //count = adapter.getCount();
         //tv = adapter.getItem(count).toString();
-
-
-        /*
-        i = listview.getCheckedItemPosition();
-        tv = adapter.getItem(i).toString();
-        */
-
     }
 
     //anal.xml의 android:onClick 이용해서 메서드 정의
@@ -132,10 +134,8 @@ public class Dialog_Category extends Activity {
 
     public void mOnPopupClick4(View v) {
 
-        Toast.makeText(getApplicationContext(), tv, Toast.LENGTH_SHORT).show();
-
-        ListViewAdapter adapter;
-        ListView listview;
+        final ListViewAdapter adapter;
+        final ListView listview;
         // Adapter 생성
         adapter = new ListViewAdapter();
 
@@ -161,6 +161,17 @@ public class Dialog_Category extends Activity {
         adapter.addItem("제과제빵떡케익");
         adapter.addItem("음식배달서비스");
         adapter.addItem("기타음식업");
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                i = listview.getCheckedItemPosition();
+                ListViewItem listViewItem = adapter.getItem(i);
+                tv2 = listViewItem.getText();
+            }
+        });
+
+
         final Button btnCancel = (Button) findViewById(R.id.btnCancel);
         final TextView txtCat = (TextView)findViewById(R.id.txtCat);
         txtCat.setText("중분류");
@@ -187,8 +198,8 @@ public class Dialog_Category extends Activity {
                     }
                 });
 
-                ListViewAdapter adapter;
-                ListView listview;
+                final ListViewAdapter adapter;
+                final ListView listview;
                 // Adapter 생성
                 adapter = new ListViewAdapter();
 
@@ -207,12 +218,21 @@ public class Dialog_Category extends Activity {
                 adapter.addItem("냉면집");
                 btnNext.setText("확인");
 
+                listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        i = listview.getCheckedItemPosition();
+                        ListViewItem listViewItem = adapter.getItem(i);
+                        tv3 = listViewItem.getText();
+                    }
+                });
+
                 btnNext.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
                         Intent intent = new Intent();
-                        intent.putExtra("category", "안녕");
+                        intent.putExtra("category", tv1+" > "+tv2+" > "+tv3);
                         setResult(RESULT_OK, intent);
                         finish();
                     }
