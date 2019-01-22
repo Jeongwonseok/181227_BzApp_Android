@@ -294,6 +294,12 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="60대" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="1인"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -345,6 +351,12 @@
 
                         <TextView
                             android:id="@+id/tvsixty"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/tvonehouse"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1" />
