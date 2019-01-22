@@ -54,7 +54,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 
     //인구분석
     TextView tvtotal, tvchild, tvteenage, tvtwenty, tvthirty, tvforty, tvfifty, tvsixty;
-    String UTM_KX, UTM_KY, addr;
+    String UTM_KX, UTM_KY, addr, token;
 
 
     @Override
@@ -147,8 +147,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         tvfifty = (TextView) findViewById(R.id.tvfifty);
         tvsixty = (TextView) findViewById(R.id.tvsixty);
 
-        Change change = new Change();
-        change.execute();
+        getToken getToken = new getToken();
+        getToken.execute();
         // 인구분석 버튼
         final LinearLayout pLayout1 = (LinearLayout) findViewById(R.id.pLayout1);
         final ImageView pbtn1 = (ImageView) findViewById(R.id.pbtn1);
@@ -353,6 +353,56 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         //this.mGoogleMap.addMarker(mymarker);
         this.mMap.addCircle(circle);
 
+    }
+
+    public class getToken extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                //서버에 있는 php 실행
+                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.json?consumer_key=6140fd53e79c44e08321&consumer_secret=2a95a807ff5b4fc48414");
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                String temp;
+                StringBuilder stringBuilder = new StringBuilder();
+                while ((temp = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(temp + "\n");
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                //결과 값을 리턴
+                return stringBuilder.toString().trim();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        protected void onPostExecute(String s) {
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                JSONObject object = jsonObject.getJSONObject("result");
+
+                token = object.getString("accessToken");
+//                Toast.makeText(getApplicationContext(), token, Toast.LENGTH_LONG).show();
+                Change change = new Change();
+                change.execute();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public class Change extends AsyncTask<String, Void, String> {
