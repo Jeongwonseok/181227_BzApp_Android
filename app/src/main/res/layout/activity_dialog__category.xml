@@ -90,7 +90,6 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/round_button1"
-                android:onClick="mOnPopupClick3"
                 android:text="취소"
                 android:textColor="#ffffff" />
 
@@ -105,7 +104,6 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/round_button1"
-                android:onClick="mOnPopupClick4"
                 android:text="다음"
                 android:textColor="#ffffff" />
 

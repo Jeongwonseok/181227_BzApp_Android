@@ -17,6 +17,7 @@ import android.widget.TextView;
 public class Dialog_Category extends Activity {
     Button btnCancel;
     Button btnNext;
+    TextView txtCat;
     String tv1;
     String tv2;
     String tv3;
@@ -109,8 +110,17 @@ public class Dialog_Category extends Activity {
         adapter.addItem("전자/정보통신");
         adapter.addItem("복지");
         adapter.addItem("업종분류불능");
+
+        txtCat = (TextView)findViewById(R.id.txtCat);
         btnNext = (Button)findViewById(R.id.btnNext);
         btnNext.setEnabled(false);
+        btnCancel = (Button)findViewById(R.id.btnCancel);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -119,6 +129,111 @@ public class Dialog_Category extends Activity {
                 ListViewItem listViewItem = adapter.getItem(i);
                 tv1 = listViewItem.getText();
                 btnNext.setEnabled(true);
+                btnNext.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        txtCat.setText("중분류");
+                        final ListViewAdapter adapter;
+                        final ListView listview;
+                        // Adapter 생성
+                        adapter = new ListViewAdapter();
+
+                        // 리스트뷰 참조 및 Adapter달기
+                        listview = (ListView) findViewById(R.id.listview1);
+                        listview.setAdapter(adapter);
+
+
+                        // 첫 번째 아이템 추가.
+                        adapter.addItem("한식");
+                        // 두 번째 아이템 추가.
+                        adapter.addItem("양식");
+                        // 세 번째 아이템 추가.
+                        adapter.addItem("중식");
+                        adapter.addItem("별식/퓨전요리");
+                        adapter.addItem("일식/수산물");
+                        adapter.addItem("커피점/카페");
+                        adapter.addItem("닭/오리요리");
+                        adapter.addItem("유흥주점");
+                        adapter.addItem("분식");
+                        adapter.addItem("부페");
+                        adapter.addItem("패스트푸드");
+                        adapter.addItem("제과제빵떡케익");
+                        adapter.addItem("음식배달서비스");
+                        adapter.addItem("기타음식업");
+                        btnNext.setEnabled(false);
+                        btnCancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                finish();
+                            }
+                        });
+
+                        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                i = listview.getCheckedItemPosition();
+                                ListViewItem listViewItem = adapter.getItem(i);
+                                tv2 = listViewItem.getText();
+                                btnNext.setEnabled(true);
+                                btnNext.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        final TextView txtCat = (TextView)findViewById(R.id.txtCat);
+                                        txtCat.setText("소분류");
+                                        btnCancel.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                finish();
+                                            }
+                                        });
+
+                                        final ListViewAdapter adapter;
+                                        final ListView listview;
+                                        // Adapter 생성
+                                        adapter = new ListViewAdapter();
+
+                                        // 리스트뷰 참조 및 Adapter달기
+                                        listview = (ListView) findViewById(R.id.listview1);
+                                        listview.setAdapter(adapter);
+
+                                        // 첫 번째 아이템 추가.
+                                        adapter.addItem("전체");
+                                        // 두 번째 아이템 추가.
+                                        adapter.addItem("갈비/삼겹살");
+                                        // 세 번째 아이템 추가.
+                                        adapter.addItem("곱창/양구이전문");
+                                        adapter.addItem("기사식당");
+                                        adapter.addItem("기타고기요리");
+                                        adapter.addItem("냉면집");
+                                        btnNext.setText("확인");
+
+                                        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                            @Override
+                                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                                i = listview.getCheckedItemPosition();
+                                                ListViewItem listViewItem = adapter.getItem(i);
+                                                tv3 = listViewItem.getText();
+                                            }
+                                        });
+
+                                        btnNext.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+
+                                                Intent intent = new Intent();
+                                                intent.putExtra("category", tv1+" > "+tv2+" > "+tv3);
+                                                setResult(RESULT_OK, intent);
+                                                finish();
+                                            }
+                                        });
+
+                                    }
+                                });
+
+                            }
+                        });
+                    }
+                });
             }
         });
 
@@ -126,120 +241,4 @@ public class Dialog_Category extends Activity {
         //tv = adapter.getItem(count).toString();
     }
 
-    //anal.xml의 android:onClick 이용해서 메서드 정의
-    public void mOnPopupClick3(View v) {
-        //데이터 담아서 팝업(액티비티) 호출
-        finish();
-    }
-
-    public void mOnPopupClick4(View v) {
-
-        final ListViewAdapter adapter;
-        final ListView listview;
-        // Adapter 생성
-        adapter = new ListViewAdapter();
-
-        // 리스트뷰 참조 및 Adapter달기
-        listview = (ListView) findViewById(R.id.listview1);
-        listview.setAdapter(adapter);
-
-
-        // 첫 번째 아이템 추가.
-        adapter.addItem("한식");
-        // 두 번째 아이템 추가.
-        adapter.addItem("양식");
-        // 세 번째 아이템 추가.
-        adapter.addItem("중식");
-        adapter.addItem("별식/퓨전요리");
-        adapter.addItem("일식/수산물");
-        adapter.addItem("커피점/카페");
-        adapter.addItem("닭/오리요리");
-        adapter.addItem("유흥주점");
-        adapter.addItem("분식");
-        adapter.addItem("부페");
-        adapter.addItem("패스트푸드");
-        adapter.addItem("제과제빵떡케익");
-        adapter.addItem("음식배달서비스");
-        adapter.addItem("기타음식업");
-
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                i = listview.getCheckedItemPosition();
-                ListViewItem listViewItem = adapter.getItem(i);
-                tv2 = listViewItem.getText();
-            }
-        });
-
-
-        final Button btnCancel = (Button) findViewById(R.id.btnCancel);
-        final TextView txtCat = (TextView)findViewById(R.id.txtCat);
-        txtCat.setText("중분류");
-        btnCancel.setText("이전");
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //이전 리스트뷰로 돌아가게 해야함
-            }
-        });
-
-        final Button btnNext = (Button) findViewById(R.id.btnNext);
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Button btnCancel = (Button) findViewById(R.id.btnCancel);
-                btnCancel.setText("이전");
-                final TextView txtCat = (TextView)findViewById(R.id.txtCat);
-                txtCat.setText("소분류");
-                btnCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //이전 리스트뷰로 돌아가게 해야함
-                    }
-                });
-
-                final ListViewAdapter adapter;
-                final ListView listview;
-                // Adapter 생성
-                adapter = new ListViewAdapter();
-
-                // 리스트뷰 참조 및 Adapter달기
-                listview = (ListView) findViewById(R.id.listview1);
-                listview.setAdapter(adapter);
-
-                // 첫 번째 아이템 추가.
-                adapter.addItem("전체");
-                // 두 번째 아이템 추가.
-                adapter.addItem("갈비/삼겹살");
-                // 세 번째 아이템 추가.
-                adapter.addItem("곱창/양구이전문");
-                adapter.addItem("기사식당");
-                adapter.addItem("기타고기요리");
-                adapter.addItem("냉면집");
-                btnNext.setText("확인");
-
-                listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        i = listview.getCheckedItemPosition();
-                        ListViewItem listViewItem = adapter.getItem(i);
-                        tv3 = listViewItem.getText();
-                    }
-                });
-
-                btnNext.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        Intent intent = new Intent();
-                        intent.putExtra("category", tv1+" > "+tv2+" > "+tv3);
-                        setResult(RESULT_OK, intent);
-                        finish();
-                    }
-                });
-
-            }
-        });
-
-    }
 }
