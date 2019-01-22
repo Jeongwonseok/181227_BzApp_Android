@@ -47,8 +47,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     Button btnCategory;
 
     //인구분석
-    TextView tvtotal, tvchild, tvteenage, tvtwenty, tvthirty, tvforty, tvfifty, tvsixty;
-    String UTM_KX, UTM_KY, addr, token;
+    TextView tvtotal, tvchild, tvteenage, tvtwenty, tvthirty, tvforty, tvfifty, tvsixty, tvonehouse;
+    String UTM_KX, UTM_KY, addr, token, addrcd, onehouse_cnt;
 
 
     @Override
@@ -140,6 +140,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         tvforty = (TextView) findViewById(R.id.tvforty);
         tvfifty = (TextView) findViewById(R.id.tvfifty);
         tvsixty = (TextView) findViewById(R.id.tvsixty);
+        tvonehouse = (TextView) findViewById(R.id.tvonehouse);
 
         getToken getToken = new getToken();
         getToken.execute();
@@ -233,7 +234,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     public void mOnPopupClick(View v) {
         //데이터 담아서 팝업(액티비티) 호출
         Intent intent = new Intent(this, Dialog_Area.class);
-        intent.putExtra("area",a);
+        intent.putExtra("area", a);
         startActivityForResult(intent, 1);
     }
 
@@ -410,7 +411,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         protected String doInBackground(String... voids) {
             try {
                 //서버에 있는 php 실행
-                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/transformation/transcoord.json?accessToken="+token+"&src=4326&dst=5179&posX=" + mLong + "&posY=" + mLat);
+                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/transformation/transcoord.json?accessToken=" + token + "&src=4326&dst=5179&posX=" + mLong + "&posY=" + mLat);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -466,7 +467,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         protected String doInBackground(String... voids) {
             try {
                 //서버에 있는 php 실행
-                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/addr/rgeocode.json?accessToken="+token+"&x_coor=" + UTM_KX + "&y_coor=" + UTM_KY + "&addr_type=20");
+                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/addr/rgeocode.json?accessToken=" + token + "&x_coor=" + UTM_KX + "&y_coor=" + UTM_KY + "&addr_type=20");
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -502,13 +503,75 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     JSONObject item = jsonArray.getJSONObject(i);
 
                     addr = item.getString("full_addr");
+                    addrcd = item.getString("sido_cd") + item.getString("sgg_cd") + item.getString("emdong_cd");
                 }
+                OneHouse oneHouse = new OneHouse();
+                oneHouse.execute();
                 Population();
+//                Toast.makeText(getApplicationContext(), addrcd, Toast.LENGTH_LONG).show();
 //                Toast.makeText(getApplicationContext(), addr, Toast.LENGTH_LONG).show();
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+
+
+    }
+
+    public class OneHouse extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected String doInBackground(String... voids) {
+            try {
+                //서버에 있는 php 실행
+                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/stats/household.json?accessToken=" + token + "&year=2017&adm_cd=" + addrcd + "&household_type=A0");
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                String temp;
+                StringBuilder stringBuilder = new StringBuilder();
+                while ((temp = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(temp + "\n");
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                //결과 값을 리턴
+                return stringBuilder.toString().trim();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                JSONArray jsonArray = jsonObject.getJSONArray("result");
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+
+                    JSONObject item = jsonArray.getJSONObject(i);
+
+                    onehouse_cnt = item.getString("household_cnt");
+                    tvonehouse.setText(onehouse_cnt);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
 
 
