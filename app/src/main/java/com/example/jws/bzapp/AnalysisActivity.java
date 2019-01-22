@@ -209,8 +209,6 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                                 @Override
                                 public void run() {
                                     // TODO Auto-generated method stub
-                                    if(alljumpo==null)
-                                        jumposu.setText("-");
                                     jumposu.setText(alljumpo+"개");
                                 }
                             });

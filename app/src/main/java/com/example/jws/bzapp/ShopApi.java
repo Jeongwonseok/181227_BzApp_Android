@@ -63,6 +63,9 @@ public class ShopApi extends Activity {
         } catch (Exception e) {
             // TODO Auto-generated catch blocke.printStackTrace();
         }
+                if(buffer.length()==0)
+                buffer.append("-");
+
         return buffer.toString();
     }
 
