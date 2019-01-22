@@ -45,9 +45,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     int a;
     Button btnArea;
     Button btnCategory;
-
+    ShopApi shopApi;
     //인구분석
-    TextView tvtotal, tvchild, tvteenage, tvtwenty, tvthirty, tvforty, tvfifty, tvsixty, tvonehouse;
+    TextView tvtotal, tvchild, tvteenage, tvtwenty, tvthirty, tvforty, tvfifty, tvsixty, tvonehouse,jumposu;
     String UTM_KX, UTM_KY, addr, token, addrcd, onehouse_cnt;
 
 
@@ -62,6 +62,11 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         mLat = intent.getDoubleExtra("mLat", 0);
         mLong = intent.getDoubleExtra("mLong", 0);
         a = intent.getIntExtra("a", 0);
+        shopApi=new ShopApi();
+        String Alllat= String.valueOf(mLat);
+        String Alllong= String.valueOf(mLong);
+        String AllRadius= String.valueOf(a);
+        String Alljumpo=shopApi.RadiuAll(AllRadius,Alllat,Alllong);
 //        Toast.makeText(getApplicationContext(), String.valueOf(mLong) + " " + String.valueOf(mLat), Toast.LENGTH_LONG).show();
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -141,7 +146,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         tvfifty = (TextView) findViewById(R.id.tvfifty);
         tvsixty = (TextView) findViewById(R.id.tvsixty);
         tvonehouse = (TextView) findViewById(R.id.tvonehouse);
-
+        jumposu=(TextView)findViewById(R.id.jumpo);
+        jumposu.setText(Alljumpo);
         getToken getToken = new getToken();
         getToken.execute();
         // 인구분석 버튼
