@@ -19,8 +19,10 @@ public class ShopApi extends Activity {
         StringBuffer buffer = new StringBuffer();
         String total = "";
         String queryUrl = "http://apis.data.go.kr/B553077/api/open/sdsc/storeListInRadius?" +
-                "radius=" + radius + "&cx=" + mLong + "&cy=" + mLat +
-                "&ServiceKey=" + ServiceKey;
+                "radius="+radius+
+                "&cx="+mLong+
+                "&cy="+mLat+
+                "&ServiceKey=MxfED6C3Sd6Ja7QuU2BNU8xqBX5Yiy26t4sWS0PWUm%2B6WFjChgI3KoNQRMdO9LM5xvKfXOtMIh40XqadzCbTfw%3D%3D";
 
         try {
             URL url = new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
@@ -47,7 +49,7 @@ public class ShopApi extends Activity {
                         if (tag.equals("body")) ;// 첫번째 검색결과
                         else if (tag.equals("totalCount")) {
                             xpp.next();
-                            total=xpp.getText();
+                            buffer.append(xpp.getText());
                         }
                         break;
                     case XmlPullParser.TEXT:
@@ -61,7 +63,7 @@ public class ShopApi extends Activity {
         } catch (Exception e) {
             // TODO Auto-generated catch blocke.printStackTrace();
         }
-        return total ;
+        return buffer.toString();
     }
 
 

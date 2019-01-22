@@ -56,6 +56,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analysis);
         geocoder = new Geocoder(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Intent intent = getIntent();
@@ -66,24 +67,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         final String Alllat= String.valueOf(mLat);
         final String Alllong= String.valueOf(mLong);
         final String AllRadius= String.valueOf(a);
-        final String[] Alljumpo = new String[1];
+
         jumposu=(TextView)findViewById(R.id.jumpo);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                Alljumpo[0] =shopApi.RadiuAll(AllRadius,Alllat,Alllong);
-                runOnUiThread(new Runnable() {
 
-                    @Override
-                    public void run() {
-                        // TODO Auto-generated method stub
-                        jumposu.setText(Alljumpo[0]);
-                    }
-                });
-
-            }
-        }).start();
 //        Toast.makeText(getApplicationContext(), String.valueOf(mLong) + " " + String.valueOf(mLat), Toast.LENGTH_LONG).show();
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -213,6 +199,24 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                 } else {
                     pLayout3.setVisibility(View.VISIBLE);
                     pbtn3.setImageResource(R.drawable.over);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // TODO Auto-generated method stub
+                            final String alljumpo =shopApi.RadiuAll(AllRadius,Alllong,Alllat);
+                            runOnUiThread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    // TODO Auto-generated method stub
+                                    if(alljumpo==null)
+                                        jumposu.setText("-");
+                                    jumposu.setText(alljumpo+"개");
+                                }
+                            });
+
+                        }
+                    }).start();
                 }
             }
         });
