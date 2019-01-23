@@ -130,7 +130,7 @@ public class ShopApi extends Activity {
         String queryUrl="http://apis.data.go.kr/B553077/api/open/sdsc/storeListInRadius?" +
                 "radius="+radius+"&cx="+mLong+"&cy="+mLat+
                 "&ServiceKey="+ServiceKey;
-        String location[]= new String[2];
+        String location[]= new String[4];
         try {
             URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
             InputStream is= url.openStream(); //url위치로 입력스트림 연결
@@ -160,6 +160,15 @@ public class ShopApi extends Activity {
                         else if(tag.equals("signguCd")){
                             xpp.next();
                             location[1]=xpp.getText();
+                        }
+                        else if(tag.equals("ctprvnNm"))
+                        {
+                            xpp.next();
+                            location[2]=xpp.getText();
+                        }
+                        else if(tag.equals("signguNm"))
+                        { xpp.next();
+                            location[3]=xpp.getText();
                         }
                         break;
                     case XmlPullParser.TEXT:

@@ -252,9 +252,9 @@ public class Dialog_Category extends Activity {
                                                                             hangjung[0]="-";hangjung[1]="-";
                                                                         }
                                                                         intent.putExtra("RtotalCount",RtotalCount);
-                                                                        intent.putExtra("sidoNm",sido[0]);
+                                                                        intent.putExtra("sidoNm",location[2]);
                                                                         intent.putExtra("sidosu", sido[1]);
-                                                                        intent.putExtra("hangjungNm", hangjung[0]);
+                                                                        intent.putExtra("hangjungNm", location[3]);
                                                                         intent.putExtra("hangjungsu", hangjung[1]);
                                                                         intent.putExtra("category",SelectLarge+">"+SelectMiddle+">"+SelectShort);
 
