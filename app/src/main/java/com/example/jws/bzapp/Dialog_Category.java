@@ -83,7 +83,7 @@ public class Dialog_Category extends Activity {
             jumpoRadius="200";
         else if(jumpoRadius.equals("500m"))
             jumpoRadius="500";
-        else if(jumpoRadius.equals("1km"))
+        else if(jumpoRadius.equals(" 1km  "))
             jumpoRadius="1000";
         Toast.makeText(getApplicationContext(),jumpoRadius,Toast.LENGTH_SHORT).show();
 
