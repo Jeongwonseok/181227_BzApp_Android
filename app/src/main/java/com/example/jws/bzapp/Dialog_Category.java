@@ -266,7 +266,7 @@ public class Dialog_Category extends Activity {
                                                                         intent.putExtra("sidosu", sido[1]);
                                                                         intent.putExtra("hangjungNm", location[3]);
                                                                         intent.putExtra("hangjungsu", hangjung[1]);
-                                                                        intent.putExtra("category",SelectLarge+">"+SelectMiddle+">"+SelectShort);
+                                                                        intent.putExtra("category",SelectLarge+" > "+SelectMiddle+" > "+SelectShort);
 
                                                                         setResult(RESULT_OK, intent);
 
