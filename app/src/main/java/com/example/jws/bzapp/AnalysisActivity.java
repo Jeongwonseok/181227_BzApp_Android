@@ -51,9 +51,11 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     //인구분석
     TextView tvtotal, tvchild, tvteenage, tvtwenty, tvthirty, tvforty, tvfifty, tvsixty, tvonehouse,jumposu;
     String UTM_KX, UTM_KY, addr, token, addrcd, onehouse_cnt;
+    String RtotalCount,sido,hangjung,hangjungNm,sidoNm;
     String jumpoRadius;
     String LargeCode[]=new String[21];
     String LargeName[]=new String[21];
+    String Alllat,Alllong,AllRadius;
 
 
     @Override
@@ -69,9 +71,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         mLong = intent.getDoubleExtra("mLong", 0);
         a = intent.getIntExtra("a", 0);
         shopApi=new ShopApi();
-        final String Alllat= String.valueOf(mLat);
-        final String Alllong= String.valueOf(mLong);
-        final String AllRadius= String.valueOf(a);
+        Alllat= String.valueOf(mLat);
+         Alllong= String.valueOf(mLong);
+        AllRadius= String.valueOf(a);
 
         jumposu=(TextView)findViewById(R.id.jumpo);
 
@@ -280,6 +282,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                         intent.putExtra("JumpoRadius",jumpoRadius);
                         intent.putExtra("LargeName",LargeName);
                         intent.putExtra("LargeCode",LargeCode);
+                        intent.putExtra("mLong",Alllong);
+                        intent.putExtra("mLat",Alllat);
                         startActivityForResult(intent, 2);
                     }
                 });
@@ -294,14 +298,19 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 //데이터 받기
-                 jumpoRadius= data.getStringExtra("result");
+                jumpoRadius= data.getStringExtra("result");
                 btnArea.setText(jumpoRadius);
             }
         } else if (requestCode == 2) {
             if (resultCode == RESULT_OK) {
                 //데이터 받기
                 String result = data.getStringExtra("category");
-                btnCategory.setText(result);
+                RtotalCount=data.getStringExtra("RtotalCount");
+                sido=data.getStringExtra("sidosu");
+                hangjung=data.getStringExtra("hangjungsu");
+                sidoNm=data.getStringExtra("sidoNm");
+                hangjungNm=data.getStringExtra("hangjungNm");
+                btnCategory.setText("반경내"+RtotalCount+sidoNm+sido+hangjungNm+hangjung);
             }
         }
     }
