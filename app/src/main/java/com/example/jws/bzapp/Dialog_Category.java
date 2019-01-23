@@ -246,7 +246,7 @@ public class Dialog_Category extends Activity {
                                                                     public void run() {
                                                                         Intent intent = new Intent();
                                                                         if(sido[0]==null){//시도에 없을때
-                                                                            sido[0]="없음";sido[1]="-";hangjung[0]="-";hangjung[1]="-";
+                                                                            sido[0]="-";sido[1]="-";hangjung[0]="-";hangjung[1]="-";
                                                                         }
                                                                         else if(hangjung[0]==null){ //시도에는 있고 구에는 없을때
                                                                             hangjung[0]="-";hangjung[1]="-";
