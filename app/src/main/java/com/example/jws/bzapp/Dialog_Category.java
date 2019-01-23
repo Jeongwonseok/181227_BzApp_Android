@@ -13,18 +13,37 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Dialog_Category extends Activity {
     Button btnCancel;
     Button btnNext;
     TextView txtCat;
-    String tv1;
-    String tv2;
+    String SelectLarge;
+    String SelectMiddle;
     String tv3;
     int i;
     int count;
-
-
+    String SelectLargeCode;
+    String SelectMiddleCode;
+    String jumpoRadius;
+    String LargeCode[]=new String[21];
+    String LargeName[]=new String[21];
+    List<String> MCode=new ArrayList<>();
+    List<String>Mname=new ArrayList<>();
+    List<String>Scode=new ArrayList<>();
+    List<String>Sname=new ArrayList<>();
+    ListViewAdapter Middleadapter;
+    ListView Middlelistview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +53,6 @@ public class Dialog_Category extends Activity {
         layoutParams.dimAmount = 0.7f;
         getWindow().setAttributes(layoutParams);
         setContentView(R.layout.activity_dialog__category);
-
 
         Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
 
@@ -47,12 +65,23 @@ public class Dialog_Category extends Activity {
         getWindow().getAttributes().height = height;
 
         getWindow().setGravity(Gravity.TOP);
+        Intent intent = getIntent();
+        jumpoRadius=intent.getStringExtra("JumpoRadius");
+        LargeCode=intent.getStringArrayExtra("LargeCode");
+        LargeName=intent.getStringArrayExtra("LargeName");
+        if(jumpoRadius.equals("100m"))
+            jumpoRadius="100";
+        else if(jumpoRadius.equals("200m"))
+            jumpoRadius="200";
+        else if(jumpoRadius.equals("500m"))
+            jumpoRadius="500";
+        else if(jumpoRadius.equals("1Km"))
+            jumpoRadius="1000";
+        Toast.makeText(getApplicationContext(),jumpoRadius,Toast.LENGTH_SHORT).show();
 
 
         // 갱신할때 참고
         // adapter.notifyDataSetChanged();
-
-
         /*
         btnNext = (Button) findViewById(R.id.btnNext);
         btnNext.setOnClickListener(new View.OnClickListener() {
@@ -75,41 +104,23 @@ public class Dialog_Category extends Activity {
         });
         */
 
-        final ListViewAdapter adapter;
-        final ListView listview;
-
+        /////////////////////////////////////////////////////////////////////////////////////////
+        //대분류 어뎁터
+        final ListViewAdapter Largeadapter;
+        final ListView Largelistview;
         // Adapter 생성
-        adapter = new ListViewAdapter();
-
+        Largeadapter = new ListViewAdapter();
         // 리스트뷰 참조 및 Adapter달기
-        listview = (ListView) findViewById(R.id.listview1);
-        listview.setAdapter(adapter);
-
+        Largelistview = (ListView) findViewById(R.id.listview1);
+        Largelistview.setAdapter(Largeadapter);
+        for (int i=0;i<LargeName.length;i++){
+            Largeadapter.addItem(LargeName[i]);
+        }
         // 첫 번째 아이템 추가.
-        adapter.addItem("음식");
-        // 두 번째 아이템 추가.
-        adapter.addItem("소매");
-        // 세 번째 아이템 추가.
-        adapter.addItem("관광/여가/오락");
-        adapter.addItem("생활서비스");
-        adapter.addItem("학문/교육");
-        adapter.addItem("부동산");
-        adapter.addItem("숙박");
-        adapter.addItem("도매/유통/무역");
-        adapter.addItem("스포츠");
-        adapter.addItem("의료");
-        adapter.addItem("제조");
-        adapter.addItem("문화/예술/종교");
-        adapter.addItem("1차산업");
-        adapter.addItem("교통/운송");
-        adapter.addItem("언론/미디어");
-        adapter.addItem("기술/건축/환경");
-        adapter.addItem("국가기관/단체");
-        adapter.addItem("금융");
-        adapter.addItem("전기/가스/수도");
-        adapter.addItem("전자/정보통신");
-        adapter.addItem("복지");
-        adapter.addItem("업종분류불능");
+
+
+
+
 
         txtCat = (TextView) findViewById(R.id.txtCat);
         btnNext = (Button) findViewById(R.id.btnNext);
@@ -123,45 +134,52 @@ public class Dialog_Category extends Activity {
             }
         });
 
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        Largelistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                i = listview.getCheckedItemPosition();
-                ListViewItem listViewItem = adapter.getItem(i);
-                tv1 = listViewItem.getText();
+                i = Largelistview.getCheckedItemPosition();
+                ListViewItem listViewItem = Largeadapter.getItem(i);
+                SelectLarge = listViewItem.getText(); //이게 누른 값? 받아오는 건듯
                 btnNext.setEnabled(true);
                 btnNext.setBackgroundResource(R.drawable.round_button1);
+            }
+        });
+
                 btnNext.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        ///////중분류 리스트뷰
                         txtCat.setText("중분류");
-                        final ListViewAdapter adapter;
-                        final ListView listview;
+
                         // Adapter 생성
-                        adapter = new ListViewAdapter();
 
-                        // 리스트뷰 참조 및 Adapter달기
-                        listview = (ListView) findViewById(R.id.listview1);
-                        listview.setAdapter(adapter);
-
-
+                        MCode.clear();
+                        Mname.clear();
+                        for (int i = 0; i < 21; i++) {
+                            if (SelectLarge.equals(LargeName[i]))
+                                SelectLargeCode=LargeCode[i];//대분류 알파벳
+                        }
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                MgetData(SelectLargeCode);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Middleadapter = new ListViewAdapter();
+                                        // 리스트뷰 참조 및 Adapter달기
+                                        Middlelistview = (ListView) findViewById(R.id.listview1);
+                                        Middlelistview.setAdapter(Middleadapter);
+                                        for (int i = 0; i <MCode.size(); i++) {
+                                            Middleadapter.addItem(Mname.get(i));
+                                        }
+                                    }
+                                });
+                            }
+                        }).start();
+                    }
+                });
                         // 첫 번째 아이템 추가.
-                        adapter.addItem("한식");
-                        // 두 번째 아이템 추가.
-                        adapter.addItem("양식");
-                        // 세 번째 아이템 추가.
-                        adapter.addItem("중식");
-                        adapter.addItem("별식/퓨전요리");
-                        adapter.addItem("일식/수산물");
-                        adapter.addItem("커피점/카페");
-                        adapter.addItem("닭/오리요리");
-                        adapter.addItem("유흥주점");
-                        adapter.addItem("분식");
-                        adapter.addItem("부페");
-                        adapter.addItem("패스트푸드");
-                        adapter.addItem("제과제빵떡케익");
-                        adapter.addItem("음식배달서비스");
-                        adapter.addItem("기타음식업");
                         btnNext.setEnabled(false);
                         btnNext.setBackgroundResource(R.drawable.round_button2);
                         btnCancel.setOnClickListener(new View.OnClickListener() {
@@ -171,80 +189,128 @@ public class Dialog_Category extends Activity {
                             }
                         });
 
-                        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                i = listview.getCheckedItemPosition();
-                                ListViewItem listViewItem = adapter.getItem(i);
-                                tv2 = listViewItem.getText();
-                                btnNext.setEnabled(true);
-                                btnNext.setBackgroundResource(R.drawable.round_button1);
-                                btnNext.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        final TextView txtCat = (TextView) findViewById(R.id.txtCat);
-                                        txtCat.setText("소분류");
-                                        btnNext.setEnabled(false);
-                                        btnNext.setBackgroundResource(R.drawable.round_button2);
-                                        btnCancel.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                finish();
-                                            }
-                                        });
 
-                                        final ListViewAdapter adapter;
-                                        final ListView listview;
-                                        // Adapter 생성
-                                        adapter = new ListViewAdapter();
+//                        Middlelistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                            @Override
+//                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                                i = Middlelistview.getCheckedItemPosition();
+//                                ListViewItem listViewItem = Middleadapter.getItem(i);
+//                                SelectMiddle = listViewItem.getText();
+//                                btnNext.setEnabled(true);
+//                                btnNext.setBackgroundResource(R.drawable.round_button1);
+//                                btnNext.setOnClickListener(new View.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(View v) {
+//                                        final TextView txtCat = (TextView) findViewById(R.id.txtCat);
+//                                        txtCat.setText("소분류");
+//                                        btnNext.setEnabled(false);
+//                                        btnNext.setBackgroundResource(R.drawable.round_button2);
+//                                        btnCancel.setOnClickListener(new View.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(View v) {
+//                                                finish();
+//                                            }
+//                                        });
+//
+//                                        final ListViewAdapter adapter;
+//                                        final ListView listview;
+//                                        // Adapter 생성
+//                                        adapter = new ListViewAdapter();
+//
+//                                        // 리스트뷰 참조 및 Adapter달기
+//                                        listview = (ListView) findViewById(R.id.listview1);
+//                                        listview.setAdapter(adapter);
+//
+//                                        // 첫 번째 아이템 추가.
+//                                        adapter.addItem("전체");
+//                                        // 두 번째 아이템 추가.
+//                                        adapter.addItem("갈비/삼겹살");
+//                                        // 세 번째 아이템 추가.
+//                                        adapter.addItem("곱창/양구이전문");
+//                                        adapter.addItem("기사식당");
+//                                        adapter.addItem("기타고기요리");
+//                                        adapter.addItem("냉면집");
+//                                        btnNext.setText("확인");
+//
+//                                        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                                            @Override
+//                                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                                                i = listview.getCheckedItemPosition();
+//                                                ListViewItem listViewItem = adapter.getItem(i);
+//                                                tv3 = listViewItem.getText();
+//                                                btnNext.setEnabled(true);
+//                                                btnNext.setBackgroundResource(R.drawable.round_button1);
+//                                                btnNext.setOnClickListener(new View.OnClickListener() {
+//                                                    @Override
+//                                                    public void onClick(View v) {
+//
+//                                                        Intent intent = new Intent();
+//                                                        intent.putExtra("category", SelectLarge + " > " + SelectMiddle + " > " + tv3);
+//                                                        setResult(RESULT_OK, intent);
+//                                                        finish();
+//                                                    }
+//                                                });
+//                                            }
+//                                        });
+//                                    }
+//                                });
+//
+//                            }
+//                        });
 
-                                        // 리스트뷰 참조 및 Adapter달기
-                                        listview = (ListView) findViewById(R.id.listview1);
-                                        listview.setAdapter(adapter);
 
-                                        // 첫 번째 아이템 추가.
-                                        adapter.addItem("전체");
-                                        // 두 번째 아이템 추가.
-                                        adapter.addItem("갈비/삼겹살");
-                                        // 세 번째 아이템 추가.
-                                        adapter.addItem("곱창/양구이전문");
-                                        adapter.addItem("기사식당");
-                                        adapter.addItem("기타고기요리");
-                                        adapter.addItem("냉면집");
-                                        btnNext.setText("확인");
-
-                                        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                            @Override
-                                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                                i = listview.getCheckedItemPosition();
-                                                ListViewItem listViewItem = adapter.getItem(i);
-                                                tv3 = listViewItem.getText();
-                                                btnNext.setEnabled(true);
-                                                btnNext.setBackgroundResource(R.drawable.round_button1);
-                                                btnNext.setOnClickListener(new View.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(View v) {
-
-                                                        Intent intent = new Intent();
-                                                        intent.putExtra("category", tv1 + " > " + tv2 + " > " + tv3);
-                                                        setResult(RESULT_OK, intent);
-                                                        finish();
-                                                    }
-                                                });
-                                            }
-                                        });
-                                    }
-                                });
-
-                            }
-                        });
-                    }
-                });
-            }
-        });
 
         //count = adapter.getCount();
         //tv = adapter.getItem(count).toString();
     }
 
+    public void MgetData(String Lcls){
+        StringBuffer buffer=new StringBuffer();
+        String queryUrl="http://apis.data.go.kr/B553077/api/open/sdsc/middleUpjongList?"+
+                "indsLclsCd="+Lcls+"&ServiceKey=MxfED6C3Sd6Ja7QuU2BNU8xqBX5Yiy26t4sWS0PWUm%2B6WFjChgI3KoNQRMdO9LM5xvKfXOtMIh40XqadzCbTfw%3D%3D";
+        int su=0;
+        try {
+            URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
+            InputStream is= url.openStream(); //url위치로 입력스트림 연결
+
+            XmlPullParserFactory factory= XmlPullParserFactory.newInstance();
+            XmlPullParser xpp= factory.newPullParser();
+            xpp.setInput( new InputStreamReader(is, "UTF-8") ); //inputstream 으로부터 xml 입력받기
+            String tag;
+            xpp.next();
+            int eventType= xpp.getEventType();
+            while( eventType != XmlPullParser.END_DOCUMENT ){
+                switch( eventType ){
+                    case XmlPullParser.START_DOCUMENT:
+                        buffer.append("파싱 시작...\n\n");
+                        break;
+
+                    case XmlPullParser.START_TAG:
+                        tag= xpp.getName();//태그 이름 얻어오기
+
+                        if(tag.equals("item")) ;// 첫번째 검색결과
+                        else if(tag.equals("indsMclsCd")){
+                            xpp.next();
+                            MCode.add(xpp.getText());
+                        }
+                        else if(tag.equals("indsMclsNm")){
+                            xpp.next();
+                            Mname.add(xpp.getText());
+                            su++;
+                        }
+                        break;
+                    case XmlPullParser.TEXT:
+                        break;
+
+                    case XmlPullParser.END_TAG:
+                        tag= xpp.getName(); //태그 이름 얻어오기
+                        if(tag.equals("item")) buffer.append("\n");// 첫번째 검색결과종료..줄바꿈
+                        break;
+                }
+                eventType= xpp.next();
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch blocke.printStackTrace();
+        }
+    }
 }
