@@ -63,8 +63,8 @@ public class ShopApi extends Activity {
         } catch (Exception e) {
             // TODO Auto-generated catch blocke.printStackTrace();
         }
-                if(buffer.length()==0)
-                buffer.append("-");
+        if(buffer.length()==0)
+            buffer.append("-");
 
         return buffer.toString();
     }
@@ -157,7 +157,7 @@ public class ShopApi extends Activity {
                             xpp.next();
                             location[0]=xpp.getText();
                         }
-                        else if(tag.equals("adongCd")){
+                        else if(tag.equals("signguCd")){
                             xpp.next();
                             location[1]=xpp.getText();
                         }
@@ -240,6 +240,7 @@ public class ShopApi extends Activity {
 
     }
 
+
     String[] hangjungData(String divId, String key, String Lcls, String Mcls, String Scls) {
         StringBuffer buffer = new StringBuffer();
         String queryUrl = "http://apis.data.go.kr/B553077/api/open/sdsc/storeListInDong?" +
@@ -272,7 +273,7 @@ public class ShopApi extends Activity {
                         tag = xpp.getName();//태그 이름 얻어오기
 
                         if (tag.equals("item")) ;// 첫번째 검색결과
-                        else if(tag.equals("adongNm")){
+                        else if(tag.equals("signguNm")){
                             xpp.next();
                             hangjung[0]=xpp.getText();
                         }
@@ -297,5 +298,3 @@ public class ShopApi extends Activity {
 
     }
 }
-
-

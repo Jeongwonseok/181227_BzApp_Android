@@ -49,7 +49,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     Button btnCategory;
     ShopApi shopApi;
     //인구분석
-    TextView tvtotal, tvchild, tvteenage, tvtwenty, tvthirty, tvforty, tvfifty, tvsixty, tvonehouse,jumposu;
+    TextView tvtotal, tvchild, tvteenage, tvtwenty, tvthirty, tvforty, tvfifty, tvsixty, tvonehouse,jumposu,jumpotest;
     String UTM_KX, UTM_KY, addr, token, addrcd, onehouse_cnt;
     String RtotalCount,sido,hangjung,hangjungNm,sidoNm;
     String jumpoRadius;
@@ -76,6 +76,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         AllRadius= String.valueOf(a);
 
         jumposu=(TextView)findViewById(R.id.jumpo);
+        jumpotest=(TextView)findViewById(R.id.jumpotest);
 
 //        Toast.makeText(getApplicationContext(), String.valueOf(mLong) + " " + String.valueOf(mLat), Toast.LENGTH_LONG).show();
 
@@ -310,7 +311,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                 hangjung=data.getStringExtra("hangjungsu");
                 sidoNm=data.getStringExtra("sidoNm");
                 hangjungNm=data.getStringExtra("hangjungNm");
-                btnCategory.setText("반경내"+RtotalCount+sidoNm+sido+hangjungNm+hangjung);
+                btnCategory.setText(result);
+                jumpotest.setText("반경내"+RtotalCount+sidoNm+sido+hangjungNm+hangjung); //데이터 없으며 -로 뜸
             }
         }
     }

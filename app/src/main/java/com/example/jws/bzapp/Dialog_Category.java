@@ -240,19 +240,27 @@ public class Dialog_Category extends Activity {
                                                                 final String RtotalCount = shopapi.radiusData(jumpoRadius, Long,Lat,SelectLargeCode,SelectMiddleCode,SelectShortCode);//반경내토탈
                                                                 final String location[]=shopapi.location(jumpoRadius, Long,Lat);//시도랑 행정동 코드 가져오기
                                                                 final String sido[] = shopapi.sidoData("ctprvnCd", location[0], SelectLargeCode,SelectMiddleCode,SelectShortCode);//시도
-                                                                final String hangjung[] = shopapi.hangjungData("adongCd", location[1],SelectLargeCode,SelectMiddleCode,SelectShortCode);//행정동
+                                                                final String hangjung[] = shopapi.hangjungData("signguCd", location[1],SelectLargeCode,SelectMiddleCode,SelectShortCode);//행정동
                                                                 runOnUiThread(new Runnable() {
                                                                     @Override
                                                                     public void run() {
                                                                         Intent intent = new Intent();
-                                                        intent.putExtra("RtotalCount", RtotalCount);
-                                                        intent.putExtra("sidoNm",sido[0]);
-                                                        intent.putExtra("sidosu", sido[1]);
-                                                        intent.putExtra("hangjungNm", hangjung[0]);
-                                                        intent.putExtra("hangjungsu", hangjung[1]);
+                                                                        if(sido[0]==null){//시도에 없을때
+                                                                            sido[0]="없음";sido[1]="-";hangjung[0]="-";hangjung[1]="-";
+                                                                        }
+                                                                        else if(hangjung[0]==null){ //시도에는 있고 구에는 없을때
+                                                                            hangjung[0]="-";hangjung[1]="-";
+                                                                        }
+                                                                        intent.putExtra("RtotalCount",RtotalCount);
+                                                                        intent.putExtra("sidoNm",sido[0]);
+                                                                        intent.putExtra("sidosu", sido[1]);
+                                                                        intent.putExtra("hangjungNm", hangjung[0]);
+                                                                        intent.putExtra("hangjungsu", hangjung[1]);
+                                                                        intent.putExtra("category",SelectLarge+">"+SelectMiddle+">"+SelectShort);
 
-                                                        setResult(RESULT_OK, intent);
-                                                        finish();
+                                                                        setResult(RESULT_OK, intent);
+
+                                                                        finish();
                                                                     }
                                                                 });
                                                             }
