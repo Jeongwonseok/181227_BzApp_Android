@@ -9,6 +9,7 @@ import android.view.Display;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -25,11 +26,12 @@ public class Dialog_Area extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dialog__area);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         layoutParams.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         layoutParams.dimAmount = 0.7f;
         getWindow().setAttributes(layoutParams);
+        setContentView(R.layout.activity_dialog__area);
         Intent intent = getIntent();
         area = intent.getIntExtra("area",0);
         RadioGroup radioGroup = (RadioGroup)findViewById(R.id.areaGroup);

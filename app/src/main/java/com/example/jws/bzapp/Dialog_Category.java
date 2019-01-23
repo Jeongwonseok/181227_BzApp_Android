@@ -13,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -85,7 +84,6 @@ public class Dialog_Category extends Activity {
             jumpoRadius="500";
         else if(jumpoRadius.equals(" 1km  "))
             jumpoRadius="1000";
-        Toast.makeText(getApplicationContext(),jumpoRadius,Toast.LENGTH_SHORT).show();
 
 
         /////////////////////////////////////////////////////////////////////////////////////////
