@@ -27,6 +27,8 @@ import com.google.android.gms.maps.model.LatLng;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -49,6 +51,11 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     //인구분석
     TextView tvtotal, tvchild, tvteenage, tvtwenty, tvthirty, tvforty, tvfifty, tvsixty, tvonehouse,jumposu;
     String UTM_KX, UTM_KY, addr, token, addrcd, onehouse_cnt;
+    String RtotalCount,sido,hangjung,hangjungNm,sidoNm;
+    String jumpoRadius;
+    String LargeCode[]=new String[21];
+    String LargeName[]=new String[21];
+    String Alllat,Alllong,AllRadius;
 
 
     @Override
@@ -64,9 +71,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         mLong = intent.getDoubleExtra("mLong", 0);
         a = intent.getIntExtra("a", 0);
         shopApi=new ShopApi();
-        final String Alllat= String.valueOf(mLat);
-        final String Alllong= String.valueOf(mLong);
-        final String AllRadius= String.valueOf(a);
+        Alllat= String.valueOf(mLat);
+         Alllong= String.valueOf(mLong);
+        AllRadius= String.valueOf(a);
 
         jumposu=(TextView)findViewById(R.id.jumpo);
 
@@ -262,29 +269,53 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         startActivityForResult(intent, 1);
     }
 
+    public void mOnPopupClick2(View v) {
+        //데이터 담아서 팝업(액티비티) 호출
+        final Intent intent = new Intent(this, Dialog_Category.class);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                LgetData();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        intent.putExtra("JumpoRadius",jumpoRadius);
+                        intent.putExtra("LargeName",LargeName);
+                        intent.putExtra("LargeCode",LargeCode);
+                        intent.putExtra("mLong",Alllong);
+                        intent.putExtra("mLat",Alllat);
+                        startActivityForResult(intent, 2);
+                    }
+                });
+            }
+        }).start();
+
+    }
+
     //다이얼로그 실행후 결과값 받는 메서드
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 //데이터 받기
-                String result = data.getStringExtra("result");
-                btnArea.setText(result);
+                jumpoRadius= data.getStringExtra("result");
+                btnArea.setText(jumpoRadius);
             }
         } else if (requestCode == 2) {
             if (resultCode == RESULT_OK) {
                 //데이터 받기
                 String result = data.getStringExtra("category");
-                btnCategory.setText(result);
+                RtotalCount=data.getStringExtra("RtotalCount");
+                sido=data.getStringExtra("sidosu");
+                hangjung=data.getStringExtra("hangjungsu");
+                sidoNm=data.getStringExtra("sidoNm");
+                hangjungNm=data.getStringExtra("hangjungNm");
+                btnCategory.setText("반경내"+RtotalCount+sidoNm+sido+hangjungNm+hangjung);
             }
         }
     }
 
-    public void mOnPopupClick2(View v) {
-        //데이터 담아서 팝업(액티비티) 호출
-        Intent intent = new Intent(this, Dialog_Category.class);
-        startActivityForResult(intent, 2);
-    }
+
 
     /**
      * Manipulates the map once available.
@@ -631,4 +662,56 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         RequestQueue queue = Volley.newRequestQueue(AnalysisActivity.this);
         queue.add(findApopulation);
     }
+
+    public void LgetData(){
+        StringBuffer buffer=new StringBuffer();
+        String queryUrl="http://apis.data.go.kr/B553077/api/open/sdsc/largeUpjongList?" +
+                "ServiceKey=MxfED6C3Sd6Ja7QuU2BNU8xqBX5Yiy26t4sWS0PWUm%2B6WFjChgI3KoNQRMdO9LM5xvKfXOtMIh40XqadzCbTfw%3D%3D";
+        int su=0;
+        try {
+            URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
+            InputStream is= url.openStream(); //url위치로 입력스트림 연결
+
+            XmlPullParserFactory factory= XmlPullParserFactory.newInstance();
+            XmlPullParser xpp= factory.newPullParser();
+            xpp.setInput( new InputStreamReader(is, "UTF-8") ); //inputstream 으로부터 xml 입력받기
+            String tag;
+            xpp.next();
+            int eventType= xpp.getEventType();
+            while( eventType != XmlPullParser.END_DOCUMENT ){
+                switch( eventType ){
+                    case XmlPullParser.START_DOCUMENT:
+                        buffer.append("파싱 시작...\n\n");
+                        break;
+
+                    case XmlPullParser.START_TAG:
+                        tag= xpp.getName();//태그 이름 얻어오기
+
+                        if(tag.equals("item")) ;// 첫번째 검색결과
+                        else if(tag.equals("indsLclsCd")){
+                            xpp.next();
+                            LargeCode[su]=xpp.getText();
+                        }
+                        else if(tag.equals("indsLclsNm")){
+                            xpp.next();
+                            LargeName[su]=xpp.getText();
+                            su++;
+                        }
+                        break;
+                    case XmlPullParser.TEXT:
+                        break;
+
+                    case XmlPullParser.END_TAG:
+                        tag= xpp.getName(); //태그 이름 얻어오기
+                        if(tag.equals("item")) buffer.append("\n");// 첫번째 검색결과종료..줄바꿈
+                        break;
+                }
+                eventType= xpp.next();
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch blocke.printStackTrace();
+        }
+    }
+
+
 }

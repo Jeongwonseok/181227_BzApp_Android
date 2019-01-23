@@ -3,12 +3,12 @@ package com.example.jws.bzapp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -25,16 +25,15 @@ public class Dialog_Area extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_dialog__area);
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         layoutParams.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         layoutParams.dimAmount = 0.7f;
         getWindow().setAttributes(layoutParams);
-        setContentView(R.layout.activity_dialog__area);
         Intent intent = getIntent();
         area = intent.getIntExtra("area",0);
         RadioGroup radioGroup = (RadioGroup)findViewById(R.id.areaGroup);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         if (area==100) {
             radioGroup.check(R.id.rb100);
         } else if (area==200) {
@@ -100,5 +99,6 @@ public class Dialog_Area extends Activity {
         //안드로이드 백버튼 막기
         return;
     }
+
 }
 
