@@ -237,10 +237,20 @@ public class Dialog_Category extends Activity {
                                                         new Thread(new Runnable() {
                                                             @Override
                                                             public void run() {
-                                                                final String RtotalCount = shopapi.radiusData(jumpoRadius, Long,Lat,SelectLargeCode,SelectMiddleCode,SelectShortCode);//반경내토탈
+                                                                final String RtotalCount[]=new String[1];
                                                                 final String location[]=shopapi.location(jumpoRadius, Long,Lat);//시도랑 행정동 코드 가져오기
-                                                                final String sido[] = shopapi.sidoData("ctprvnCd", location[0], SelectLargeCode,SelectMiddleCode,SelectShortCode);//시도
-                                                                final String hangjung[] = shopapi.hangjungData("signguCd", location[1],SelectLargeCode,SelectMiddleCode,SelectShortCode);//행정동
+                                                                final String sido[];
+                                                                final String hangjung[];
+                                                                if(SelectShort.equals("전체")){
+                                                                    sido=shopapi.sidoData("ctprvnCd", location[0], SelectLargeCode,SelectMiddleCode);//시도
+                                                                    hangjung=shopapi.hangjungData("signguCd", location[1],SelectLargeCode,SelectMiddleCode);
+                                                                    RtotalCount[0]=shopapi.radiusData(jumpoRadius, Long,Lat,SelectLargeCode,SelectMiddleCode);//반경내토탈
+                                                                }
+                                                               else {
+                                                                   sido= shopapi.sidoData("ctprvnCd", location[0], SelectLargeCode,SelectMiddleCode,SelectShortCode);//시도}
+                                                                    hangjung=shopapi.hangjungData("signguCd", location[1],SelectLargeCode,SelectMiddleCode,SelectShortCode);//행정동
+                                                                    RtotalCount[0]=shopapi.radiusData(jumpoRadius, Long,Lat,SelectLargeCode,SelectMiddleCode,SelectShortCode);//반경내토탈
+                                                                }
                                                                 runOnUiThread(new Runnable() {
                                                                     @Override
                                                                     public void run() {
@@ -251,7 +261,7 @@ public class Dialog_Category extends Activity {
                                                                         else if(hangjung[0]==null){ //시도에는 있고 구에는 없을때
                                                                             hangjung[0]="-";hangjung[1]="-";
                                                                         }
-                                                                        intent.putExtra("RtotalCount",RtotalCount);
+                                                                        intent.putExtra("RtotalCount",RtotalCount[0]);
                                                                         intent.putExtra("sidoNm",location[2]);
                                                                         intent.putExtra("sidosu", sido[1]);
                                                                         intent.putExtra("hangjungNm", location[3]);
