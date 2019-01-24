@@ -200,10 +200,130 @@
                     android:orientation="vertical"
                     android:visibility="gone">
 
-                    <ImageView
+                    <TableLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/wait" />
+                        android:stretchColumns="0,1,2">
+
+                        <TableRow>
+
+                            <TextView android:gravity="center" />
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="상반기" />
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="하반기" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="소매" />
+
+                            <TextView
+                                android:id="@+id/FH_retail"
+                                android:gravity="center" />
+
+                            <TextView
+                                android:id="@+id/LH_retail"
+                                android:gravity="center" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="생활서비스" />
+
+                            <TextView
+                                android:id="@+id/FH_life"
+                                android:gravity="center" />
+
+                            <TextView
+                                android:id="@+id/LH_life"
+                                android:gravity="center" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="관광/여가/오락" />
+
+                            <TextView
+                                android:id="@+id/FH_tour"
+                                android:gravity="center" />
+
+                            <TextView
+                                android:id="@+id/LH_tour"
+                                android:gravity="center" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="숙박" />
+
+                            <TextView
+                                android:id="@+id/FH_stay"
+                                android:gravity="center" />
+
+                            <TextView
+                                android:id="@+id/LH_stay"
+                                android:gravity="center" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="스포츠" />
+
+                            <TextView
+                                android:id="@+id/FH_sports"
+                                android:gravity="center" />
+
+                            <TextView
+                                android:id="@+id/LH_sports"
+                                android:gravity="center" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="음식" />
+
+                            <TextView
+                                android:id="@+id/FH_food"
+                                android:gravity="center" />
+
+                            <TextView
+                                android:id="@+id/LH_food"
+                                android:gravity="center" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="학문/교육" />
+
+                            <TextView
+                                android:id="@+id/FH_edu"
+                                android:gravity="center" />
+
+                            <TextView
+                                android:id="@+id/LH_edu"
+                                android:gravity="center" />
+                        </TableRow>
+
+                    </TableLayout>
 
                     <View
                         android:layout_width="match_parent"
