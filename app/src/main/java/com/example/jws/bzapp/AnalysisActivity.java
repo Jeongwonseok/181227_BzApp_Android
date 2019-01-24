@@ -51,7 +51,10 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     ShopApi shopApi;
     //인구분석
     TextView tvtotal, tvchild, tvteenage, tvtwenty, tvthirty, tvforty, tvfifty, tvsixty, tvonehouse, jumposu, jumpotest;
-    String UTM_KX, UTM_KY, addr, token, addrcd, onehouse_cnt;
+    String UTM_KX, UTM_KY, addr, token, addrcd, addrnm, onehouse_cnt;
+
+    //건단가 불러오기
+    TextView FH_retail, LH_retail, FH_life, LH_life, FH_tour, LH_tour, FH_stay, LH_stay, FH_sports, LH_sports, FH_food, LH_food, FH_edu, LH_edu;
     String RtotalCount, sido, hangjung, hangjungNm, sidoNm;
     String jumpoRadius;
     String LargeCode[] = new String[21];
@@ -177,6 +180,23 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                 }
             }
         });
+
+        //건단가불러오기
+        FH_retail = (TextView) findViewById(R.id.FH_retail);
+        LH_retail = (TextView) findViewById(R.id.LH_retail);
+        FH_life = (TextView) findViewById(R.id.FH_life);
+        LH_life = (TextView) findViewById(R.id.LH_life);
+        FH_tour = (TextView) findViewById(R.id.FH_tour);
+        LH_tour = (TextView) findViewById(R.id.LH_tour);
+        FH_stay = (TextView) findViewById(R.id.FH_stay);
+        LH_stay = (TextView) findViewById(R.id.LH_stay);
+        FH_sports = (TextView) findViewById(R.id.FH_sports);
+        LH_sports = (TextView) findViewById(R.id.LH_sports);
+        FH_food = (TextView) findViewById(R.id.FH_food);
+        LH_food = (TextView) findViewById(R.id.LH_food);
+        FH_edu = (TextView) findViewById(R.id.FH_edu);
+        LH_edu = (TextView) findViewById(R.id.LH_edu);
+
 
         // 매출분석 버튼
         final LinearLayout pLayout2 = (LinearLayout) findViewById(R.id.pLayout2);
@@ -561,8 +581,11 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 
                     addr = item.getString("full_addr");
                     addrcd = item.getString("sido_cd") + item.getString("sgg_cd") + item.getString("emdong_cd");
+                    addrnm = item.getString("sido_nm") + " " + item.getString("sgg_nm");
+
                 }
                 Population();
+                getPercost();
 //                Toast.makeText(getApplicationContext(), addrcd, Toast.LENGTH_LONG).show();
 //                Toast.makeText(getApplicationContext(), addr, Toast.LENGTH_LONG).show();
 
@@ -624,7 +647,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 //                    Toast.makeText(getApplicationContext(), onehouse_cnt + tvtotal.getText().toString(), Toast.LENGTH_LONG).show();
                     int onehouse = Integer.parseInt(onehouse_cnt);
                     int total = Integer.parseInt(tvtotal.getText().toString());
-                    Toast.makeText(getApplicationContext(), onehouse + "  " + total, Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getApplicationContext(), onehouse + "  " + total, Toast.LENGTH_LONG).show();
                     int one = (onehouse / total) * 100;
                     String percent = String.valueOf(one) + "%";
                     tvonehouse.setText(percent);
@@ -671,6 +694,49 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         RequestQueue queue = Volley.newRequestQueue(AnalysisActivity.this);
         queue.add(findApopulation);
     }
+
+    public void getPercost() {
+
+        Toast.makeText(getApplicationContext(), addrnm, Toast.LENGTH_LONG).show();
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                try {
+                    JSONObject jsonObject = new JSONObject(s);
+                    JSONArray jsonArray = jsonObject.getJSONArray("response");
+                    int count = 0;
+                    while (count < jsonArray.length()) {
+                        JSONObject object = jsonArray.getJSONObject(count);
+                        object.getString("location");
+                        FH_retail.setText(object.getString("FH_retail"));
+                        LH_retail.setText(object.getString("LH_retail"));
+                        FH_life.setText(object.getString("FH_life"));
+                        LH_life.setText(object.getString("LH_life"));
+                        FH_tour.setText(object.getString("FH_tour"));
+                        LH_tour.setText(object.getString("LH_tour"));
+                        FH_stay.setText(object.getString("FH_stay"));
+                        LH_stay.setText(object.getString("LH_stay"));
+                        FH_sports.setText(object.getString("FH_sports"));
+                        LH_sports.setText(object.getString("LH_sports"));
+                        FH_food.setText(object.getString("FH_food"));
+                        LH_food.setText(object.getString("LH_food"));
+                        FH_edu.setText(object.getString("FH_edu"));
+                        LH_edu.setText(object.getString("LH_edu"));
+                        count++;
+                    }
+
+                    OneHouse oneHouse = new OneHouse();
+                    oneHouse.execute();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        FindPercost findPercost = new FindPercost(addrnm, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(AnalysisActivity.this);
+        queue.add(findPercost);
+    }
+
 
     public void LgetData() {
         StringBuffer buffer = new StringBuffer();
