@@ -645,11 +645,11 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 
                     onehouse_cnt = item.getString("household_cnt");
 //                    Toast.makeText(getApplicationContext(), onehouse_cnt + tvtotal.getText().toString(), Toast.LENGTH_LONG).show();
-                    int onehouse = Integer.parseInt(onehouse_cnt);
-                    int total = Integer.parseInt(tvtotal.getText().toString());
+                    double onehouse = Integer.parseInt(onehouse_cnt);
+                    double total = Integer.parseInt(tvtotal.getText().toString());
 //                    Toast.makeText(getApplicationContext(), onehouse + "  " + total, Toast.LENGTH_LONG).show();
-                    int one = (onehouse / total) * 100;
-                    String percent = String.valueOf(one) + "%";
+                    double one = (onehouse / total) * 100;
+                    String percent = String.format("%.2f",one) + "%";
                     tvonehouse.setText(percent);
                 }
             } catch (Exception e) {
@@ -697,7 +697,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 
     public void getPercost() {
 
-        Toast.makeText(getApplicationContext(), addrnm, Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(), addrnm, Toast.LENGTH_LONG).show();
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
