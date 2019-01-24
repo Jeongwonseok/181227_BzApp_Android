@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -213,7 +214,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                 }
             }
         });
-
+        
         // 상권분석 버튼
         final LinearLayout pLayout3 = (LinearLayout) findViewById(R.id.pLayout3);
         final ImageView pbtn3 = (ImageView) findViewById(R.id.pbtn3);
