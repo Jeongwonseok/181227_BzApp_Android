@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -49,13 +50,13 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     Button btnCategory;
     ShopApi shopApi;
     //인구분석
-    TextView tvtotal, tvchild, tvteenage, tvtwenty, tvthirty, tvforty, tvfifty, tvsixty, tvonehouse,jumposu,jumpotest;
+    TextView tvtotal, tvchild, tvteenage, tvtwenty, tvthirty, tvforty, tvfifty, tvsixty, tvonehouse, jumposu, jumpotest;
     String UTM_KX, UTM_KY, addr, token, addrcd, onehouse_cnt;
-    String RtotalCount,sido,hangjung,hangjungNm,sidoNm;
+    String RtotalCount, sido, hangjung, hangjungNm, sidoNm;
     String jumpoRadius;
-    String LargeCode[]=new String[21];
-    String LargeName[]=new String[21];
-    String Alllat,Alllong,AllRadius;
+    String LargeCode[] = new String[21];
+    String LargeName[] = new String[21];
+    String Alllat, Alllong, AllRadius;
 
 
     @Override
@@ -70,13 +71,13 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         mLat = intent.getDoubleExtra("mLat", 0);
         mLong = intent.getDoubleExtra("mLong", 0);
         a = intent.getIntExtra("a", 0);
-        shopApi=new ShopApi();
-        Alllat= String.valueOf(mLat);
-         Alllong= String.valueOf(mLong);
-        AllRadius= String.valueOf(a);
+        shopApi = new ShopApi();
+        Alllat = String.valueOf(mLat);
+        Alllong = String.valueOf(mLong);
+        AllRadius = String.valueOf(a);
 
-        jumposu=(TextView)findViewById(R.id.jumpo);
-        jumpotest=(TextView)findViewById(R.id.jumpotest);
+        jumposu = (TextView) findViewById(R.id.jumpo);
+        jumpotest = (TextView) findViewById(R.id.jumpotest);
 
 //        Toast.makeText(getApplicationContext(), String.valueOf(mLong) + " " + String.valueOf(mLat), Toast.LENGTH_LONG).show();
 
@@ -211,13 +212,13 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                         @Override
                         public void run() {
                             // TODO Auto-generated method stub
-                            final String alljumpo =shopApi.RadiuAll(AllRadius,Alllong,Alllat);
+                            final String alljumpo = shopApi.RadiuAll(AllRadius, Alllong, Alllat);
                             runOnUiThread(new Runnable() {
 
                                 @Override
                                 public void run() {
                                     // TODO Auto-generated method stub
-                                    jumposu.setText(alljumpo+"개");
+                                    jumposu.setText(alljumpo + "개");
                                 }
                             });
 
@@ -280,11 +281,11 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        intent.putExtra("JumpoRadius",jumpoRadius);
-                        intent.putExtra("LargeName",LargeName);
-                        intent.putExtra("LargeCode",LargeCode);
-                        intent.putExtra("mLong",Alllong);
-                        intent.putExtra("mLat",Alllat);
+                        intent.putExtra("JumpoRadius", jumpoRadius);
+                        intent.putExtra("LargeName", LargeName);
+                        intent.putExtra("LargeCode", LargeCode);
+                        intent.putExtra("mLong", Alllong);
+                        intent.putExtra("mLat", Alllat);
                         startActivityForResult(intent, 2);
                     }
                 });
@@ -299,24 +300,23 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 //데이터 받기
-                jumpoRadius= data.getStringExtra("result");
+                jumpoRadius = data.getStringExtra("result");
                 btnArea.setText(jumpoRadius);
             }
         } else if (requestCode == 2) {
             if (resultCode == RESULT_OK) {
                 //데이터 받기
                 String result = data.getStringExtra("category");
-                RtotalCount=data.getStringExtra("RtotalCount");
-                sido=data.getStringExtra("sidosu");
-                hangjung=data.getStringExtra("hangjungsu");
-                sidoNm=data.getStringExtra("sidoNm");
-                hangjungNm=data.getStringExtra("hangjungNm");
+                RtotalCount = data.getStringExtra("RtotalCount");
+                sido = data.getStringExtra("sidosu");
+                hangjung = data.getStringExtra("hangjungsu");
+                sidoNm = data.getStringExtra("sidoNm");
+                hangjungNm = data.getStringExtra("hangjungNm");
                 btnCategory.setText(result);
-                jumpotest.setText("반경내"+RtotalCount+sidoNm+sido+hangjungNm+hangjung); //데이터 없으며 -로 뜸
+                jumpotest.setText("반경내" + RtotalCount + sidoNm + sido + hangjungNm + hangjung); //데이터 없으며 -로 뜸
             }
         }
     }
-
 
 
     /**
@@ -562,8 +562,6 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     addr = item.getString("full_addr");
                     addrcd = item.getString("sido_cd") + item.getString("sgg_cd") + item.getString("emdong_cd");
                 }
-                OneHouse oneHouse = new OneHouse();
-                oneHouse.execute();
                 Population();
 //                Toast.makeText(getApplicationContext(), addrcd, Toast.LENGTH_LONG).show();
 //                Toast.makeText(getApplicationContext(), addr, Toast.LENGTH_LONG).show();
@@ -623,7 +621,13 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     JSONObject item = jsonArray.getJSONObject(i);
 
                     onehouse_cnt = item.getString("household_cnt");
-                    tvonehouse.setText(onehouse_cnt);
+//                    Toast.makeText(getApplicationContext(), onehouse_cnt + tvtotal.getText().toString(), Toast.LENGTH_LONG).show();
+                    int onehouse = Integer.parseInt(onehouse_cnt);
+                    int total = Integer.parseInt(tvtotal.getText().toString());
+                    Toast.makeText(getApplicationContext(), onehouse + "  " + total, Toast.LENGTH_LONG).show();
+                    int one = (onehouse / total) * 100;
+                    String percent = String.valueOf(one) + "%";
+                    tvonehouse.setText(percent);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -655,6 +659,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                         tvsixty.setText(object.getString("sixty"));
                         count++;
                     }
+
+                    OneHouse oneHouse = new OneHouse();
+                    oneHouse.execute();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -665,38 +672,37 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         queue.add(findApopulation);
     }
 
-    public void LgetData(){
-        StringBuffer buffer=new StringBuffer();
-        String queryUrl="http://apis.data.go.kr/B553077/api/open/sdsc/largeUpjongList?" +
+    public void LgetData() {
+        StringBuffer buffer = new StringBuffer();
+        String queryUrl = "http://apis.data.go.kr/B553077/api/open/sdsc/largeUpjongList?" +
                 "ServiceKey=MxfED6C3Sd6Ja7QuU2BNU8xqBX5Yiy26t4sWS0PWUm%2B6WFjChgI3KoNQRMdO9LM5xvKfXOtMIh40XqadzCbTfw%3D%3D";
-        int su=0;
+        int su = 0;
         try {
-            URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
-            InputStream is= url.openStream(); //url위치로 입력스트림 연결
+            URL url = new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
+            InputStream is = url.openStream(); //url위치로 입력스트림 연결
 
-            XmlPullParserFactory factory= XmlPullParserFactory.newInstance();
-            XmlPullParser xpp= factory.newPullParser();
-            xpp.setInput( new InputStreamReader(is, "UTF-8") ); //inputstream 으로부터 xml 입력받기
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            XmlPullParser xpp = factory.newPullParser();
+            xpp.setInput(new InputStreamReader(is, "UTF-8")); //inputstream 으로부터 xml 입력받기
             String tag;
             xpp.next();
-            int eventType= xpp.getEventType();
-            while( eventType != XmlPullParser.END_DOCUMENT ){
-                switch( eventType ){
+            int eventType = xpp.getEventType();
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                switch (eventType) {
                     case XmlPullParser.START_DOCUMENT:
                         buffer.append("파싱 시작...\n\n");
                         break;
 
                     case XmlPullParser.START_TAG:
-                        tag= xpp.getName();//태그 이름 얻어오기
+                        tag = xpp.getName();//태그 이름 얻어오기
 
-                        if(tag.equals("item")) ;// 첫번째 검색결과
-                        else if(tag.equals("indsLclsCd")){
+                        if (tag.equals("item")) ;// 첫번째 검색결과
+                        else if (tag.equals("indsLclsCd")) {
                             xpp.next();
-                            LargeCode[su]=xpp.getText();
-                        }
-                        else if(tag.equals("indsLclsNm")){
+                            LargeCode[su] = xpp.getText();
+                        } else if (tag.equals("indsLclsNm")) {
                             xpp.next();
-                            LargeName[su]=xpp.getText();
+                            LargeName[su] = xpp.getText();
                             su++;
                         }
                         break;
@@ -704,11 +710,11 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                         break;
 
                     case XmlPullParser.END_TAG:
-                        tag= xpp.getName(); //태그 이름 얻어오기
-                        if(tag.equals("item")) buffer.append("\n");// 첫번째 검색결과종료..줄바꿈
+                        tag = xpp.getName(); //태그 이름 얻어오기
+                        if (tag.equals("item")) buffer.append("\n");// 첫번째 검색결과종료..줄바꿈
                         break;
                 }
-                eventType= xpp.next();
+                eventType = xpp.next();
             }
         } catch (Exception e) {
             // TODO Auto-generated catch blocke.printStackTrace();
