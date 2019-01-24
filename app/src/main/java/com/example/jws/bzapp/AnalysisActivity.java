@@ -13,7 +13,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -649,7 +648,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     double total = Integer.parseInt(tvtotal.getText().toString());
 //                    Toast.makeText(getApplicationContext(), onehouse + "  " + total, Toast.LENGTH_LONG).show();
                     double one = (onehouse / total) * 100;
-                    String percent = String.format("%.2f",one) + "%";
+                    String percent = String.format("%.2f",one) + " %";
                     tvonehouse.setText(percent);
                 }
             } catch (Exception e) {

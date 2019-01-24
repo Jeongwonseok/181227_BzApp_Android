@@ -141,7 +141,98 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/jumpo"/>
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:text="상권 현황"
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="170dp"
+                            android:layout_weight="1">
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="170dp"
+                            android:layout_weight="4"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@drawable/totalshop"/>
+
+                            <TextView
+                                android:id="@+id/jumpo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="로딩중.."
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:textColor="#4169E1"
+                                android:layout_gravity="center_horizontal"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="총 점포수"
+                                android:textSize="13dp"
+                                android:textColor="#000000"
+                                android:layout_gravity="center_horizontal"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="170dp"
+                            android:layout_weight="4"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_gravity="center_horizontal"
+                                android:background="#000000"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="평균 업력"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:textColor="#4169E1"
+                                android:layout_gravity="center_horizontal" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="평균 업력"
+                                android:textSize="13dp"
+                                android:textColor="#000000"
+                                android:layout_gravity="center_horizontal"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="170dp"
+                            android:layout_weight="1">
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
@@ -416,14 +507,14 @@
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:layout_gravity="center_horizontal"
-                                android:background="#000000"/>
+                                android:background="@drawable/live"/>
 
                             <TextView
                                 android:id="@+id/tvtotal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="주거인구"
-                                android:textSize="25dp"
+                                android:text="로딩중.."
+                                android:textSize="20dp"
                                 android:textStyle="bold"
                                 android:textColor="#4169E1"
                                 android:layout_gravity="center_horizontal"/>
@@ -449,14 +540,14 @@
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:layout_gravity="center_horizontal"
-                                android:background="#000000"/>
+                                android:background="@drawable/oneperson"/>
 
                             <TextView
                                 android:id="@+id/tvonehouse"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="1인 가구"
-                                android:textSize="25dp"
+                                android:text="로딩중.."
+                                android:textSize="20dp"
                                 android:textStyle="bold"
                                 android:textColor="#4169E1"
                                 android:layout_gravity="center_horizontal" />
@@ -649,16 +740,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="15dp"
-                        android:text="분석 범위"
-                        android:textSize="13dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
-                        android:text="업종을 선택하시면 해당 업종의 현황과 상가 업소 현황 통계 데이터를 확인하실 수 있습니다."
+                        android:text="반경과 업종을 설정하시면 해당 업종의 현황 통계 데이터를 확인하실 수 있습니다."
                         android:textSize="13dp" />
 
 
