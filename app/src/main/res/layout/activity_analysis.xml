@@ -149,20 +149,20 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="180dp"
+                        android:layout_height="200dp"
                         android:layout_marginTop="10dp"
                         android:orientation="horizontal">
 
                         <LinearLayout
                             android:layout_width="0dp"
-                            android:layout_height="170dp"
+                            android:layout_height="match_parent"
                             android:layout_weight="1">
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="0dp"
-                            android:layout_height="170dp"
+                            android:layout_height="200dp"
                             android:layout_weight="4"
                             android:gravity="center_vertical"
                             android:orientation="vertical">
@@ -191,11 +191,19 @@
                                 android:textColor="#000000"
                                 android:textSize="13dp" />
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:orientation="vertical">
+
+                            </LinearLayout>
+
+
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="0dp"
-                            android:layout_height="170dp"
+                            android:layout_height="200dp"
                             android:layout_weight="4"
                             android:gravity="center_vertical"
                             android:orientation="vertical">
@@ -210,7 +218,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
-                                android:text="평균 업력"
+                                android:text="폐업자 비율"
                                 android:textColor="#4169E1"
                                 android:textSize="20dp"
                                 android:textStyle="bold" />
@@ -219,15 +227,80 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
-                                android:text="평균 업력"
+                                android:text="폐업자 비율"
                                 android:textColor="#000000"
                                 android:textSize="13dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:text="서울특별시 전체 폐업자 대비"
+                                    android:textColor="#4169E1"
+                                    android:textSize="11dp"
+                                    android:layout_marginTop="10dp"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:text="10%"
+                                    android:textColor="#4169E1"
+                                    android:textSize="11dp" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="0dp"
-                            android:layout_height="170dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:text="평균 업력 비율 (단위 : %)"
+                        android:textColor="#808080"
+                        android:textSize="13dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="30dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8"
+                            android:background="#000000">
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
                             android:layout_weight="1">
 
                         </LinearLayout>
