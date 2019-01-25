@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#ffffff"
+    android:orientation="vertical"
     tools:context=".AnalysisActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -134,8 +134,8 @@
                     android:id="@+id/pLayout3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:background="#f8f8f8"
+                    android:orientation="vertical"
                     android:visibility="gone">
 
                     <TextView
@@ -150,8 +150,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="180dp"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -164,32 +164,32 @@
                             android:layout_width="0dp"
                             android:layout_height="170dp"
                             android:layout_weight="4"
-                            android:orientation="vertical"
-                            android:gravity="center_vertical">
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
 
                             <ImageView
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:layout_gravity="center_horizontal"
-                                android:background="@drawable/totalshop"/>
+                                android:background="@drawable/totalshop" />
 
                             <TextView
                                 android:id="@+id/jumpo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
                                 android:text="로딩중.."
-                                android:textSize="20dp"
-                                android:textStyle="bold"
                                 android:textColor="#4169E1"
-                                android:layout_gravity="center_horizontal"/>
+                                android:textSize="20dp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
                                 android:text="총 점포수"
-                                android:textSize="13dp"
                                 android:textColor="#000000"
-                                android:layout_gravity="center_horizontal"/>
+                                android:textSize="13dp" />
 
                         </LinearLayout>
 
@@ -197,31 +197,31 @@
                             android:layout_width="0dp"
                             android:layout_height="170dp"
                             android:layout_weight="4"
-                            android:orientation="vertical"
-                            android:gravity="center_vertical">
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
 
                             <ImageView
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:layout_gravity="center_horizontal"
-                                android:background="#000000"/>
+                                android:background="#000000" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
                                 android:text="평균 업력"
-                                android:textSize="20dp"
-                                android:textStyle="bold"
                                 android:textColor="#4169E1"
-                                android:layout_gravity="center_horizontal" />
+                                android:textSize="20dp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
                                 android:text="평균 업력"
-                                android:textSize="13dp"
                                 android:textColor="#000000"
-                                android:layout_gravity="center_horizontal"/>
+                                android:textSize="13dp" />
 
                         </LinearLayout>
 
@@ -293,12 +293,14 @@
 
                     <TableLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:stretchColumns="0,1,2">
 
                         <TableRow>
 
-                            <TextView android:gravity="center" />
+                            <TextView
+                                android:gravity="center"
+                                android:text="건단가(단위 : 원)" />
 
                             <TextView
                                 android:gravity="center"
@@ -316,11 +318,11 @@
                                 android:text="소매" />
 
                             <TextView
-                                android:id="@+id/FH_retail"
+                                android:id="@+id/PFH_retail"
                                 android:gravity="center" />
 
                             <TextView
-                                android:id="@+id/LH_retail"
+                                android:id="@+id/PLH_retail"
                                 android:gravity="center" />
                         </TableRow>
 
@@ -331,11 +333,11 @@
                                 android:text="생활서비스" />
 
                             <TextView
-                                android:id="@+id/FH_life"
+                                android:id="@+id/PFH_life"
                                 android:gravity="center" />
 
                             <TextView
-                                android:id="@+id/LH_life"
+                                android:id="@+id/PLH_life"
                                 android:gravity="center" />
                         </TableRow>
 
@@ -346,11 +348,11 @@
                                 android:text="관광/여가/오락" />
 
                             <TextView
-                                android:id="@+id/FH_tour"
+                                android:id="@+id/PFH_tour"
                                 android:gravity="center" />
 
                             <TextView
-                                android:id="@+id/LH_tour"
+                                android:id="@+id/PLH_tour"
                                 android:gravity="center" />
                         </TableRow>
 
@@ -361,11 +363,11 @@
                                 android:text="숙박" />
 
                             <TextView
-                                android:id="@+id/FH_stay"
+                                android:id="@+id/PFH_stay"
                                 android:gravity="center" />
 
                             <TextView
-                                android:id="@+id/LH_stay"
+                                android:id="@+id/PLH_stay"
                                 android:gravity="center" />
                         </TableRow>
 
@@ -376,11 +378,11 @@
                                 android:text="스포츠" />
 
                             <TextView
-                                android:id="@+id/FH_sports"
+                                android:id="@+id/PFH_sports"
                                 android:gravity="center" />
 
                             <TextView
-                                android:id="@+id/LH_sports"
+                                android:id="@+id/PLH_sports"
                                 android:gravity="center" />
                         </TableRow>
 
@@ -391,11 +393,11 @@
                                 android:text="음식" />
 
                             <TextView
-                                android:id="@+id/FH_food"
+                                android:id="@+id/PFH_food"
                                 android:gravity="center" />
 
                             <TextView
-                                android:id="@+id/LH_food"
+                                android:id="@+id/PLH_food"
                                 android:gravity="center" />
                         </TableRow>
 
@@ -406,15 +408,173 @@
                                 android:text="학문/교육" />
 
                             <TextView
-                                android:id="@+id/FH_edu"
+                                android:id="@+id/PFH_edu"
                                 android:gravity="center" />
 
                             <TextView
-                                android:id="@+id/LH_edu"
+                                android:id="@+id/PLH_edu"
                                 android:gravity="center" />
                         </TableRow>
 
                     </TableLayout>
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:stretchColumns="0,1,2">
+
+                        <TableRow>
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="월평균 매출(단위 : 만원)" />
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="상반기" />
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="하반기" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="소매" />
+
+                            <TextView
+                                android:id="@+id/AFH_retail"
+                                android:gravity="center" />
+
+                            <TextView
+                                android:id="@+id/ALH_retail"
+                                android:gravity="center" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="생활서비스" />
+
+                            <TextView
+                                android:id="@+id/AFH_life"
+                                android:gravity="center" />
+
+                            <TextView
+                                android:id="@+id/ALH_life"
+                                android:gravity="center" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="관광/여가/오락" />
+
+                            <TextView
+                                android:id="@+id/AFH_tour"
+                                android:gravity="center" />
+
+                            <TextView
+                                android:id="@+id/ALH_tour"
+                                android:gravity="center" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="숙박" />
+
+                            <TextView
+                                android:id="@+id/AFH_stay"
+                                android:gravity="center" />
+
+                            <TextView
+                                android:id="@+id/ALH_stay"
+                                android:gravity="center" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="스포츠" />
+
+                            <TextView
+                                android:id="@+id/AFH_sports"
+                                android:gravity="center" />
+
+                            <TextView
+                                android:id="@+id/ALH_sports"
+                                android:gravity="center" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="음식" />
+
+                            <TextView
+                                android:id="@+id/AFH_food"
+                                android:gravity="center" />
+
+                            <TextView
+                                android:id="@+id/ALH_food"
+                                android:gravity="center" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="학문/교육" />
+
+                            <TextView
+                                android:id="@+id/AFH_edu"
+                                android:gravity="center" />
+
+                            <TextView
+                                android:id="@+id/ALH_edu"
+                                android:gravity="center" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="합계" />
+
+                            <TextView
+                                android:id="@+id/AFH_sum"
+                                android:gravity="center" />
+
+                            <TextView
+                                android:id="@+id/ALH_sum"
+                                android:gravity="center" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:gravity="center"
+                                android:text="평균" />
+
+                            <TextView
+                                android:id="@+id/AFH_avg"
+                                android:gravity="center" />
+
+                            <TextView
+                                android:id="@+id/ALH_avg"
+                                android:gravity="center" />
+                        </TableRow>
+
+                    </TableLayout>
+
 
                     <View
                         android:layout_width="match_parent"
@@ -470,8 +630,8 @@
                     android:id="@+id/pLayout1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:background="#f8f8f8"
+                    android:orientation="vertical"
                     android:visibility="gone">
 
                     <TextView
@@ -486,8 +646,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="180dp"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -500,32 +660,32 @@
                             android:layout_width="0dp"
                             android:layout_height="170dp"
                             android:layout_weight="4"
-                            android:orientation="vertical"
-                            android:gravity="center_vertical">
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
 
                             <ImageView
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:layout_gravity="center_horizontal"
-                                android:background="@drawable/live"/>
+                                android:background="@drawable/live" />
 
                             <TextView
                                 android:id="@+id/tvtotal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
                                 android:text="로딩중.."
-                                android:textSize="20dp"
-                                android:textStyle="bold"
                                 android:textColor="#4169E1"
-                                android:layout_gravity="center_horizontal"/>
+                                android:textSize="20dp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
                                 android:text="주거인구수"
-                                android:textSize="13dp"
                                 android:textColor="#000000"
-                                android:layout_gravity="center_horizontal"/>
+                                android:textSize="13dp" />
 
                         </LinearLayout>
 
@@ -533,32 +693,32 @@
                             android:layout_width="0dp"
                             android:layout_height="170dp"
                             android:layout_weight="4"
-                            android:orientation="vertical"
-                            android:gravity="center_vertical">
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
 
                             <ImageView
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:layout_gravity="center_horizontal"
-                                android:background="@drawable/oneperson"/>
+                                android:background="@drawable/oneperson" />
 
                             <TextView
                                 android:id="@+id/tvonehouse"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
                                 android:text="로딩중.."
-                                android:textSize="20dp"
-                                android:textStyle="bold"
                                 android:textColor="#4169E1"
-                                android:layout_gravity="center_horizontal" />
+                                android:textSize="20dp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
                                 android:text="1인 가구 비율"
-                                android:textSize="13dp"
                                 android:textColor="#000000"
-                                android:layout_gravity="center_horizontal"/>
+                                android:textSize="13dp" />
 
                         </LinearLayout>
 
@@ -754,11 +914,11 @@
                         android:layout_marginRight="10dp"
                         android:background="@drawable/back_spinner2"
                         android:gravity="center"
+                        android:onClick="mOnPopupClick"
                         android:paddingLeft="5dp"
                         android:text="범위를 선택해주세요."
                         android:textAllCaps="false"
-                        android:textColor="#000000"
-                        android:onClick="mOnPopupClick" />
+                        android:textColor="#000000" />
 
 
                     <Button
@@ -771,15 +931,16 @@
                         android:layout_marginBottom="50dp"
                         android:background="@drawable/back_spinner2"
                         android:gravity="center"
+                        android:onClick="mOnPopupClick2"
                         android:paddingLeft="5dp"
                         android:text="업종을 선택해주세요."
                         android:textAllCaps="false"
-                        android:textColor="#000000"
-                        android:onClick="mOnPopupClick2" />
+                        android:textColor="#000000" />
+
                     <TextView
+                        android:id="@+id/jumpotest"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/jumpotest"/>
+                        android:layout_height="wrap_content" />
 
                     <View
                         android:layout_width="match_parent"

@@ -53,8 +53,10 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     TextView tvtotal, tvchild, tvteenage, tvtwenty, tvthirty, tvforty, tvfifty, tvsixty, tvonehouse, jumposu, jumpotest;
     String UTM_KX, UTM_KY, addr, token, addrcd, addrnm, onehouse_cnt;
 
-    //건단가 불러오기
-    TextView FH_retail, LH_retail, FH_life, LH_life, FH_tour, LH_tour, FH_stay, LH_stay, FH_sports, LH_sports, FH_food, LH_food, FH_edu, LH_edu;
+    //건단가 및 월평균 매출
+    TextView PFH_retail, PLH_retail, PFH_life, PLH_life, PFH_tour, PLH_tour, PFH_stay, PLH_stay, PFH_sports, PLH_sports, PFH_food, PLH_food, PFH_edu, PLH_edu;
+    TextView AFH_retail, ALH_retail, AFH_life, ALH_life, AFH_tour, ALH_tour, AFH_stay, ALH_stay, AFH_sports, ALH_sports, AFH_food, ALH_food, AFH_edu, ALH_edu, AFH_sum, AFH_avg, ALH_sum, ALH_avg;
+
     String RtotalCount, sido, hangjung, hangjungNm, sidoNm;
     String jumpoRadius;
     String LargeCode[] = new String[21];
@@ -182,26 +184,62 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         });
 
         //건단가불러오기
-        FH_retail = (TextView) findViewById(R.id.FH_retail);
-        LH_retail = (TextView) findViewById(R.id.LH_retail);
-        FH_life = (TextView) findViewById(R.id.FH_life);
-        LH_life = (TextView) findViewById(R.id.LH_life);
-        FH_tour = (TextView) findViewById(R.id.FH_tour);
-        LH_tour = (TextView) findViewById(R.id.LH_tour);
-        FH_stay = (TextView) findViewById(R.id.FH_stay);
-        LH_stay = (TextView) findViewById(R.id.LH_stay);
-        FH_sports = (TextView) findViewById(R.id.FH_sports);
-        LH_sports = (TextView) findViewById(R.id.LH_sports);
-        FH_food = (TextView) findViewById(R.id.FH_food);
-        LH_food = (TextView) findViewById(R.id.LH_food);
-        FH_edu = (TextView) findViewById(R.id.FH_edu);
-        LH_edu = (TextView) findViewById(R.id.LH_edu);
+        PFH_retail = (TextView) findViewById(R.id.PFH_retail);
+        PLH_retail = (TextView) findViewById(R.id.PLH_retail);
+        PFH_life = (TextView) findViewById(R.id.PFH_life);
+        PLH_life = (TextView) findViewById(R.id.PLH_life);
+        PFH_tour = (TextView) findViewById(R.id.PFH_tour);
+        PLH_tour = (TextView) findViewById(R.id.PLH_tour);
+        PFH_stay = (TextView) findViewById(R.id.PFH_stay);
+        PLH_stay = (TextView) findViewById(R.id.PLH_stay);
+        PFH_sports = (TextView) findViewById(R.id.PFH_sports);
+        PLH_sports = (TextView) findViewById(R.id.PLH_sports);
+        PFH_food = (TextView) findViewById(R.id.PFH_food);
+        PLH_food = (TextView) findViewById(R.id.PLH_food);
+        PFH_edu = (TextView) findViewById(R.id.PFH_edu);
+        PLH_edu = (TextView) findViewById(R.id.PLH_edu);
+
+        //월평균매출
+        AFH_retail = (TextView) findViewById(R.id.AFH_retail);
+        ALH_retail = (TextView) findViewById(R.id.ALH_retail);
+        AFH_life = (TextView) findViewById(R.id.AFH_life);
+        ALH_life = (TextView) findViewById(R.id.ALH_life);
+        AFH_tour = (TextView) findViewById(R.id.AFH_tour);
+        ALH_tour = (TextView) findViewById(R.id.ALH_tour);
+        AFH_stay = (TextView) findViewById(R.id.AFH_stay);
+        ALH_stay = (TextView) findViewById(R.id.ALH_stay);
+        AFH_sports = (TextView) findViewById(R.id.AFH_sports);
+        ALH_sports = (TextView) findViewById(R.id.ALH_sports);
+        AFH_food = (TextView) findViewById(R.id.AFH_food);
+        ALH_food = (TextView) findViewById(R.id.ALH_food);
+        AFH_edu = (TextView) findViewById(R.id.AFH_edu);
+        ALH_edu = (TextView) findViewById(R.id.ALH_edu);
+        AFH_sum = (TextView)findViewById(R.id.AFH_sum);
+        ALH_sum = (TextView)findViewById(R.id.ALH_sum);
+        AFH_avg = (TextView)findViewById(R.id.AFH_avg);
+        ALH_avg = (TextView)findViewById(R.id.ALH_avg);
 
 
         // 매출분석 버튼
         final LinearLayout pLayout2 = (LinearLayout) findViewById(R.id.pLayout2);
         final ImageView pbtn2 = (ImageView) findViewById(R.id.pbtn2);
+        //총점포수
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                final String alljumpo = shopApi.RadiuAll(AllRadius, Alllong, Alllat);
+                runOnUiThread(new Runnable() {
 
+                    @Override
+                    public void run() {
+                        // TODO Auto-generated method stub
+                        jumposu.setText(alljumpo + "개");
+                    }
+                });
+
+            }
+        }).start();
         pbtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -214,7 +252,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                 }
             }
         });
-        
+
         // 상권분석 버튼
         final LinearLayout pLayout3 = (LinearLayout) findViewById(R.id.pLayout3);
         final ImageView pbtn3 = (ImageView) findViewById(R.id.pbtn3);
@@ -228,22 +266,6 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                 } else {
                     pLayout3.setVisibility(View.VISIBLE);
                     pbtn3.setImageResource(R.drawable.over);
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            // TODO Auto-generated method stub
-                            final String alljumpo = shopApi.RadiuAll(AllRadius, Alllong, Alllat);
-                            runOnUiThread(new Runnable() {
-
-                                @Override
-                                public void run() {
-                                    // TODO Auto-generated method stub
-                                    jumposu.setText(alljumpo + "개");
-                                }
-                            });
-
-                        }
-                    }).start();
                 }
             }
         });
@@ -586,6 +608,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                 }
                 Population();
                 getPercost();
+                getavgsales();
 //                Toast.makeText(getApplicationContext(), addrcd, Toast.LENGTH_LONG).show();
 //                Toast.makeText(getApplicationContext(), addr, Toast.LENGTH_LONG).show();
 
@@ -649,7 +672,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     double total = Integer.parseInt(tvtotal.getText().toString());
 //                    Toast.makeText(getApplicationContext(), onehouse + "  " + total, Toast.LENGTH_LONG).show();
                     double one = (onehouse / total) * 100;
-                    String percent = String.format("%.2f",one) + " %";
+                    String percent = String.format("%.2f", one) + " %";
                     tvonehouse.setText(percent);
                 }
             } catch (Exception e) {
@@ -708,20 +731,20 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     while (count < jsonArray.length()) {
                         JSONObject object = jsonArray.getJSONObject(count);
                         object.getString("location");
-                        FH_retail.setText(object.getString("FH_retail"));
-                        LH_retail.setText(object.getString("LH_retail"));
-                        FH_life.setText(object.getString("FH_life"));
-                        LH_life.setText(object.getString("LH_life"));
-                        FH_tour.setText(object.getString("FH_tour"));
-                        LH_tour.setText(object.getString("LH_tour"));
-                        FH_stay.setText(object.getString("FH_stay"));
-                        LH_stay.setText(object.getString("LH_stay"));
-                        FH_sports.setText(object.getString("FH_sports"));
-                        LH_sports.setText(object.getString("LH_sports"));
-                        FH_food.setText(object.getString("FH_food"));
-                        LH_food.setText(object.getString("LH_food"));
-                        FH_edu.setText(object.getString("FH_edu"));
-                        LH_edu.setText(object.getString("LH_edu"));
+                        PFH_retail.setText(object.getString("FH_retail"));
+                        PLH_retail.setText(object.getString("LH_retail"));
+                        PFH_life.setText(object.getString("FH_life"));
+                        PLH_life.setText(object.getString("LH_life"));
+                        PFH_tour.setText(object.getString("FH_tour"));
+                        PLH_tour.setText(object.getString("LH_tour"));
+                        PFH_stay.setText(object.getString("FH_stay"));
+                        PLH_stay.setText(object.getString("LH_stay"));
+                        PFH_sports.setText(object.getString("FH_sports"));
+                        PLH_sports.setText(object.getString("LH_sports"));
+                        PFH_food.setText(object.getString("FH_food"));
+                        PLH_food.setText(object.getString("LH_food"));
+                        PFH_edu.setText(object.getString("FH_edu"));
+                        PLH_edu.setText(object.getString("LH_edu"));
                         count++;
                     }
 
@@ -735,6 +758,52 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         FindPercost findPercost = new FindPercost(addrnm, responseListener);
         RequestQueue queue = Volley.newRequestQueue(AnalysisActivity.this);
         queue.add(findPercost);
+    }
+
+    public void getavgsales() {
+
+//        Toast.makeText(getApplicationContext(), addrnm, Toast.LENGTH_LONG).show();
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                try {
+                    JSONObject jsonObject = new JSONObject(s);
+                    JSONArray jsonArray = jsonObject.getJSONArray("response");
+                    int count = 0;
+                    while (count < jsonArray.length()) {
+                        JSONObject object = jsonArray.getJSONObject(count);
+                        object.getString("location");
+                        AFH_retail.setText(object.getString("FH_retail"));
+                        ALH_retail.setText(object.getString("LH_retail"));
+                        AFH_life.setText(object.getString("FH_life"));
+                        ALH_life.setText(object.getString("LH_life"));
+                        AFH_tour.setText(object.getString("FH_tour"));
+                        ALH_tour.setText(object.getString("LH_tour"));
+                        AFH_stay.setText(object.getString("FH_stay"));
+                        ALH_stay.setText(object.getString("LH_stay"));
+                        AFH_sports.setText(object.getString("FH_sports"));
+                        ALH_sports.setText(object.getString("LH_sports"));
+                        AFH_food.setText(object.getString("FH_food"));
+                        ALH_food.setText(object.getString("LH_food"));
+                        AFH_edu.setText(object.getString("FH_edu"));
+                        ALH_edu.setText(object.getString("LH_edu"));
+                        AFH_sum.setText(object.getString("FH_sum"));
+                        ALH_sum.setText(object.getString("LH_sum"));
+                        AFH_avg.setText(object.getString("FH_avg"));
+                        ALH_avg.setText(object.getString("LH_avg"));
+                        count++;
+                    }
+
+                    OneHouse oneHouse = new OneHouse();
+                    oneHouse.execute();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        Findavgsales findavgsales = new Findavgsales(addrnm, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(AnalysisActivity.this);
+        queue.add(findavgsales);
     }
 
 
