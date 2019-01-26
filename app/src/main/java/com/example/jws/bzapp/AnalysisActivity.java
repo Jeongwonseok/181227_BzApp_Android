@@ -13,11 +13,16 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -36,6 +41,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -62,6 +68,17 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     String LargeCode[] = new String[21];
     String LargeName[] = new String[21];
     String Alllat, Alllong, AllRadius;
+
+    // 파이차트 사용 색상변수
+    int color1, color2, color3, color4, color5, color6, color7;
+
+    String tv1="10f";
+    String tv2="10f";
+    String tv3="10f";
+    String tv4="10f";
+    String tv5="20f";
+    String tv6="20f";
+    String tv7="20f";
 
 
     @Override
@@ -166,6 +183,170 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 
         getToken getToken = new getToken();
         getToken.execute();
+
+        //연령별 차트 생성
+        PieChart pieChart = (PieChart) findViewById(R.id.piechart);
+        //차트 드래그 비활성화
+        pieChart.setUsePercentValues(true);
+        pieChart.setTouchEnabled(false);
+        //pieChart.setDragDecelerationEnabled(false);
+
+        // IMPORTANT: In a PieChart, no values (Entry) should have the same
+        // xIndex (even if from different DataSets), since no values can be
+        // drawn above each other.
+        ArrayList<Entry> yvalues = new ArrayList<Entry>();
+        yvalues.add(new Entry(Float.parseFloat(tv1),0));
+        yvalues.add(new Entry(Float.parseFloat(tv2), 1));
+        yvalues.add(new Entry(Float.parseFloat(tv3), 2));
+        yvalues.add(new Entry(Float.parseFloat(tv4), 3));
+        yvalues.add(new Entry(Float.parseFloat(tv5), 4));
+        yvalues.add(new Entry(Float.parseFloat(tv6), 4));
+        yvalues.add(new Entry(Float.parseFloat(tv7), 4));
+
+        //라벨에 텍스트 추가하면 출처 및 설명 가능
+        PieDataSet dataSet = new PieDataSet(yvalues, "");
+        color1 = Color.rgb(204,93,221);
+        color2 = Color.rgb(95,204,221);
+        color3 = Color.rgb(224,96,122);
+        color4 = Color.rgb(87,121,168);
+        color5 = Color.rgb(198,137,83);
+        color6 = Color.rgb(50,65,163);
+        color7 = Color.rgb(43,140,133);
+
+        //새롭게 color 지정하는 방법
+        dataSet.setColors(new int[] {color1,color2,color3,color4,color5,color6,color7});
+
+        ArrayList<String> xVals = new ArrayList<String>();
+
+        xVals.add("10대 미만");
+        xVals.add("10대");
+        xVals.add("20대");
+        xVals.add("30대");
+        xVals.add("40대");
+        xVals.add("50대");
+        xVals.add("60대 이상");
+
+        PieData data = new PieData(xVals, dataSet);
+
+        // In Percentage
+        data.setValueFormatter(new PercentFormatter());
+        // Default value
+        //data.setValueFormatter(new DefaultValueFormatter(0));
+        pieChart.setData(data);
+
+
+        pieChart.setDescription("");
+        /*pieChart.setDescriptionPosition(550,100);*/
+        //출처 및 설명
+        //pieChart.setDescription("This is Pie Chart");
+        //구멍뚫기
+        pieChart.setDrawHoleEnabled(true);
+        pieChart.setTransparentCircleRadius(40f);
+
+        // 각각의 요소설명 위치 지정
+        Legend i = pieChart.getLegend();
+        i.setPosition(Legend.LegendPosition.RIGHT_OF_CHART_CENTER);
+        i.setTextSize(13f);
+
+        pieChart.setHoleRadius(40f);
+        //dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
+
+        //dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+
+        //dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+
+        //dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
+
+        //dataSet.setColors(ColorTemplate.PASTEL_COLORS);
+
+        data.setValueTextSize(12f);
+        data.setValueTextColor(Color.WHITE);
+
+        //pieChart.setOnChartValueSelectedListener(this);
+
+        //파이차트2
+
+        //연령별 차트 생성
+        PieChart pieChart2 = (PieChart) findViewById(R.id.piechart2);
+        //차트 드래그 비활성화
+        pieChart2.setUsePercentValues(true);
+        pieChart2.setTouchEnabled(false);
+        //pieChart.setDragDecelerationEnabled(false);
+
+        // IMPORTANT: In a PieChart, no values (Entry) should have the same
+        // xIndex (even if from different DataSets), since no values can be
+        // drawn above each other.
+        ArrayList<Entry> yvalues2 = new ArrayList<Entry>();
+        yvalues2.add(new Entry(Float.parseFloat(tv1),0));
+        yvalues2.add(new Entry(Float.parseFloat(tv2), 1));
+        yvalues2.add(new Entry(Float.parseFloat(tv3), 2));
+        yvalues2.add(new Entry(Float.parseFloat(tv4), 3));
+        yvalues2.add(new Entry(Float.parseFloat(tv5), 4));
+        yvalues2.add(new Entry(Float.parseFloat(tv6), 4));
+        yvalues2.add(new Entry(Float.parseFloat(tv7), 4));
+
+        //라벨에 텍스트 추가하면 출처 및 설명 가능
+        PieDataSet dataSet2 = new PieDataSet(yvalues2, "");
+        color1 = Color.rgb(204,93,221);
+        color2 = Color.rgb(95,204,221);
+        color3 = Color.rgb(224,96,122);
+        color4 = Color.rgb(87,121,168);
+        color5 = Color.rgb(198,137,83);
+        color6 = Color.rgb(50,65,163);
+        color7 = Color.rgb(43,140,133);
+
+        //새롭게 color 지정하는 방법
+        dataSet2.setColors(new int[] {color1,color2,color3,color4,color5,color6,color7});
+
+        ArrayList<String> xVals2 = new ArrayList<String>();
+
+        xVals2.add("10대 미만");
+        xVals2.add("10대");
+        xVals2.add("20대");
+        xVals2.add("30대");
+        xVals2.add("40대");
+        xVals2.add("50대");
+        xVals2.add("60대 이상");
+
+        PieData data2 = new PieData(xVals2, dataSet2);
+
+        // In Percentage
+        data2.setValueFormatter(new PercentFormatter());
+        // Default value
+        //data.setValueFormatter(new DefaultValueFormatter(0));
+        pieChart2.setData(data);
+
+
+        pieChart2.setDescription("");
+        /*pieChart.setDescriptionPosition(550,100);*/
+        //출처 및 설명
+        //pieChart.setDescription("This is Pie Chart");
+        //구멍뚫기
+        pieChart2.setDrawHoleEnabled(true);
+        pieChart2.setTransparentCircleRadius(40f);
+
+        // 각각의 요소설명 위치 지정
+        Legend i2 = pieChart2.getLegend();
+        i2.setPosition(Legend.LegendPosition.RIGHT_OF_CHART_CENTER);
+        i2.setTextSize(13f);
+
+        pieChart2.setHoleRadius(40f);
+        //dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
+
+        //dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+
+        //dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+
+        //dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
+
+        //dataSet.setColors(ColorTemplate.PASTEL_COLORS);
+
+        data2.setValueTextSize(12f);
+        data2.setValueTextColor(Color.WHITE);
+
+        //pieChart.setOnChartValueSelectedListener(this);
+
+
         // 인구분석 버튼
         final LinearLayout pLayout1 = (LinearLayout) findViewById(R.id.pLayout1);
         final ImageView pbtn1 = (ImageView) findViewById(R.id.pbtn1);
