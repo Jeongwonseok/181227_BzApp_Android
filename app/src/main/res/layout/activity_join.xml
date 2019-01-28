@@ -80,7 +80,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/round_edittext"
-                    android:paddingLeft="5dp"/>
+                    android:paddingLeft="5dp"
+                    android:textSize="15dp"/>
 
             </LinearLayout>
 
@@ -109,7 +110,8 @@
                     android:layout_height="match_parent"
                     android:inputType="textPassword"
                     android:background="@drawable/round_edittext"
-                    android:paddingLeft="5dp"/>
+                    android:paddingLeft="5dp"
+                    android:textSize="15dp"/>
 
             </LinearLayout>
 
@@ -138,7 +140,8 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/round_edittext"
                     android:inputType="textPassword"
-                    android:paddingLeft="5dp"/>
+                    android:paddingLeft="5dp"
+                    android:textSize="15dp"/>
 
 
             </LinearLayout>
@@ -167,7 +170,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/round_edittext"
-                    android:paddingLeft="5dp"/>
+                    android:paddingLeft="5dp"
+                    android:textSize="15dp"/>
 
             </LinearLayout>
 
@@ -196,7 +200,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/round_edittext"
                     android:hint=" xxxxxx@xxxx.xxx 형식으로 작성하세요."
-                    android:textSize="12dp"
+                    android:textSize="15dp"
                     android:inputType="textEmailAddress"
                     android:paddingLeft="5dp"/>
 

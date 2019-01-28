@@ -7,62 +7,76 @@
     android:orientation="vertical"
     tools:context=".FranchiseActivity2">
 
-    <LinearLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#808080"
-        android:orientation="horizontal">
+        android:layout_height="52dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <LinearLayout
-            android:layout_width="0dp"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="left">
+            android:background="#ED3050"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
 
-            <ImageButton
-                android:id="@+id/btnBack"
-                android:layout_width="60dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/back1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="9"
-            android:orientation="vertical">
-
-            <EditText
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="   프랜차이즈명 검색"
-                android:bufferType="spannable"
-                android:cursorVisible="true"
-                android:drawableLeft="@drawable/search" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="right">
+                    <ImageButton
+                        android:id="@+id/btnBack"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/back1"/>
 
-            <ImageButton
-                android:id="@+id/btnFilter"
-                android:layout_width="60dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/f" />
+                </LinearLayout>
 
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"/>
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:gravity="center_vertical">
 
-    </LinearLayout>
+                    <EditText
+                        android:id="@+id/franSearch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:bufferType="spannable"
+                        android:cursorVisible="true"
+                        android:hint="프랜차이즈 검색"
+                        android:drawableLeft="@drawable/search1"
+                        android:textColor="#ffffff"
+                        android:textColorHint="#ffffff"
+                        android:textSize="13dp"
+                        android:theme="@style/EditTheme1"
+                        android:background="@drawable/round_corner"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"/>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -83,7 +97,8 @@
                 <TabWidget
                     android:id="@android:id/tabs"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp" />
+                    android:layout_height="40dp"
+                    android:background="#ffffff"/>
 
                 <FrameLayout
                     android:id="@android:id/tabcontent"

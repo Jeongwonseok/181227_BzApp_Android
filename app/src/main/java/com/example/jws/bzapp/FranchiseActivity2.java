@@ -33,7 +33,7 @@ public class FranchiseActivity2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.franchise2);
+        setContentView(R.layout.activity_franchise2);
 
 
         btnBack = (ImageButton)findViewById(R.id.btnBack);
@@ -45,7 +45,6 @@ public class FranchiseActivity2 extends AppCompatActivity {
             }
         });
 
-        btnFilter = (ImageButton)findViewById(R.id.btnFilter);
 
         //탭호스트 선언, 탭추가
         TabHost tabHost = (TabHost)findViewById(R.id.Host);
@@ -128,10 +127,10 @@ public class FranchiseActivity2 extends AppCompatActivity {
                     Interior = object.getString("Interior");
                     Asales17=Asales17.substring(0,Asales17.length()-1);
                     if(Asales17.length()>4){
-                    String a=Asales17.substring(0,Asales17.length()-4);
-                    String b=Asales17.substring(a.length(),Asales17.length()-3);
-                    String c=Asales17.substring(a.length()+b.length(),Asales17.length());
-                    Asales17=a+"억"+b+"천"+c+"만원";}
+                        String a=Asales17.substring(0,Asales17.length()-4);
+                        String b=Asales17.substring(a.length(),Asales17.length()-3);
+                        String c=Asales17.substring(a.length()+b.length(),Asales17.length());
+                        Asales17=a+"억"+b+"천"+c+"만원";}
                     else{
                         String a=Asales17.substring(0,Asales17.length()-3);
                         String b=Asales17.substring(a.length(),Asales17.length());
@@ -157,4 +156,3 @@ public class FranchiseActivity2 extends AppCompatActivity {
 
     }
 }
-

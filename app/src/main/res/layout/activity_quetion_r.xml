@@ -78,7 +78,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bz 서비스 이용중 궁금한 점이나 제안사항이 있으시면 자유롭게 적어주세요." />
+                    android:text="Bz 서비스 이용중 궁금한 점이나 제안사항이 있으시면 자유롭게 적어주세요."
+                    android:textColor="#808080"/>
 
 
             </LinearLayout>
@@ -87,7 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_gravity="center"
-                android:background="#f4f4f4" />
+                android:background="#cdcdcd" />
 
 
             <LinearLayout
@@ -116,7 +117,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/round_edittext"
                     android:paddingLeft="5dp"
-                    android:textSize="20dp" />
+                    android:textSize="15dp" />
 
             </LinearLayout>
 
@@ -223,7 +224,7 @@
                     android:minLines="1"
                     android:paddingLeft="5dp"
                     android:scrollbars="vertical"
-                    android:textSize="20dp" />
+                    android:textSize="15dp" />
 
             </LinearLayout>
 
