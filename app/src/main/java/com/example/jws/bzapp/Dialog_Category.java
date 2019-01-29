@@ -77,7 +77,7 @@ public class Dialog_Category extends Activity {
         Long=intent.getStringExtra("mLong");
         Lat=intent.getStringExtra("mLat");
         if(jumpoRadius.equals("100m"))
-            jumpoRadius="100";
+            jumpoRadius="200";
         else if(jumpoRadius.equals("200m"))
             jumpoRadius="200";
         else if(jumpoRadius.equals("500m"))
