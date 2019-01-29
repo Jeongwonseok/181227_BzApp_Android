@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class FranchiseActivity1 extends AppCompatActivity {
-    ImageButton btnBack,btnFast;
+    ImageButton btnBack,btnFast,btnleisure;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,14 @@ public class FranchiseActivity1 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(FranchiseActivity1.this, FranchiseActivity2.class);
                 startActivity(intent);
+            }
+        });
+        btnleisure=(ImageButton)findViewById(R.id.btnleisure);
+        btnleisure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(FranchiseActivity1,FranchisePlay.class);
+//                startActivity(intent);
             }
         });
     }

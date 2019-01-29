@@ -10,9 +10,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TabHost;
 
-import com.example.jws.bzapp.FranchiseActivity1;
-import com.example.jws.bzapp.R;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -55,6 +52,8 @@ public class FranchiseActivity2 extends AppCompatActivity {
         tabHost.addTab(tabHost.newTabSpec("일식").setContent(R.id.tab4).setIndicator("일식"));
         tabHost.addTab(tabHost.newTabSpec("중식").setContent(R.id.tab5).setIndicator("중식"));
 
+
+
         //카드뷰 추가 시킬 리사이클뷰 선언
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.RV1);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
@@ -62,12 +61,28 @@ public class FranchiseActivity2 extends AppCompatActivity {
 
         //FranchiseInfo형 배열 선언
 
-        FranchiseList franchiseList = new FranchiseList();
+        FranchiseList franchiseList = new FranchiseList("http://qwerr784.cafe24.com/Ffast.php");
         franchiseList.execute();
     }
-    class FranchiseList extends AsyncTask<Void, Void, String> {
 
 
+
+
+
+
+
+
+
+
+
+
+
+   class FranchiseList extends AsyncTask<Void, Void, String> {
+
+        String urlnumber;
+        public FranchiseList(String url){
+            this.urlnumber=url;
+        }
         @Override
         protected void onPreExecute() {
         }
@@ -76,7 +91,7 @@ public class FranchiseActivity2 extends AppCompatActivity {
         protected String doInBackground(Void... voids) {
             try {
                 //서버에 있는 php 실행
-                URL url = new URL("http://qwerr784.cafe24.com/Ffast.php");
+                URL url = new URL(urlnumber);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -108,9 +123,12 @@ public class FranchiseActivity2 extends AppCompatActivity {
 
             ArrayList<FranchiseInfo> arrayList = new ArrayList<>();
 
-            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.RV1);
-            RecyclerView.LayoutManager manager = new LinearLayoutManager(FranchiseActivity2.this);
-            recyclerView.setLayoutManager(manager);
+            RecyclerView recyclerView = (RecyclerView)findViewById(R.id.RV1);
+            if(urlnumber.equals("http://qwerr784.cafe24.com/Ffast.php")) {
+                RecyclerView.LayoutManager manager = new LinearLayoutManager(FranchiseActivity2.this);
+                recyclerView.setLayoutManager(manager);
+            }
+
 
             try {
                 JSONObject jsonObject = new JSONObject(s);
@@ -118,25 +136,19 @@ public class FranchiseActivity2 extends AppCompatActivity {
                 int count = 0;
                 String Name,Storesu, Ownermoney, Asales17,Interior;
                 while (count < jsonArray.length()) {
-
                     JSONObject object = jsonArray.getJSONObject(count);
                     Name = object.getString("Shopname");
                     Storesu = object.getString("StoreSu17");
                     Ownermoney = object.getString("Ownermoney");
                     Asales17 = object.getString("Asales17");
                     Interior = object.getString("Interior");
-                    Asales17=Asales17.substring(0,Asales17.length()-1);
-                    if(Asales17.length()>4){
-                        String a=Asales17.substring(0,Asales17.length()-4);
-                        String b=Asales17.substring(a.length(),Asales17.length()-3);
-                        String c=Asales17.substring(a.length()+b.length(),Asales17.length());
-                        Asales17=a+"억"+b+"천"+c+"만원";}
-                    else{
-                        String a=Asales17.substring(0,Asales17.length()-3);
-                        String b=Asales17.substring(a.length(),Asales17.length());
-                        Asales17=a+"천"+b+"만원";
-                    }
-                    FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu+"개",Ownermoney,Asales17,Interior);
+                    ///
+                    //매출
+                    if(Storesu.equals("정보없음")){
+                        Storesu="정보없음";
+                    }else  Storesu+="개";
+                    //////////////////////////
+                    FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
                     arrayList.add(franchiseInfo);
                     count++;
                 }
