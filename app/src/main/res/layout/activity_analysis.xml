@@ -1117,6 +1117,7 @@
                                 android:textColor="#808080"
                                 android:text="동구"
                                 android:background="@drawable/cellborder"/>
+                            
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
