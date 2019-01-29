@@ -57,7 +57,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     Button btnCategory;
     ShopApi shopApi;
     //인구분석
-    TextView tvtotal, tvchild, tvteenage, tvtwenty, tvthirty, tvforty, tvfifty, tvsixty, tvonehouse, jumposu;
+    TextView tvtotal, tvchild, tvteenage, tvtwenty, tvthirty, tvforty, tvfifty, tvsixty, tvonehouse, jumposu, jumpotest;
     String UTM_KX, UTM_KY, addr, token, addrcd, addrnm, sido_nm, onehouse_cnt;
 
     //건단가 및 월평균 매출
@@ -85,9 +85,6 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     String tv6 = "20f";
     String tv7 = "20f";
 
-    //테이블레이아웃 요소
-    TextView tvsi,tvgu,tvarea,tvsiResult,tvguResult,tvareaResult;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +105,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 
 
         jumposu = (TextView) findViewById(R.id.jumpo);
+        jumpotest = (TextView) findViewById(R.id.jumpotest);
 
 //        Toast.makeText(getApplicationContext(), String.valueOf(mLong) + " " + String.valueOf(mLat), Toast.LENGTH_LONG).show();
 
@@ -120,25 +118,17 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 
         if (a == 100) {
             btnArea.setText("100m");
-            jumpoRadius = "100";
+            jumpoRadius = "100m";
         } else if (a == 200) {
             btnArea.setText("200m");
-            jumpoRadius = "200";
+            jumpoRadius = "200m";
         } else if (a == 500) {
             btnArea.setText("500m");
-            jumpoRadius = "500";
+            jumpoRadius = "500m";
         } else if (a == 1000) {
             btnArea.setText("1km");
-            jumpoRadius = "1000";
+            jumpoRadius = "1km";
         }
-
-        //테이블레이아웃 변수
-        tvsi = (TextView)findViewById(R.id.tvSi);
-        tvgu = (TextView)findViewById(R.id.tvGu);
-        tvarea = (TextView)findViewById(R.id.tvArea);
-        tvsiResult = (TextView)findViewById(R.id.getSi);
-        tvguResult = (TextView)findViewById(R.id.getGu);
-        tvareaResult = (TextView)findViewById(R.id.getArea);
 
 
                 /*
@@ -568,8 +558,6 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         } else if (requestCode == 2) {
             if (resultCode == RESULT_OK) {
                 //데이터 받기
-                final LinearLayout jumpoResult = (LinearLayout) findViewById(R.id.jumpoResult);
-                jumpoResult.setVisibility(View.VISIBLE);
                 String result = data.getStringExtra("category");
                 RtotalCount = data.getStringExtra("RtotalCount");
                 sido = data.getStringExtra("sidosu");
@@ -577,14 +565,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                 sidoNm = data.getStringExtra("sidoNm");
                 hangjungNm = data.getStringExtra("hangjungNm");
                 btnCategory.setText(result);
-
-                // 테이블 레이아웃 세팅
-                tvsi.setText(sidoNm);
-                tvsiResult.setText(sido+"개");
-                tvgu.setText(hangjungNm);
-                tvguResult.setText(hangjung+"개");
-                tvarea.setText("반경 내");
-                tvareaResult.setText(RtotalCount+"개");
+                jumpotest.setText("반경내" + RtotalCount + sidoNm + sido + hangjungNm + hangjung); //데이터 없으며 -로 뜸
             }
         }
     }

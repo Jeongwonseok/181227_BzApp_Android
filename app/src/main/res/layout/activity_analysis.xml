@@ -241,7 +241,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:layout_marginTop="10dp"
                                     android:orientation="horizontal">
 
                                     <TextView
@@ -249,6 +248,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center_horizontal"
+                                        android:layout_marginTop="10dp"
                                         android:textColor="#4169E1"
                                         android:textSize="11dp" />
 
@@ -256,17 +256,12 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center_horizontal"
+                                        android:layout_marginTop="10dp"
                                         android:text=" 전체 폐업자 대비"
                                         android:textColor="#4169E1"
                                         android:textSize="11dp" />
 
                                 </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
-                                    android:orientation="horizontal">
 
                                 <TextView
                                     android:id="@+id/tvsclosure"
@@ -275,8 +270,6 @@
                                     android:layout_gravity="center_horizontal"
                                     android:textColor="#4169E1"
                                     android:textSize="11dp" />
-
-                                </LinearLayout>
 
                             </LinearLayout>
 
@@ -877,103 +870,7 @@
                         </LinearLayout>
 
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="0대" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="10대" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="20대" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="30대" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="40대" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="50대" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="60대" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tvchild"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/tvteenage"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/tvtwenty"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/tvthirty"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/tvforty"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/tvfifty"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/tvsixty"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-                    </LinearLayout>
+                    
 
                     <View
                         android:layout_width="match_parent"
@@ -1096,76 +993,82 @@
                     <TableLayout
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="50dp"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp">
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="50dp">
 
                         <TableRow
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:background="#e5e5e5">
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:textSize="13dp"
-                                android:textColor="#808080"
-                                android:text="인천광역시"
-                                android:background="@drawable/cellborder"/>
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:textSize="13dp"
-                                android:textColor="#808080"
-                                android:text="동구"
-                                android:background="@drawable/cellborder"/>
 
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
+                                android:background="@drawable/cellborder"
                                 android:gravity="center"
-                                android:textSize="13dp"
+                                android:text="인천광역시"
                                 android:textColor="#808080"
+                                android:textSize="13dp" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/cellborder"
+                                android:gravity="center"
+                                android:text="동구"
+                                android:textColor="#808080"
+                                android:textSize="13dp" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/cellborder"
+                                android:gravity="center"
                                 android:text="반경 내"
-                                android:background="@drawable/cellborder"/>
+                                android:textColor="#808080"
+                                android:textSize="13dp" />
                         </TableRow>
+
                         <TableRow
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1">
+
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
+                                android:background="@drawable/cellborder"
                                 android:gravity="center"
-                                android:textSize="13dp"
-                                android:textColor="#000000"
                                 android:text="A"
-                                android:background="@drawable/cellborder"/>
+                                android:textColor="#000000"
+                                android:textSize="13dp" />
+
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
+                                android:background="@drawable/cellborder"
                                 android:gravity="center"
-                                android:textSize="13dp"
-                                android:textColor="#000000"
                                 android:text="A"
-                                android:background="@drawable/cellborder"/>
+                                android:textColor="#000000"
+                                android:textSize="13dp" />
+
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
+                                android:background="@drawable/cellborder"
                                 android:gravity="center"
-                                android:textSize="13dp"
-                                android:textColor="#000000"
                                 android:text="A"
-                                android:background="@drawable/cellborder"/>
+                                android:textColor="#000000"
+                                android:textSize="13dp" />
                         </TableRow>
                     </TableLayout>
 
