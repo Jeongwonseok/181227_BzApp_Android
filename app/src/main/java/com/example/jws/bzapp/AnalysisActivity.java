@@ -33,6 +33,7 @@ import com.google.android.gms.maps.model.LatLng;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
@@ -57,11 +58,15 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     ShopApi shopApi;
     //인구분석
     TextView tvtotal, tvchild, tvteenage, tvtwenty, tvthirty, tvforty, tvfifty, tvsixty, tvonehouse, jumposu, jumpotest;
-    String UTM_KX, UTM_KY, addr, token, addrcd, addrnm, onehouse_cnt;
+    String UTM_KX, UTM_KY, addr, token, addrcd, addrnm, sido_nm, onehouse_cnt;
 
     //건단가 및 월평균 매출
     TextView PFH_retail, PLH_retail, PFH_life, PLH_life, PFH_tour, PLH_tour, PFH_stay, PLH_stay, PFH_sports, PLH_sports, PFH_food, PLH_food, PFH_edu, PLH_edu;
     TextView AFH_retail, ALH_retail, AFH_life, ALH_life, AFH_tour, ALH_tour, AFH_stay, ALH_stay, AFH_sports, ALH_sports, AFH_food, ALH_food, AFH_edu, ALH_edu, AFH_sum, AFH_avg, ALH_sum, ALH_avg;
+
+    //페업자
+    TextView tvsido, tvclosure, tvsclosure;
+
 
     String RtotalCount, sido, hangjung, hangjungNm, sidoNm;
     String jumpoRadius;
@@ -72,13 +77,13 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     // 파이차트 사용 색상변수
     int color1, color2, color3, color4, color5, color6, color7;
 
-    String tv1="10f";
-    String tv2="10f";
-    String tv3="10f";
-    String tv4="10f";
-    String tv5="20f";
-    String tv6="20f";
-    String tv7="20f";
+    String tv1 = "10f";
+    String tv2 = "10f";
+    String tv3 = "10f";
+    String tv4 = "10f";
+    String tv5 = "20f";
+    String tv6 = "20f";
+    String tv7 = "20f";
 
 
     @Override
@@ -99,7 +104,6 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         AllRadius = String.valueOf(a);
 
 
-
         jumposu = (TextView) findViewById(R.id.jumpo);
         jumpotest = (TextView) findViewById(R.id.jumpotest);
 
@@ -112,18 +116,18 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         btnCategory = (Button) findViewById(R.id.btnCategory);
         btnArea = (Button) findViewById(R.id.btnArea);
 
-        if (a==100) {
+        if (a == 100) {
             btnArea.setText("100m");
-            jumpoRadius  = "100m";
-        } else if (a==200) {
+            jumpoRadius = "100m";
+        } else if (a == 200) {
             btnArea.setText("200m");
-            jumpoRadius  = "200m";
-        } else if(a==500) {
+            jumpoRadius = "200m";
+        } else if (a == 500) {
             btnArea.setText("500m");
-            jumpoRadius  = "500m";
-        } else if(a==1000) {
+            jumpoRadius = "500m";
+        } else if (a == 1000) {
             btnArea.setText("1km");
-            jumpoRadius  = "1km";
+            jumpoRadius = "1km";
         }
 
 
@@ -211,7 +215,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         // xIndex (even if from different DataSets), since no values can be
         // drawn above each other.
         ArrayList<Entry> yvalues = new ArrayList<Entry>();
-        yvalues.add(new Entry(Float.parseFloat(tv1),0));
+        yvalues.add(new Entry(Float.parseFloat(tv1), 0));
         yvalues.add(new Entry(Float.parseFloat(tv2), 1));
         yvalues.add(new Entry(Float.parseFloat(tv3), 2));
         yvalues.add(new Entry(Float.parseFloat(tv4), 3));
@@ -221,16 +225,16 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 
         //라벨에 텍스트 추가하면 출처 및 설명 가능
         PieDataSet dataSet = new PieDataSet(yvalues, "");
-        color1 = Color.rgb(204,93,221);
-        color2 = Color.rgb(95,204,221);
-        color3 = Color.rgb(224,96,122);
-        color4 = Color.rgb(87,121,168);
-        color5 = Color.rgb(198,137,83);
-        color6 = Color.rgb(50,65,163);
-        color7 = Color.rgb(43,140,133);
+        color1 = Color.rgb(204, 93, 221);
+        color2 = Color.rgb(95, 204, 221);
+        color3 = Color.rgb(224, 96, 122);
+        color4 = Color.rgb(87, 121, 168);
+        color5 = Color.rgb(198, 137, 83);
+        color6 = Color.rgb(50, 65, 163);
+        color7 = Color.rgb(43, 140, 133);
 
         //새롭게 color 지정하는 방법
-        dataSet.setColors(new int[] {color1,color2,color3,color4,color5,color6,color7});
+        dataSet.setColors(new int[]{color1, color2, color3, color4, color5, color6, color7});
 
         ArrayList<String> xVals = new ArrayList<String>();
 
@@ -295,7 +299,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         // xIndex (even if from different DataSets), since no values can be
         // drawn above each other.
         ArrayList<Entry> yvalues2 = new ArrayList<Entry>();
-        yvalues2.add(new Entry(Float.parseFloat(tv1),0));
+        yvalues2.add(new Entry(Float.parseFloat(tv1), 0));
         yvalues2.add(new Entry(Float.parseFloat(tv2), 1));
         yvalues2.add(new Entry(Float.parseFloat(tv3), 2));
         yvalues2.add(new Entry(Float.parseFloat(tv4), 3));
@@ -305,16 +309,16 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 
         //라벨에 텍스트 추가하면 출처 및 설명 가능
         PieDataSet dataSet2 = new PieDataSet(yvalues2, "");
-        color1 = Color.rgb(204,93,221);
-        color2 = Color.rgb(95,204,221);
-        color3 = Color.rgb(224,96,122);
-        color4 = Color.rgb(87,121,168);
-        color5 = Color.rgb(198,137,83);
-        color6 = Color.rgb(50,65,163);
-        color7 = Color.rgb(43,140,133);
+        color1 = Color.rgb(204, 93, 221);
+        color2 = Color.rgb(95, 204, 221);
+        color3 = Color.rgb(224, 96, 122);
+        color4 = Color.rgb(87, 121, 168);
+        color5 = Color.rgb(198, 137, 83);
+        color6 = Color.rgb(50, 65, 163);
+        color7 = Color.rgb(43, 140, 133);
 
         //새롭게 color 지정하는 방법
-        dataSet2.setColors(new int[] {color1,color2,color3,color4,color5,color6,color7});
+        dataSet2.setColors(new int[]{color1, color2, color3, color4, color5, color6, color7});
 
         ArrayList<String> xVals2 = new ArrayList<String>();
 
@@ -416,10 +420,10 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         ALH_food = (TextView) findViewById(R.id.ALH_food);
         AFH_edu = (TextView) findViewById(R.id.AFH_edu);
         ALH_edu = (TextView) findViewById(R.id.ALH_edu);
-        AFH_sum = (TextView)findViewById(R.id.AFH_sum);
-        ALH_sum = (TextView)findViewById(R.id.ALH_sum);
-        AFH_avg = (TextView)findViewById(R.id.AFH_avg);
-        ALH_avg = (TextView)findViewById(R.id.ALH_avg);
+        AFH_sum = (TextView) findViewById(R.id.AFH_sum);
+        ALH_sum = (TextView) findViewById(R.id.ALH_sum);
+        AFH_avg = (TextView) findViewById(R.id.AFH_avg);
+        ALH_avg = (TextView) findViewById(R.id.ALH_avg);
 
 
         // 매출분석 버튼
@@ -455,6 +459,10 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
             }
         });
 
+        //페업자
+        tvsido = (TextView) findViewById(R.id.tvsido);
+        tvclosure = (TextView) findViewById(R.id.tvclosure);
+        tvsclosure = (TextView) findViewById(R.id.tvsclosure);
         // 상권분석 버튼
         final LinearLayout pLayout3 = (LinearLayout) findViewById(R.id.pLayout3);
         final ImageView pbtn3 = (ImageView) findViewById(R.id.pbtn3);
@@ -805,10 +813,14 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 
                     addr = item.getString("full_addr");
                     addrcd = item.getString("sido_cd") + item.getString("sgg_cd") + item.getString("emdong_cd");
+                    sido_nm = item.getString("sido_nm");
                     addrnm = item.getString("sido_nm") + " " + item.getString("sgg_nm");
 
                 }
+
+                tvsido.setText(sido_nm);
                 Population();
+                getClosure();
                 getPercost();
                 getavgsales();
 //                Toast.makeText(getApplicationContext(), addrcd, Toast.LENGTH_LONG).show();
@@ -871,7 +883,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     onehouse_cnt = item.getString("household_cnt");
 //                    Toast.makeText(getApplicationContext(), onehouse_cnt + tvtotal.getText().toString(), Toast.LENGTH_LONG).show();
                     double onehouse = Integer.parseInt(onehouse_cnt);
-                    double total = Integer.parseInt(tvtotal.getText().toString());
+                    String Ptotal = tvtotal.getText().toString();
+                    Ptotal = Ptotal.substring(0, Ptotal.length() - 1);
+                    double total = Integer.parseInt(Ptotal);
 //                    Toast.makeText(getApplicationContext(), onehouse + "  " + total, Toast.LENGTH_LONG).show();
                     double one = (onehouse / total) * 100;
                     String percent = String.format("%.2f", one) + " %";
@@ -897,7 +911,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     while (count < jsonArray.length()) {
                         JSONObject object = jsonArray.getJSONObject(count);
                         object.getString("address");
-                        tvtotal.setText(object.getString("total")+"명");
+                        tvtotal.setText(object.getString("total") + "명");
                         tvchild.setText(object.getString("child"));
                         tvteenage.setText(object.getString("teenage"));
                         tvtwenty.setText(object.getString("twenty"));
@@ -919,6 +933,40 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         RequestQueue queue = Volley.newRequestQueue(AnalysisActivity.this);
         queue.add(findApopulation);
     }
+
+    public void getClosure() {
+
+//        Toast.makeText(getApplicationContext(), addrnm, Toast.LENGTH_LONG).show();
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                try {
+                    JSONObject jsonObject = new JSONObject(s);
+                    JSONArray jsonArray = jsonObject.getJSONArray("response");
+                    int count = 0;
+                    double ctotal = 0, cstotal = 0, ccnt = 0;
+                    while (count < jsonArray.length()) {
+                        JSONObject object = jsonArray.getJSONObject(count);
+                        object.getString("location");
+                        ctotal = Double.parseDouble(object.getString("total"));
+                        cstotal = Double.parseDouble(object.getString("stotal"));
+                        ccnt = Double.parseDouble(object.getString("cnt"));
+                        count++;
+                    }
+
+                    tvclosure.setText(String.format("%.2f", (ccnt / ctotal) * 100) + " %");
+                    tvsclosure.setText(String.format("%.2f", (ccnt / cstotal) * 100) + " %");
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        Findclosure findclosure = new Findclosure(addrnm, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(AnalysisActivity.this);
+        queue.add(findclosure);
+    }
+
 
     public void getPercost() {
 
