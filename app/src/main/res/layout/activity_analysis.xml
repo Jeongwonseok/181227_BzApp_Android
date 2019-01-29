@@ -1050,7 +1050,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_marginBottom="50dp"
+                        android:layout_marginBottom="10dp"
                         android:background="@drawable/back_spinner2"
                         android:gravity="center"
                         android:onClick="mOnPopupClick2"
@@ -1060,14 +1060,94 @@
                         android:textColor="#000000" />
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:text="선택 업종 현황"
+                        android:textColor="#808080"
+                        android:textSize="13dp" />
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:background="#e5e5e5">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:textSize="13dp"
+                                android:textColor="#808080"
+                                android:text="인천광역시"
+                                android:background="@drawable/cellborder"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:textSize="13dp"
+                                android:textColor="#808080"
+                                android:text="동구"
+                                android:background="@drawable/cellborder"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:textSize="13dp"
+                                android:textColor="#808080"
+                                android:text="반경 내"
+                                android:background="@drawable/cellborder"/>
+                        </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:textSize="13dp"
+                                android:textColor="#000000"
+                                android:text="A"
+                                android:background="@drawable/cellborder"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:textSize="13dp"
+                                android:textColor="#000000"
+                                android:text="A"
+                                android:background="@drawable/cellborder"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:textSize="13dp"
+                                android:textColor="#000000"
+                                android:text="A"
+                                android:background="@drawable/cellborder"/>
+                        </TableRow>
+                    </TableLayout>
+
+                    <TextView
                         android:id="@+id/jumpotest"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:background="#cdcdcd" />
 
                 </LinearLayout>
 
