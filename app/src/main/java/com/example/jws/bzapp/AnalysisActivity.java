@@ -98,6 +98,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         Alllong = String.valueOf(mLong);
         AllRadius = String.valueOf(a);
 
+
+
         jumposu = (TextView) findViewById(R.id.jumpo);
         jumpotest = (TextView) findViewById(R.id.jumpotest);
 
@@ -109,6 +111,20 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         mapFragment.getMapAsync(this);
         btnCategory = (Button) findViewById(R.id.btnCategory);
         btnArea = (Button) findViewById(R.id.btnArea);
+
+        if (a==100) {
+            btnArea.setText("100m");
+            jumpoRadius  = "100m";
+        } else if (a==200) {
+            btnArea.setText("200m");
+            jumpoRadius  = "200m";
+        } else if(a==500) {
+            btnArea.setText("500m");
+            jumpoRadius  = "500m";
+        } else if(a==1000) {
+            btnArea.setText("1km");
+            jumpoRadius  = "1km";
+        }
 
 
                 /*
@@ -233,6 +249,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         // Default value
         //data.setValueFormatter(new DefaultValueFormatter(0));
         pieChart.setData(data);
+        //원그래프 텍스트 없애기
+        pieChart.setDrawSliceText(false);
 
 
         pieChart.setDescription("");
@@ -266,7 +284,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 
         //파이차트2
 
-        //연령별 차트 생성
+        //평균업력 차트 생성
         PieChart pieChart2 = (PieChart) findViewById(R.id.piechart2);
         //차트 드래그 비활성화
         pieChart2.setUsePercentValues(true);
@@ -324,6 +342,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         //구멍뚫기
         pieChart2.setDrawHoleEnabled(true);
         pieChart2.setTransparentCircleRadius(40f);
+
+        //원그래프 텍스트 없애기
+        pieChart2.setDrawSliceText(false);
 
         // 각각의 요소설명 위치 지정
         Legend i2 = pieChart2.getLegend();
@@ -876,7 +897,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     while (count < jsonArray.length()) {
                         JSONObject object = jsonArray.getJSONObject(count);
                         object.getString("address");
-                        tvtotal.setText(object.getString("total"));
+                        tvtotal.setText(object.getString("total")+"명");
                         tvchild.setText(object.getString("child"));
                         tvteenage.setText(object.getString("teenage"));
                         tvtwenty.setText(object.getString("twenty"));
