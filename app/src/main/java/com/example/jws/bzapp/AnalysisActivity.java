@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -57,7 +58,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     Button btnCategory;
     ShopApi shopApi;
     //인구분석
-    TextView tvtotal, tvchild, tvteenage, tvtwenty, tvthirty, tvforty, tvfifty, tvsixty, tvonehouse, jumposu, jumpotest;
+    TextView tvtotal, tvonehouse, jumposu, jumpotest;
     String UTM_KX, UTM_KY, addr, token, addrcd, addrnm, sido_nm, onehouse_cnt;
 
     //건단가 및 월평균 매출
@@ -192,99 +193,11 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         btnHome = (ImageButton) findViewById(R.id.btnHome);
         tvtotal = (TextView) findViewById(R.id.tvtotal);
-        tvchild = (TextView) findViewById(R.id.tvchild);
-        tvteenage = (TextView) findViewById(R.id.tvteenage);
-        tvtwenty = (TextView) findViewById(R.id.tvtwenty);
-        tvthirty = (TextView) findViewById(R.id.tvthirty);
-        tvforty = (TextView) findViewById(R.id.tvforty);
-        tvfifty = (TextView) findViewById(R.id.tvfifty);
-        tvsixty = (TextView) findViewById(R.id.tvsixty);
         tvonehouse = (TextView) findViewById(R.id.tvonehouse);
 
         getToken getToken = new getToken();
         getToken.execute();
 
-        //연령별 차트 생성
-        PieChart pieChart = (PieChart) findViewById(R.id.piechart);
-        //차트 드래그 비활성화
-        pieChart.setUsePercentValues(true);
-        pieChart.setTouchEnabled(false);
-        //pieChart.setDragDecelerationEnabled(false);
-
-        // IMPORTANT: In a PieChart, no values (Entry) should have the same
-        // xIndex (even if from different DataSets), since no values can be
-        // drawn above each other.
-        ArrayList<Entry> yvalues = new ArrayList<Entry>();
-        yvalues.add(new Entry(Float.parseFloat(tv1), 0));
-        yvalues.add(new Entry(Float.parseFloat(tv2), 1));
-        yvalues.add(new Entry(Float.parseFloat(tv3), 2));
-        yvalues.add(new Entry(Float.parseFloat(tv4), 3));
-        yvalues.add(new Entry(Float.parseFloat(tv5), 4));
-        yvalues.add(new Entry(Float.parseFloat(tv6), 4));
-        yvalues.add(new Entry(Float.parseFloat(tv7), 4));
-
-        //라벨에 텍스트 추가하면 출처 및 설명 가능
-        PieDataSet dataSet = new PieDataSet(yvalues, "");
-        color1 = Color.rgb(204, 93, 221);
-        color2 = Color.rgb(95, 204, 221);
-        color3 = Color.rgb(224, 96, 122);
-        color4 = Color.rgb(87, 121, 168);
-        color5 = Color.rgb(198, 137, 83);
-        color6 = Color.rgb(50, 65, 163);
-        color7 = Color.rgb(43, 140, 133);
-
-        //새롭게 color 지정하는 방법
-        dataSet.setColors(new int[]{color1, color2, color3, color4, color5, color6, color7});
-
-        ArrayList<String> xVals = new ArrayList<String>();
-
-        xVals.add("10대 미만");
-        xVals.add("10대");
-        xVals.add("20대");
-        xVals.add("30대");
-        xVals.add("40대");
-        xVals.add("50대");
-        xVals.add("60대 이상");
-
-        PieData data = new PieData(xVals, dataSet);
-
-        // In Percentage
-        data.setValueFormatter(new PercentFormatter());
-        // Default value
-        //data.setValueFormatter(new DefaultValueFormatter(0));
-        pieChart.setData(data);
-        //원그래프 텍스트 없애기
-        pieChart.setDrawSliceText(false);
-
-
-        pieChart.setDescription("");
-        /*pieChart.setDescriptionPosition(550,100);*/
-        //출처 및 설명
-        //pieChart.setDescription("This is Pie Chart");
-        //구멍뚫기
-        pieChart.setDrawHoleEnabled(true);
-        pieChart.setTransparentCircleRadius(40f);
-
-        // 각각의 요소설명 위치 지정
-        Legend i = pieChart.getLegend();
-        i.setPosition(Legend.LegendPosition.RIGHT_OF_CHART_CENTER);
-        i.setTextSize(13f);
-
-        pieChart.setHoleRadius(40f);
-        //dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
-
-        //dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
-
-        //dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-
-        //dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
-
-        //dataSet.setColors(ColorTemplate.PASTEL_COLORS);
-
-        data.setValueTextSize(12f);
-        data.setValueTextColor(Color.WHITE);
-
-        //pieChart.setOnChartValueSelectedListener(this);
 
         //파이차트2
 
@@ -336,7 +249,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         data2.setValueFormatter(new PercentFormatter());
         // Default value
         //data.setValueFormatter(new DefaultValueFormatter(0));
-        pieChart2.setData(data);
+        pieChart2.setData(data2);
 
 
         pieChart2.setDescription("");
@@ -885,9 +798,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     double onehouse = Integer.parseInt(onehouse_cnt);
                     String Ptotal = tvtotal.getText().toString();
                     Ptotal = Ptotal.substring(0, Ptotal.length() - 1);
-                    double total = Integer.parseInt(Ptotal);
+                    double Pdtotal = Integer.parseInt(Ptotal);
 //                    Toast.makeText(getApplicationContext(), onehouse + "  " + total, Toast.LENGTH_LONG).show();
-                    double one = (onehouse / total) * 100;
+                    double one = (onehouse / Pdtotal) * 100;
                     String percent = String.format("%.2f", one) + " %";
                     tvonehouse.setText(percent);
                 }
@@ -908,19 +821,66 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     JSONObject jsonObject = new JSONObject(s);
                     JSONArray jsonArray = jsonObject.getJSONArray("response");
                     int count = 0;
+                    String child = null, teenage = null, twenty = null, thirty = null, forty = null, fifty = null, sixty = null;
                     while (count < jsonArray.length()) {
                         JSONObject object = jsonArray.getJSONObject(count);
                         object.getString("address");
                         tvtotal.setText(object.getString("total") + "명");
-                        tvchild.setText(object.getString("child"));
-                        tvteenage.setText(object.getString("teenage"));
-                        tvtwenty.setText(object.getString("twenty"));
-                        tvthirty.setText(object.getString("thirty"));
-                        tvforty.setText(object.getString("forty"));
-                        tvfifty.setText(object.getString("fifty"));
-                        tvsixty.setText(object.getString("sixty"));
+                        child = object.getString("child");
+                        teenage = object.getString("teenage");
+                        twenty = object.getString("twenty");
+                        thirty = object.getString("thirty");
+                        forty = object.getString("forty");
+                        fifty = object.getString("fifty");
+                        sixty = object.getString("sixty");
                         count++;
                     }
+
+                    String Ptotal2 = tvtotal.getText().toString();
+                    Ptotal2 = Ptotal2.substring(0, Ptotal2.length() - 1);
+
+                    //연령별 차트 생성
+                    PieChart pieChart = (PieChart) findViewById(R.id.piechart);
+                    pieChart.setUsePercentValues(true);
+                    pieChart.setTouchEnabled(false);
+                    ArrayList<Entry> yvalues = new ArrayList<Entry>();
+                    yvalues.add(new Entry(Float.parseFloat(String.format("%.2f", Double.valueOf(child) / Double.valueOf(Ptotal2) * 100)), 0));
+                    yvalues.add(new Entry(Float.parseFloat(String.format("%.2f", Double.valueOf(teenage) / Double.valueOf(Ptotal2) * 100)), 1));
+                    yvalues.add(new Entry(Float.parseFloat(String.format("%.2f", Double.valueOf(twenty) / Double.valueOf(Ptotal2) * 100)), 2));
+                    yvalues.add(new Entry(Float.parseFloat(String.format("%.2f", Double.valueOf(thirty) / Double.valueOf(Ptotal2) * 100)), 3));
+                    yvalues.add(new Entry(Float.parseFloat(String.format("%.2f", Double.valueOf(forty) / Double.valueOf(Ptotal2) * 100)), 4));
+                    yvalues.add(new Entry(Float.parseFloat(String.format("%.2f", Double.valueOf(fifty) / Double.valueOf(Ptotal2) * 100)), 5));
+                    yvalues.add(new Entry(Float.parseFloat(String.format("%.2f", Double.valueOf(sixty) / Double.valueOf(Ptotal2) * 100)), 6));
+                    PieDataSet dataSet = new PieDataSet(yvalues, "");
+                    color1 = Color.rgb(204, 93, 221);
+                    color2 = Color.rgb(95, 204, 221);
+                    color3 = Color.rgb(224, 96, 122);
+                    color4 = Color.rgb(87, 121, 168);
+                    color5 = Color.rgb(198, 137, 83);
+                    color6 = Color.rgb(50, 65, 163);
+                    color7 = Color.rgb(43, 140, 133);
+                    dataSet.setColors(new int[]{color1, color2, color3, color4, color5, color6, color7});
+                    ArrayList<String> xVals = new ArrayList<String>();
+                    xVals.add("10대 미만");
+                    xVals.add("10대");
+                    xVals.add("20대");
+                    xVals.add("30대");
+                    xVals.add("40대");
+                    xVals.add("50대");
+                    xVals.add("60대 이상");
+                    PieData data = new PieData(xVals, dataSet);
+                    data.setValueFormatter(new PercentFormatter());
+                    pieChart.setData(data);
+                    pieChart.setDrawSliceText(false);
+                    pieChart.setDescription("");
+                    pieChart.setDrawHoleEnabled(true);
+                    pieChart.setTransparentCircleRadius(40f);
+                    Legend i = pieChart.getLegend();
+                    i.setPosition(Legend.LegendPosition.RIGHT_OF_CHART_CENTER);
+                    i.setTextSize(13f);
+                    pieChart.setHoleRadius(40f);
+                    data.setValueTextSize(12f);
+                    data.setValueTextColor(Color.WHITE);
 
                     OneHouse oneHouse = new OneHouse();
                     oneHouse.execute();
