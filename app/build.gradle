@@ -32,8 +32,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:16.0.0'
     implementation 'com.google.android.gms:play-services-location:16.0.0'
     //카카오 로그인 sdk
-    implementation 'com.github.PhilJay:MPAndroidChart:v2.2.4'
-    //차트 라이브러리사용
+    implementation 'com.github.PhilJay:MPAndroidChart:v2.1.6'    //차트 라이브러리사용
     implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
     //Stringrequest 라이브러리
     implementation 'com.mcxiaoke.volley:library:1.0.18'
