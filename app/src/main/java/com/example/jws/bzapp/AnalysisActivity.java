@@ -56,6 +56,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     Button btnArea;
     Button btnCategory;
     ShopApi shopApi;
+
+    //인구분석
+    PieChart pieChart;
     TextView tvtotal, tvonehouse, jumposu;
     String UTM_KX, UTM_KY, addr, token, addrcd, addrnm, sido_nm, onehouse_cnt;
 
@@ -65,6 +68,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 
     //페업자
     TextView tvsido, tvclosure, tvsclosure;
+    //평균업력 차트
+    PieChart pieChart2;
 
 
     String RtotalCount, sido, hangjung, hangjungNm, sidoNm;
@@ -85,7 +90,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     String tv7 = "20f";
 
     //테이블레이아웃 요소
-    TextView tvsi,tvgu,tvarea,tvsiResult,tvguResult,tvareaResult;
+    TextView tvsi, tvgu, tvarea, tvsiResult, tvguResult, tvareaResult;
 
 
     @Override
@@ -132,12 +137,12 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         }
 
         //테이블레이아웃 변수
-        tvsi = (TextView)findViewById(R.id.tvSi);
-        tvgu = (TextView)findViewById(R.id.tvGu);
-        tvarea = (TextView)findViewById(R.id.tvArea);
-        tvsiResult = (TextView)findViewById(R.id.tvsiResult);
-        tvguResult = (TextView)findViewById(R.id.tvguResult);
-        tvareaResult = (TextView)findViewById(R.id.tvareaResult);
+        tvsi = (TextView) findViewById(R.id.tvSi);
+        tvgu = (TextView) findViewById(R.id.tvGu);
+        tvarea = (TextView) findViewById(R.id.tvArea);
+        tvsiResult = (TextView) findViewById(R.id.tvsiResult);
+        tvguResult = (TextView) findViewById(R.id.tvguResult);
+        tvareaResult = (TextView) findViewById(R.id.tvareaResult);
 
 
                 /*
@@ -203,95 +208,14 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         tvtotal = (TextView) findViewById(R.id.tvtotal);
         tvonehouse = (TextView) findViewById(R.id.tvonehouse);
 
-        getToken getToken = new getToken();
-        getToken.execute();
-
-
-
-        //파이차트2
+        //연령별 차트 생성
+        pieChart = (PieChart) findViewById(R.id.piechart);
 
         //평균업력 차트 생성
-        PieChart pieChart2 = (PieChart) findViewById(R.id.piechart2);
-        //차트 드래그 비활성화
-        pieChart2.setUsePercentValues(true);
-        pieChart2.setTouchEnabled(false);
-        //pieChart.setDragDecelerationEnabled(false);
+        pieChart2 = (PieChart) findViewById(R.id.piechart2);
 
-        // IMPORTANT: In a PieChart, no values (Entry) should have the same
-        // xIndex (even if from different DataSets), since no values can be
-        // drawn above each other.
-        ArrayList<Entry> yvalues2 = new ArrayList<Entry>();
-        yvalues2.add(new Entry(Float.parseFloat(tv1), 0));
-        yvalues2.add(new Entry(Float.parseFloat(tv2), 1));
-        yvalues2.add(new Entry(Float.parseFloat(tv3), 2));
-        yvalues2.add(new Entry(Float.parseFloat(tv4), 3));
-        yvalues2.add(new Entry(Float.parseFloat(tv5), 4));
-        yvalues2.add(new Entry(Float.parseFloat(tv6), 4));
-        yvalues2.add(new Entry(Float.parseFloat(tv7), 4));
-
-        //라벨에 텍스트 추가하면 출처 및 설명 가능
-        PieDataSet dataSet2 = new PieDataSet(yvalues2, "");
-        color1 = Color.rgb(204, 93, 221);
-        color2 = Color.rgb(95, 204, 221);
-        color3 = Color.rgb(224, 96, 122);
-        color4 = Color.rgb(87, 121, 168);
-        color5 = Color.rgb(198, 137, 83);
-        color6 = Color.rgb(50, 65, 163);
-        color7 = Color.rgb(43, 140, 133);
-
-        //새롭게 color 지정하는 방법
-        dataSet2.setColors(new int[]{color1, color2, color3, color4, color5, color6, color7});
-
-        ArrayList<String> xVals2 = new ArrayList<String>();
-
-        xVals2.add("10대 미만");
-        xVals2.add("10대");
-        xVals2.add("20대");
-        xVals2.add("30대");
-        xVals2.add("40대");
-        xVals2.add("50대");
-        xVals2.add("60대 이상");
-
-        PieData data2 = new PieData(xVals2, dataSet2);
-
-        // In Percentage
-        data2.setValueFormatter(new PercentFormatter());
-        // Default value
-        //data.setValueFormatter(new DefaultValueFormatter(0));
-        pieChart2.setData(data2);
-
-
-        pieChart2.setDescription("");
-        /*pieChart.setDescriptionPosition(550,100);*/
-        //출처 및 설명
-        //pieChart.setDescription("This is Pie Chart");
-        //구멍뚫기
-        pieChart2.setDrawHoleEnabled(true);
-        pieChart2.setTransparentCircleRadius(40f);
-
-        //원그래프 텍스트 없애기
-        pieChart2.setDrawSliceText(false);
-
-        // 각각의 요소설명 위치 지정
-        Legend i2 = pieChart2.getLegend();
-        i2.setPosition(Legend.LegendPosition.RIGHT_OF_CHART_CENTER);
-        i2.setTextSize(13f);
-
-        pieChart2.setHoleRadius(40f);
-        //dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
-
-        //dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
-
-        //dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-
-        //dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
-
-        //dataSet.setColors(ColorTemplate.PASTEL_COLORS);
-
-        data2.setValueTextSize(12f);
-        data2.setValueTextColor(Color.WHITE);
-
-        //pieChart.setOnChartValueSelectedListener(this);
+        getToken getToken = new getToken();
+        getToken.execute();
 
 
         // 인구분석 버튼
@@ -492,11 +416,11 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 
                 // 테이블 레이아웃 세팅
                 tvsi.setText(sidoNm);
-                tvsiResult.setText(sido+"개");
+                tvsiResult.setText(sido + "개");
                 tvgu.setText(hangjungNm);
-                tvguResult.setText(hangjung+"개");
+                tvguResult.setText(hangjung + "개");
                 tvarea.setText("반경 내");
-                tvareaResult.setText(RtotalCount+"개");
+                tvareaResult.setText(RtotalCount + "개");
 
             }
         }
@@ -756,6 +680,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                 }
 
                 tvsido.setText(sido_nm);
+                getavgcareer();
                 Population();
                 getClosure();
                 getPercost();
@@ -859,11 +784,10 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                         sixty = object.getString("sixty");
                         count++;
                     }
+
                     String Ptotal2 = tvtotal.getText().toString();
                     Ptotal2 = Ptotal2.substring(0, Ptotal2.length() - 1);
 
-                    //연령별 차트 생성
-                    PieChart pieChart = (PieChart) findViewById(R.id.piechart);
                     //차트 드래그 비활성화
                     pieChart.setUsePercentValues(true);
                     pieChart.setTouchEnabled(false);
@@ -905,7 +829,6 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     pieChart.setHoleRadius(40f);
                     data.setValueTextSize(12f);
                     data.setValueTextColor(Color.WHITE);
-
                     OneHouse oneHouse = new OneHouse();
                     oneHouse.execute();
                 } catch (JSONException e) {
@@ -916,6 +839,113 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         FindApopulation findApopulation = new FindApopulation(addr, responseListener);
         RequestQueue queue = Volley.newRequestQueue(AnalysisActivity.this);
         queue.add(findApopulation);
+    }
+
+    public void getavgcareer() {
+
+//        Toast.makeText(getApplicationContext(), addrnm, Toast.LENGTH_LONG).show();
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                try {
+                    JSONObject jsonObject = new JSONObject(s);
+                    JSONArray jsonArray = jsonObject.getJSONArray("response");
+                    int count = 0;
+                    String one = null, two = null, three = null, four = null, five = null;
+                    while (count < jsonArray.length()) {
+                        JSONObject object = jsonArray.getJSONObject(count);
+                        object.getString("location");
+                        one = object.getString("one");
+                        two = object.getString("two");
+                        three = object.getString("three");
+                        four = object.getString("four");
+                        five = object.getString("five");
+                        count++;
+                    }
+                    //차트 드래그 비활성화
+                    pieChart2.setUsePercentValues(true);
+                    pieChart2.setTouchEnabled(false);
+                    //pieChart.setDragDecelerationEnabled(false);
+
+                    // IMPORTANT: In a PieChart, no values (Entry) should have the same
+                    // xIndex (even if from different DataSets), since no values can be
+                    // drawn above each other.
+                    ArrayList<Entry> yvalues2 = new ArrayList<Entry>();
+                    yvalues2.add(new Entry(Float.parseFloat(one), 0));
+                    yvalues2.add(new Entry(Float.parseFloat(two), 1));
+                    yvalues2.add(new Entry(Float.parseFloat(three), 2));
+                    yvalues2.add(new Entry(Float.parseFloat(four), 3));
+                    yvalues2.add(new Entry(Float.parseFloat(five), 4));
+
+                    //라벨에 텍스트 추가하면 출처 및 설명 가능
+                    PieDataSet dataSet2 = new PieDataSet(yvalues2, "");
+                    color1 = Color.rgb(204, 93, 221);
+                    color2 = Color.rgb(95, 204, 221);
+                    color3 = Color.rgb(224, 96, 122);
+                    color4 = Color.rgb(87, 121, 168);
+                    color5 = Color.rgb(198, 137, 83);
+                    color6 = Color.rgb(50, 65, 163);
+                    color7 = Color.rgb(43, 140, 133);
+
+                    //새롭게 color 지정하는 방법
+                    dataSet2.setColors(new int[]{color1, color2, color3, color4, color5, color6, color7});
+
+                    ArrayList<String> xVals2 = new ArrayList<String>();
+
+                    xVals2.add("1년 미만");
+                    xVals2.add("1년 이상 2년 미만");
+                    xVals2.add("2년 이상 3년 미만");
+                    xVals2.add("3년 이상 5년 미만");
+                    xVals2.add("5년 이상");
+
+                    PieData data2 = new PieData(xVals2, dataSet2);
+
+                    // In Percentage
+                    data2.setValueFormatter(new PercentFormatter());
+                    // Default value
+                    //data.setValueFormatter(new DefaultValueFormatter(0));
+                    pieChart2.setData(data2);
+
+
+                    pieChart2.setDescription("");
+                    /*pieChart.setDescriptionPosition(550,100);*/
+                    //출처 및 설명
+                    //pieChart.setDescription("This is Pie Chart");
+                    //구멍뚫기
+                    pieChart2.setDrawHoleEnabled(true);
+                    pieChart2.setTransparentCircleRadius(40f);
+
+                    //원그래프 텍스트 없애기
+                    pieChart2.setDrawSliceText(false);
+
+                    // 각각의 요소설명 위치 지정
+                    Legend i2 = pieChart2.getLegend();
+                    i2.setPosition(Legend.LegendPosition.RIGHT_OF_CHART_CENTER);
+                    i2.setTextSize(13f);
+
+                    pieChart2.setHoleRadius(40f);
+                    //dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
+
+                    //dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+
+                    //dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+
+                    //dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
+
+                    //dataSet.setColors(ColorTemplate.PASTEL_COLORS);
+
+                    data2.setValueTextSize(12f);
+                    data2.setValueTextColor(Color.WHITE);
+
+                    //pieChart.setOnChartValueSelectedListener(this);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        Findavgcareer findavgcareer = new Findavgcareer(sido_nm, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(AnalysisActivity.this);
+        queue.add(findavgcareer);
     }
 
     public void getClosure() {
