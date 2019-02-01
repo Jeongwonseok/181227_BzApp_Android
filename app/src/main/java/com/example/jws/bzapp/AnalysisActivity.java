@@ -531,7 +531,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         protected String doInBackground(String... strings) {
             try {
                 //서버에 있는 php 실행
-                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.json?consumer_key=6140fd53e79c44e08321&consumer_secret=2a95a807ff5b4fc48414");
+                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.json?consumer_key=ec449a7bec3b40f0b0a2&consumer_secret=b4a68932a59f4284b4de");
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -884,8 +884,6 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     color3 = Color.rgb(224, 96, 122);
                     color4 = Color.rgb(87, 121, 168);
                     color5 = Color.rgb(198, 137, 83);
-                    color6 = Color.rgb(50, 65, 163);
-                    color7 = Color.rgb(43, 140, 133);
 
                     //새롭게 color 지정하는 방법
                     dataSet2.setColors(new int[]{color1, color2, color3, color4, color5, color6, color7});
