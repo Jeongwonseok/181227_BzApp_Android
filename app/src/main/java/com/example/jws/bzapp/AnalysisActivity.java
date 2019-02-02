@@ -17,8 +17,14 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -144,63 +150,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         tvguResult = (TextView) findViewById(R.id.tvguResult);
         tvareaResult = (TextView) findViewById(R.id.tvareaResult);
 
-
-                /*
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(AnalysisActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.dialog_spinner, null);
-                mBuilder.setTitle("업종 선택");
-                final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinnertest);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(AnalysisActivity.this,android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.category));
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                mSpinner.setAdapter(adapter);
-
-                mBuilder.setPositiveButton("완료", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int which) {
-                        if (!mSpinner.getSelectedItem().toString().equalsIgnoreCase("대분류")){
-                            test2 = mSpinner.getSelectedItem().toString();
-                            txtcategory.setText(test2);
-                            Toast.makeText(AnalysisActivity.this,mSpinner.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
-                            dialogInterface.dismiss();
-                        }
-                    }
-                });
-
-                mBuilder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int which) {
-                        dialogInterface.dismiss();
-                    }
-                });
-
-                mBuilder.setView(mView);
-                AlertDialog dialog = mBuilder.create();
-                dialog.show();*/
-
-
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         btnHome = (ImageButton) findViewById(R.id.btnHome);
-        /* final Spinner spinner1 = (Spinner) findViewById(R.id.spinner1);
 
-        //범위 배열
-        final String[] number1 = {"범위를 선택해주세요.", "100m", "200m", "500m", "1km"};
-
-        //스피너에 배열 입력
-        ArrayAdapter<String> adapter;
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, number1);
-        spinner1.setAdapter(adapter);
-        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //범위 값 변수
-                test1 = spinner1.getSelectedItem().toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        }); */
 
         //인구분석
         btnBack = (ImageButton) findViewById(R.id.btnBack);
@@ -270,6 +222,164 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         ALH_sum = (TextView) findViewById(R.id.ALH_sum);
         AFH_avg = (TextView) findViewById(R.id.AFH_avg);
         ALH_avg = (TextView) findViewById(R.id.ALH_avg);
+
+        //막대그래프(매출분석_업종별 월 평균 매출) 시작
+
+        BarChart barChart = (BarChart) findViewById(R.id.barChart);
+
+        YAxis leftAxis = barChart.getAxisLeft();
+        YAxis rightAxis = barChart.getAxisRight();
+        XAxis xAxis = barChart.getXAxis();
+
+        // 텍스트 위치 지정
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setTextSize(12f);
+
+        //그래프 맨 아래 가로선 유무, 그래프 내부 세로선 유무,
+        xAxis.setDrawAxisLine(true);
+        xAxis.setDrawGridLines(true);
+        leftAxis.setTextSize(10f);
+
+        //y축 텍스트 표시 (값), 그래프 맨 왼쪽 세로선 유무, 그래프 내부 가로선  유무
+        leftAxis.setDrawLabels(true);
+        leftAxis.setDrawAxisLine(true);
+        leftAxis.setDrawGridLines(false);
+
+        //나머지 전부다 false 해야함
+        rightAxis.setDrawAxisLine(false);
+        rightAxis.setDrawGridLines(false);
+        rightAxis.setDrawLabels(false);
+
+        // 그룹에 추가
+        ArrayList<BarEntry> bargroup1 = new ArrayList<>();
+        ArrayList<BarEntry> bargroup2 = new ArrayList<>();
+        bargroup1.add(new BarEntry(33, 0));
+        bargroup1.add(new BarEntry(31, 1));
+        bargroup1.add(new BarEntry(31, 2));
+        bargroup1.add(new BarEntry(34, 3));
+        bargroup1.add(new BarEntry(38, 4));
+        bargroup1.add(new BarEntry(41, 5));
+        bargroup1.add(new BarEntry(44, 6));
+
+        bargroup2.add(new BarEntry(25, 0));
+        bargroup2.add(new BarEntry(45, 1));
+        bargroup2.add(new BarEntry(65, 2));
+        bargroup2.add(new BarEntry(56, 3));
+        bargroup2.add(new BarEntry(54, 4));
+        bargroup2.add(new BarEntry(64, 5));
+        bargroup2.add(new BarEntry(34, 6));
+
+
+        BarDataSet barDataSet1 = new BarDataSet(bargroup1, "상반기");
+        BarDataSet barDataSet2 = new BarDataSet(bargroup2, "하반기");
+
+        //바 색상
+        barDataSet1.setColor(Color.rgb(65, 105, 225));
+        barDataSet2.setColor(Color.rgb(128, 128, 128));
+        // barDataSet1.setColors(ColorTemplate.COLORFUL_COLORS);
+
+
+        ArrayList<String> labels = new ArrayList<String>();
+        labels.add("소매");
+        labels.add("생활서비스");
+        labels.add("관광/여가/오락");
+        labels.add("숙박");
+        labels.add("스포츠");
+        labels.add("음식");
+        labels.add("학문/교육");
+
+        ArrayList<BarDataSet> dataSets = new ArrayList<>();  // mbined all dataset into an arraylistco
+        dataSets.add(barDataSet1);
+        dataSets.add(barDataSet2);
+
+        //그래프 아래 카테고리 표시 지우기
+        Legend i = barChart.getLegend();
+        //i.setEnabled(false);
+        i.setPosition(Legend.LegendPosition.ABOVE_CHART_RIGHT);
+        i.setTextSize(13f);
+        // 막대그래프 디자인
+        BarData data = new BarData(labels,dataSets);
+        data.setValueTextColor(Color.BLACK);
+        barChart.setData(data);
+        barChart.setTouchEnabled(false);
+        barChart.setDescription("");
+        barChart.invalidate(); // refresh
+        barChart.setScaleEnabled(false);
+        // 그래프 배경
+        barChart.setGridBackgroundColor(Color.rgb(248, 248, 248));
+        barChart.animateXY(2000, 2000);
+        barChart.setDrawBorders(false);
+        barChart.setDrawValueAboveBar(true);
+        // 막대그래프(매출분석_업종별 월 평균 매출) 끝
+
+        //막대그래프(상권개요_월평균매출) 시작
+        BarChart barChart2 = (BarChart) findViewById(R.id.barChart3);
+
+        YAxis leftAxis2 = barChart2.getAxisLeft();
+        YAxis rightAxis2 = barChart2.getAxisRight();
+        XAxis xAxis2 = barChart2.getXAxis();
+
+        // 텍스트 위치 지정
+        xAxis2.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis2.setTextSize(12f);
+
+        //그래프 맨 아래 가로선 유무, 그래프 내부 세로선 유무,
+        xAxis2.setDrawAxisLine(true);
+        xAxis2.setDrawGridLines(true);
+        leftAxis2.setTextSize(10f);
+
+        //y축 텍스트 표시 (값), 그래프 맨 왼쪽 세로선 유무, 그래프 내부 가로선  유무
+        leftAxis2.setDrawLabels(true);
+        leftAxis2.setDrawAxisLine(true);
+        leftAxis2.setDrawGridLines(false);
+
+        //나머지 전부다 false 해야함
+        rightAxis2.setDrawAxisLine(false);
+        rightAxis2.setDrawGridLines(false);
+        rightAxis2.setDrawLabels(false);
+
+        // 그룹에 추가
+        ArrayList<BarEntry> bargroup3 = new ArrayList<>();
+        ArrayList<BarEntry> bargroup4 = new ArrayList<>();
+        bargroup3.add(new BarEntry(33, 0));
+        bargroup4.add(new BarEntry(25, 0));
+
+
+        BarDataSet barDataSet3 = new BarDataSet(bargroup3, "상반기");
+        BarDataSet barDataSet4 = new BarDataSet(bargroup4, "하반기");
+
+        //바 색상
+        barDataSet3.setColor(Color.rgb(65, 105, 225));
+        barDataSet4.setColor(Color.rgb(128, 128, 128));
+        // barDataSet1.setColors(ColorTemplate.COLORFUL_COLORS);
+
+
+        ArrayList<String> labels2 = new ArrayList<String>();
+        labels2.add("2017년");
+
+        ArrayList<BarDataSet> dataSets2 = new ArrayList<>();  // mbined all dataset into an arraylistco
+        dataSets2.add(barDataSet3);
+        dataSets2.add(barDataSet4);
+
+        //그래프 아래 카테고리 표시 지우기
+        Legend i2 = barChart2.getLegend();
+        //i.setEnabled(false);
+        i2.setPosition(Legend.LegendPosition.ABOVE_CHART_RIGHT);
+        i2.setTextSize(13f);
+
+        // 막대그래프 디자인
+        BarData data2 = new BarData(labels2,dataSets2);
+        data2.setValueTextColor(Color.WHITE);
+        barChart2.setData(data2);
+        barChart2.setTouchEnabled(false);
+        barChart2.setDescription("");
+        barChart2.invalidate(); // refresh
+        barChart2.setScaleEnabled(false);
+        barChart2.setGridBackgroundColor(Color.rgb(248, 248, 248));
+        barChart2.animateXY(2000, 2000);
+        barChart2.setDrawBorders(false);
+        barChart2.setDrawValueAboveBar(false);
+        //막대그래프(상권개요_월평균매출) 끝 */
 
 
         // 매출분석 버튼
@@ -800,13 +910,13 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     yvalues.add(new Entry(Float.parseFloat(String.format("%.2f", Double.valueOf(fifty) / Double.valueOf(Ptotal2) * 100)), 5));
                     yvalues.add(new Entry(Float.parseFloat(String.format("%.2f", Double.valueOf(sixty) / Double.valueOf(Ptotal2) * 100)), 6));
                     PieDataSet dataSet = new PieDataSet(yvalues, "");
-                    color1 = Color.rgb(204, 93, 221);
-                    color2 = Color.rgb(95, 204, 221);
-                    color3 = Color.rgb(224, 96, 122);
-                    color4 = Color.rgb(87, 121, 168);
-                    color5 = Color.rgb(198, 137, 83);
-                    color6 = Color.rgb(50, 65, 163);
-                    color7 = Color.rgb(43, 140, 133);
+                    color1 = Color.rgb(229, 70, 90);
+                    color2 = Color.rgb(249, 159, 89);
+                    color3 = Color.rgb(255, 222, 106);
+                    color4 = Color.rgb(101, 218, 173);
+                    color5 = Color.rgb(28, 120, 177);
+                    color6 = Color.rgb(52, 178, 228);
+                    color7 = Color.rgb(184, 126, 247);
                     dataSet.setColors(new int[]{color1, color2, color3, color4, color5, color6, color7});
                     ArrayList<String> xVals = new ArrayList<String>();
                     xVals.add("10대 미만");
@@ -879,12 +989,13 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 
                     //라벨에 텍스트 추가하면 출처 및 설명 가능
                     PieDataSet dataSet2 = new PieDataSet(yvalues2, "");
-                    color1 = Color.rgb(204, 93, 221);
-                    color2 = Color.rgb(95, 204, 221);
-                    color3 = Color.rgb(224, 96, 122);
-                    color4 = Color.rgb(87, 121, 168);
-                    color5 = Color.rgb(198, 137, 83);
-
+                    color1 = Color.rgb(229, 70, 90);
+                    color2 = Color.rgb(249, 159, 89);
+                    color3 = Color.rgb(255, 222, 106);
+                    color4 = Color.rgb(101, 218, 173);
+                    color5 = Color.rgb(28, 120, 177);
+                    color6 = Color.rgb(52, 178, 228);
+                    color7 = Color.rgb(184, 126, 247);
                     //새롭게 color 지정하는 방법
                     dataSet2.setColors(new int[]{color1, color2, color3, color4, color5, color6, color7});
 
