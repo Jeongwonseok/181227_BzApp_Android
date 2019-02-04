@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TabHost;
+import android.widget.TabWidget;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -32,6 +34,7 @@ public class FranchiseActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_franchise2);
 
+        //카드뷰 추가 시킬 리사이클뷰 선언
 
         btnBack = (ImageButton)findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -47,35 +50,39 @@ public class FranchiseActivity2 extends AppCompatActivity {
         TabHost tabHost = (TabHost)findViewById(R.id.Host);
         tabHost.setup();
         tabHost.addTab(tabHost.newTabSpec("전체").setContent(R.id.tab1).setIndicator("전체"));
-        tabHost.addTab(tabHost.newTabSpec("한식").setContent(R.id.tab2).setIndicator("한식"));
-        tabHost.addTab(tabHost.newTabSpec("양식").setContent(R.id.tab3).setIndicator("양식"));
-        tabHost.addTab(tabHost.newTabSpec("일식").setContent(R.id.tab4).setIndicator("일식"));
-        tabHost.addTab(tabHost.newTabSpec("중식").setContent(R.id.tab5).setIndicator("중식"));
+        tabHost.addTab(tabHost.newTabSpec("치킨").setContent(R.id.tab2).setIndicator("치킨"));
+        tabHost.addTab(tabHost.newTabSpec("주점").setContent(R.id.tab3).setIndicator("주점"));
+        tabHost.addTab(tabHost.newTabSpec("피자").setContent(R.id.tab4).setIndicator("피자"));
+        tabHost.addTab(tabHost.newTabSpec("패스트푸드").setContent(R.id.tab5).setIndicator("패스트푸드"));
+        tabHost.setCurrentTab(0);
 
+        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+               if(tabId.equals("전체")){
+                FranchiseList franchiseList = new FranchiseList("http://qwerr784.cafe24.com/Ffast.php");
+                franchiseList.execute();}
+                else if (tabId.equals("치킨")) {
+                   FranchiseList franchiseList = new FranchiseList("http://qwerr784.cafe24.com/FfastChicken.php");
+                   franchiseList.execute();}
+               else if (tabId.equals("주점")) {
+                   FranchiseList franchiseList = new FranchiseList("http://qwerr784.cafe24.com/FfastBar.php");
+                   franchiseList.execute();
+               }  else if (tabId.equals("피자")) {
+                   FranchiseList franchiseList = new FranchiseList("http://qwerr784.cafe24.com/FfastPizza.php");
+                   franchiseList.execute();
+               }  else if (tabId.equals("패스트푸드")) {
+                   FranchiseList franchiseList = new FranchiseList("http://qwerr784.cafe24.com/FfastFastfood.php");
+                   franchiseList.execute();
+               }
+            }
+        });
 
-
-        //카드뷰 추가 시킬 리사이클뷰 선언
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.RV1);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(manager);
 
         //FranchiseInfo형 배열 선언
-
         FranchiseList franchiseList = new FranchiseList("http://qwerr784.cafe24.com/Ffast.php");
         franchiseList.execute();
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
    class FranchiseList extends AsyncTask<Void, Void, String> {
 
@@ -119,15 +126,33 @@ public class FranchiseActivity2 extends AppCompatActivity {
         //결과값 출력 메소드
         public void show(String s) {
 
-
-
             ArrayList<FranchiseInfo> arrayList = new ArrayList<>();
+            RecyclerView recyclerView = (RecyclerView)findViewById(R.id.RV1);RecyclerView.LayoutManager manager = new LinearLayoutManager(FranchiseActivity2.this);
+            recyclerView.setLayoutManager(manager);
+            RecyclerView recyclerView2 = (RecyclerView)findViewById(R.id.RV2); RecyclerView.LayoutManager manager2 = new LinearLayoutManager(FranchiseActivity2.this);
+            recyclerView2.setLayoutManager(manager2);
+            RecyclerView recyclerView3 = (RecyclerView)findViewById(R.id.RV3); RecyclerView.LayoutManager manager3 = new LinearLayoutManager(FranchiseActivity2.this);
+            recyclerView3.setLayoutManager(manager3);
+            RecyclerView recyclerView4 = (RecyclerView)findViewById(R.id.RV4); RecyclerView.LayoutManager manager4 = new LinearLayoutManager(FranchiseActivity2.this);
+            recyclerView4.setLayoutManager(manager4);
+            RecyclerView recyclerView5 = (RecyclerView)findViewById(R.id.RV5); RecyclerView.LayoutManager manager5 = new LinearLayoutManager(FranchiseActivity2.this);
+            recyclerView5.setLayoutManager(manager5);
 
-            RecyclerView recyclerView = (RecyclerView)findViewById(R.id.RV1);
-            if(urlnumber.equals("http://qwerr784.cafe24.com/Ffast.php")) {
-                RecyclerView.LayoutManager manager = new LinearLayoutManager(FranchiseActivity2.this);
-                recyclerView.setLayoutManager(manager);
-            }
+
+
+//            RecyclerView recyclerView = (RecyclerView)findViewById(R.id.RV1);
+//            RecyclerView recyclerView2 = (RecyclerView)findViewById(R.id.RV2);
+//            RecyclerView recyclerView3 = (RecyclerView)findViewById(R.id.RV3);
+//            RecyclerView recyclerView4 = (RecyclerView)findViewById(R.id.RV4);
+//            RecyclerView recyclerView5 = (RecyclerView)findViewById(R.id.RV5);
+//            if(urlnumber.equals("http://qwerr784.cafe24.com/Ffast.php")) {
+//                RecyclerView.LayoutManager manager = new LinearLayoutManager(FranchiseActivity2.this);
+//                recyclerView.setLayoutManager(manager);
+//            }
+//            else  if(urlnumber.equals("http://qwerr784.cafe24.com/FfastC.php")) {
+//                RecyclerView.LayoutManager manager = new LinearLayoutManager(FranchiseActivity2.this);
+//                recyclerView2.setLayoutManager(manager);
+//            }
 
 
             try {
@@ -157,7 +182,21 @@ public class FranchiseActivity2 extends AppCompatActivity {
             }
 
             FranchiseAdapter franchiseAdapter = new FranchiseAdapter(arrayList);
-            recyclerView.setAdapter(franchiseAdapter);
+
+            if(urlnumber.equals("http://qwerr784.cafe24.com/Ffast.php")){
+            recyclerView.setAdapter(franchiseAdapter);}
+
+            else  if(urlnumber.equals("http://qwerr784.cafe24.com/FfastChicken.php")){
+                recyclerView2.setAdapter(franchiseAdapter);}
+
+            else if(urlnumber.equals("http://qwerr784.cafe24.com/FfastBar.php")){
+                recyclerView3.setAdapter(franchiseAdapter);}
+
+            else if(urlnumber.equals("http://qwerr784.cafe24.com/FfastPizza.php")){
+                recyclerView4.setAdapter(franchiseAdapter);}
+
+            else if(urlnumber.equals("http://qwerr784.cafe24.com/FfastFastfood.php")){
+                recyclerView5.setAdapter(franchiseAdapter);}
         }
 
         @Override

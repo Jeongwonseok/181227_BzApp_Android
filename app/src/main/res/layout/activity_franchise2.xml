@@ -122,8 +122,11 @@
                         android:id="@+id/tab2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#654321"
                         android:orientation="vertical">
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/RV2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
 
                     </LinearLayout>
 
@@ -131,8 +134,11 @@
                         android:id="@+id/tab3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#789456"
                         android:orientation="vertical">
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/RV3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
 
                     </LinearLayout>
 
@@ -140,8 +146,11 @@
                         android:id="@+id/tab4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#123987"
                         android:orientation="vertical">
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/RV4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
 
                     </LinearLayout>
 
@@ -149,8 +158,11 @@
                         android:id="@+id/tab5"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#852369"
                         android:orientation="vertical">
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/RV5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
 
                     </LinearLayout>
                 </FrameLayout>
