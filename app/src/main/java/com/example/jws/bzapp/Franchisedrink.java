@@ -48,29 +48,29 @@ public class Franchisedrink extends AppCompatActivity {
         TabHost tabHost = (TabHost)findViewById(R.id.Host);
         tabHost.setup();
         tabHost.addTab(tabHost.newTabSpec("전체").setContent(R.id.tab1).setIndicator("전체"));
-        tabHost.addTab(tabHost.newTabSpec("치킨").setContent(R.id.tab2).setIndicator("치킨"));
-        tabHost.addTab(tabHost.newTabSpec("주점").setContent(R.id.tab3).setIndicator("주점"));
-        tabHost.addTab(tabHost.newTabSpec("피자").setContent(R.id.tab4).setIndicator("피자"));
-        tabHost.addTab(tabHost.newTabSpec("패스트푸드").setContent(R.id.tab5).setIndicator("패스트푸드"));
+        tabHost.addTab(tabHost.newTabSpec("커피").setContent(R.id.tab2).setIndicator("커피"));
+        tabHost.addTab(tabHost.newTabSpec("제과제빵").setContent(R.id.tab3).setIndicator("제과제빵"));
+        tabHost.addTab(tabHost.newTabSpec("주스/차").setContent(R.id.tab4).setIndicator("주스/차"));
+        tabHost.addTab(tabHost.newTabSpec("아이스크림/빙수").setContent(R.id.tab5).setIndicator("아이스크림/빙수"));
         tabHost.setCurrentTab(0);
 
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
                if(tabId.equals("전체")){
-                FranchiseList franchiseList = new FranchiseList("http://qwerr784.cafe24.com/Ffast.php");
-                franchiseList.execute();}
-                else if (tabId.equals("치킨")) {
-                   FranchiseList franchiseList = new FranchiseList("http://qwerr784.cafe24.com/FfastChicken.php");
+                FranchiseList franchiseList = new FranchiseList("전체");
+                franchiseList.execute();  }
+                else if (tabId.equals("커피")) {
+                   FranchiseList franchiseList = new FranchiseList("커피");
                    franchiseList.execute();}
-               else if (tabId.equals("주점")) {
-                   FranchiseList franchiseList = new FranchiseList("http://qwerr784.cafe24.com/FfastBar.php");
+               else if (tabId.equals("제과제빵")) {
+                   FranchiseList franchiseList = new FranchiseList("제과제빵");
                    franchiseList.execute();
-               }  else if (tabId.equals("피자")) {
-                   FranchiseList franchiseList = new FranchiseList("http://qwerr784.cafe24.com/FfastPizza.php");
+               }  else if (tabId.equals("주스/차")) {
+                   FranchiseList franchiseList = new FranchiseList("주스/차");
                    franchiseList.execute();
-               }  else if (tabId.equals("패스트푸드")) {
-                   FranchiseList franchiseList = new FranchiseList("http://qwerr784.cafe24.com/FfastFastfood.php");
+               }  else if (tabId.equals("아이스크림/빙수")) {
+                   FranchiseList franchiseList = new FranchiseList("아이스크림/빙수");
                    franchiseList.execute();
                }
             }
@@ -78,15 +78,15 @@ public class Franchisedrink extends AppCompatActivity {
 
 
         //FranchiseInfo형 배열 선언
-        FranchiseList franchiseList = new FranchiseList("http://qwerr784.cafe24.com/Ffast.php");
+        FranchiseList franchiseList = new FranchiseList("전체");
         franchiseList.execute();
     }
 
    class FranchiseList extends AsyncTask<Void, Void, String> {
 
-        String urlnumber;
-        public FranchiseList(String url){
-            this.urlnumber=url;
+        String kind;
+        public FranchiseList(String Kind){
+            this.kind=Kind;
         }
         @Override
         protected void onPreExecute() {
@@ -96,7 +96,7 @@ public class Franchisedrink extends AppCompatActivity {
         protected String doInBackground(Void... voids) {
             try {
                 //서버에 있는 php 실행
-                URL url = new URL(urlnumber);
+                URL url = new URL("http://qwerr784.cafe24.com/Fdrink.php");
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -124,7 +124,12 @@ public class Franchisedrink extends AppCompatActivity {
         //결과값 출력 메소드
         public void show(String s) {
 
-            ArrayList<FranchiseInfo> arrayList = new ArrayList<>();
+            ArrayList<FranchiseInfo> ALLarrayList = new ArrayList<>();
+            ArrayList<FranchiseInfo> CoffeearrayList = new ArrayList<>();
+            ArrayList<FranchiseInfo> BreadarrayList = new ArrayList<>();
+            ArrayList<FranchiseInfo> JuicearrayList = new ArrayList<>();
+            ArrayList<FranchiseInfo> AcreamarrayList = new ArrayList<>();
+
             RecyclerView recyclerView = (RecyclerView)findViewById(R.id.RV1);RecyclerView.LayoutManager manager = new LinearLayoutManager(Franchisedrink.this);
             recyclerView.setLayoutManager(manager);
             RecyclerView recyclerView2 = (RecyclerView)findViewById(R.id.RV2); RecyclerView.LayoutManager manager2 = new LinearLayoutManager(Franchisedrink.this);
@@ -157,7 +162,7 @@ public class Franchisedrink extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("response");
                 int count = 0;
-                String Name,Storesu, Ownermoney, Asales17,Interior;
+                String Name,Storesu, Ownermoney, Asales17,Interior,Category;
                 while (count < jsonArray.length()) {
                     JSONObject object = jsonArray.getJSONObject(count);
                     Name = object.getString("Shopname");
@@ -165,36 +170,56 @@ public class Franchisedrink extends AppCompatActivity {
                     Ownermoney = object.getString("Ownermoney");
                     Asales17 = object.getString("Asales17");
                     Interior = object.getString("Interior");
+                    Category = object.getString("Category");
                     ///
                     //매출
                     if(Storesu.equals("정보없음")){
                         Storesu="정보없음";
                     }else  Storesu+="개";
                     //////////////////////////
-                    FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
-                    arrayList.add(franchiseInfo);
+                    FranchiseInfo ALLfranchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                    ALLarrayList.add(ALLfranchiseInfo);
                     count++;
+
+                    if (Category.equals("커피")){
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                        CoffeearrayList.add(franchiseInfo);
+                    }
+                    else if(Category.equals("제과제빵")){
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                        BreadarrayList.add(franchiseInfo);
+                    }
+                    else if(Category.equals("주스/차")){
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                        JuicearrayList.add(franchiseInfo);
+                    }
+                    else if(Category.equals("아이스크림/빙수")){
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                        AcreamarrayList.add(franchiseInfo);
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            FranchiseAdapter franchiseAdapter = new FranchiseAdapter(arrayList);
+            FranchiseAdapter AllfranchiseAdapter = new FranchiseAdapter(ALLarrayList);
+            FranchiseAdapter CoffeeranchiseAdapter = new FranchiseAdapter(CoffeearrayList);
+            FranchiseAdapter BreadfranchiseAdapter = new FranchiseAdapter(BreadarrayList);
+            FranchiseAdapter JuicefranchiseAdapter = new FranchiseAdapter(JuicearrayList);
+            FranchiseAdapter AcreamfranchiseAdapter = new FranchiseAdapter(AcreamarrayList);
+            if(kind.equals("전체")){
+            recyclerView.setAdapter(AllfranchiseAdapter);}
+            else  if(kind.equals("커피")){
+                recyclerView2.setAdapter(CoffeeranchiseAdapter);}
 
-            if(urlnumber.equals("http://qwerr784.cafe24.com/Ffast.php")){
-            recyclerView.setAdapter(franchiseAdapter);}
+            else if(kind.equals("제과제빵")){
+                recyclerView3.setAdapter(BreadfranchiseAdapter);}
 
-            else  if(urlnumber.equals("http://qwerr784.cafe24.com/FfastChicken.php")){
-                recyclerView2.setAdapter(franchiseAdapter);}
+            else if(kind.equals("주스/차")){
+                recyclerView4.setAdapter(JuicefranchiseAdapter);}
 
-            else if(urlnumber.equals("http://qwerr784.cafe24.com/FfastBar.php")){
-                recyclerView3.setAdapter(franchiseAdapter);}
-
-            else if(urlnumber.equals("http://qwerr784.cafe24.com/FfastPizza.php")){
-                recyclerView4.setAdapter(franchiseAdapter);}
-
-            else if(urlnumber.equals("http://qwerr784.cafe24.com/FfastFastfood.php")){
-                recyclerView5.setAdapter(franchiseAdapter);}
+            else if(kind.equals("아이스크림/빙수")){
+                recyclerView5.setAdapter(AcreamfranchiseAdapter);}
         }
 
         @Override

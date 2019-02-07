@@ -1,7 +1,7 @@
 package com.example.jws.bzapp;
 
 public class FranchiseInfo {
-    String name, Storesu, Ownermoney, Asales17, Interior;
+    String name, Storesu, Ownermoney, Asales17, Interior,Kind;
 
     FranchiseInfo(String name, String Storesu, String Ownermoney, String Asales17, String Interior){
         this.name = name;
