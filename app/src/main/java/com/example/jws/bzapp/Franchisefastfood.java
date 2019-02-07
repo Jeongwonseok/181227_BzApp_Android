@@ -9,8 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TabHost;
-import android.widget.TabWidget;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -22,7 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class FranchiseActivity2 extends AppCompatActivity {
+public class Franchisefastfood extends AppCompatActivity {
 
     ImageButton btnBack;
     ImageButton btnFilter;
@@ -40,7 +38,7 @@ public class FranchiseActivity2 extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FranchiseActivity2.this, FranchiseActivity1.class);
+                Intent intent = new Intent(Franchisefastfood.this, FranchiseActivity1.class);
                 startActivity(intent);
             }
         });
@@ -127,15 +125,15 @@ public class FranchiseActivity2 extends AppCompatActivity {
         public void show(String s) {
 
             ArrayList<FranchiseInfo> arrayList = new ArrayList<>();
-            RecyclerView recyclerView = (RecyclerView)findViewById(R.id.RV1);RecyclerView.LayoutManager manager = new LinearLayoutManager(FranchiseActivity2.this);
+            RecyclerView recyclerView = (RecyclerView)findViewById(R.id.RV1);RecyclerView.LayoutManager manager = new LinearLayoutManager(Franchisefastfood.this);
             recyclerView.setLayoutManager(manager);
-            RecyclerView recyclerView2 = (RecyclerView)findViewById(R.id.RV2); RecyclerView.LayoutManager manager2 = new LinearLayoutManager(FranchiseActivity2.this);
+            RecyclerView recyclerView2 = (RecyclerView)findViewById(R.id.RV2); RecyclerView.LayoutManager manager2 = new LinearLayoutManager(Franchisefastfood.this);
             recyclerView2.setLayoutManager(manager2);
-            RecyclerView recyclerView3 = (RecyclerView)findViewById(R.id.RV3); RecyclerView.LayoutManager manager3 = new LinearLayoutManager(FranchiseActivity2.this);
+            RecyclerView recyclerView3 = (RecyclerView)findViewById(R.id.RV3); RecyclerView.LayoutManager manager3 = new LinearLayoutManager(Franchisefastfood.this);
             recyclerView3.setLayoutManager(manager3);
-            RecyclerView recyclerView4 = (RecyclerView)findViewById(R.id.RV4); RecyclerView.LayoutManager manager4 = new LinearLayoutManager(FranchiseActivity2.this);
+            RecyclerView recyclerView4 = (RecyclerView)findViewById(R.id.RV4); RecyclerView.LayoutManager manager4 = new LinearLayoutManager(Franchisefastfood.this);
             recyclerView4.setLayoutManager(manager4);
-            RecyclerView recyclerView5 = (RecyclerView)findViewById(R.id.RV5); RecyclerView.LayoutManager manager5 = new LinearLayoutManager(FranchiseActivity2.this);
+            RecyclerView recyclerView5 = (RecyclerView)findViewById(R.id.RV5); RecyclerView.LayoutManager manager5 = new LinearLayoutManager(Franchisefastfood.this);
             recyclerView5.setLayoutManager(manager5);
 
 

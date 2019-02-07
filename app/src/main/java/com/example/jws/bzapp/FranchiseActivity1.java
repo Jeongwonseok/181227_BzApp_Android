@@ -30,7 +30,7 @@ public class FranchiseActivity1 extends AppCompatActivity {
         btnFast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FranchiseActivity1.this, FranchiseActivity2.class);
+                Intent intent = new Intent(FranchiseActivity1.this, Franchisefastfood.class);
                 startActivity(intent);
             }
         });

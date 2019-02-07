@@ -32,7 +32,7 @@ public class FranchiseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         @Override
         public void onClick(View view) {
             //카드뷰 클릭했을때 발생하는 이벤트
-            Intent intent = new Intent(view.getContext(),FranchiseActivity2.class);
+            Intent intent = new Intent(view.getContext(),Franchisefastfood.class);
             view.getContext().startActivity(intent);
         }
     }
