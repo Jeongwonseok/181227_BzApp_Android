@@ -30,7 +30,7 @@ public class Franchisedrink extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_franchise2);
+        setContentView(R.layout.activity_franchisefastfood);
 
         //카드뷰 추가 시킬 리사이클뷰 선언
 
