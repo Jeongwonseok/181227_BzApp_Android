@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -64,18 +65,17 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
     ShopApi shopApi;
 
     //인구분석
-    PieChart pieChart;
+    PieChart pieChartPopulation;
     TextView tvtotal, tvonehouse, jumposu;
     String UTM_KX, UTM_KY, addr, token, addrcd, addrnm, sido_nm, onehouse_cnt;
 
-    //건단가 및 월평균 매출
-    TextView PFH_retail, PLH_retail, PFH_life, PLH_life, PFH_tour, PLH_tour, PFH_stay, PLH_stay, PFH_sports, PLH_sports, PFH_food, PLH_food, PFH_edu, PLH_edu;
-    TextView AFH_retail, ALH_retail, AFH_life, ALH_life, AFH_tour, ALH_tour, AFH_stay, ALH_stay, AFH_sports, ALH_sports, AFH_food, ALH_food, AFH_edu, ALH_edu, AFH_sum, AFH_avg, ALH_sum, ALH_avg;
+    //평균 매출, 건단가 차트
+    BarChart barChartAvgsales, barChartPercost, barChartAvg;
 
     //페업자
     TextView tvsido, tvclosure, tvsclosure;
     //평균업력 차트
-    PieChart pieChart2;
+    PieChart pieChartavgcareer;
 
 
     String RtotalCount, sido, hangjung, hangjungNm, sidoNm;
@@ -86,14 +86,6 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 
     // 파이차트 사용 색상변수
     int color1, color2, color3, color4, color5, color6, color7;
-
-    String tv1 = "10f";
-    String tv2 = "10f";
-    String tv3 = "10f";
-    String tv4 = "10f";
-    String tv5 = "20f";
-    String tv6 = "20f";
-    String tv7 = "20f";
 
     //테이블레이아웃 요소
     TextView tvsi, tvgu, tvarea, tvsiResult, tvguResult, tvareaResult;
@@ -116,6 +108,23 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         Alllong = String.valueOf(mLong);
         AllRadius = String.valueOf(a);
 
+        //총점포수
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                final String alljumpo = shopApi.RadiuAll(AllRadius, Alllong, Alllat);
+                runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        // TODO Auto-generated method stub
+                        jumposu.setText(alljumpo + "개");
+                    }
+                });
+
+            }
+        }).start();
 
         jumposu = (TextView) findViewById(R.id.jumpo);
 
@@ -161,10 +170,15 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         tvonehouse = (TextView) findViewById(R.id.tvonehouse);
 
         //연령별 차트 생성
-        pieChart = (PieChart) findViewById(R.id.piechart);
+        pieChartPopulation = (PieChart) findViewById(R.id.piechart);
 
         //평균업력 차트 생성
-        pieChart2 = (PieChart) findViewById(R.id.piechart2);
+        pieChartavgcareer = (PieChart) findViewById(R.id.piechart2);
+
+        //평균 매출, 건단가 차트 생성
+        barChartAvgsales = (BarChart) findViewById(R.id.barChart);
+        barChartPercost = (BarChart) findViewById(R.id.barChart2);
+        barChartAvg = (BarChart) findViewById(R.id.barChart3);
 
         getToken getToken = new getToken();
         getToken.execute();
@@ -187,221 +201,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
             }
         });
 
-        //건단가불러오기
-        PFH_retail = (TextView) findViewById(R.id.PFH_retail);
-        PLH_retail = (TextView) findViewById(R.id.PLH_retail);
-        PFH_life = (TextView) findViewById(R.id.PFH_life);
-        PLH_life = (TextView) findViewById(R.id.PLH_life);
-        PFH_tour = (TextView) findViewById(R.id.PFH_tour);
-        PLH_tour = (TextView) findViewById(R.id.PLH_tour);
-        PFH_stay = (TextView) findViewById(R.id.PFH_stay);
-        PLH_stay = (TextView) findViewById(R.id.PLH_stay);
-        PFH_sports = (TextView) findViewById(R.id.PFH_sports);
-        PLH_sports = (TextView) findViewById(R.id.PLH_sports);
-        PFH_food = (TextView) findViewById(R.id.PFH_food);
-        PLH_food = (TextView) findViewById(R.id.PLH_food);
-        PFH_edu = (TextView) findViewById(R.id.PFH_edu);
-        PLH_edu = (TextView) findViewById(R.id.PLH_edu);
-
-        //월평균매출
-        AFH_retail = (TextView) findViewById(R.id.AFH_retail);
-        ALH_retail = (TextView) findViewById(R.id.ALH_retail);
-        AFH_life = (TextView) findViewById(R.id.AFH_life);
-        ALH_life = (TextView) findViewById(R.id.ALH_life);
-        AFH_tour = (TextView) findViewById(R.id.AFH_tour);
-        ALH_tour = (TextView) findViewById(R.id.ALH_tour);
-        AFH_stay = (TextView) findViewById(R.id.AFH_stay);
-        ALH_stay = (TextView) findViewById(R.id.ALH_stay);
-        AFH_sports = (TextView) findViewById(R.id.AFH_sports);
-        ALH_sports = (TextView) findViewById(R.id.ALH_sports);
-        AFH_food = (TextView) findViewById(R.id.AFH_food);
-        ALH_food = (TextView) findViewById(R.id.ALH_food);
-        AFH_edu = (TextView) findViewById(R.id.AFH_edu);
-        ALH_edu = (TextView) findViewById(R.id.ALH_edu);
-        AFH_sum = (TextView) findViewById(R.id.AFH_sum);
-        ALH_sum = (TextView) findViewById(R.id.ALH_sum);
-        AFH_avg = (TextView) findViewById(R.id.AFH_avg);
-        ALH_avg = (TextView) findViewById(R.id.ALH_avg);
-
-        //막대그래프(매출분석_업종별 월 평균 매출) 시작
-
-        BarChart barChart = (BarChart) findViewById(R.id.barChart);
-
-        YAxis leftAxis = barChart.getAxisLeft();
-        YAxis rightAxis = barChart.getAxisRight();
-        XAxis xAxis = barChart.getXAxis();
-
-        // 텍스트 위치 지정
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTextSize(12f);
-
-        //그래프 맨 아래 가로선 유무, 그래프 내부 세로선 유무,
-        xAxis.setDrawAxisLine(true);
-        xAxis.setDrawGridLines(true);
-        leftAxis.setTextSize(10f);
-
-        //y축 텍스트 표시 (값), 그래프 맨 왼쪽 세로선 유무, 그래프 내부 가로선  유무
-        leftAxis.setDrawLabels(true);
-        leftAxis.setDrawAxisLine(true);
-        leftAxis.setDrawGridLines(false);
-
-        //나머지 전부다 false 해야함
-        rightAxis.setDrawAxisLine(false);
-        rightAxis.setDrawGridLines(false);
-        rightAxis.setDrawLabels(false);
-
-        // 그룹에 추가
-        ArrayList<BarEntry> bargroup1 = new ArrayList<>();
-        ArrayList<BarEntry> bargroup2 = new ArrayList<>();
-        bargroup1.add(new BarEntry(33, 0));
-        bargroup1.add(new BarEntry(31, 1));
-        bargroup1.add(new BarEntry(31, 2));
-        bargroup1.add(new BarEntry(34, 3));
-        bargroup1.add(new BarEntry(38, 4));
-        bargroup1.add(new BarEntry(41, 5));
-        bargroup1.add(new BarEntry(44, 6));
-
-        bargroup2.add(new BarEntry(25, 0));
-        bargroup2.add(new BarEntry(45, 1));
-        bargroup2.add(new BarEntry(65, 2));
-        bargroup2.add(new BarEntry(56, 3));
-        bargroup2.add(new BarEntry(54, 4));
-        bargroup2.add(new BarEntry(64, 5));
-        bargroup2.add(new BarEntry(34, 6));
-
-
-        BarDataSet barDataSet1 = new BarDataSet(bargroup1, "상반기");
-        BarDataSet barDataSet2 = new BarDataSet(bargroup2, "하반기");
-
-        //바 색상
-        barDataSet1.setColor(Color.rgb(65, 105, 225));
-        barDataSet2.setColor(Color.rgb(128, 128, 128));
-        // barDataSet1.setColors(ColorTemplate.COLORFUL_COLORS);
-
-
-        ArrayList<String> labels = new ArrayList<String>();
-        labels.add("소매");
-        labels.add("생활서비스");
-        labels.add("관광/여가/오락");
-        labels.add("숙박");
-        labels.add("스포츠");
-        labels.add("음식");
-        labels.add("학문/교육");
-
-        ArrayList<BarDataSet> dataSets = new ArrayList<>();  // mbined all dataset into an arraylistco
-        dataSets.add(barDataSet1);
-        dataSets.add(barDataSet2);
-
-        //그래프 아래 카테고리 표시 지우기
-        Legend i = barChart.getLegend();
-        //i.setEnabled(false);
-        i.setPosition(Legend.LegendPosition.ABOVE_CHART_RIGHT);
-        i.setTextSize(13f);
-        // 막대그래프 디자인
-        BarData data = new BarData(labels,dataSets);
-        data.setValueTextColor(Color.BLACK);
-        barChart.setData(data);
-        barChart.setTouchEnabled(false);
-        barChart.setDescription("");
-        barChart.invalidate(); // refresh
-        barChart.setScaleEnabled(false);
-        // 그래프 배경
-        barChart.setGridBackgroundColor(Color.rgb(248, 248, 248));
-        barChart.animateXY(2000, 2000);
-        barChart.setDrawBorders(false);
-        barChart.setDrawValueAboveBar(true);
-        // 막대그래프(매출분석_업종별 월 평균 매출) 끝
-
-        //막대그래프(상권개요_월평균매출) 시작
-        BarChart barChart2 = (BarChart) findViewById(R.id.barChart3);
-
-        YAxis leftAxis2 = barChart2.getAxisLeft();
-        YAxis rightAxis2 = barChart2.getAxisRight();
-        XAxis xAxis2 = barChart2.getXAxis();
-
-        // 텍스트 위치 지정
-        xAxis2.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis2.setTextSize(12f);
-
-        //그래프 맨 아래 가로선 유무, 그래프 내부 세로선 유무,
-        xAxis2.setDrawAxisLine(true);
-        xAxis2.setDrawGridLines(true);
-        leftAxis2.setTextSize(10f);
-
-        //y축 텍스트 표시 (값), 그래프 맨 왼쪽 세로선 유무, 그래프 내부 가로선  유무
-        leftAxis2.setDrawLabels(true);
-        leftAxis2.setDrawAxisLine(true);
-        leftAxis2.setDrawGridLines(false);
-
-        //나머지 전부다 false 해야함
-        rightAxis2.setDrawAxisLine(false);
-        rightAxis2.setDrawGridLines(false);
-        rightAxis2.setDrawLabels(false);
-
-        // 그룹에 추가
-        ArrayList<BarEntry> bargroup3 = new ArrayList<>();
-        ArrayList<BarEntry> bargroup4 = new ArrayList<>();
-        bargroup3.add(new BarEntry(33, 0));
-        bargroup4.add(new BarEntry(25, 0));
-
-
-        BarDataSet barDataSet3 = new BarDataSet(bargroup3, "상반기");
-        BarDataSet barDataSet4 = new BarDataSet(bargroup4, "하반기");
-
-        //바 색상
-        barDataSet3.setColor(Color.rgb(65, 105, 225));
-        barDataSet4.setColor(Color.rgb(128, 128, 128));
-        // barDataSet1.setColors(ColorTemplate.COLORFUL_COLORS);
-
-
-        ArrayList<String> labels2 = new ArrayList<String>();
-        labels2.add("2017년");
-
-        ArrayList<BarDataSet> dataSets2 = new ArrayList<>();  // mbined all dataset into an arraylistco
-        dataSets2.add(barDataSet3);
-        dataSets2.add(barDataSet4);
-
-        //그래프 아래 카테고리 표시 지우기
-        Legend i2 = barChart2.getLegend();
-        //i.setEnabled(false);
-        i2.setPosition(Legend.LegendPosition.ABOVE_CHART_RIGHT);
-        i2.setTextSize(13f);
-
-        // 막대그래프 디자인
-        BarData data2 = new BarData(labels2,dataSets2);
-        data2.setValueTextColor(Color.WHITE);
-        barChart2.setData(data2);
-        barChart2.setTouchEnabled(false);
-        barChart2.setDescription("");
-        barChart2.invalidate(); // refresh
-        barChart2.setScaleEnabled(false);
-        barChart2.setGridBackgroundColor(Color.rgb(248, 248, 248));
-        barChart2.animateXY(2000, 2000);
-        barChart2.setDrawBorders(false);
-        barChart2.setDrawValueAboveBar(false);
-        //막대그래프(상권개요_월평균매출) 끝 */
-
-
         // 매출분석 버튼
         final LinearLayout pLayout2 = (LinearLayout) findViewById(R.id.pLayout2);
         final ImageView pbtn2 = (ImageView) findViewById(R.id.pbtn2);
-        //총점포수
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                final String alljumpo = shopApi.RadiuAll(AllRadius, Alllong, Alllat);
-                runOnUiThread(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        // TODO Auto-generated method stub
-                        jumposu.setText(alljumpo + "개");
-                    }
-                });
-
-            }
-        }).start();
         pbtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -863,6 +665,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     String percent = String.format("%.2f", one) + " %";
                     tvonehouse.setText(percent);
                 }
+
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -899,8 +703,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     Ptotal2 = Ptotal2.substring(0, Ptotal2.length() - 1);
 
                     //차트 드래그 비활성화
-                    pieChart.setUsePercentValues(true);
-                    pieChart.setTouchEnabled(false);
+                    pieChartPopulation.setUsePercentValues(true);
+                    pieChartPopulation.setTouchEnabled(false);
                     ArrayList<Entry> yvalues = new ArrayList<Entry>();
                     yvalues.add(new Entry(Float.parseFloat(String.format("%.2f", Double.valueOf(child) / Double.valueOf(Ptotal2) * 100)), 0));
                     yvalues.add(new Entry(Float.parseFloat(String.format("%.2f", Double.valueOf(teenage) / Double.valueOf(Ptotal2) * 100)), 1));
@@ -928,15 +732,15 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     xVals.add("60대 이상");
                     PieData data = new PieData(xVals, dataSet);
                     data.setValueFormatter(new PercentFormatter());
-                    pieChart.setData(data);
-                    pieChart.setDrawSliceText(false);
-                    pieChart.setDescription("");
-                    pieChart.setDrawHoleEnabled(true);
-                    pieChart.setTransparentCircleRadius(40f);
-                    Legend i = pieChart.getLegend();
+                    pieChartPopulation.setData(data);
+                    pieChartPopulation.setDrawSliceText(false);
+                    pieChartPopulation.setDescription("");
+                    pieChartPopulation.setDrawHoleEnabled(true);
+                    pieChartPopulation.setTransparentCircleRadius(40f);
+                    Legend i = pieChartPopulation.getLegend();
                     i.setPosition(Legend.LegendPosition.RIGHT_OF_CHART_CENTER);
                     i.setTextSize(13f);
-                    pieChart.setHoleRadius(40f);
+                    pieChartPopulation.setHoleRadius(40f);
                     data.setValueTextSize(12f);
                     data.setValueTextColor(Color.WHITE);
                     OneHouse oneHouse = new OneHouse();
@@ -973,8 +777,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                         count++;
                     }
                     //차트 드래그 비활성화
-                    pieChart2.setUsePercentValues(true);
-                    pieChart2.setTouchEnabled(false);
+                    pieChartavgcareer.setUsePercentValues(true);
+                    pieChartavgcareer.setTouchEnabled(false);
                     //pieChart.setDragDecelerationEnabled(false);
 
                     // IMPORTANT: In a PieChart, no values (Entry) should have the same
@@ -1013,26 +817,26 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     data2.setValueFormatter(new PercentFormatter());
                     // Default value
                     //data.setValueFormatter(new DefaultValueFormatter(0));
-                    pieChart2.setData(data2);
+                    pieChartavgcareer.setData(data2);
 
 
-                    pieChart2.setDescription("");
+                    pieChartavgcareer.setDescription("");
                     /*pieChart.setDescriptionPosition(550,100);*/
                     //출처 및 설명
                     //pieChart.setDescription("This is Pie Chart");
                     //구멍뚫기
-                    pieChart2.setDrawHoleEnabled(true);
-                    pieChart2.setTransparentCircleRadius(40f);
+                    pieChartavgcareer.setDrawHoleEnabled(true);
+                    pieChartavgcareer.setTransparentCircleRadius(40f);
 
                     //원그래프 텍스트 없애기
-                    pieChart2.setDrawSliceText(false);
+                    pieChartavgcareer.setDrawSliceText(false);
 
                     // 각각의 요소설명 위치 지정
-                    Legend i2 = pieChart2.getLegend();
+                    Legend i2 = pieChartavgcareer.getLegend();
                     i2.setPosition(Legend.LegendPosition.RIGHT_OF_CHART_CENTER);
                     i2.setTextSize(13f);
 
-                    pieChart2.setHoleRadius(40f);
+                    pieChartavgcareer.setHoleRadius(40f);
                     //dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
 
                     //dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
@@ -1097,6 +901,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
+                String PFH_retail = null, PLH_retail = null, PFH_life = null, PLH_life = null, PFH_tour = null, PLH_tour = null, PFH_stay = null,
+                        PLH_stay = null, PFH_sports = null, PLH_sports = null, PFH_food = null, PLH_food = null, PFH_edu = null, PLH_edu = null;
                 try {
                     JSONObject jsonObject = new JSONObject(s);
                     JSONArray jsonArray = jsonObject.getJSONArray("response");
@@ -1104,25 +910,108 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     while (count < jsonArray.length()) {
                         JSONObject object = jsonArray.getJSONObject(count);
                         object.getString("location");
-                        PFH_retail.setText(object.getString("FH_retail"));
-                        PLH_retail.setText(object.getString("LH_retail"));
-                        PFH_life.setText(object.getString("FH_life"));
-                        PLH_life.setText(object.getString("LH_life"));
-                        PFH_tour.setText(object.getString("FH_tour"));
-                        PLH_tour.setText(object.getString("LH_tour"));
-                        PFH_stay.setText(object.getString("FH_stay"));
-                        PLH_stay.setText(object.getString("LH_stay"));
-                        PFH_sports.setText(object.getString("FH_sports"));
-                        PLH_sports.setText(object.getString("LH_sports"));
-                        PFH_food.setText(object.getString("FH_food"));
-                        PLH_food.setText(object.getString("LH_food"));
-                        PFH_edu.setText(object.getString("FH_edu"));
-                        PLH_edu.setText(object.getString("LH_edu"));
+                        PFH_retail = object.getString("FH_retail");
+                        PLH_retail = object.getString("LH_retail");
+                        PFH_life = object.getString("FH_life");
+                        PLH_life = object.getString("LH_life");
+                        PFH_tour = object.getString("FH_tour");
+                        PLH_tour = object.getString("LH_tour");
+                        PFH_stay = object.getString("FH_stay");
+                        PLH_stay = object.getString("LH_stay");
+                        PFH_sports = object.getString("FH_sports");
+                        PLH_sports = object.getString("LH_sports");
+                        PFH_food = object.getString("FH_food");
+                        PLH_food = object.getString("LH_food");
+                        PFH_edu = object.getString("FH_edu");
+                        PLH_edu = object.getString("LH_edu");
                         count++;
                     }
 
-                    OneHouse oneHouse = new OneHouse();
-                    oneHouse.execute();
+                    YAxis leftAxis = barChartPercost.getAxisLeft();
+                    YAxis rightAxis = barChartPercost.getAxisRight();
+                    XAxis xAxis = barChartPercost.getXAxis();
+
+                    // 텍스트 위치 지정
+                    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                    xAxis.setTextSize(12f);
+
+                    //그래프 맨 아래 가로선 유무, 그래프 내부 세로선 유무,
+                    xAxis.setDrawAxisLine(true);
+                    xAxis.setDrawGridLines(true);
+                    leftAxis.setTextSize(10f);
+
+                    //y축 텍스트 표시 (값), 그래프 맨 왼쪽 세로선 유무, 그래프 내부 가로선  유무
+                    leftAxis.setDrawLabels(true);
+                    leftAxis.setDrawAxisLine(true);
+                    leftAxis.setDrawGridLines(false);
+
+                    //나머지 전부다 false 해야함
+                    rightAxis.setDrawAxisLine(false);
+                    rightAxis.setDrawGridLines(false);
+                    rightAxis.setDrawLabels(false);
+
+                    // 그룹에 추가
+                    ArrayList<BarEntry> bargroup1 = new ArrayList<>();
+                    ArrayList<BarEntry> bargroup2 = new ArrayList<>();
+                    //상반기 건단가
+                    bargroup1.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(PFH_retail) / 1000)), 0));
+                    bargroup1.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(PFH_life) / 1000)), 1));
+                    bargroup1.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(PFH_tour) / 1000)), 2));
+                    bargroup1.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(PFH_stay) / 1000)), 3));
+                    bargroup1.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(PFH_sports) / 1000)), 4));
+                    bargroup1.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(PFH_food) / 1000)), 5));
+                    bargroup1.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(PFH_edu) / 1000)), 6));
+                    //하반기 건단가
+                    bargroup2.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(PLH_retail) / 1000)), 0));
+                    bargroup2.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(PLH_life) / 1000)), 1));
+                    bargroup2.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(PLH_tour) / 1000)), 2));
+                    bargroup2.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(PLH_stay) / 1000)), 3));
+                    bargroup2.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(PLH_sports) / 1000)), 4));
+                    bargroup2.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(PLH_food) / 1000)), 5));
+                    bargroup2.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(PLH_edu) / 1000)), 6));
+
+                    BarDataSet barDataSet1 = new BarDataSet(bargroup1, "상반기");
+                    BarDataSet barDataSet2 = new BarDataSet(bargroup2, "하반기");
+
+                    //바 색상
+                    barDataSet1.setColor(Color.rgb(65, 105, 225));
+                    barDataSet2.setColor(Color.rgb(128, 128, 128));
+                    // barDataSet1.setColors(ColorTemplate.COLORFUL_COLORS);
+
+
+                    ArrayList<String> labels = new ArrayList<String>();
+                    labels.add("소매");
+                    labels.add("생활서비스");
+                    labels.add("관광/여가/오락");
+                    labels.add("숙박");
+                    labels.add("스포츠");
+                    labels.add("음식");
+                    labels.add("학문/교육");
+
+                    ArrayList<BarDataSet> dataSets = new ArrayList<>();  // mbined all dataset into an arraylistco
+                    dataSets.add(barDataSet1);
+                    dataSets.add(barDataSet2);
+
+                    //그래프 아래 카테고리 표시 지우기
+                    Legend i = barChartPercost.getLegend();
+                    //i.setEnabled(false);
+                    i.setPosition(Legend.LegendPosition.ABOVE_CHART_RIGHT);
+                    i.setTextSize(13f);
+                    // 막대그래프 디자인
+                    BarData data = new BarData(labels, dataSets);
+                    data.setValueTextColor(Color.BLACK);
+                    barChartPercost.setData(data);
+                    barChartPercost.setTouchEnabled(false);
+                    barChartPercost.setDescription("");
+                    barChartPercost.invalidate(); // refresh
+                    barChartPercost.setScaleEnabled(false);
+                    // 그래프 배경
+                    barChartPercost.setGridBackgroundColor(Color.rgb(248, 248, 248));
+                    barChartPercost.animateXY(2000, 2000);
+                    barChartPercost.setDrawBorders(false);
+                    barChartPercost.setDrawValueAboveBar(true);
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -1139,6 +1028,10 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
+                String AFH_retail = null, ALH_retail = null, AFH_life = null, ALH_life = null, AFH_tour = null, ALH_tour = null, AFH_stay = null,
+                        ALH_stay = null, AFH_sports = null, ALH_sports = null, AFH_food = null, ALH_food = null, AFH_edu = null, ALH_edu = null,
+                AFH_avg = null, ALH_avg = null;
+
                 try {
                     JSONObject jsonObject = new JSONObject(s);
                     JSONArray jsonArray = jsonObject.getJSONArray("response");
@@ -1146,26 +1039,173 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     while (count < jsonArray.length()) {
                         JSONObject object = jsonArray.getJSONObject(count);
                         object.getString("location");
-                        AFH_retail.setText(object.getString("FH_retail"));
-                        ALH_retail.setText(object.getString("LH_retail"));
-                        AFH_life.setText(object.getString("FH_life"));
-                        ALH_life.setText(object.getString("LH_life"));
-                        AFH_tour.setText(object.getString("FH_tour"));
-                        ALH_tour.setText(object.getString("LH_tour"));
-                        AFH_stay.setText(object.getString("FH_stay"));
-                        ALH_stay.setText(object.getString("LH_stay"));
-                        AFH_sports.setText(object.getString("FH_sports"));
-                        ALH_sports.setText(object.getString("LH_sports"));
-                        AFH_food.setText(object.getString("FH_food"));
-                        ALH_food.setText(object.getString("LH_food"));
-                        AFH_edu.setText(object.getString("FH_edu"));
-                        ALH_edu.setText(object.getString("LH_edu"));
-                        AFH_sum.setText(object.getString("FH_sum"));
-                        ALH_sum.setText(object.getString("LH_sum"));
-                        AFH_avg.setText(object.getString("FH_avg"));
-                        ALH_avg.setText(object.getString("LH_avg"));
+                        AFH_retail = object.getString("FH_retail");
+                        ALH_retail = object.getString("LH_retail");
+                        AFH_life = object.getString("FH_life");
+                        ALH_life = object.getString("LH_life");
+                        AFH_tour = object.getString("FH_tour");
+                        ALH_tour = object.getString("LH_tour");
+                        AFH_stay = object.getString("FH_stay");
+                        ALH_stay = object.getString("LH_stay");
+                        AFH_sports = object.getString("FH_sports");
+                        ALH_sports = object.getString("LH_sports");
+                        AFH_food = object.getString("FH_food");
+                        ALH_food = object.getString("LH_food");
+                        AFH_edu = object.getString("FH_edu");
+                        ALH_edu = object.getString("LH_edu");
+                        AFH_avg=object.getString("FH_avg");
+                        ALH_avg=object.getString("LH_avg");
                         count++;
                     }
+
+                    YAxis leftAxis = barChartAvgsales.getAxisLeft();
+                    YAxis rightAxis = barChartAvgsales.getAxisRight();
+                    XAxis xAxis = barChartAvgsales.getXAxis();
+
+                    // 텍스트 위치 지정
+                    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                    xAxis.setTextSize(12f);
+
+                    //그래프 맨 아래 가로선 유무, 그래프 내부 세로선 유무,
+                    xAxis.setDrawAxisLine(true);
+                    xAxis.setDrawGridLines(true);
+                    leftAxis.setTextSize(10f);
+
+                    //y축 텍스트 표시 (값), 그래프 맨 왼쪽 세로선 유무, 그래프 내부 가로선  유무
+                    leftAxis.setDrawLabels(true);
+                    leftAxis.setDrawAxisLine(true);
+                    leftAxis.setDrawGridLines(false);
+
+                    //나머지 전부다 false 해야함
+                    rightAxis.setDrawAxisLine(false);
+                    rightAxis.setDrawGridLines(false);
+                    rightAxis.setDrawLabels(false);
+
+                    // 그룹에 추가
+                    ArrayList<BarEntry> bargroup1 = new ArrayList<>();
+                    ArrayList<BarEntry> bargroup2 = new ArrayList<>();
+                    //상반기 건단가
+                    bargroup1.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(AFH_retail) / 100)), 0));
+                    bargroup1.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(AFH_life) / 100)), 1));
+                    bargroup1.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(AFH_tour) / 100)), 2));
+                    bargroup1.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(AFH_stay) / 100)), 3));
+                    bargroup1.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(AFH_sports) / 100)), 4));
+                    bargroup1.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(AFH_food) / 100)), 5));
+                    bargroup1.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(AFH_edu) / 100)), 6));
+                    //하반기 건단가
+                    bargroup2.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(ALH_retail) / 100)), 0));
+                    bargroup2.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(ALH_life) / 100)), 1));
+                    bargroup2.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(ALH_tour) / 100)), 2));
+                    bargroup2.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(ALH_stay) / 100)), 3));
+                    bargroup2.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(ALH_sports) / 100)), 4));
+                    bargroup2.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(ALH_food) / 100)), 5));
+                    bargroup2.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(ALH_edu) / 100)), 6));
+
+                    BarDataSet barDataSet1 = new BarDataSet(bargroup1, "상반기");
+                    BarDataSet barDataSet2 = new BarDataSet(bargroup2, "하반기");
+
+                    //바 색상
+                    barDataSet1.setColor(Color.rgb(65, 105, 225));
+                    barDataSet2.setColor(Color.rgb(128, 128, 128));
+                    // barDataSet1.setColors(ColorTemplate.COLORFUL_COLORS);
+
+
+                    ArrayList<String> labels = new ArrayList<String>();
+                    labels.add("소매");
+                    labels.add("생활서비스");
+                    labels.add("관광/여가/오락");
+                    labels.add("숙박");
+                    labels.add("스포츠");
+                    labels.add("음식");
+                    labels.add("학문/교육");
+
+                    ArrayList<BarDataSet> dataSets = new ArrayList<>();  // mbined all dataset into an arraylistco
+                    dataSets.add(barDataSet1);
+                    dataSets.add(barDataSet2);
+
+                    //그래프 아래 카테고리 표시 지우기
+                    Legend i = barChartAvgsales.getLegend();
+                    //i.setEnabled(false);
+                    i.setPosition(Legend.LegendPosition.ABOVE_CHART_RIGHT);
+                    i.setTextSize(13f);
+                    // 막대그래프 디자인
+                    BarData data = new BarData(labels, dataSets);
+                    data.setValueTextColor(Color.BLACK);
+                    barChartAvgsales.setData(data);
+                    barChartAvgsales.setTouchEnabled(false);
+                    barChartAvgsales.setDescription("");
+                    barChartAvgsales.invalidate(); // refresh
+                    barChartAvgsales.setScaleEnabled(false);
+                    // 그래프 배경
+                    barChartAvgsales.setGridBackgroundColor(Color.rgb(248, 248, 248));
+                    barChartAvgsales.animateXY(2000, 2000);
+                    barChartAvgsales.setDrawBorders(false);
+                    barChartAvgsales.setDrawValueAboveBar(true);
+
+                    YAxis leftAxis2 = barChartAvg.getAxisLeft();
+                    YAxis rightAxis2 = barChartAvg.getAxisRight();
+                    XAxis xAxis2 = barChartAvg.getXAxis();
+
+                    // 텍스트 위치 지정
+                    xAxis2.setPosition(XAxis.XAxisPosition.BOTTOM);
+                    xAxis2.setTextSize(12f);
+
+                    //그래프 맨 아래 가로선 유무, 그래프 내부 세로선 유무,
+                    xAxis2.setDrawAxisLine(true);
+                    xAxis2.setDrawGridLines(true);
+                    leftAxis2.setTextSize(10f);
+
+                    //y축 텍스트 표시 (값), 그래프 맨 왼쪽 세로선 유무, 그래프 내부 가로선  유무
+                    leftAxis2.setDrawLabels(true);
+                    leftAxis2.setDrawAxisLine(true);
+                    leftAxis2.setDrawGridLines(false);
+
+                    //나머지 전부다 false 해야함
+                    rightAxis2.setDrawAxisLine(false);
+                    rightAxis2.setDrawGridLines(false);
+                    rightAxis2.setDrawLabels(false);
+
+                    // 그룹에 추가
+                    ArrayList<BarEntry> bargroup3 = new ArrayList<>();
+                    ArrayList<BarEntry> bargroup4 = new ArrayList<>();
+                    bargroup3.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(AFH_avg) / 100)), 0));
+                    bargroup4.add(new BarEntry(Float.parseFloat(String.format("%.1f", Float.parseFloat(ALH_avg) / 100)), 0));
+
+
+                    BarDataSet barDataSet3 = new BarDataSet(bargroup3, "상반기");
+                    BarDataSet barDataSet4 = new BarDataSet(bargroup4, "하반기");
+
+                    //바 색상
+                    barDataSet3.setColor(Color.rgb(65, 105, 225));
+                    barDataSet4.setColor(Color.rgb(128, 128, 128));
+                    // barDataSet1.setColors(ColorTemplate.COLORFUL_COLORS);
+
+
+                    ArrayList<String> labels2 = new ArrayList<String>();
+                    labels2.add("2017년");
+
+                    ArrayList<BarDataSet> dataSets2 = new ArrayList<>();  // mbined all dataset into an arraylistco
+                    dataSets2.add(barDataSet3);
+                    dataSets2.add(barDataSet4);
+
+                    //그래프 아래 카테고리 표시 지우기
+                    Legend i2 = barChartAvg.getLegend();
+                    //i.setEnabled(false);
+                    i2.setPosition(Legend.LegendPosition.ABOVE_CHART_RIGHT);
+                    i2.setTextSize(13f);
+
+                    // 막대그래프 디자인
+                    BarData data2 = new BarData(labels2,dataSets2);
+                    data2.setValueTextColor(Color.WHITE);
+                    barChartAvg.setData(data2);
+                    barChartAvg.setTouchEnabled(false);
+                    barChartAvg.setDescription("");
+                    barChartAvg.invalidate(); // refresh
+                    barChartAvg.setScaleEnabled(false);
+                    barChartAvg.setGridBackgroundColor(Color.rgb(248, 248, 248));
+                    barChartAvg.animateXY(2000, 2000);
+                    barChartAvg.setDrawBorders(false);
+                    barChartAvg.setDrawValueAboveBar(false);
 
                     OneHouse oneHouse = new OneHouse();
                     oneHouse.execute();
