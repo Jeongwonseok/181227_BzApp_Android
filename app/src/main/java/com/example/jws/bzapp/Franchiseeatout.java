@@ -143,13 +143,13 @@ public class Franchiseeatout extends AppCompatActivity {
         public void show(String s) {
 
             ArrayList<FranchiseInfo> ALLarrayList = new ArrayList<>();
-            ArrayList<FranchiseInfo> OtherarrayList = new ArrayList<>();
-            ArrayList<FranchiseInfo> ClothesarrayList = new ArrayList<>();
-            ArrayList<FranchiseInfo> MakeuparrayList = new ArrayList<>();
-            ArrayList<FranchiseInfo> HealtharrayList = new ArrayList<>();
-            ArrayList<FranchiseInfo> ConveniencearrayList = new ArrayList<>();
-            ArrayList<FranchiseInfo> AgriarrayList = new ArrayList<>();
-            ArrayList<FranchiseInfo> SynarrayList = new ArrayList<>();
+            ArrayList<FranchiseInfo> KoreaarrayList = new ArrayList<>();
+            ArrayList<FranchiseInfo> FusionarrayList = new ArrayList<>();
+            ArrayList<FranchiseInfo> SnackarrayList = new ArrayList<>();
+            ArrayList<FranchiseInfo> WestarrayList = new ArrayList<>();
+            ArrayList<FranchiseInfo> JapenarrayList = new ArrayList<>();
+            ArrayList<FranchiseInfo> ChinaiarrayList = new ArrayList<>();
+            ArrayList<FranchiseInfo> GlobalarrayList = new ArrayList<>();
 
             RecyclerView recyclerView = (RecyclerView)findViewById(R.id.RV1);RecyclerView.LayoutManager manager = new LinearLayoutManager(Franchiseeatout.this);
             recyclerView.setLayoutManager(manager);
@@ -197,33 +197,35 @@ public class Franchiseeatout extends AppCompatActivity {
                     count++;
 
 
+
+
                     if (Category.equals("한식")){
                         FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
-                        OtherarrayList.add(franchiseInfo);
+                        KoreaarrayList.add(franchiseInfo);
                     }
                     else if(Category.equals("퓨전/기타")){
                         FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
-                        ClothesarrayList.add(franchiseInfo);
+                        FusionarrayList.add(franchiseInfo);
                     }
                     else if(Category.equals("분식")){
                         FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
-                        MakeuparrayList.add(franchiseInfo);
+                        SnackarrayList.add(franchiseInfo);
                     }
                     else if(Category.equals("양식")){
                         FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
-                        HealtharrayList.add(franchiseInfo);
+                        WestarrayList.add(franchiseInfo);
                     }
                     else if(Category.equals("일식")){
                         FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
-                        ConveniencearrayList.add(franchiseInfo);
+                        JapenarrayList.add(franchiseInfo);
                     }
                     else if(Category.equals("중식")){
                         FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
-                        AgriarrayList.add(franchiseInfo);
+                        ChinaiarrayList.add(franchiseInfo);
                     }
                     else if(Category.equals("세계음식")){
                         FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
-                        SynarrayList.add(franchiseInfo);
+                        GlobalarrayList.add(franchiseInfo);
                     }
                 }
             } catch (Exception e) {
@@ -231,29 +233,29 @@ public class Franchiseeatout extends AppCompatActivity {
             }
 
             FranchiseAdapter AllfranchiseAdapter = new FranchiseAdapter(ALLarrayList);
-            FranchiseAdapter OtherffranchiseAdapter = new FranchiseAdapter(OtherarrayList);
-            FranchiseAdapter ClothesfranchiseAdapter = new FranchiseAdapter(ClothesarrayList);
-            FranchiseAdapter MakeupfranchiseAdapter = new FranchiseAdapter(MakeuparrayList);
-            FranchiseAdapter HealthfranchiseAdapter = new FranchiseAdapter(HealtharrayList);
-            FranchiseAdapter ConveniencefranchiseAdapter = new FranchiseAdapter(ConveniencearrayList);
-            FranchiseAdapter AgrifranchiseAdapter = new FranchiseAdapter(AgriarrayList);
-            FranchiseAdapter SynfranchiseAdapter = new FranchiseAdapter(SynarrayList);
+            FranchiseAdapter KoreafranchiseAdapter = new FranchiseAdapter(KoreaarrayList);
+            FranchiseAdapter FusionfranchiseAdapter = new FranchiseAdapter(FusionarrayList);
+            FranchiseAdapter SnackfranchiseAdapter = new FranchiseAdapter(SnackarrayList);
+            FranchiseAdapter WestfranchiseAdapter = new FranchiseAdapter(WestarrayList);
+            FranchiseAdapter JapenfranchiseAdapter = new FranchiseAdapter(JapenarrayList);
+            FranchiseAdapter ChinafranchiseAdapter = new FranchiseAdapter(ChinaiarrayList);
+            FranchiseAdapter GlobalfranchiseAdapter = new FranchiseAdapter(GlobalarrayList);
             if(kind.equals("전체")){
             recyclerView.setAdapter(AllfranchiseAdapter);}
             else  if(kind.equals("한식")){
-                recyclerView2.setAdapter(OtherffranchiseAdapter);}
+                recyclerView2.setAdapter(KoreafranchiseAdapter);}
             else if(kind.equals("퓨전/기타")){
-                recyclerView3.setAdapter(ClothesfranchiseAdapter);}
+                recyclerView3.setAdapter(FusionfranchiseAdapter);}
             else if(kind.equals("분식")){
-                recyclerView4.setAdapter(MakeupfranchiseAdapter);}
+                recyclerView4.setAdapter(SnackfranchiseAdapter);}
             else if(kind.equals("양식")){
-                recyclerView5.setAdapter(HealthfranchiseAdapter);}
+                recyclerView5.setAdapter(WestfranchiseAdapter);}
             else if(kind.equals("일식")){
-                recyclerView6.setAdapter(ConveniencefranchiseAdapter);}
+                recyclerView6.setAdapter(JapenfranchiseAdapter);}
             else if(kind.equals("중식")){
-                recyclerView7.setAdapter(AgrifranchiseAdapter);}
+                recyclerView7.setAdapter(ChinafranchiseAdapter);}
             else if(kind.equals("세계음식")){
-                recyclerView8.setAdapter(SynfranchiseAdapter);}
+                recyclerView8.setAdapter(GlobalfranchiseAdapter);}
         }
 
         @Override
