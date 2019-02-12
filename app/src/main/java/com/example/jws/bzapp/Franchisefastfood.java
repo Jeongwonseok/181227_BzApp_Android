@@ -53,6 +53,9 @@ public class Franchisefastfood extends AppCompatActivity {
         tabHost.addTab(tabHost.newTabSpec("피자").setContent(R.id.tab4).setIndicator("피자"));
         tabHost.addTab(tabHost.newTabSpec("패스트푸드").setContent(R.id.tab5).setIndicator("패스트푸드"));
         tabHost.setCurrentTab(0);
+        for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++)
+        {tabHost.getTabWidget().getChildAt(i).setPadding(0,0,0,0);}
+
 
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override

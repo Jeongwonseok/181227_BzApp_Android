@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class FranchiseActivity1 extends AppCompatActivity {
-    ImageButton btnBack,btnFast,btnleisure,btnDrink;
+    ImageButton btnBack,btnFast,btnleisure,btnDrink,btnReatil,btnService,btnEatout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +38,8 @@ public class FranchiseActivity1 extends AppCompatActivity {
         btnleisure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(FranchiseActivity1,FranchisePlay.class);
-//                startActivity(intent);
+                Intent intent = new Intent(FranchiseActivity1.this,FranchiseFplay.class);
+                startActivity(intent);
             }
         });
         btnDrink=(ImageButton)findViewById(R.id.btnbever);
@@ -47,6 +47,31 @@ public class FranchiseActivity1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FranchiseActivity1.this,Franchisedrink.class);
+                startActivity(intent);
+            }
+        });
+        btnReatil=(ImageButton)findViewById(R.id.btnsale);
+        btnReatil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FranchiseActivity1.this,Franchiseretail.class);
+                startActivity(intent);
+            }
+        });
+        btnService=(ImageButton)findViewById(R.id.btnservice);
+        btnService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FranchiseActivity1.this,Franchiseservice.class);
+                startActivity(intent);
+            }
+        });
+
+        btnEatout=(ImageButton)findViewById(R.id.btndinner);
+        btnEatout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FranchiseActivity1.this,Franchiseeatout.class);
                 startActivity(intent);
             }
         });

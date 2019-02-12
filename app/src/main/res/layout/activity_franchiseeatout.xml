@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".FranchiseFplay">
+    tools:context=".Franchiseeatout">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -94,11 +94,16 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TabWidget
-                    android:id="@android:id/tabs"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="#ffffff"/>
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:scrollbars="none"
+                    android:layout_height="wrap_content">
+                    <TabWidget
+                        android:id="@android:id/tabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="#ffffff"/>
+                </HorizontalScrollView>
 
                 <FrameLayout
                     android:id="@android:id/tabcontent"
@@ -122,8 +127,11 @@
                         android:id="@+id/tab2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#654321"
                         android:orientation="vertical">
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/RV2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
 
                     </LinearLayout>
 
@@ -131,8 +139,11 @@
                         android:id="@+id/tab3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#789456"
                         android:orientation="vertical">
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/RV3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
 
                     </LinearLayout>
 
@@ -140,8 +151,11 @@
                         android:id="@+id/tab4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#123987"
                         android:orientation="vertical">
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/RV4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
 
                     </LinearLayout>
 
@@ -149,8 +163,47 @@
                         android:id="@+id/tab5"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#852369"
                         android:orientation="vertical">
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/RV5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/tab6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/RV6"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/tab7"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/RV7"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/tab8"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/RV8"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
 
                     </LinearLayout>
                 </FrameLayout>

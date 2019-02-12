@@ -33,6 +33,8 @@ public class FranchiseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         public void onClick(View view) {
             //카드뷰 클릭했을때 발생하는 이벤트
             Intent intent = new Intent(view.getContext(),Franchisedetail.class);
+            String shopname=name.getText().toString();
+            intent.putExtra("Shopname",shopname);
             view.getContext().startActivity(intent);
         }
     }

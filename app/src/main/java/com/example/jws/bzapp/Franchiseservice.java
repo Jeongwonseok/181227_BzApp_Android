@@ -20,7 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class Franchisedrink extends AppCompatActivity {
+public class Franchiseservice extends AppCompatActivity {
 
     ImageButton btnBack;
     ImageButton btnFilter;
@@ -30,7 +30,7 @@ public class Franchisedrink extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_franchisedrink);
+        setContentView(R.layout.activity_franchiseservice);
 
         //카드뷰 추가 시킬 리사이클뷰 선언
 
@@ -38,7 +38,7 @@ public class Franchisedrink extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Franchisedrink.this, FranchiseActivity1.class);
+                Intent intent = new Intent(Franchiseservice.this, FranchiseActivity1.class);
                 startActivity(intent);
             }
         });
@@ -48,10 +48,10 @@ public class Franchisedrink extends AppCompatActivity {
         TabHost tabHost = (TabHost)findViewById(R.id.Host);
         tabHost.setup();
         tabHost.addTab(tabHost.newTabSpec("전체").setContent(R.id.tab1).setIndicator("전체"));
-        tabHost.addTab(tabHost.newTabSpec("커피").setContent(R.id.tab2).setIndicator("커피"));
-        tabHost.addTab(tabHost.newTabSpec("제과제빵").setContent(R.id.tab3).setIndicator("제과제빵"));
-        tabHost.addTab(tabHost.newTabSpec("주스/차").setContent(R.id.tab4).setIndicator("주스/차"));
-        tabHost.addTab(tabHost.newTabSpec("아이스크림/빙수").setContent(R.id.tab5).setIndicator("아이스크림/빙수"));
+        tabHost.addTab(tabHost.newTabSpec("스포츠").setContent(R.id.tab2).setIndicator("스포츠"));
+        tabHost.addTab(tabHost.newTabSpec("숙박").setContent(R.id.tab3).setIndicator("숙박"));
+        tabHost.addTab(tabHost.newTabSpec("PC방").setContent(R.id.tab4).setIndicator("PC방"));
+        tabHost.addTab(tabHost.newTabSpec("오락").setContent(R.id.tab5).setIndicator("오락"));
         tabHost.setCurrentTab(0);
         for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++)
         {tabHost.getTabWidget().getChildAt(i).setPadding(0,0,0,0);}
@@ -60,22 +60,22 @@ public class Franchisedrink extends AppCompatActivity {
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
-               if(tabId.equals("전체")){
-                FranchiseList franchiseList = new FranchiseList("전체");
-                franchiseList.execute();  }
-                else if (tabId.equals("커피")) {
-                   FranchiseList franchiseList = new FranchiseList("커피");
-                   franchiseList.execute();}
-               else if (tabId.equals("제과제빵")) {
-                   FranchiseList franchiseList = new FranchiseList("제과제빵");
-                   franchiseList.execute();
-               }  else if (tabId.equals("주스/차")) {
-                   FranchiseList franchiseList = new FranchiseList("주스/차");
-                   franchiseList.execute();
-               }  else if (tabId.equals("아이스크림/빙수")) {
-                   FranchiseList franchiseList = new FranchiseList("아이스크림/빙수");
-                   franchiseList.execute();
-               }
+                if(tabId.equals("전체")){
+                    FranchiseList franchiseList = new FranchiseList("전체");
+                    franchiseList.execute();  }
+                else if (tabId.equals("스포츠")) {
+                    FranchiseList franchiseList = new FranchiseList("스포츠");
+                    franchiseList.execute();}
+                else if (tabId.equals("숙박")) {
+                    FranchiseList franchiseList = new FranchiseList("숙박");
+                    franchiseList.execute();
+                }  else if (tabId.equals("PC방")) {
+                    FranchiseList franchiseList = new FranchiseList("PC방");
+                    franchiseList.execute();
+                }  else if (tabId.equals("오락")) {
+                    FranchiseList franchiseList = new FranchiseList("오락");
+                    franchiseList.execute();
+                }
             }
         });
 
@@ -85,7 +85,7 @@ public class Franchisedrink extends AppCompatActivity {
         franchiseList.execute();
     }
 
-   class FranchiseList extends AsyncTask<Void, Void, String> {
+    class FranchiseList extends AsyncTask<Void, Void, String> {
 
         String kind;
         public FranchiseList(String Kind){
@@ -99,7 +99,7 @@ public class Franchisedrink extends AppCompatActivity {
         protected String doInBackground(Void... voids) {
             try {
                 //서버에 있는 php 실행
-                URL url = new URL("http://qwerr784.cafe24.com/Fdrink.php");
+                URL url = new URL("http://qwerr784.cafe24.com/Fplay.php");
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -128,20 +128,20 @@ public class Franchisedrink extends AppCompatActivity {
         public void show(String s) {
 
             ArrayList<FranchiseInfo> ALLarrayList = new ArrayList<>();
-            ArrayList<FranchiseInfo> CoffeearrayList = new ArrayList<>();
-            ArrayList<FranchiseInfo> BreadarrayList = new ArrayList<>();
-            ArrayList<FranchiseInfo> JuicearrayList = new ArrayList<>();
-            ArrayList<FranchiseInfo> AcreamarrayList = new ArrayList<>();
+            ArrayList<FranchiseInfo> SportsarrayList = new ArrayList<>();
+            ArrayList<FranchiseInfo> StayarrayList = new ArrayList<>();
+            ArrayList<FranchiseInfo> PCarrayList = new ArrayList<>();
+            ArrayList<FranchiseInfo> EnterarrayList = new ArrayList<>();
 
-            RecyclerView recyclerView = (RecyclerView)findViewById(R.id.RV1);RecyclerView.LayoutManager manager = new LinearLayoutManager(Franchisedrink.this);
+            RecyclerView recyclerView = (RecyclerView)findViewById(R.id.RV1);RecyclerView.LayoutManager manager = new LinearLayoutManager(Franchiseservice.this);
             recyclerView.setLayoutManager(manager);
-            RecyclerView recyclerView2 = (RecyclerView)findViewById(R.id.RV2); RecyclerView.LayoutManager manager2 = new LinearLayoutManager(Franchisedrink.this);
+            RecyclerView recyclerView2 = (RecyclerView)findViewById(R.id.RV2); RecyclerView.LayoutManager manager2 = new LinearLayoutManager(Franchiseservice.this);
             recyclerView2.setLayoutManager(manager2);
-            RecyclerView recyclerView3 = (RecyclerView)findViewById(R.id.RV3); RecyclerView.LayoutManager manager3 = new LinearLayoutManager(Franchisedrink.this);
+            RecyclerView recyclerView3 = (RecyclerView)findViewById(R.id.RV3); RecyclerView.LayoutManager manager3 = new LinearLayoutManager(Franchiseservice.this);
             recyclerView3.setLayoutManager(manager3);
-            RecyclerView recyclerView4 = (RecyclerView)findViewById(R.id.RV4); RecyclerView.LayoutManager manager4 = new LinearLayoutManager(Franchisedrink.this);
+            RecyclerView recyclerView4 = (RecyclerView)findViewById(R.id.RV4); RecyclerView.LayoutManager manager4 = new LinearLayoutManager(Franchiseservice.this);
             recyclerView4.setLayoutManager(manager4);
-            RecyclerView recyclerView5 = (RecyclerView)findViewById(R.id.RV5); RecyclerView.LayoutManager manager5 = new LinearLayoutManager(Franchisedrink.this);
+            RecyclerView recyclerView5 = (RecyclerView)findViewById(R.id.RV5); RecyclerView.LayoutManager manager5 = new LinearLayoutManager(Franchiseservice.this);
             recyclerView5.setLayoutManager(manager5);
 
 
@@ -184,21 +184,23 @@ public class Franchisedrink extends AppCompatActivity {
                     ALLarrayList.add(ALLfranchiseInfo);
                     count++;
 
-                    if (Category.equals("커피")){
+
+
+                    if (Category.equals("스포츠")){
                         FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
-                        CoffeearrayList.add(franchiseInfo);
+                        SportsarrayList.add(franchiseInfo);
                     }
-                    else if(Category.equals("제과제빵")){
+                    else if(Category.equals("숙박")){
                         FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
-                        BreadarrayList.add(franchiseInfo);
+                        StayarrayList.add(franchiseInfo);
                     }
-                    else if(Category.equals("주스/차")){
+                    else if(Category.equals("PC방")){
                         FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
-                        JuicearrayList.add(franchiseInfo);
+                        PCarrayList.add(franchiseInfo);
                     }
-                    else if(Category.equals("아이스크림/빙수")){
+                    else if(Category.equals("오락")){
                         FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
-                        AcreamarrayList.add(franchiseInfo);
+                        EnterarrayList.add(franchiseInfo);
                     }
                 }
             } catch (Exception e) {
@@ -206,23 +208,23 @@ public class Franchisedrink extends AppCompatActivity {
             }
 
             FranchiseAdapter AllfranchiseAdapter = new FranchiseAdapter(ALLarrayList);
-            FranchiseAdapter CoffeeranchiseAdapter = new FranchiseAdapter(CoffeearrayList);
-            FranchiseAdapter BreadfranchiseAdapter = new FranchiseAdapter(BreadarrayList);
-            FranchiseAdapter JuicefranchiseAdapter = new FranchiseAdapter(JuicearrayList);
-            FranchiseAdapter AcreamfranchiseAdapter = new FranchiseAdapter(AcreamarrayList);
+            FranchiseAdapter SportsfranchiseAdapter = new FranchiseAdapter(SportsarrayList);
+            FranchiseAdapter StayfranchiseAdapter = new FranchiseAdapter(StayarrayList);
+            FranchiseAdapter PCfranchiseAdapter = new FranchiseAdapter(PCarrayList);
+            FranchiseAdapter EnterfranchiseAdapter = new FranchiseAdapter(EnterarrayList);
             if(kind.equals("전체")){
-            recyclerView.setAdapter(AllfranchiseAdapter);}
-            else  if(kind.equals("커피")){
-                recyclerView2.setAdapter(CoffeeranchiseAdapter);}
+                recyclerView.setAdapter(AllfranchiseAdapter);}
+            else  if(kind.equals("스포츠")){
+                recyclerView2.setAdapter(SportsfranchiseAdapter);}
 
-            else if(kind.equals("제과제빵")){
-                recyclerView3.setAdapter(BreadfranchiseAdapter);}
+            else if(kind.equals("숙박")){
+                recyclerView3.setAdapter(StayfranchiseAdapter);}
 
-            else if(kind.equals("주스/차")){
-                recyclerView4.setAdapter(JuicefranchiseAdapter);}
+            else if(kind.equals("PC방")){
+                recyclerView4.setAdapter(PCfranchiseAdapter);}
 
-            else if(kind.equals("아이스크림/빙수")){
-                recyclerView5.setAdapter(AcreamfranchiseAdapter);}
+            else if(kind.equals("오락")){
+                recyclerView5.setAdapter(EnterfranchiseAdapter);}
         }
 
         @Override

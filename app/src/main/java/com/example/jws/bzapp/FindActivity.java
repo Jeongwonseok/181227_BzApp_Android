@@ -157,7 +157,7 @@ public class FindActivity extends AppCompatActivity {
                     return;
                 } else {
                     //모든 값이 다 있으면 DB에 저장하는 메소드 실행
-                    Findid findid = new Findid(name, email, phone, responseListener);
+                    Findid findid = new Findid(name, email, phone,responseListener );
                     RequestQueue queue = Volley.newRequestQueue(FindActivity.this);
                     queue.add(findid);
                 }

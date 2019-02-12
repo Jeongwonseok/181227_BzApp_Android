@@ -91,6 +91,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/shopname"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="달봉이치킨"
@@ -99,6 +100,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/Mutual"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="(주)달봉엔터프라이즈"
@@ -139,6 +141,7 @@
                             android:gravity="right">
 
                             <TextView
+                                android:id="@+id/FRegister"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -218,6 +221,7 @@
                         android:background="#f1f1f1">
 
                         <TextView
+                            android:id="@+id/shopname2"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -245,6 +249,7 @@
                         android:layout_weight="1">
 
                         <TextView
+                            android:id="@+id/Asales17"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -255,6 +260,7 @@
                             android:textSize="13dp" />
 
                         <TextView
+                            android:id="@+id/top30"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -334,6 +340,7 @@
                             android:background="@drawable/money" />
 
                         <TextView
+                            android:id="@+id/Ownermoney"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -370,6 +377,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:text="로딩중.."
+                            android:id="@+id/Interior"
                             android:textColor="#ED3050"
                             android:textSize="20dp"
                             android:textStyle="bold" />
@@ -446,6 +454,7 @@
                                 android:textSize="13dp" />
 
                             <TextView
+                                android:id="@+id/shopname3"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="3"
@@ -473,6 +482,7 @@
                                 android:textSize="13dp" />
 
                             <TextView
+                                android:id="@+id/StoreSu15"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="3"
@@ -500,6 +510,7 @@
                                 android:textSize="13dp" />
 
                             <TextView
+                                android:id="@+id/StoreSu16"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="3"
@@ -527,6 +538,7 @@
                                 android:textSize="13dp" />
 
                             <TextView
+                                android:id="@+id/StoreSu17"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="3"
@@ -579,6 +591,7 @@
                                 android:textSize="13dp" />
 
                             <TextView
+                                android:id="@+id/shopname4"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="3"
@@ -606,6 +619,7 @@
                                 android:textSize="13dp" />
 
                             <TextView
+                                android:id="@+id/Advertisement"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="3"
@@ -633,6 +647,7 @@
                                 android:textSize="13dp" />
 
                             <TextView
+                                android:id="@+id/Promotion"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="3"
@@ -660,6 +675,7 @@
                                 android:textSize="13dp" />
 
                             <TextView
+                                android:id="@+id/Sum"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="3"
@@ -748,6 +764,7 @@
                             android:textSize="13dp" />
 
                         <TextView
+                            android:id="@+id/Fcontract"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="3"
@@ -775,6 +792,7 @@
                             android:textSize="13dp" />
 
                         <TextView
+                            android:id="@+id/Rcontract"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="3"
