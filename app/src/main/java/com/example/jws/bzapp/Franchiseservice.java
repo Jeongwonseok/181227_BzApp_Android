@@ -235,57 +235,57 @@ public class Franchiseservice extends AppCompatActivity {
                         Storesu="정보없음";
                     }else  Storesu+="개";
                     //////////////////////////
-                    FranchiseInfo ALLfranchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                    FranchiseInfo ALLfranchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
                     ALLarrayList.add(ALLfranchiseInfo);
                     count++;
 
 
                     if (Category.equals("기타서비스")){
-                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
                         ServicearrayList .add(franchiseInfo);
                     }
                     else if(Category.equals("미용")){
-                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
                         HairarrayList .add(franchiseInfo);
                     }
                     else if(Category.equals("기타교육")){
-                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
                         EduparrayList .add(franchiseInfo);
                     }
                     else if(Category.equals("외국어교육")){
-                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
                         FeduarrayList .add(franchiseInfo);
                     }
                     else if(Category.equals("교과교육")){
-                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
                         SeduarrayList .add(franchiseInfo);
                     }
                     else if(Category.equals("유아")){
-                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
                         ChildarrayList .add(franchiseInfo);
                     }
                     else if(Category.equals("자동차")){
-                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
                         CararrayList .add(franchiseInfo);
                     }
                     else if(Category.equals("안경")){
-                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
                         GlassarrayList .add(franchiseInfo);
                     }
                     else if(Category.equals("세탁")){
-                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
                         WasharrayList .add(franchiseInfo);
                     }
                     else if(Category.equals("반려동물")){
-                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
                         PetarrayList .add(franchiseInfo);
                     }
                     else if(Category.equals("운송")){
-                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
                         TransarrayList .add(franchiseInfo);
                     }
                     else if(Category.equals("부동산/임대")){
-                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
                         HomearrayList .add(franchiseInfo);
                     }
 

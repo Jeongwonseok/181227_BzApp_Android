@@ -180,24 +180,24 @@ public class Franchisedrink extends AppCompatActivity {
                         Storesu="정보없음";
                     }else  Storesu+="개";
                     //////////////////////////
-                    FranchiseInfo ALLfranchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                    FranchiseInfo ALLfranchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
                     ALLarrayList.add(ALLfranchiseInfo);
                     count++;
 
                     if (Category.equals("커피")){
-                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
                         CoffeearrayList.add(franchiseInfo);
                     }
                     else if(Category.equals("제과제빵")){
-                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
                         BreadarrayList.add(franchiseInfo);
                     }
                     else if(Category.equals("주스/차")){
-                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
                         JuicearrayList.add(franchiseInfo);
                     }
                     else if(Category.equals("아이스크림/빙수")){
-                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior);
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
                         AcreamarrayList.add(franchiseInfo);
                     }
                 }

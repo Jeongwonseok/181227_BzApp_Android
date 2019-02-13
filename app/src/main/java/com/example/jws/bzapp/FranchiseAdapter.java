@@ -13,15 +13,17 @@ import com.example.jws.bzapp.FranchiseInfo;
 import com.example.jws.bzapp.R;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class FranchiseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView name, Storesu,Ownermoney, Asales17, Interior;
-
+        TextView name, Storesu,Ownermoney, Asales17, Interior,Category;
+        ImageView icon;
         MyViewHolder(View view){
             super(view);
             view.setOnClickListener(this);
+            icon=view.findViewById(R.id.iv);
             name = view.findViewById(R.id.name);
             Storesu = view.findViewById(R.id.count);
             Ownermoney = view.findViewById(R.id.scost);
@@ -56,6 +58,10 @@ public class FranchiseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         MyViewHolder myViewHolder = (MyViewHolder)viewHolder;
 
         //카드뷰 레이아웃 세팅
+        if(franchiseInfos.get(i).Category.equals("한식")){
+        myViewHolder.icon.setImageResource(R.drawable.adver);}
+        else if(franchiseInfos.get(i).Category.equals("분식"))
+            myViewHolder.icon.setImageResource(R.drawable.btndinner);
         myViewHolder.name.setText(franchiseInfos.get(i).name);
         myViewHolder.Storesu.setText(franchiseInfos.get(i).Storesu);
         myViewHolder.Ownermoney.setText(franchiseInfos.get(i).Ownermoney);
