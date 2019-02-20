@@ -146,22 +146,6 @@ public class Franchisefastfood extends AppCompatActivity {
             recyclerView5.setLayoutManager(manager5);
 
 
-
-//            RecyclerView recyclerView = (RecyclerView)findViewById(R.id.RV1);
-//            RecyclerView recyclerView2 = (RecyclerView)findViewById(R.id.RV2);
-//            RecyclerView recyclerView3 = (RecyclerView)findViewById(R.id.RV3);
-//            RecyclerView recyclerView4 = (RecyclerView)findViewById(R.id.RV4);
-//            RecyclerView recyclerView5 = (RecyclerView)findViewById(R.id.RV5);
-//            if(urlnumber.equals("http://qwerr784.cafe24.com/Ffast.php")) {
-//                RecyclerView.LayoutManager manager = new LinearLayoutManager(FranchiseActivity2.this);
-//                recyclerView.setLayoutManager(manager);
-//            }
-//            else  if(urlnumber.equals("http://qwerr784.cafe24.com/FfastC.php")) {
-//                RecyclerView.LayoutManager manager = new LinearLayoutManager(FranchiseActivity2.this);
-//                recyclerView2.setLayoutManager(manager);
-//            }
-
-
             try {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("response");

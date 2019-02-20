@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -33,7 +34,25 @@ import java.util.ArrayList;
 public class Franchisedetail extends AppCompatActivity {
     ImageButton btnBack;
     ImageButton btnHome;
-    TextView Shopname, Shopname2, Shopname3, Shopname4, txtMutual, txtFRegister, txtStoreSu17, txtStoreSu16, txtStoreSu15, txtAsales17, txtOwnermoney, txtInterior, txtFcontract, txtRcontract, txtAdvertisement, txtPromotion, txtTop30;
+    TextView Shopname;
+    TextView Shopname2;
+    TextView Shopname3;
+    TextView Shopname4;
+    TextView Shopname5;
+    TextView txtMutual;
+    TextView txtFRegister;
+    TextView txtStoreSu17;
+    TextView txtStoreSu16;
+    TextView txtStoreSu15;
+    TextView txtAsales17;
+    TextView txtOwnermoney;
+    TextView txtInterior;
+    TextView txtFcontract;
+    TextView txtRcontract;
+    TextView txtAdvertisement;
+    TextView txtPromotion;
+    TextView txtTop30;
+    TextView txtSum;
 
     int color1, color2;
 
@@ -48,6 +67,7 @@ public class Franchisedetail extends AppCompatActivity {
         Shopname2 = (TextView) findViewById(R.id.shopname2);
         Shopname3 = (TextView) findViewById(R.id.shopname3);
         Shopname4 = (TextView) findViewById(R.id.shopname4);
+        Shopname5=(TextView)findViewById(R.id.shopname5);
         txtMutual = (TextView) findViewById(R.id.Mutual);
         txtFRegister = (TextView) findViewById(R.id.FRegister);
         txtStoreSu17 = (TextView) findViewById(R.id.StoreSu17);
@@ -61,14 +81,15 @@ public class Franchisedetail extends AppCompatActivity {
         txtAdvertisement = (TextView) findViewById(R.id.Advertisement);
         txtPromotion = (TextView) findViewById(R.id.Promotion);
         txtTop30 = (TextView) findViewById(R.id.top30);
+        txtSum=(TextView)findViewById(R.id.Sum);
         Intent intent = getIntent();
         final String shopname = intent.getStringExtra("Shopname");
+        final String Category = intent.getStringExtra("Category");
         Shopname.setText(shopname);
         Shopname2.setText(shopname);
         Shopname3.setText(shopname);
         Shopname4.setText(shopname);
-
-
+        Shopname5.setText(shopname);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,10 +101,75 @@ public class Franchisedetail extends AppCompatActivity {
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Franchisedetail.this, MainActivity.class);
-                startActivity(intent);
+            Intent intent = new Intent(Franchisedetail.this,MainActivity.class);
+            startActivity(intent);
             }
         });
+String Table="";
+//Ffast, Fplay, Fretail, Fservice, Featout,Fdrink
+        if(Category.equals("한식")||Category.equals("퓨전/기타")||Category.equals("분식")||Category.equals("양식")||Category.equals("일식")||Category.equals("중식")||Category.equals("세계음식"))
+             Table="Featout";
+        else if(Category.equals("커피")||Category.equals("제과제빵")||Category.equals("주스/차")||Category.equals("아이스크림/빙수"))
+            Table="Fdrink";
+        else if(Category.equals("치킨")||Category.equals("주점")||Category.equals("피자")||Category.equals("패스트푸드"))
+            Table="Ffast";
+        else if(Category.equals("스포츠")||Category.equals("숙박")||Category.equals("PC방")||Category.equals("오락"))
+            Table="Fplay";
+            else if(Category.equals("기타소매")||Category.equals("의류/패션")||Category.equals("화장품")||Category.equals("건강식품")||Category.equals("편의점")||Category.equals("농수산물")||Category.equals("종합소매점"))
+                Table="Fretail";
+                else Table="Fservice";
+
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                try {
+                    JSONObject jsonObject = new JSONObject(s);
+                    JSONArray jsonArray = jsonObject.getJSONArray("response");
+                    int count = 0;
+                    String Mutual,FRegister,StoreSu17,StoreSu16,StoreSu15,Asales17,Ownermoney,Interior,Fcontract,Rcontract,Advertisement,Promotion,Top30;
+                    while (count < jsonArray.length()) {
+                        JSONObject object = jsonArray.getJSONObject(count);
+                                txtMutual.setText(object.getString("Mutual"));
+                                txtFRegister.setText(object.getString("FRegister"));
+                                txtStoreSu17.setText(object.getString("StoreSu17"));
+                                txtStoreSu16.setText(object.getString("StoreSu16"));
+                                txtStoreSu15.setText(object.getString("StoreSu15"));
+                                txtAsales17.setText(object.getString("Asales17"));
+                                txtOwnermoney.setText(object.getString("Ownermoney"));
+                                txtInterior.setText(object.getString("Interior"));
+                                txtFcontract.setText(object.getString("Fcontract"));
+                                txtRcontract.setText(object.getString("Rcontract"));
+                                txtAdvertisement.setText(object.getString("Advertisement"));
+                                txtPromotion.setText(object.getString("Promotion"));
+                                txtTop30.setText(object.getString("Top30"));
+//                        Mutual=object.getString("Mutual");
+//                        FRegister = object.getString("FRegister");
+//                        StoreSu17 = object.getString("StoreSu17");
+//                        StoreSu16 = object.getString("StoreSu16");
+//                        StoreSu15 = object.getString("StoreSu15");
+//                        Asales17 = object.getString("Asales17");
+//                        Ownermoney = object.getString("Ownermoney");
+//                        Interior = object.getString("Interior");
+//                        Fcontract = object.getString("Fcontract");
+//                        Rcontract = object.getString("Rcontract");
+//                        Advertisement = object.getString("Advertisement");
+//                        Promotion = object.getString("Promotion");
+//                        Top30=object.getString("Top30");
+//                        txtMutual.setText(Mutual);
+                    }
+                    if(jsonArray.length()<0) Toast.makeText(getApplicationContext(),"실패",Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        FindFranchise findFranchise = new FindFranchise(shopname,Table,responseListener );
+        RequestQueue queue = Volley.newRequestQueue(Franchisedetail.this);
+        queue.add(findFranchise);
+        Toast.makeText(getApplicationContext(),Table,Toast.LENGTH_SHORT).show();
+
+
+
 
         //막대그래프(연평균매출액) 시작
         BarChart barChart2 = (BarChart) findViewById(R.id.barChartYear);
@@ -129,7 +215,7 @@ public class Franchisedetail extends AppCompatActivity {
 
 
         ArrayList<String> labels2 = new ArrayList<String>();
-        labels2.add("달봉이치킨");
+        labels2.add(shopname);
         labels2.add("상위 30개사 평균");
 
 
