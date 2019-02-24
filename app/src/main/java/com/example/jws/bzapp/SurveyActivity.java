@@ -17,12 +17,19 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class SurveyActivity extends AppCompatActivity {
 
     ImageButton btnBack;
     Button btncancel, btnok;
     RadioGroup rgGender, rgLocation, rgLreason, rgType, rgTreason;
-    String ID, gender, location, age, lReason, Type, tReason;
+    String ID, gender, location, age, lReason, type, tReason;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +60,7 @@ public class SurveyActivity extends AppCompatActivity {
             }
         });
 
-       rgGender = (RadioGroup) findViewById(R.id.rgGender);
+        rgGender = (RadioGroup) findViewById(R.id.rgGender);
         rgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -130,7 +137,7 @@ public class SurveyActivity extends AppCompatActivity {
             }
         });
 
-        rgLreason = (RadioGroup)findViewById(R.id.rgLreason);
+        rgLreason = (RadioGroup) findViewById(R.id.rgLreason);
         rgLreason.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -152,38 +159,38 @@ public class SurveyActivity extends AppCompatActivity {
             }
         });
 
-        rgType = (RadioGroup)findViewById(R.id.rgType);
+        rgType = (RadioGroup) findViewById(R.id.rgType);
         rgType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton rbGender = (RadioButton) findViewById(checkedId);
                 switch (checkedId) {
                     case R.id.rbRetail:
-                        Type = "소매";
+                        type = "소매";
                         break;
                     case R.id.rbLife:
-                        Type = "생활서비스";
+                        type = "생활서비스";
                         break;
                     case R.id.rbTour:
-                        Type = "관광/여가/오락";
+                        type = "관광/여가/오락";
                         break;
                     case R.id.rbStay:
-                        Type = "숙박";
+                        type = "숙박";
                         break;
                     case R.id.rbSports:
-                        Type = "스포츠";
+                        type = "스포츠";
                         break;
                     case R.id.rbFood:
-                        Type = "음식";
+                        type = "음식";
                         break;
                     case R.id.rbEdu:
-                        Type = "학문/교육";
+                        type = "학문/교육";
                         break;
                 }
             }
         });
 
-        rgTreason = (RadioGroup)findViewById(R.id.rgTreason);
+        rgTreason = (RadioGroup) findViewById(R.id.rgTreason);
         rgTreason.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -253,26 +260,53 @@ public class SurveyActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "지역을 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
                 } else if (-1 == rgLreason.getCheckedRadioButtonId()) {
                     Toast.makeText(getApplicationContext(), "지역선택이유를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
-                }  else if (-1 == rgType.getCheckedRadioButtonId()) {
+                } else if (-1 == rgType.getCheckedRadioButtonId()) {
                     Toast.makeText(getApplicationContext(), "업종을 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
                 } else if (-1 == rgTreason.getCheckedRadioButtonId()) {
                     Toast.makeText(getApplicationContext(), "업종선택이유를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
                 } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(SurveyActivity.this);
-                    builder.setTitle("설문완료");
-                    builder.setMessage("설문결과를 확인하시려면 '확인'버튼을 누르세요");
-                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    Response.Listener<String> responseListener = new Response.Listener<String>() {
                         @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            finish();
-                            Intent intent = new Intent(SurveyActivity.this, RecommendActivity.class);
-                            startActivity(intent);
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonResponse = new JSONObject(response);
+                                boolean success = jsonResponse.getBoolean("success");
+                                if (success) {
+                                    //등록후 응답받은 값이 true이면 성공 다이얼로그 출력
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(SurveyActivity.this);
+                                    builder.setTitle("설문완료");
+                                    builder.setMessage("설문결과를 확인하시려면 '확인'버튼을 누르세요");
+                                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            finish();
+                                            Intent intent = new Intent(SurveyActivity.this, RecommendActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    });
+                                    builder.setNegativeButton("취소", null);
+                                    builder.show();
+                                } else {
+                                    //등록 실패 했을때 실패 다이얼로그 출력
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(SurveyActivity.this);
+                                    builder.setTitle("등록실패");
+                                    builder.setMessage("등록실패했습니다.");
+                                    builder.setPositiveButton("확인", null);
+                                    builder.setNegativeButton("취소", null);
+                                    builder.show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    });
-                    builder.setNegativeButton("취소", null);
-                    builder.show();
+                    };
+                    SRegister sRegister = new SRegister(ID, gender, age, location, lReason, type, tReason, responseListener);
+                    RequestQueue queue = Volley.newRequestQueue(SurveyActivity.this);
+                    queue.add(sRegister);
                 }
             }
         });
+
+
     }
 }
