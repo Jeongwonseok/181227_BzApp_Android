@@ -152,18 +152,23 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="질문 1. 원하는 지역 " />
+                                android:text="질문 1. 창업시 원하는 지역을 선택해주세요. "
+                                android:textColor="#000000" />
 
                             <RadioGroup
                                 android:id="@+id/rgLocation"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:orientation="vertical">
+
 
                                 <RadioButton
                                     android:id="@+id/rbGangwon"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="강원도" />
+
 
                                 <RadioButton
                                     android:id="@+id/rbGyeonggi"
@@ -171,95 +176,111 @@
                                     android:layout_height="wrap_content"
                                     android:text="경기도" />
 
+
                                 <RadioButton
                                     android:id="@+id/rbGyeongsangS"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="경상남도" />
 
+
                                 <RadioButton
                                     android:id="@+id/rbGyeongsangN"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="경상북도" />
 
+
                                 <RadioButton
                                     android:id="@+id/rbGwangju"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="광주광역시" />
 
+
                                 <RadioButton
                                     android:id="@+id/rbDeagu"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="대구광역시" />
 
+
                                 <RadioButton
                                     android:id="@+id/rbDeajeon"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="대전광역시" />
 
+
                                 <RadioButton
                                     android:id="@+id/rbBusan"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="부산광역시" />
 
+
                                 <RadioButton
                                     android:id="@+id/rbSeoul"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="서울특별시" />
 
+
                                 <RadioButton
                                     android:id="@+id/rbSejong"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="세종특별시" />
 
+
                                 <RadioButton
                                     android:id="@+id/rbUlsan"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="울산광역시" />
 
+
                                 <RadioButton
                                     android:id="@+id/rbIncheon"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="인천광역시" />
 
+
                                 <RadioButton
                                     android:id="@+id/rbJeonraS"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="전라남도" />
 
+
                                 <RadioButton
                                     android:id="@+id/rbJeonraN"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="전라북도" />
 
+
                                 <RadioButton
                                     android:id="@+id/rbJeju"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="제주특별시" />
 
+
                                 <RadioButton
                                     android:id="@+id/rbchungS"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="충청남도" />
 
+
                                 <RadioButton
                                     android:id="@+id/rbchungN"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="충청북도" />
+
 
                             </RadioGroup>
 
@@ -286,7 +307,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="질문 2. 지역 이유" />
+                                android:text="질문 2. 위와 같은 지역을 선택한 이유는 무엇입니까?"
+                                android:textColor="#000000" />
 
                             <RadioGroup
                                 android:id="@+id/rgLreason"
@@ -343,7 +365,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="질문 3. 원하는 업종" />
+                                android:text="질문 3. 원하는 업종을 선택해주세요."
+                                android:textColor="#000000" />
 
                             <RadioGroup
                                 android:id="@+id/rgType"
@@ -418,7 +441,8 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="질문 4. 업종 이유" />
+                                android:text="질문 4. 위와 같은 지역을 업종한 이유는 무엇입니까?"
+                                android:textColor="#000000" />
 
                             <RadioGroup
                                 android:id="@+id/rgTreason"
@@ -454,6 +478,59 @@
 
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="33.33dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/corner"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="질문 5. 창업시 원하는 매출액의 범위를 선택해주세요."
+                                android:textColor="#000000" />
+
+                            <RadioGroup
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <RadioButton
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="1" />
+
+                                <RadioButton
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="2" />
+
+                                <RadioButton
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="3" />
+
+                                <RadioButton
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="4" />
+
+
+                            </RadioGroup>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -475,7 +552,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:background="#CDCDCD"
             android:gravity="center_horizontal"
             android:orientation="horizontal">

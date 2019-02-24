@@ -29,7 +29,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/o" />
+                android:background="@drawable/btndinner" />
 
             <TextView
                 android:id="@+id/name"
