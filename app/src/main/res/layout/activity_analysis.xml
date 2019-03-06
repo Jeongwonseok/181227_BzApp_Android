@@ -24,8 +24,14 @@
                 android:id="@+id/btnBack"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_gravity="left"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/back1" />
+
+            <ImageButton
+                android:id="@+id/btnHome"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/home" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -36,12 +42,14 @@
                 android:textSize="20dp" />
 
             <ImageButton
-                android:id="@+id/btnHome"
-                android:layout_width="30dp"
+                android:id="@+id/like"
+                android:layout_width="33dp"
                 android:layout_height="30dp"
-                android:layout_gravity="right"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/home" />
+                android:layout_gravity="right"
+                android:background="@drawable/emptystar" />
+
+
 
         </android.support.v7.widget.Toolbar>
 
@@ -73,14 +81,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
-                    <ImageButton
-                        android:id="@+id/like"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:layout_gravity="right|bottom"
-                        android:background="@drawable/emptystar" />
 
                 </FrameLayout>
             </LinearLayout>
