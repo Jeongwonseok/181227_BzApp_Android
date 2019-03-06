@@ -103,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (success) {
                                 //로그인 성공시 메인 액티비티 전환
                                 String ID = jsonObject.getString("ID");
+                                String questionYN = jsonObject.getString("questionYN");
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.putExtra("ID", ID);
                                 intent.putExtra("PW", PW);
@@ -111,6 +112,11 @@ public class LoginActivity extends AppCompatActivity {
                                 SharedPreferences.Editor checkLogin = test.edit();
                                 checkLogin.putBoolean("check", true);
                                 checkLogin.putString("id",ID);
+                                if (questionYN.equals("1")){
+                                    checkLogin.putBoolean("surveycheck",true);
+                                } else {
+                                    checkLogin.putBoolean("surveycheck",false);
+                                }
                                 //꼭 commit()을 해줘야 값이 저장됩니다 ㅎㅎ
                                 checkLogin.commit();
                                 startActivity(intent);

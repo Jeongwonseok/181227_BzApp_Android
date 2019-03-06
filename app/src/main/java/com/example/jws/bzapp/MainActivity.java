@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity
     ImageButton btnMypage;
     ImageButton btnLogout;
 
-    Boolean logincheck;
+    Boolean logincheck, surveycheck;
     String loginID;
 
 
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity
         //로그인 체크와 아이디 값 가져옥;
         SharedPreferences test = getSharedPreferences("check", Activity.MODE_PRIVATE);
         logincheck = test.getBoolean("check", false);
+        surveycheck = test.getBoolean("surveycheck", false);
         loginID = test.getString("id",null);
 
 
@@ -139,9 +140,14 @@ public class MainActivity extends AppCompatActivity
             btnSurvey.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
-                    intent.putExtra("ID", loginID);
-                    startActivity(intent);
+                    if (surveycheck) {
+                        Toast.makeText(getApplicationContext(),"상권분석",Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
+                        intent.putExtra("ID", loginID);
+                        startActivity(intent);
+                    }
                 }
             });
 

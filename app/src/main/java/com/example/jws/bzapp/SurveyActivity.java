@@ -1,7 +1,9 @@
 package com.example.jws.bzapp;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,8 +30,8 @@ public class SurveyActivity extends AppCompatActivity {
 
     ImageButton btnBack;
     Button btncancel, btnok;
-    RadioGroup rgGender, rgLocation, rgLreason, rgType, rgTreason;
-    String ID, gender, location, age, lReason, type, tReason;
+    RadioGroup rgGender, rgLocation, rgLreason, rgType, rgTreason, rgSales;
+    String ID, gender, location, age, lReason, type, tReason, sales;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -212,6 +214,28 @@ public class SurveyActivity extends AppCompatActivity {
             }
         });
 
+        rgSales = (RadioGroup) findViewById(R.id.rgSales);
+        rgSales.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton rbGender = (RadioButton) findViewById(checkedId);
+                switch (checkedId) {
+                    case R.id.rbS1:
+                        sales = "1";
+                        break;
+                    case R.id.rbS2:
+                        sales = "2";
+                        break;
+                    case R.id.rbS3:
+                        sales = "3";
+                        break;
+                    case R.id.rbS4:
+                        sales = "4";
+                        break;
+                }
+            }
+        });
+
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -259,11 +283,13 @@ public class SurveyActivity extends AppCompatActivity {
                 } else if (-1 == rgLocation.getCheckedRadioButtonId()) {
                     Toast.makeText(getApplicationContext(), "지역을 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
                 } else if (-1 == rgLreason.getCheckedRadioButtonId()) {
-                    Toast.makeText(getApplicationContext(), "지역선택이유를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "지역 선택 이유를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
                 } else if (-1 == rgType.getCheckedRadioButtonId()) {
                     Toast.makeText(getApplicationContext(), "업종을 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
                 } else if (-1 == rgTreason.getCheckedRadioButtonId()) {
-                    Toast.makeText(getApplicationContext(), "업종선택이유를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "업종 선택 이유를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
+                } else if (-1 == rgSales.getCheckedRadioButtonId()) {
+                    Toast.makeText(getApplicationContext(), "원하는 매출을 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
                 } else {
                     Response.Listener<String> responseListener = new Response.Listener<String>() {
                         @Override
@@ -275,7 +301,14 @@ public class SurveyActivity extends AppCompatActivity {
                                     //등록후 응답받은 값이 true이면 성공 다이얼로그 출력
                                     AlertDialog.Builder builder = new AlertDialog.Builder(SurveyActivity.this);
                                     builder.setTitle("설문완료");
-                                    builder.setMessage("설문결과를 확인하시려면 '확인'버튼을 누르세요");
+                                    builder.setMessage("상권 분석 화면으로 넘어가시겠습니까?");
+
+                                    SharedPreferences test = getSharedPreferences("check", Activity.MODE_PRIVATE);
+                                    SharedPreferences.Editor checkLogin = test.edit();
+                                    checkLogin.putBoolean("surveycheck", true);
+                                    //꼭 commit()을 해줘야 값이 저장됩니다 ㅎㅎ
+                                    checkLogin.commit();
+
                                     builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
@@ -284,15 +317,19 @@ public class SurveyActivity extends AppCompatActivity {
                                             startActivity(intent);
                                         }
                                     });
-                                    builder.setNegativeButton("취소", null);
+                                    builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            finish();
+                                        }
+                                    });
                                     builder.show();
                                 } else {
                                     //등록 실패 했을때 실패 다이얼로그 출력
                                     AlertDialog.Builder builder = new AlertDialog.Builder(SurveyActivity.this);
                                     builder.setTitle("등록실패");
-                                    builder.setMessage("등록실패했습니다.");
+                                    builder.setMessage("등록실패했습니다. 다시 한번 확인 해주세요.");
                                     builder.setPositiveButton("확인", null);
-                                    builder.setNegativeButton("취소", null);
                                     builder.show();
                                 }
                             } catch (JSONException e) {
@@ -300,7 +337,7 @@ public class SurveyActivity extends AppCompatActivity {
                             }
                         }
                     };
-                    SRegister sRegister = new SRegister(ID, gender, age, location, lReason, type, tReason, responseListener);
+                    SRegister sRegister = new SRegister(ID, gender, age, location, lReason, type, tReason, sales, responseListener);
                     RequestQueue queue = Volley.newRequestQueue(SurveyActivity.this);
                     queue.add(sRegister);
                 }

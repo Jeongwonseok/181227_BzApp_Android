@@ -501,25 +501,30 @@
                                 android:textColor="#000000" />
 
                             <RadioGroup
+                                android:id="@+id/rgSales"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
                                 <RadioButton
+                                    android:id="@+id/rbS1"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="1" />
 
                                 <RadioButton
+                                    android:id="@+id/rbS2"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="2" />
 
                                 <RadioButton
+                                    android:id="@+id/rbS3"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="3" />
 
                                 <RadioButton
+                                    android:id="@+id/rbS4"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="4" />
