@@ -272,24 +272,24 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                 startActivity(intent);
             }
         });
-
+        btnlike = (ImageButton)findViewById(R.id.like);
         //아이디를 보고 즐겨찾기 추가된걸 리스트로 가져와 현재 좌표와 비교해서 있으면 likeflag를 트루로 바꾼다?
         if (likeflag){
-            btnlike.setImageResource(R.drawable.pinkstar);
+            btnlike.setBackgroundResource(R.drawable.pinkstar);
         } else {
-            btnlike.setImageResource(R.drawable.emptystar);
+            btnlike.setBackgroundResource(R.drawable.emptystar);
         }
 
-        btnlike = (ImageButton)findViewById(R.id.like);
+
         btnlike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (likeflag){
                     likeflag=false;
-                    btnlike.setImageResource(R.drawable.emptystar);
+                    btnlike.setBackgroundResource(R.drawable.emptystar);
                 } else {
                     likeflag=true;
-                    btnlike.setImageResource(R.drawable.pinkstar);
+                    btnlike.setBackgroundResource(R.drawable.pinkstar);
                     //mLat위도 ,mLong경도, a반경
                 }
             }
