@@ -46,6 +46,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".UpdateActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".Mypage"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name"
@@ -99,35 +108,41 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".Franchisedrink"
+        <activity
+            android:name=".Franchisedrink"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".FranchiseFplay"
+        <activity
+            android:name=".FranchiseFplay"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".Franchisedetail"
+        <activity
+            android:name=".Franchisedetail"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".Franchisefastfood"
+        <activity
+            android:name=".Franchisefastfood"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".Franchiseservice"
+        <activity
+            android:name=".Franchiseservice"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".Franchiseretail"
+        <activity
+            android:name=".Franchiseretail"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".Franchiseeatout"
+        <activity
+            android:name=".Franchiseeatout"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
-
     </application>
 
 </manifest>

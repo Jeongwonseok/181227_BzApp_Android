@@ -334,13 +334,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             Intent intent = new Intent(MapActivity.this, JoinActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow) {
-
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 

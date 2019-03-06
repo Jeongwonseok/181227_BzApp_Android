@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity
 
         btnLogout = (ImageButton) nav_header_view.findViewById(R.id.btnLogout);
         btnMypage = (ImageButton) nav_header_view.findViewById(R.id.btnMypage);
+
         textid = (TextView)nav_header_view.findViewById(R.id.loginid);
 
         //로그인이 되어있을때 실핼될 코드
@@ -110,7 +111,8 @@ public class MainActivity extends AppCompatActivity
             btnMypage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getApplicationContext(),"마이페이지",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(MainActivity.this, Mypage.class);
+                    startActivity(intent);
                 }
             });
             btnNotice.setOnClickListener(new View.OnClickListener() {
@@ -279,13 +281,9 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, JoinActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow) {
-
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 

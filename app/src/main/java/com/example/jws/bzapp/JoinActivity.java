@@ -26,7 +26,6 @@ import static android.text.TextUtils.isEmpty;
 
 public class JoinActivity extends AppCompatActivity {
 
-    Spinner spinner;
     ImageButton btnBack;
     Button Jend;
     String question = "";
