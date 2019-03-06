@@ -73,6 +73,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
+                    <ImageButton
+                        android:id="@+id/like"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="right|bottom"
+                        android:background="@drawable/emptystar" />
+
                 </FrameLayout>
             </LinearLayout>
 
@@ -342,14 +349,14 @@
                         android:id="@+id/barChart3"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:layout_marginBottom="10dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"/>
+                        android:layout_height="30dp" />
 
                     <View
                         android:layout_width="match_parent"
@@ -430,10 +437,10 @@
                         android:id="@+id/barChart"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:layout_marginBottom="10dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -448,14 +455,14 @@
                         android:id="@+id/barChart2"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:layout_marginBottom="10dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"/>
+                        android:layout_height="30dp" />
 
                     <View
                         android:layout_width="match_parent"
@@ -770,9 +777,9 @@
                         android:id="@+id/jumpoResult"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
+                        android:layout_marginBottom="50dp"
                         android:orientation="vertical"
-                        android:visibility="gone"
-                        android:layout_marginBottom="50dp">
+                        android:visibility="gone">
 
                         <TextView
                             android:layout_width="wrap_content"
