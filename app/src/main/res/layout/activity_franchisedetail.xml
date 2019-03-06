@@ -73,7 +73,7 @@
                         android:id="@+id/iv"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:background="@drawable/o" />
+                        android:background="@drawable/beer" />
 
                 </LinearLayout>
 
@@ -676,7 +676,7 @@
                                 android:textSize="13dp" />
 
                             <TextView
-                                android:id="@+id/Sum"
+                                android:id="@+id/Sum2"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="3"
