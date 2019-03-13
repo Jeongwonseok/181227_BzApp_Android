@@ -5,11 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 public class FranchiseActivity1 extends AppCompatActivity {
     ImageButton btnBack,btnFast,btnleisure,btnDrink,btnReatil,btnService,btnEatout;
-
+    EditText FranSearch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,6 +18,16 @@ public class FranchiseActivity1 extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        FranSearch=(EditText)findViewById(R.id.franSearch);
+
+        FranSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(FranchiseActivity1.this,FranchiseSearch.class);
+                startActivity(intent);
+            }
+        });
+
 
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {

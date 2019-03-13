@@ -28,6 +28,7 @@
                 android:background="@drawable/back1" />
 
             <TextView
+                android:id="@+id/Shopname6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -73,7 +74,7 @@
                         android:id="@+id/iv"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:background="@drawable/beer" />
+                       />
 
                 </LinearLayout>
 
