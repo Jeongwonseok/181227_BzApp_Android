@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TabHost;
 
@@ -24,7 +25,7 @@ public class Franchisefastfood extends AppCompatActivity {
 
     ImageButton btnBack;
     ImageButton btnFilter;
-
+    EditText FranSearch;
     //카드뷰에 표시될 정보 배열
 
     @Override
@@ -39,6 +40,16 @@ public class Franchisefastfood extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Franchisefastfood.this, FranchiseActivity1.class);
+                startActivity(intent);
+            }
+        });
+
+        FranSearch=(EditText)findViewById(R.id.franSearch);
+
+        FranSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(Franchisefastfood.this,FranchiseSearch.class);
                 startActivity(intent);
             }
         });
