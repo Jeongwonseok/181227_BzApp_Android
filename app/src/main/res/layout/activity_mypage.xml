@@ -81,7 +81,6 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/round_edittext2"
                     android:paddingLeft="5dp"
-                    android:text="jws4281"
                     android:textSize="15dp"
                     android:focusable="false"
                     android:clickable="false"/>
@@ -146,7 +145,6 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/round_edittext2"
                     android:paddingLeft="5dp"
-                    android:text="정원석"
                     android:textSize="15dp"
                     android:focusable="false"
                     android:clickable="false"/>
@@ -179,7 +177,6 @@
                     android:background="@drawable/round_edittext2"
                     android:textSize="15dp"
                     android:inputType="textEmailAddress"
-                    android:text="jws4281@naver.com"
                     android:paddingLeft="5dp"
                     android:focusable="false"
                     android:clickable="false"/>
@@ -212,7 +209,6 @@
                     android:background="@drawable/round_edittext2"
                     android:textSize="15dp"
                     android:inputType="textEmailAddress"
-                    android:text="아버지 성함은?"
                     android:paddingLeft="5dp"
                     android:focusable="false"
                     android:clickable="false"/>
@@ -245,7 +241,6 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/round_edittext2"
                     android:paddingLeft="5dp"
-                    android:text="홍길동"
                     android:textSize="15dp"
                     android:focusable="false"
                     android:clickable="false"/>
@@ -278,7 +273,6 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/round_edittext2"
-                    android:text="010"
                     android:textSize="15dp"
                     android:paddingLeft="5dp"
                     android:focusable="false"
@@ -297,7 +291,6 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/round_edittext2"
-                    android:text="5507"
                     android:inputType="number"
                     android:maxLength="4"
                     android:textSize="15dp"
@@ -318,7 +311,6 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/round_edittext2"
-                    android:text="4281"
                     android:inputType="number"
                     android:maxLength="4"
                     android:textSize="15dp"

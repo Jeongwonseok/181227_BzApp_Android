@@ -1,12 +1,16 @@
 package com.example.jws.bzapp;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -272,25 +276,86 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                 startActivity(intent);
             }
         });
-        btnlike = (ImageButton)findViewById(R.id.like);
+
+        SharedPreferences test = getSharedPreferences("check", Activity.MODE_PRIVATE);
+        final String loginID = test.getString("id", null);
+        btnlike = (ImageButton) findViewById(R.id.like);
         //아이디를 보고 즐겨찾기 추가된걸 리스트로 가져와 현재 좌표와 비교해서 있으면 likeflag를 트루로 바꾼다?
-        if (likeflag){
-            btnlike.setBackgroundResource(R.drawable.pinkstar);
-        } else {
-            btnlike.setBackgroundResource(R.drawable.emptystar);
-        }
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    boolean success = jsonObject.getBoolean("success");
+                    if (success) {
+                        likeflag = true;
+                        btnlike.setBackgroundResource(R.drawable.pinkstar);
+                    } else {
+                        likeflag = false;
+                        btnlike.setBackgroundResource(R.drawable.emptystar);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        Searchbookmark searchbookmark = new Searchbookmark(loginID, mLat, mLong, a, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(AnalysisActivity.this);
+        queue.add(searchbookmark);
 
 
         btnlike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (likeflag){
-                    likeflag=false;
-                    btnlike.setBackgroundResource(R.drawable.emptystar);
+                if (loginID == null) {
+                    Toast.makeText(getApplicationContext(), "로그인이 필요합니다.", Toast.LENGTH_LONG).show();
                 } else {
-                    likeflag=true;
-                    btnlike.setBackgroundResource(R.drawable.pinkstar);
-                    //mLat위도 ,mLong경도, a반경
+                    if (likeflag) {
+                        likeflag = false;
+                        btnlike.setBackgroundResource(R.drawable.emptystar);
+                        Response.Listener<String> responseListener = new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    boolean success = jsonObject.getBoolean("success");
+                                    if (success) {
+                                        Toast.makeText(getApplicationContext(), "즐겨찾기 삭제를 성공했습니다.", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "즐겨찾기 삭제를 실패했습니다.", Toast.LENGTH_LONG).show();
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        };
+                        Deletebookmark deletebookmark = new Deletebookmark(loginID, mLat, mLong, a, responseListener);
+                        RequestQueue queue = Volley.newRequestQueue(AnalysisActivity.this);
+                        queue.add(deletebookmark);
+                    } else {
+                        likeflag = true;
+                        btnlike.setBackgroundResource(R.drawable.pinkstar);
+                        Response.Listener<String> responseListener = new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    boolean success = jsonObject.getBoolean("success");
+                                    if (success) {
+                                        Toast.makeText(getApplicationContext(), "즐겨찾기 추가에 성공했습니다.", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "즐겨찾기 추가에 실패했습니다.", Toast.LENGTH_LONG).show();
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        };
+                        Addbookmark addbookmark = new Addbookmark(loginID, mLat, mLong, a, responseListener);
+                        RequestQueue queue = Volley.newRequestQueue(AnalysisActivity.this);
+                        queue.add(addbookmark);
+                    }
+
                 }
             }
         });
@@ -1054,7 +1119,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
             public void onResponse(String s) {
                 String AFH_retail = null, ALH_retail = null, AFH_life = null, ALH_life = null, AFH_tour = null, ALH_tour = null, AFH_stay = null,
                         ALH_stay = null, AFH_sports = null, ALH_sports = null, AFH_food = null, ALH_food = null, AFH_edu = null, ALH_edu = null,
-                AFH_avg = null, ALH_avg = null;
+                        AFH_avg = null, ALH_avg = null;
 
                 try {
                     JSONObject jsonObject = new JSONObject(s);
@@ -1077,8 +1142,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                         ALH_food = object.getString("LH_food");
                         AFH_edu = object.getString("FH_edu");
                         ALH_edu = object.getString("LH_edu");
-                        AFH_avg=object.getString("FH_avg");
-                        ALH_avg=object.getString("LH_avg");
+                        AFH_avg = object.getString("FH_avg");
+                        ALH_avg = object.getString("LH_avg");
                         count++;
                     }
 
@@ -1219,7 +1284,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                     i2.setTextSize(13f);
 
                     // 막대그래프 디자인
-                    BarData data2 = new BarData(labels2,dataSets2);
+                    BarData data2 = new BarData(labels2, dataSets2);
                     data2.setValueTextColor(Color.WHITE);
                     barChartAvg.setData(data2);
                     barChartAvg.setTouchEnabled(false);
