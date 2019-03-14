@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity
     TextView textid;
     ImageButton btnMypage;
     ImageButton btnLogout;
+    ImageButton btnManager;
 
     Boolean logincheck, surveycheck;
     String loginID;
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity
 
         btnLogout = (ImageButton) nav_header_view.findViewById(R.id.btnLogout);
         btnMypage = (ImageButton) nav_header_view.findViewById(R.id.btnMypage);
+        btnManager = (ImageButton) nav_header_view.findViewById(R.id.nav_manage);
 
         textid = (TextView)nav_header_view.findViewById(R.id.loginid);
 
@@ -179,6 +181,7 @@ public class MainActivity extends AppCompatActivity
         else {
             btnLogout.setVisibility(View.INVISIBLE);
             btnMypage.setVisibility(View.INVISIBLE);
+            btnManager.setVisibility(View.INVISIBLE);
             btnNotice.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -14,39 +14,6 @@ import java.util.ArrayList;
 
 public class NoticeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView imgbtnUnder1;
-        LinearLayout updateView1;
-        TextView TVtitle, TVdatetime, TVContent;
-
-        MyViewHolder(View view) {
-            super(view);
-            view.setOnClickListener(this);
-            imgbtnUnder1 = view.findViewById(R.id.imgbtnUnder1);
-            updateView1 = view.findViewById(R.id.updateView1);
-            TVtitle = view.findViewById(R.id.TVtitle);
-            TVdatetime = view.findViewById(R.id.TVdatetime);
-            TVContent = view.findViewById(R.id.TVContent);
-            //이미지 버튼 클릭시 content보여주기
-            imgbtnUnder1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (updateView1.getVisibility() == View.VISIBLE) {
-                        updateView1.setVisibility(View.GONE);
-                        imgbtnUnder1.setImageResource(R.drawable.under);
-                    } else {
-                        updateView1.setVisibility(View.VISIBLE);
-                        imgbtnUnder1.setImageResource(R.drawable.over);
-                    }
-                }
-            });
-        }
-
-        @Override
-        public void onClick(View view) {
-
-        }
-    }
 
     private ArrayList<NoticeInfo> noticeInfos;
 
@@ -74,5 +41,33 @@ public class NoticeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public int getItemCount() {
         return noticeInfos.size();
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder{
+        ImageView imgbtnUnder1;
+        LinearLayout updateView1;
+        TextView TVtitle, TVdatetime, TVContent;
+
+        MyViewHolder(View view) {
+            super(view);
+            imgbtnUnder1 = view.findViewById(R.id.imgbtnUnder1);
+            updateView1 = view.findViewById(R.id.updateView1);
+            TVtitle = view.findViewById(R.id.TVtitle);
+            TVdatetime = view.findViewById(R.id.TVdatetime);
+            TVContent = view.findViewById(R.id.TVContent);
+            //이미지 버튼 클릭시 content보여주기
+            imgbtnUnder1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (updateView1.getVisibility() == View.VISIBLE) {
+                        updateView1.setVisibility(View.GONE);
+                        imgbtnUnder1.setImageResource(R.drawable.under);
+                    } else {
+                        updateView1.setVisibility(View.VISIBLE);
+                        imgbtnUnder1.setImageResource(R.drawable.over);
+                    }
+                }
+            });
+        }
     }
 }
