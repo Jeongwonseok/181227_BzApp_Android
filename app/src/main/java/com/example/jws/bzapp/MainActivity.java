@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity
     TextView textid;
     ImageButton btnMypage;
     ImageButton btnLogout;
+    ImageButton btnManager;
 
     Boolean logincheck, surveycheck;
     String loginID;
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences test = getSharedPreferences("check", Activity.MODE_PRIVATE);
         logincheck = test.getBoolean("check", false);
         surveycheck = test.getBoolean("surveycheck", false);
-        loginID = test.getString("id", null);
+        loginID = test.getString("id",null);
 
 
         btnNotice = (ImageButton) findViewById(R.id.btnNotice);
@@ -92,12 +93,13 @@ public class MainActivity extends AppCompatActivity
 
         btnLogout = (ImageButton) nav_header_view.findViewById(R.id.btnLogout);
         btnMypage = (ImageButton) nav_header_view.findViewById(R.id.btnMypage);
+        btnManager = (ImageButton) nav_header_view.findViewById(R.id.nav_manage);
 
-        textid = (TextView) nav_header_view.findViewById(R.id.loginid);
+        textid = (TextView)nav_header_view.findViewById(R.id.loginid);
 
         //로그인이 되어있을때 실핼될 코드
         if (logincheck) {
-            textid.setText(loginID + " 님");
+            textid.setText(loginID+" 님");
             btnLogout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -143,8 +145,9 @@ public class MainActivity extends AppCompatActivity
                 @Override
                 public void onClick(View v) {
                     if (surveycheck) {
-                        Toast.makeText(getApplicationContext(), "상권분석", Toast.LENGTH_LONG).show();
-                    } else {
+                        Toast.makeText(getApplicationContext(),"상권분석",Toast.LENGTH_LONG).show();
+                    }
+                    else {
                         Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
                         intent.putExtra("ID", loginID);
                         startActivity(intent);
@@ -176,11 +179,11 @@ public class MainActivity extends AppCompatActivity
         }
         //로그인이 되어있지 않을때 실핼될 코드
         else {
+            btnLogout.setVisibility(View.INVISIBLE);
+            btnMypage.setVisibility(View.INVISIBLE);
             Menu menu = navigationView.getMenu();
             MenuItem item_Manage = menu.findItem(R.id.nav_manage);
             item_Manage.setVisible(false);
-            btnLogout.setVisibility(View.INVISIBLE);
-            btnMypage.setVisibility(View.INVISIBLE);
             btnNotice.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
