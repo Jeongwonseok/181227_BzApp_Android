@@ -107,7 +107,9 @@ public class LoginActivity extends AppCompatActivity {
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.putExtra("ID", ID);
                                 intent.putExtra("PW", PW);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                //intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 SharedPreferences test = getSharedPreferences("check", Activity.MODE_PRIVATE);
                                 SharedPreferences.Editor checkLogin = test.edit();
                                 checkLogin.putBoolean("check", true);
