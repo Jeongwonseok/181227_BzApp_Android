@@ -97,23 +97,21 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/activity_main"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="270"
-            android:background="#ffffff">
+            android:background="#ffffff"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/spotAd"
+            <view
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center">
+                class="android.support.v4.view.ViewPager"
+                android:id="@+id/view"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/adver" />
-
-            </LinearLayout>
 
         </LinearLayout>
 
