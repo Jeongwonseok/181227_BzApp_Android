@@ -163,6 +163,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     LoginCheck loginCheck = new LoginCheck(MapActivity.this);
                     loginCheck.Logout();
                     Intent intent = getIntent();
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
                 }
@@ -212,6 +214,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
         });
@@ -324,6 +328,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         if (id == R.id.btnHome) {
             Intent intent = new Intent(MapActivity.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
 
         } else if (id == R.id.btnLog) {

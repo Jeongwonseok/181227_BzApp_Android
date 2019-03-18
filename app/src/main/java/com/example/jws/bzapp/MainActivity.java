@@ -115,6 +115,8 @@ public class MainActivity extends AppCompatActivity
                     LoginCheck loginCheck = new LoginCheck(MainActivity.this);
                     loginCheck.Logout();
                     Intent intent = getIntent();
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
                 }
