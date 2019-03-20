@@ -138,7 +138,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         //로그인 체크와 아이디 값 가져옥;
         SharedPreferences test = getSharedPreferences("check", Activity.MODE_PRIVATE);
         logincheck = test.getBoolean("check", false);
-        loginID = test.getString("id",null);
+        loginID = test.getString("id", null);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -153,15 +153,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         btnLogout = (ImageButton) nav_header_view.findViewById(R.id.btnLogout);
         btnMypage = (ImageButton) nav_header_view.findViewById(R.id.btnMypage);
-        textid = (TextView)nav_header_view.findViewById(R.id.loginid);
+        textid = (TextView) nav_header_view.findViewById(R.id.loginid);
 
-        if(logincheck){
+        if (logincheck) {
             Menu menu = navigationView.getMenu();
             MenuItem item_Login = menu.findItem(R.id.btnLog);
             item_Login.setVisible(false);//false가 안보임
             MenuItem item_join = menu.findItem(R.id.btnJoin);
             item_join.setVisible(false);
-            textid.setText(loginID+" 님");
+            textid.setText(loginID + " 님");
             btnLogout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -177,10 +177,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             btnMypage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getApplicationContext(),"마이페이지",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "마이페이지", Toast.LENGTH_LONG).show();
                 }
             });
-        } else{
+        } else {
             btnLogout.setVisibility(View.INVISIBLE);
             btnMypage.setVisibility(View.INVISIBLE);
         }
@@ -204,13 +204,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 intent.putExtra("mLong", mLong);
                 String text = spinner.getSelectedItem().toString();
                 if (text.equals("100m")) {
-                    intent.putExtra("a",100);
+                    intent.putExtra("a", 100);
                 } else if (text.equals("200m")) {
-                    intent.putExtra("a",200);
-                }  else if (text.equals("500m")) {
-                    intent.putExtra("a",500);
+                    intent.putExtra("a", 200);
+                } else if (text.equals("500m")) {
+                    intent.putExtra("a", 500);
                 } else if (text.equals("1km")) {
-                    intent.putExtra("a",1000);
+                    intent.putExtra("a", 1000);
                 }
                 startActivity(intent);
             }
@@ -292,7 +292,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView)parent.getChildAt(0)).setTextColor(0xffED3050);
+                ((TextView) parent.getChildAt(0)).setTextColor(0xffED3050);
                 String text = spinner.getSelectedItem().toString();
                 if (text.equals("100m")) {
                     CameraUpdate cameraUpdate = CameraUpdateFactory.zoomTo(18);
@@ -306,7 +306,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     mGoogleMap.clear();
                     radius = 200;
                     onAddCircle200(radius);
-                }  else if (text.equals("500m")) {
+                } else if (text.equals("500m")) {
                     CameraUpdate cameraUpdate = CameraUpdateFactory.zoomTo(16);
                     mGoogleMap.moveCamera(cameraUpdate);
                     mGoogleMap.clear();
@@ -330,6 +330,65 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     }
 //////////////////////////////////////////////create종료///////////////////////////////////////////////////////////////
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //로그인 체크와 아이디 값 가져옥;
+        SharedPreferences test = getSharedPreferences("check", Activity.MODE_PRIVATE);
+        logincheck = test.getBoolean("check", false);
+        loginID = test.getString("id", null);
+
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        View nav_header_view = navigationView.getHeaderView(0);
+
+        if (logincheck) {
+            Menu menu = navigationView.getMenu();
+            MenuItem item_Login = menu.findItem(R.id.btnLog);
+            item_Login.setVisible(false);//false가 안보임
+            MenuItem item_join = menu.findItem(R.id.btnJoin);
+            item_join.setVisible(false);
+            MenuItem item_Manage = menu.findItem(R.id.nav_manage);
+            item_Manage.setVisible(true);
+            textid.setText(loginID + " 님");
+            btnLogout.setVisibility(View.VISIBLE);
+            btnMypage.setVisibility(View.VISIBLE);
+            btnLogout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LoginCheck loginCheck = new LoginCheck(MapActivity.this);
+                    loginCheck.Logout();
+                    Intent intent = getIntent();
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+            btnMypage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MapActivity.this, Mypage.class);
+                    startActivity(intent);
+                }
+            });
+        } else {
+            btnLogout.setVisibility(View.INVISIBLE);
+            btnMypage.setVisibility(View.INVISIBLE);
+            Menu menu = navigationView.getMenu();
+            MenuItem item_Manage = menu.findItem(R.id.nav_manage);
+            item_Manage.setVisible(false);
+            MenuItem item_Login = menu.findItem(R.id.btnLog);
+            item_Login.setVisible(true);//false가 안보임
+            MenuItem item_join = menu.findItem(R.id.btnJoin);
+            item_join.setVisible(true);
+        }
+    }
 
     @Override
     public void onBackPressed() {

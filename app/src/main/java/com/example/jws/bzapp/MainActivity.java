@@ -55,6 +55,8 @@ import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private long lastTimeBackPressed; //뒤로가기 버튼이 클릭된 시간
+
     ImageButton btnNotice;
     ImageButton btnQuestion;
     ImageButton btnAnal;
@@ -128,12 +130,6 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        //로그인 체크와 아이디 값 가져옥;
-        SharedPreferences test = getSharedPreferences("check", Activity.MODE_PRIVATE);
-        logincheck = test.getBoolean("check", false);
-        surveycheck = test.getBoolean("surveycheck", false);
-        loginID = test.getString("id",null);
-
 
         btnNotice = (ImageButton) findViewById(R.id.btnNotice);
         btnQuestion = (ImageButton) findViewById(R.id.btnQuestion);
@@ -164,6 +160,12 @@ public class MainActivity extends AppCompatActivity
         //리사이클뷰에 공지사항 데이터 추가하는 클래스 선언후 실행
         HotList hotList = new HotList();
         hotList.execute();
+
+        //로그인 체크와 아이디 값 가져옥;
+        SharedPreferences test = getSharedPreferences("check", Activity.MODE_PRIVATE);
+        logincheck = test.getBoolean("check", false);
+        surveycheck = test.getBoolean("surveycheck", false);
+        loginID = test.getString("id",null);
 
         //로그인이 되어있을때 실핼될 코드
         if (logincheck) {
@@ -302,9 +304,170 @@ public class MainActivity extends AppCompatActivity
                 }
             });
 
-            //getAppKeyHash();
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        View nav_header_view = navigationView.getHeaderView(0);
+        //로그인 체크와 아이디 값 가져옥;
+        SharedPreferences test = getSharedPreferences("check", Activity.MODE_PRIVATE);
+        logincheck = test.getBoolean("check", false);
+        surveycheck = test.getBoolean("surveycheck", false);
+        loginID = test.getString("id",null);
+
+        //로그인이 되어있을때 실핼될 코드
+        if (logincheck) {
+            btnLogout.setVisibility(View.VISIBLE);
+            btnMypage.setVisibility(View.VISIBLE);
+            Menu menu = navigationView.getMenu();
+            MenuItem item_Manage = menu.findItem(R.id.nav_manage);
+            item_Manage.setVisible(true);
+            textid.setText(loginID+" 님");
+            btnLogout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LoginCheck loginCheck = new LoginCheck(MainActivity.this);
+                    loginCheck.Logout();
+                    Intent intent = getIntent();
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+            btnMypage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, Mypage.class);
+                    startActivity(intent);
+                }
+            });
+            btnNotice.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, NoticeActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            btnQuestion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, Quetion_rActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            btnAnal.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            btnSurvey.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (surveycheck) {
+                        Toast.makeText(getApplicationContext(),"상권분석",Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
+                        intent.putExtra("ID", loginID);
+                        startActivity(intent);
+                    }
+                }
+            });
+
+            btnRec.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, RecommendActivity.class);
+                    startActivity(intent);
+                }
+            });
+            btnPren.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, FranchiseActivity1.class);
+                    startActivity(intent);
+                }
+            });
+
+            MenuItem item_Login = menu.findItem(R.id.btnLog);
+            item_Login.setVisible(false);//false가 안보임
+            MenuItem item_join = menu.findItem(R.id.btnJoin);
+            item_join.setVisible(false);
+            //getAppKeyHash();
+        }
+        //로그인이 되어있지 않을때 실핼될 코드
+        else {
+            btnLogout.setVisibility(View.INVISIBLE);
+            btnMypage.setVisibility(View.INVISIBLE);
+            Menu menu = navigationView.getMenu();
+            MenuItem item_Manage = menu.findItem(R.id.nav_manage);
+            item_Manage.setVisible(false);
+            MenuItem item_Login = menu.findItem(R.id.btnLog);
+            item_Login.setVisible(true);//false가 안보임
+            MenuItem item_join = menu.findItem(R.id.btnJoin);
+            item_join.setVisible(true);
+            btnNotice.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, NoticeActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            btnQuestion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, Quetion_rActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            btnAnal.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            btnSurvey.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            btnRec.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, RecommendActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            btnPren.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, FranchiseActivity1.class);
+                    startActivity(intent);
+                }
+            });
+
+        }
     }
 
     class HotList extends AsyncTask<Void, Void, String> {
@@ -405,12 +568,17 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        //2초 이내에 뒤로가기 버튼을 재 클릭 시 앱 종료
+        if (System.currentTimeMillis() - lastTimeBackPressed < 2000)
+        {
+            finish();
+            return;
         }
+        //'뒤로' 버튼 한번 클릭 시 메시지
+        Toast.makeText(this, "'뒤로' 버튼을 한번 더 누르시면 앱이 종료됩니다.", Toast.LENGTH_SHORT).show();
+        //lastTimeBackPressed에 '뒤로'버튼이 눌린 시간을 기록
+        lastTimeBackPressed = System.currentTimeMillis();
+
     }
 
 

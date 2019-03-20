@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                                 //꼭 commit()을 해줘야 값이 저장됩니다 ㅎㅎ
                                 checkLogin.commit();
-                                startActivity(intent);
+//                                startActivity(intent);
                                 finish();
                             } else {
                                 //로그인 실패시 아이디와 비밀번호 다시 입력

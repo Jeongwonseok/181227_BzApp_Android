@@ -1,6 +1,7 @@
 package com.example.jws.bzapp;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -58,6 +59,7 @@ import java.util.ArrayList;
 public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+
     double mLat = 0;
     double mLong = 0;
     ImageButton btnBack;
@@ -310,6 +312,18 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
             @Override
             public void onClick(View v) {
                 if (loginID == null) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(AnalysisActivity.this);
+                    builder.setMessage("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?")
+                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent Lintent = new Intent(AnalysisActivity.this, LoginActivity.class);
+                                    startActivity(Lintent);
+                                }
+                            })
+                            .setNeutralButton("취소", null)
+                            .create()
+                            .show();
                     Toast.makeText(getApplicationContext(), "로그인이 필요합니다.", Toast.LENGTH_LONG).show();
                 } else {
                     if (likeflag) {
@@ -363,6 +377,105 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         });
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences test = getSharedPreferences("check", Activity.MODE_PRIVATE);
+        final String loginID = test.getString("id", null);
+        btnlike = (ImageButton) findViewById(R.id.like);
+        //아이디를 보고 즐겨찾기 추가된걸 리스트로 가져와 현재 좌표와 비교해서 있으면 likeflag를 트루로 바꾼다?
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    boolean success = jsonObject.getBoolean("success");
+                    if (success) {
+                        likeflag = true;
+                        btnlike.setBackgroundResource(R.drawable.pinkstar);
+                    } else {
+                        likeflag = false;
+                        btnlike.setBackgroundResource(R.drawable.emptystar);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        Searchbookmark searchbookmark = new Searchbookmark(loginID, mLat, mLong, a, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(AnalysisActivity.this);
+        queue.add(searchbookmark);
+
+
+        btnlike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (loginID == null) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(AnalysisActivity.this);
+                    builder.setMessage("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?")
+                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent Lintent = new Intent(AnalysisActivity.this, LoginActivity.class);
+                                    startActivity(Lintent);
+                                }
+                            })
+                            .setNeutralButton("취소", null)
+                            .create()
+                            .show();
+                    Toast.makeText(getApplicationContext(), "로그인이 필요합니다.", Toast.LENGTH_LONG).show();
+                } else {
+                    if (likeflag) {
+                        likeflag = false;
+                        btnlike.setBackgroundResource(R.drawable.emptystar);
+                        Response.Listener<String> responseListener = new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    boolean success = jsonObject.getBoolean("success");
+                                    if (success) {
+                                        Toast.makeText(getApplicationContext(), "즐겨찾기 삭제를 성공했습니다.", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "즐겨찾기 삭제를 실패했습니다.", Toast.LENGTH_LONG).show();
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        };
+                        Deletebookmark deletebookmark = new Deletebookmark(loginID, mLat, mLong, a, responseListener);
+                        RequestQueue queue = Volley.newRequestQueue(AnalysisActivity.this);
+                        queue.add(deletebookmark);
+                    } else {
+                        likeflag = true;
+                        btnlike.setBackgroundResource(R.drawable.pinkstar);
+                        Response.Listener<String> responseListener = new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    boolean success = jsonObject.getBoolean("success");
+                                    if (success) {
+                                        Toast.makeText(getApplicationContext(), "즐겨찾기 추가에 성공했습니다.", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "즐겨찾기 추가에 실패했습니다.", Toast.LENGTH_LONG).show();
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        };
+                        Addbookmark addbookmark = new Addbookmark(loginID, mLat, mLong, a, responseListener);
+                        RequestQueue queue = Volley.newRequestQueue(AnalysisActivity.this);
+                        queue.add(addbookmark);
+                    }
+
+                }
+            }
+        });
+    }
 
     //anal.xml의 android:onClick 이용해서 메서드 정의
     public void mOnPopupClick(View v) {
