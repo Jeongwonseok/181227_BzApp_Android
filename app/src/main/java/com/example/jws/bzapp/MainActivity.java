@@ -8,10 +8,13 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
 import android.util.Base64;
 import android.util.Log;
@@ -35,8 +38,17 @@ import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.MeResponseCallback;
 import com.kakao.usermgmt.response.model.UserProfile;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.List;
 
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
@@ -148,6 +160,10 @@ public class MainActivity extends AppCompatActivity
         btnManager = (ImageButton) nav_header_view.findViewById(R.id.nav_manage);
 
         textid = (TextView)nav_header_view.findViewById(R.id.loginid);
+
+        //리사이클뷰에 공지사항 데이터 추가하는 클래스 선언후 실행
+        HotList hotList = new HotList();
+        hotList.execute();
 
         //로그인이 되어있을때 실핼될 코드
         if (logincheck) {
@@ -288,6 +304,85 @@ public class MainActivity extends AppCompatActivity
 
             //getAppKeyHash();
         }
+
+    }
+
+    class HotList extends AsyncTask<Void, Void, String> {
+
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            try {
+                //서버에 있는 php 실행
+                URL url = new URL("http://qwerr784.cafe24.com/NList.php");
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                String temp;
+                StringBuilder stringBuilder = new StringBuilder();
+                while ((temp = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(temp + "\n");
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                //결과 값을 리턴
+                return stringBuilder.toString().trim();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        //결과값 출력 메소드
+        public void show(String s) {
+
+
+            ArrayList<HotInfo> arrayList = new ArrayList<>();
+
+            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.HRV);
+            RecyclerView.LayoutManager manager = new LinearLayoutManager(MainActivity.this);
+            recyclerView.setLayoutManager(manager);
+
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                JSONArray jsonArray = jsonObject.getJSONArray("response");
+                int count = 0;
+                String image, title, date, url;
+                while (count < jsonArray.length()) {
+
+                    JSONObject object = jsonArray.getJSONObject(count);
+                    image = object.getString("image");
+                    title = object.getString("title");
+                    date = object.getString("date");
+                    url = object.getString("url");
+                    HotInfo hotInfo = new HotInfo(image, title, date, url);
+                    arrayList.add(hotInfo);
+
+                    count++;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            HotAdapter hotAdapter = new HotAdapter(getApplicationContext(), arrayList);
+            recyclerView.setAdapter(hotAdapter);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            show(s);
+        }
+
 
     }
 

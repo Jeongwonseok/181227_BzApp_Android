@@ -106,13 +106,15 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
+
                 <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
                     android:id="@+id/autoViewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp">
+                    android:layout_height="match_parent">
 
                 </cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -260,7 +262,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:background="#ffffff"
-                    android:text="테마별 상권"
+                    android:text="HOT 이슈"
                     android:textColor="#000000"
                     android:textSize="15dp" />
 
@@ -279,314 +281,10 @@
             android:layout_height="0dp"
             android:layout_weight="480">
 
-            <HorizontalScrollView
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/HRV"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#ffffff"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="141dp"
-                        android:layout_height="166.67dp"
-                        android:layout_marginLeft="23.33dp"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="141dp"
-                            android:layout_height="100dp"
-                            android:background="#000000" />
-
-                        <LinearLayout
-                            android:layout_width="141dp"
-                            android:layout_height="66.67dp"
-                            android:background="#ffffff"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="주소 :"
-                                android:textColor="#000000" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="가격 :"
-                                android:textColor="#000000" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="선호도 :"
-                                android:textColor="#000000" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="141dp"
-                        android:layout_height="166.67dp"
-                        android:layout_marginLeft="23.33dp"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="141dp"
-                            android:layout_height="100dp"
-                            android:background="#000000" />
-
-                        <LinearLayout
-                            android:layout_width="141dp"
-                            android:layout_height="66.67dp"
-                            android:background="#ffffff"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="주소 :"
-                                android:textColor="#000000" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="가격 :"
-                                android:textColor="#000000" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="선호도 :"
-                                android:textColor="#000000" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="141dp"
-                        android:layout_height="166.67dp"
-                        android:layout_marginLeft="23.33dp"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="141dp"
-                            android:layout_height="100dp"
-                            android:background="#000000" />
-
-                        <LinearLayout
-                            android:layout_width="141dp"
-                            android:layout_height="66.67dp"
-                            android:background="#ffffff"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="주소 :"
-                                android:textColor="#000000" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="가격 :"
-                                android:textColor="#000000" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="선호도 :"
-                                android:textColor="#000000" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="141dp"
-                        android:layout_height="166.67dp"
-                        android:layout_marginLeft="23.33dp"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="141dp"
-                            android:layout_height="100dp"
-                            android:background="#000000" />
-
-                        <LinearLayout
-                            android:layout_width="141dp"
-                            android:layout_height="66.67dp"
-                            android:background="#ffffff"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="주소 :"
-                                android:textColor="#000000" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="가격 :"
-                                android:textColor="#000000" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="선호도 :"
-                                android:textColor="#000000" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="141dp"
-                        android:layout_height="166.67dp"
-                        android:layout_marginLeft="23.33dp"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="141dp"
-                            android:layout_height="100dp"
-                            android:background="#000000" />
-
-                        <LinearLayout
-                            android:layout_width="141dp"
-                            android:layout_height="66.67dp"
-                            android:background="#ffffff"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="주소 :"
-                                android:textColor="#000000" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="가격 :"
-                                android:textColor="#000000" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="선호도 :"
-                                android:textColor="#000000" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="141dp"
-                        android:layout_height="166.67dp"
-                        android:layout_marginLeft="23.33dp"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="141dp"
-                            android:layout_height="100dp"
-                            android:background="#000000" />
-
-                        <LinearLayout
-                            android:layout_width="141dp"
-                            android:layout_height="66.67dp"
-                            android:background="#ffffff"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="주소 :"
-                                android:textColor="#000000" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="가격 :"
-                                android:textColor="#000000" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="선호도 :"
-                                android:textColor="#000000" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="141dp"
-                        android:layout_height="166.67dp"
-                        android:layout_marginLeft="23.33dp"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="141dp"
-                            android:layout_height="100dp"
-                            android:background="#000000" />
-
-                        <LinearLayout
-                            android:layout_width="141dp"
-                            android:layout_height="66.67dp"
-                            android:background="#ffffff"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:baselineAligned="false"
-                                android:text="주소 :"
-                                android:textColor="#000000" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="가격 :"
-                                android:textColor="#000000" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:text="선호도 :"
-                                android:textColor="#000000" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </HorizontalScrollView>
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 

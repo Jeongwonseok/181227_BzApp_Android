@@ -67,6 +67,14 @@ public class Franchisedetail extends AppCompatActivity {
         setContentView(R.layout.activity_franchisedetail);
         iv=(ImageView)findViewById(R.id.iv);
         btnBack = (ImageButton) findViewById(R.id.btnBack);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Franchisedetail.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
         btnHome = (ImageButton) findViewById(R.id.btnHome);
         Shopname = (TextView) findViewById(R.id.shopname);
         Shopname2 = (TextView) findViewById(R.id.shopname2);
