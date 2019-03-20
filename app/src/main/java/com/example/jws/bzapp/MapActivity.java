@@ -40,17 +40,22 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
@@ -84,8 +89,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private Location location;
     ImageView centerimg;
     Button btnResult;
-    ImageButton btnSearch;
-    EditText editSearch;
+//    ImageButton btnSearch;
+//    EditText editSearch;
     ImageButton btnBack;
     PhotoViewAttacher photoViewAttacher;
     Button check;
@@ -124,10 +129,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         builder.addLocationRequest(locationRequest);
         geocoder = new Geocoder(this);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        btnSearch = (ImageButton) findViewById(R.id.Search);
         btnResult = (Button) findViewById(R.id.btnResult);
         btnBack = (ImageButton) findViewById(R.id.btnBack);
-        editSearch = (EditText) findViewById(R.id.locationSearch);
+//        btnSearch = (ImageButton) findViewById(R.id.Search);
+//        editSearch = (EditText) findViewById(R.id.locationSearch);
         check = (Button) findViewById(R.id.checkbtn);
 
         //로그인 체크와 아이디 값 가져옥;
@@ -220,38 +225,55 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         });
 
-        btnSearch.setOnClickListener(new View.OnClickListener() {
+        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
-            public void onClick(View v) {
-                String address = editSearch.getText().toString();
-                double lat = 0.0, lon = 0.0;
-                List<Address> addr = null;
-                try {
-                    addr = geocoder.getFromLocationName(address, 1);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                if (addr != null) {
-                    for (int i = 0; i < addr.size(); i++) {
-                        Address latlon = addr.get(i);
-                        lat = latlon.getLatitude();
-                        lon = latlon.getLongitude();
-                    }
-                } else {
-                    Toast.makeText(getApplicationContext(), "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                mLat = lat;
-                mLong = lon;
-                LatLng search = new LatLng(mLat, mLong);
-                MarkerOptions maker = new MarkerOptions();
-                maker.position(search);
-                mGoogleMap.addMarker(maker);
-                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(search, 16));
+            public void onPlaceSelected(Place place) {
+                Location location = new Location("");
+                location.setLatitude(place.getLatLng().latitude);
+                location.setLongitude(place.getLatLng().longitude);
+                setCurrentLocation(location, place.getName().toString(), place.getAddress().toString());
+            }
 
-
+            @Override
+            public void onError(Status status) {
+                Log.i(TAG, "An error occurred: " + status);
             }
         });
+
+//        btnSearch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String address = editSearch.getText().toString();
+//                double lat = 0.0, lon = 0.0;
+//                List<Address> addr = null;
+//                try {
+//                    addr = geocoder.getFromLocationName(address, 1);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                if (addr != null) {
+//                    for (int i = 0; i < addr.size(); i++) {
+//                        Address latlon = addr.get(i);
+//                        lat = latlon.getLatitude();
+//                        lon = latlon.getLongitude();
+//                    }
+//                } else {
+//                    Toast.makeText(getApplicationContext(), "검색어를 입력해주세요.", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//                mLat = lat;
+//                mLong = lon;
+//                LatLng search = new LatLng(mLat, mLong);
+//                MarkerOptions maker = new MarkerOptions();
+//                maker.position(search);
+//                mGoogleMap.addMarker(maker);
+//                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(search, 16));
+//
+//
+//            }
+//        });
 
 
         ///////////////////////////////////스피너//////////////////////////////////
@@ -531,6 +553,25 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+    }
+
+    public void setCurrentLocation(Location location, String markerTitle, String markerSnippet) {
+
+        if ( mCenterMarker != null ) mCenterMarker.remove();
+
+        //현재위치의 위도 경도 가져옴
+        LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(currentLocation);
+        markerOptions.title(markerTitle);
+        markerOptions.snippet(markerSnippet);
+        markerOptions.draggable(true);
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+        mCenterMarker = this.mGoogleMap.addMarker(markerOptions);
+
+        this.mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
+
     }
 
 

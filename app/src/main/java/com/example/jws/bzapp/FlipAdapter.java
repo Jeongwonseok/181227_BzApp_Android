@@ -1,6 +1,8 @@
 package com.example.jws.bzapp;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +29,6 @@ public class FlipAdapter extends PagerAdapter{
         ImageView image_container = (ImageView) v.findViewById(R.id.image_container);
         position=position%data.size();
         image_container.setImageResource(data.get(position));
-
         container.addView(v);
         return v;
     }
@@ -41,7 +42,7 @@ public class FlipAdapter extends PagerAdapter{
 
     @Override
     public int getCount() {
-        return data.size()*2;
+        return data.size()*3;
     }
 
     @Override
