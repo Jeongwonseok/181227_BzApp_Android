@@ -36,6 +36,9 @@ import com.kakao.usermgmt.callback.MeResponseCallback;
 import com.kakao.usermgmt.response.model.UserProfile;
 
 import java.security.MessageDigest;
+import java.util.ArrayList;
+
+import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -55,7 +58,8 @@ public class MainActivity extends AppCompatActivity
     Boolean logincheck, surveycheck;
     String loginID;
     FlipAdapter flipadapter;
-    ViewPager viewPager;
+    AutoScrollViewPager autoViewPager;
+    TextView viewtext;
 
 
 
@@ -69,9 +73,48 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        viewPager = (ViewPager) findViewById(R.id.view);
-        flipadapter = new FlipAdapter(this);
-        viewPager.setAdapter(flipadapter);
+        //오토뷰페이저
+
+        final ArrayList<Integer> data = new ArrayList<>(); //이미지 url를 저장하는 arraylist
+        viewtext = (TextView)findViewById(R.id.viewtext);
+        autoViewPager = (AutoScrollViewPager)findViewById(R.id.autoViewPager);
+        data.add(R.drawable.chang1);
+        data.add(R.drawable.sosang1);
+        data.add(R.drawable.kpren1);
+        flipadapter = new FlipAdapter(this,data);
+        autoViewPager.setAdapter(flipadapter); //Auto Viewpager에 Adapter 장착
+        autoViewPager.setInterval(2000); // 페이지 넘어갈 시간 간격 설정
+        autoViewPager.startAutoScroll(); //Auto Scroll 시작
+        autoViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+            @Override
+            public void onPageSelected(int position) {
+                if(position<data.size()){
+                    autoViewPager.setCurrentItem(position+data.size(),false);
+                }
+                else if(position>=data.size()*2){
+                    autoViewPager.setCurrentItem(position-data.size(),false);
+                }
+                position=position%data.size();
+                if (position == 0){  // 첫 페이지
+                    viewtext.setText("1/3");
+
+                } else if (position == 1){   //두번째 페이지
+                    viewtext.setText("2/3");
+
+                }else if(position==2){
+                    viewtext.setText("3/3");
+                }
+            }
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+
 
         //로그인 체크와 아이디 값 가져옥;
         SharedPreferences test = getSharedPreferences("check", Activity.MODE_PRIVATE);

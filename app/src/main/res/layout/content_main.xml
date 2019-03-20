@@ -104,13 +104,33 @@
             android:background="#ffffff"
             android:orientation="vertical">
 
-            <view
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                class="android.support.v4.view.ViewPager"
-                android:id="@+id/view"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_height="wrap_content">
+                <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
+                    android:id="@+id/autoViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+
+                </cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/viewtext"
+                        android:layout_width="50dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="1/3"
+                        android:textSize="13dp"
+                        android:textColor="#ffffff"
+                        android:background="@drawable/rounded"/>
+                </LinearLayout>
+            </FrameLayout>
 
 
         </LinearLayout>
