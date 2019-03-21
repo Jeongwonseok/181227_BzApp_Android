@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -75,8 +76,7 @@ public class MainActivity extends AppCompatActivity
     AutoScrollViewPager autoViewPager;
     TextView viewtext;
 
-
-
+String url;
     private static final String TAG = "Login";
 
     @Override
@@ -114,12 +114,15 @@ public class MainActivity extends AppCompatActivity
                 position=position%data.size();
                 if (position == 0){  // 첫 페이지
                     viewtext.setText("1/3");
+                    url="www.naver.com";
 
                 } else if (position == 1){   //두번째 페이지
                     viewtext.setText("2/3");
+                    url="www.google.com";
 
                 }else if(position==2){
                     viewtext.setText("3/3");
+                    url="www.naver.com";
                 }
             }
             @Override
@@ -129,7 +132,13 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-
+        autoViewPager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            }
+        });
 
         btnNotice = (ImageButton) findViewById(R.id.btnNotice);
         btnQuestion = (ImageButton) findViewById(R.id.btnQuestion);

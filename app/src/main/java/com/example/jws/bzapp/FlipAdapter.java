@@ -29,6 +29,33 @@ public class FlipAdapter extends PagerAdapter{
         ImageView image_container = (ImageView) v.findViewById(R.id.image_container);
         position=position%data.size();
         image_container.setImageResource(data.get(position));
+
+        if (position==0) {
+            image_container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.kised.or.kr/mobile/"));
+                    context.startActivity(intent);
+                }
+            });
+        } else if (position==1) {
+            image_container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse( "http://www.semas.or.kr/web/main/index.kmdc"));
+                    context.startActivity(intent);
+
+                }
+            });
+        } else if (position==2) {
+            image_container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.ikfa.or.kr"));
+                    context.startActivity(intent);
+                }
+            });
+        }
         container.addView(v);
         return v;
     }
