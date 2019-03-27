@@ -481,7 +481,7 @@ public class MainActivity extends AppCompatActivity
         protected String doInBackground(Void... voids) {
             try {
                 //서버에 있는 php 실행
-                URL url = new URL("http://qwerr784.cafe24.com/NList.php");
+                URL url = new URL("http://qwerr784.cafe24.com/HList.php");
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -520,15 +520,15 @@ public class MainActivity extends AppCompatActivity
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("response");
                 int count = 0;
-                String image, title, date, url;
+                String imageurl, title, date, url;
                 while (count < jsonArray.length()) {
 
                     JSONObject object = jsonArray.getJSONObject(count);
-                    image = object.getString("image");
-                    title = object.getString("title");
-                    date = object.getString("date");
-                    url = object.getString("url");
-                    HotInfo hotInfo = new HotInfo(image, title, date, url);
+                    imageurl = object.getString("ImageURL");
+                    title = object.getString("Title");
+                    date = object.getString("Date");
+                    url = object.getString("URL");
+                    HotInfo hotInfo = new HotInfo(imageurl, title, date, url);
                     arrayList.add(hotInfo);
 
                     count++;

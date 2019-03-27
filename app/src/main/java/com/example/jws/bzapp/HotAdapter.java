@@ -2,12 +2,18 @@ package com.example.jws.bzapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -35,7 +41,9 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.ViewHolder> impl
 
         HotAdapter.ViewHolder myViewHolder = (HotAdapter.ViewHolder) viewHolder;
         //텍스트 삽입
-        //이미지 띄워라
+        Picasso.get()
+                .load(hotInfos.get(i).Image)
+                .into(myViewHolder.HOTimage);
         myViewHolder.HOTtitle.setText(hotInfos.get(i).Title);
         myViewHolder.HOTtime.setText(hotInfos.get(i).Date);
     }
@@ -47,7 +55,9 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.ViewHolder> impl
 
     @Override
     public void onListItemClick(int position) {
-
+        Toast.makeText(context,hotInfos.get(position).Url,Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(hotInfos.get(position).Url));
+        context.startActivity(intent);
     }
 
 
