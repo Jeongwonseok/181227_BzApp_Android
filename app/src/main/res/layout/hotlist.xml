@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="90dp"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#f4f4f4" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
+        android:layout_height="89dp"
+        android:orientation="horizontal">
+
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="55" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="200"
             android:gravity="center">
 
             <ImageView
                 android:id="@+id/HOTimage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="90dp"
+                android:layout_height="60dp"
                 android:background="#000000"/>
 
 
@@ -28,7 +39,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="7.5"
+            android:layout_weight="740"
             android:gravity="center_vertical"
             android:orientation="vertical">
 
@@ -52,12 +63,11 @@
 
         </LinearLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="55"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:layout_gravity="center_vertical"
-        android:background="#DCDCDC" />
+    </LinearLayout>
 
 </LinearLayout>
