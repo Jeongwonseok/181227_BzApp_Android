@@ -55,7 +55,6 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.ViewHolder> impl
 
     @Override
     public void onListItemClick(int position) {
-        Toast.makeText(context,hotInfos.get(position).Url,Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(hotInfos.get(position).Url));
         context.startActivity(intent);
     }

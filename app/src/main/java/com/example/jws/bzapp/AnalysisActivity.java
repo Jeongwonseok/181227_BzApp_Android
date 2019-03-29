@@ -647,7 +647,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         protected String doInBackground(String... strings) {
             try {
                 //서버에 있는 php 실행
-                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.json?consumer_key=4989a15a0fdf4be8aed5&consumer_secret=6d6a4426b3fc43559859");
+                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.json?consumer_key=d2afa112ac134fe1a52a&consumer_secret=e3f889ddddd3499da8f3");
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
