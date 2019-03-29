@@ -34,7 +34,7 @@ public class FlipAdapter extends PagerAdapter{
             image_container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.kised.or.kr/mobile/"));
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse( "http://www.semas.or.kr/web/main/index.kmdc"));
                     context.startActivity(intent);
                 }
             });
@@ -42,7 +42,7 @@ public class FlipAdapter extends PagerAdapter{
             image_container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse( "http://www.semas.or.kr/web/main/index.kmdc"));
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.kised.or.kr/mobile/"));
                     context.startActivity(intent);
 
                 }

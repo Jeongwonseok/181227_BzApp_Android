@@ -50,12 +50,14 @@
                     android:layout_weight="8"
                     android:gravity="center_vertical">
 
-                    <EditText
+                    <Button
                         android:id="@+id/franSearch"
+                        android:gravity="fill_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:bufferType="spannable"
+                        android:textCursorDrawable="@null"
                         android:cursorVisible="true"
                         android:hint="프랜차이즈 검색"
                         android:drawableLeft="@drawable/search1"
@@ -64,7 +66,6 @@
                         android:textSize="13dp"
                         android:theme="@style/EditTheme1"
                         android:background="@drawable/round_corner"/>
-
                 </LinearLayout>
 
                 <LinearLayout

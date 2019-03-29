@@ -1,18 +1,16 @@
 package com.example.jws.bzapp;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -26,12 +24,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FranchiseSearch  extends AppCompatActivity {
-    private List<String> list;          // 데이터를 넣은 리스트변수
+           // 데이터를 넣은 리스트변수
     private ListView listView;          // 검색을 보여줄 리스트변수
     private EditText Search;        // 검색어를 입력할 Input 창
     private SearchAdapter adapter;      // 리스트뷰에 연결할 아답터
-    private ArrayList<String> arraylist;
-    String NameArray[]=new String[]{};
+    private List<ListVO> list;
+    private ArrayList<ListVO> arraylist;
+    ImageButton btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,13 +38,31 @@ public class FranchiseSearch  extends AppCompatActivity {
 
         Search = (EditText) findViewById(R.id.fSearch);
         listView = (ListView) findViewById(R.id.listView);
-        list = new ArrayList<String>();
-
+        list = new ArrayList<ListVO>();
+        btnBack = (ImageButton)findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         settingList();
 
-        arraylist = new ArrayList<String>();
+        arraylist = new ArrayList<ListVO>();
         adapter = new SearchAdapter(list, this);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String top="";
+                Intent intent = new Intent(getApplicationContext(),Franchisedetail.class);
+                intent.putExtra("Shopname",list.get(position).getTitle());
+                intent.putExtra("Category",list.get(position).getCategory());
+                startActivity(intent);
+            }
+        });
+
 
         Search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -79,10 +96,13 @@ public class FranchiseSearch  extends AppCompatActivity {
         {
             for(int i = 0;i < arraylist.size(); i++)
             {
-                if (arraylist.get(i).toLowerCase().contains(charText))
+                if (arraylist.get(i).getTitle().contains(charText))
                 {
-
-                    list.add(arraylist.get(i));
+                    ListVO listVO = new ListVO();
+                    listVO.setCategory(arraylist.get(i).getCategory());
+                    listVO.setTitle(arraylist.get(i).getTitle());
+                    listVO.setContext(arraylist.get(i).getContext());
+                    list.add(listVO);
                 }
             }
         }
@@ -134,12 +154,18 @@ public class FranchiseSearch  extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("response");
                 int count = 0;
-                String Name;
+                String Name,Mutual,Category;
                 while (count < jsonArray.length()) {
                     JSONObject object = jsonArray.getJSONObject(count);
                     Name = object.getString("Name");
-                    list.add(Name);
-                    arraylist.add(Name);
+                    Mutual = object.getString("Mutual");
+                    Category = object.getString("Category");
+                    ListVO listadd = new ListVO();
+                    listadd.setTitle(Name);
+                    listadd.setContext(Mutual);
+                    listadd.setCategory(Category);
+                    list.add(listadd);
+                    arraylist.add(listadd);
                     count++;
                 }
             } catch (Exception e) {

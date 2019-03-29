@@ -57,6 +57,7 @@
                         android:layout_weight="1"
                         android:bufferType="spannable"
                         android:cursorVisible="true"
+                        android:hint="프랜차이즈 검색"
                         android:drawableLeft="@drawable/search1"
                         android:textColor="#ffffff"
                         android:textColorHint="#ffffff"
@@ -64,28 +65,16 @@
                         android:theme="@style/EditTheme1"
                         android:background="@drawable/round_corner"/>
 
-
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal">
-
-                    <ImageButton
-                        android:id="@+id/Search"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/search"
-                        android:layout_gravity="center_vertical"/>
-
-                </LinearLayout>
+                    android:layout_weight="0.5"/>
 
             </LinearLayout>
 
         </android.support.v7.widget.Toolbar>
-
     </android.support.design.widget.AppBarLayout>
     <LinearLayout
         android:layout_width="match_parent"

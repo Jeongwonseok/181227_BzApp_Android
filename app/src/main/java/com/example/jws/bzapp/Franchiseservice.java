@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TabHost;
 
@@ -34,7 +34,7 @@ public class Franchiseservice extends AppCompatActivity {
         setContentView(R.layout.activity_franchiseservice);
 
         //카드뷰 추가 시킬 리사이클뷰 선언
-        EditText FranSearch;
+        Button FranSearch;
         btnBack = (ImageButton)findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +43,7 @@ public class Franchiseservice extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        FranSearch=(EditText)findViewById(R.id.franSearch);
+        FranSearch=(Button)findViewById(R.id.franSearch);
 
         FranSearch.setOnClickListener(new View.OnClickListener() {
             @Override

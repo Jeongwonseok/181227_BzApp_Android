@@ -51,7 +51,7 @@ public class Franchisedetail extends AppCompatActivity {
     TextView txtTop30;
     TextView txtSum;
     ImageView iv;
-
+    String top="";
     int color1, color2;
 
     @Override
@@ -64,10 +64,10 @@ public class Franchisedetail extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Franchisedetail.this, MainActivity.class);
-                startActivity(intent);
+               onBackPressed();
             }
         });
+
         btnHome = (ImageButton) findViewById(R.id.btnHome);
         Shopname = (TextView) findViewById(R.id.shopname);
         Shopname2 = (TextView) findViewById(R.id.shopname2);
@@ -92,83 +92,98 @@ public class Franchisedetail extends AppCompatActivity {
         Intent intent = getIntent();
         final String shopname = intent.getStringExtra("Shopname");
         final String Category = intent.getStringExtra("Category");
-        final String top =intent.getStringExtra("TOP");
 
         if(Category.equals("커피")){
+            top="3억 1천 740만원";
             iv.setImageResource(R.drawable.coffee);}
         else if(Category.equals("제과제빵")){
+            top="4억 5천 212만원";
             iv.setImageResource(R.drawable.bread);}
         else if(Category.equals("주스/차")){
+            top="1억 676만원";
             iv.setImageResource(R.drawable.juice);}
         else if(Category.equals("아이스크림/빙수")){
+            top="1억 1천 574만원";
             iv.setImageResource(R.drawable.icecream);}
         else if(Category.equals("한식")){
+            top="11억 4천 251만원";
             iv.setImageResource(R.drawable.rice);}
         else if(Category.equals("퓨전/기타")){
+            top="12억 7천 184만원";
             iv.setImageResource(R.drawable.spoon);}
         else if(Category.equals("분식")){
+            top="4억 218만원";
             iv.setImageResource(R.drawable.gimbab);}
         else if(Category.equals("양식")){
+            top="6억 848만원";
             iv.setImageResource(R.drawable.steak);}
         else if(Category.equals("일식")){
+            top="6억 8천 833만원";
             iv.setImageResource(R.drawable.sushi);}
         else if(Category.equals("중식")){
+            top="3억 3천 468만원";
             iv.setImageResource(R.drawable.chinese);}
         else if(Category.equals("세계음식")){
+            top="1억 7천 745만원";
             iv.setImageResource(R.drawable.globalcook);}
         else if(Category.equals("치킨")){
+            top="3억 7천 18만원";
             iv.setImageResource(R.drawable.chicken);}
         else if(Category.equals("주점")){
+            top="5억 3천 866만원";
             iv.setImageResource(R.drawable.beer);}
         else if(Category.equals("피자")){
+            top="3억 1천 910만원";
             iv.setImageResource(R.drawable.pizza);}
         else if(Category.equals("패스트푸드")){
+            top="2억 7천 510만원";
             iv.setImageResource(R.drawable.junkfood);}
         else if(Category.equals("스포츠")){
+            top="1억 2천 11만원";
             iv.setImageResource(R.drawable.sports);}
-        else if(Category.equals("숙박")){
+        else if(Category.equals("숙박")){top="7억 2천 172만원";
             iv.setImageResource(R.drawable.hotel);}
-        else if(Category.equals("PC방")){
+        else if(Category.equals("PC방")){  top="1억 1천 291만원";
             iv.setImageResource(R.drawable.pc);}
-        else if(Category.equals("오락")){
+        else if(Category.equals("오락")){  top="6천 241만원";
             iv.setImageResource(R.drawable.orak);}
-        else if(Category.equals("기타소매")){
+        else if(Category.equals("기타소매")){  top="7억 7천 554만원";
             iv.setImageResource(R.drawable.gitaretail);}
-        else if(Category.equals("의류/패션")){
+        else if(Category.equals("의류/패션")){  top="1억 1천 253만원";
             iv.setImageResource(R.drawable.fashion);}
-        else if(Category.equals("화장품")){
+        else if(Category.equals("화장품")){ top="1억 9천 897만원";
             iv.setImageResource(R.drawable.cosmetic);}
-        else if(Category.equals("건강식품")){
+        else if(Category.equals("건강식품")){ top="1억 7천 829만원";
             iv.setImageResource(R.drawable.vegetable);}
-        else if(Category.equals("편의점")){
+        else if(Category.equals("편의점")){ top="2억 7천 233만원";
             iv.setImageResource(R.drawable.convenience);}
-        else if(Category.equals("농수산물")){
+        else if(Category.equals("농수산물")){top="9천 774만원";
             iv.setImageResource(R.drawable.farm);}
-        else if(Category.equals("종합소매점")){
+        else if(Category.equals("종합소매점")){top="10억 631만원";
             iv.setImageResource(R.drawable.largeretail);}
-        else if(Category.equals("기타서비스")){
+        else if(Category.equals("기타서비스")){top="2억 5천 929만원";
             iv.setImageResource(R.drawable.gitaservice);}
-        else if(Category.equals("미용")){
+        else if(Category.equals("미용")){ top="5억 1천 242만원";
             iv.setImageResource(R.drawable.cut);}
-        else if(Category.equals("기타교육")){
+        else if(Category.equals("기타교육")){ top="3억 1천 906만원";
             iv.setImageResource(R.drawable.gitaedu);}
-        else if(Category.equals("외국어교육")){
+        else if(Category.equals("외국어교육")){top="4억 1천 726만원";
             iv.setImageResource(R.drawable.foreignedu);}
-        else if(Category.equals("교과교육")){
+        else if(Category.equals("교과교육")){     top="3억 277만원";
             iv.setImageResource(R.drawable.gitaedu);}
-        else if(Category.equals("유아")){
+        else if(Category.equals("유아")){ top="1억 6천 315만원";
             iv.setImageResource(R.drawable.child);}
-        else if(Category.equals("자동차")){
+        else if(Category.equals("자동차")){ top="1억 3천 728만원";
             iv.setImageResource(R.drawable.car);}
-        else if(Category.equals("안경")){
+        else if(Category.equals("안경")){top="3억 4천 925만원";
             iv.setImageResource(R.drawable.glasses);}
-        else if(Category.equals("세탁")){
+        else if(Category.equals("세탁")){   top="3천 520만원";
             iv.setImageResource(R.drawable.dry);}
-        else if(Category.equals("반려동물")){
+        else if(Category.equals("반려동물")){ top="9천 390만원";
             iv.setImageResource(R.drawable.dogcat);}
-        else if(Category.equals("운송")){
+        else if(Category.equals("운송")){  top="3천 498만원";
             iv.setImageResource(R.drawable.deliever);}
-        else if(Category.equals("부동산/임대")){
+        else if(Category.equals("부동산/임대")){top="5천 347만원";
             iv.setImageResource(R.drawable.realestate);}
 
         Shopname.setText(shopname);
@@ -178,15 +193,6 @@ public class Franchisedetail extends AppCompatActivity {
         Shopname5.setText(shopname);
         Shopname6.setText(shopname);
 
-
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Franchisedetail.this, Franchisedetail.class);
-                startActivity(intent);
-            }
-        });
 
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override

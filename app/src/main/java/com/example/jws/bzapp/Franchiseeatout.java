@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TabHost;
 
@@ -25,14 +25,14 @@ public class Franchiseeatout extends AppCompatActivity {
 
     ImageButton btnBack;
     ImageButton btnFilter;
-
+    Button FranSearch;
     //카드뷰에 표시될 정보 배열
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_franchiseeatout);
-        EditText FranSearch;
+
         //카드뷰 추가 시킬 리사이클뷰 선언
 
         btnBack = (ImageButton)findViewById(R.id.btnBack);
@@ -43,7 +43,7 @@ public class Franchiseeatout extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        FranSearch=(EditText)findViewById(R.id.franSearch);
+        FranSearch=(Button)findViewById(R.id.franSearch);
         FranSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,6 +51,8 @@ public class Franchiseeatout extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
         //탭호스트 선언, 탭추가
         TabHost tabHost = (TabHost)findViewById(R.id.Host);
