@@ -50,43 +50,37 @@
                     android:layout_weight="8"
                     android:gravity="center_vertical">
 
-                    <fragment
-                        android:id="@+id/place_autocomplete_fragment"
-                        android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <!--<EditText-->
-                    <!--android:id="@+id/locationSearch"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:background="@drawable/round_corner"-->
-                    <!--android:bufferType="spannable"-->
-                    <!--android:cursorVisible="true"-->
-                    <!--android:drawableLeft="@drawable/search1"-->
-                    <!--android:hint="지역,지하철역 검색"-->
-                    <!--android:textColor="#ffffff"-->
-                    <!--android:textColorHint="#ffffff"-->
-                    <!--android:textSize="13dp"-->
-                    <!--android:theme="@style/EditTheme1" />-->
+                    <EditText
+                    android:id="@+id/locationSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_corner"
+                    android:bufferType="spannable"
+                    android:cursorVisible="true"
+                    android:drawableLeft="@drawable/search1"
+                    android:hint="지역,지하철역 검색"
+                    android:textColor="#ffffff"
+                    android:textColorHint="#ffffff"
+                    android:textSize="13dp"
+                    android:theme="@style/EditTheme1" />
 
                 </LinearLayout>
 
-                <!--<LinearLayout-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:gravity="center_horizontal">-->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal">
 
-                    <!--<ImageButton-->
-                        <!--android:id="@+id/Search"-->
-                        <!--android:layout_width="30dp"-->
-                        <!--android:layout_height="30dp"-->
-                        <!--android:layout_gravity="center_vertical"-->
-                        <!--android:background="@drawable/search" />-->
+                    <ImageButton
+                        android:id="@+id/Search"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/search" />
 
-                <!--</LinearLayout>-->
+                </LinearLayout>
 
             </LinearLayout>
 

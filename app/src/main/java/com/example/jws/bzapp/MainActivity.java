@@ -22,11 +22,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.kakao.network.ErrorResult;
-import com.kakao.usermgmt.UserManagement;
-import com.kakao.usermgmt.callback.MeResponseCallback;
-import com.kakao.usermgmt.response.model.UserProfile;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -597,38 +592,6 @@ String url;
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    //카카오 유저 정보 받아오기
-    public void requestMe() {
-        //유저의 정보를 받아오는 함수
-
-        UserManagement.requestMe(new MeResponseCallback() {
-            @Override
-            public void onFailure(ErrorResult errorResult) {
-                Log.e(TAG, "error message=" + errorResult);
-//                super.onFailure(errorResult);
-            }
-
-            @Override
-            public void onSessionClosed(ErrorResult errorResult) {
-
-                Log.d(TAG, "onSessionClosed1 =" + errorResult);
-            }
-
-            @Override
-            public void onNotSignedUp() {
-                //카카오톡 회원이 아닐시
-                Log.d(TAG, "onNotSignedUp ");
-
-            }
-
-            @Override
-            public void onSuccess(UserProfile result) {
-                Log.e("UserProfile", result.toString());
-                Log.e("UserProfile", result.getId() + "");
-            }
-        });
     }
 
 }

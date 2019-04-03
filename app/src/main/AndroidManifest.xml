@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
-        android:name=".GlobalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Bz"
@@ -32,10 +31,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCSHJPXKQSV8rGyPv4MDcAtzq0bSXDyJw0" />
-
-        <meta-data
-            android:name="com.kakao.sdk.AppKey"
-            android:value="@string/kakao_app_key" />
 
         <activity
             android:name=".MainActivity"

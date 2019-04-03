@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.test"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:support-media-compat:28.0.0'
     implementation 'com.android.support:support-v4:28.0.0'
@@ -31,10 +31,8 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.google.android.gms:play-services-maps:16.0.0'
     implementation 'com.google.android.gms:play-services-location:16.0.0'
-    implementation 'com.google.android.gms:play-services-places:16.0.0'
-    //카카오 로그인 sdk
-    implementation 'com.github.PhilJay:MPAndroidChart:v2.1.6'    //차트 라이브러리사용
-    implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
+    //차트 라이브러리사용
+    implementation 'com.github.PhilJay:MPAndroidChart:v2.1.6'
     //Stringrequest 라이브러리
     implementation 'com.mcxiaoke.volley:library:1.0.18'
     testImplementation 'junit:junit:4.12'
