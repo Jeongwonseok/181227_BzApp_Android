@@ -424,7 +424,6 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
                             .setNeutralButton("취소", null)
                             .create()
                             .show();
-                    Toast.makeText(getApplicationContext(), "로그인이 필요합니다.", Toast.LENGTH_LONG).show();
                 } else {
                     if (likeflag) {
                         likeflag = false;
