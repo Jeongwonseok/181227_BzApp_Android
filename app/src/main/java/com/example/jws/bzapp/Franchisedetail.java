@@ -354,8 +354,6 @@ public class Franchisedetail extends AppCompatActivity {
         FindFranchise findFranchise = new FindFranchise(shopname,Table,responseListener );
         RequestQueue queue = Volley.newRequestQueue(Franchisedetail.this);
         queue.add(findFranchise);
-        Toast.makeText(getApplicationContext(),Table,Toast.LENGTH_SHORT).show();
-
 
 
 
