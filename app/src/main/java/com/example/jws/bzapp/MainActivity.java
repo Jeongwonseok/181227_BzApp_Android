@@ -1,6 +1,7 @@
 package com.example.jws.bzapp;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -10,11 +11,11 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -196,7 +197,28 @@ String url;
                 @Override
                 public void onClick(View v) {
                     if (surveycheck) {
-                        Toast.makeText(getApplicationContext(),"상권분석",Toast.LENGTH_LONG).show();
+                        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this
+                        );
+                        alert.setTitle("설문조사");
+                        alert.setMessage("설문조사를 다시 하시겠습니까?").setCancelable(false)
+                                .setPositiveButton("예", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
+                                        intent.putExtra("ID", loginID);
+                                        startActivity(intent);
+                                    }
+                                }).setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(MainActivity.this, RecommendActivity.class);
+                                intent.putExtra("ID", loginID);
+                                startActivity(intent);
+                            }
+                        });
+
+                        AlertDialog alertDialog = alert.create();
+                        alertDialog.show();
                     }
                     else {
                         Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
@@ -262,8 +284,24 @@ String url;
             btnSurvey.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
-                    startActivity(intent);
+                    AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this
+                    );
+                    alert.setTitle("설문조사");
+                    alert.setMessage("로그인이 필요한 서비스입니다. 로그인하시겠습니까").setCancelable(false)
+                            .setPositiveButton("예", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                    startActivity(intent);
+                                }
+                            }).setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+
+                    AlertDialog alertDialog = alert.create();
+                    alertDialog.show();
                 }
             });
 
@@ -271,6 +309,7 @@ String url;
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(MainActivity.this, RecommendActivity.class);
+                    intent.putExtra("ID",loginID);
                     startActivity(intent);
                 }
             });
@@ -356,7 +395,28 @@ String url;
                 @Override
                 public void onClick(View v) {
                     if (surveycheck) {
-                        Toast.makeText(getApplicationContext(),"상권분석",Toast.LENGTH_LONG).show();
+                        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                        alert.setTitle("설문조사");
+                        alert.setMessage("설문조사를 다시 하시겠습니까?").setCancelable(false)
+                                .setPositiveButton("예", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
+                                        intent.putExtra("ID", loginID);
+                                        startActivity(intent);
+                                    }
+                                }).setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(MainActivity.this, RecommendActivity.class);
+                                intent.putExtra("ID", loginID);
+                                startActivity(intent);
+                            }
+                        });
+
+                        AlertDialog alertDialog = alert.create();
+                        alertDialog.show();
+
                     }
                     else {
                         Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
@@ -425,8 +485,23 @@ String url;
             btnSurvey.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
-                    startActivity(intent);
+                    AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                    alert.setTitle("설문조사");
+                    alert.setMessage("로그인이 필요한 서비스 입니다. 로그인 하시겠습니까?").setCancelable(false)
+                            .setPositiveButton("예", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                    startActivity(intent);
+                                }
+                            }).setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+
+                    AlertDialog alertDialog = alert.create();
+                    alertDialog.show();
                 }
             });
 

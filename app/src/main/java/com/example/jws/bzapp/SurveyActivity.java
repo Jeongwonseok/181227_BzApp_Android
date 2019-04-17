@@ -4,15 +4,14 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -146,16 +145,16 @@ public class SurveyActivity extends AppCompatActivity {
                 RadioButton rbGender = (RadioButton) findViewById(checkedId);
                 switch (checkedId) {
                     case R.id.rbL1:
-                        lReason = "1";
+                        lReason = "집과 가까워서서";
                         break;
-                    case R.id.rbL2:
-                        lReason = "2";
+                   case R.id.rbL2:
+                        lReason = "해당 지역이 창업에 유리할 것 같아서 (풍부한 유동인구)";
                         break;
                     case R.id.rbL3:
-                        lReason = "3";
+                        lReason = "초기 비용이 적게 들 것 같아서";
                         break;
                     case R.id.rbL4:
-                        lReason = "4";
+                        lReason = "이 지역을 잘 알아서";
                         break;
                 }
             }
@@ -199,16 +198,19 @@ public class SurveyActivity extends AppCompatActivity {
                 RadioButton rbGender = (RadioButton) findViewById(checkedId);
                 switch (checkedId) {
                     case R.id.rbT1:
-                        tReason = "1";
+                        tReason = "매출 수익이 높아서";
                         break;
                     case R.id.rbT2:
-                        tReason = "2";
+                        tReason = "이 업종에 대하여 잘 알아서";
                         break;
                     case R.id.rbT3:
-                        tReason = "3";
+                        tReason = "창업 후 운영이 상대적으로 쉬워서";
                         break;
                     case R.id.rbT4:
-                        tReason = "4";
+                        tReason = "초기 비용이 적게 들 것 같아서";
+                        break;
+                    case R.id.rbT5:
+                        tReason = "이 지역을 잘 알아서";
                         break;
                 }
             }
@@ -221,16 +223,22 @@ public class SurveyActivity extends AppCompatActivity {
                 RadioButton rbGender = (RadioButton) findViewById(checkedId);
                 switch (checkedId) {
                     case R.id.rbS1:
-                        sales = "1";
+                        sales = "2000미만";
                         break;
                     case R.id.rbS2:
-                        sales = "2";
+                        sales = "2000 ~ 2500";
                         break;
                     case R.id.rbS3:
-                        sales = "3";
+                        sales = "2500 ~ 3000";
                         break;
                     case R.id.rbS4:
-                        sales = "4";
+                        sales = "3000 ~ 3500";
+                        break;
+                    case R.id.rbS5:
+                        sales = "3500 ~ 4000";
+                        break;
+                    case R.id.rbS6:
+                        sales = "4000이상";
                         break;
                 }
             }
