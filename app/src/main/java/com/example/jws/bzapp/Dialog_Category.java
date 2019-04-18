@@ -59,6 +59,7 @@ public class Dialog_Category extends Activity {
         setContentView(R.layout.activity_dialog__category);
         shopapi=new ShopApi();
 
+
         Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
 
         int width = (int) (display.getWidth() * 0.8); //Display 사이즈의 70%

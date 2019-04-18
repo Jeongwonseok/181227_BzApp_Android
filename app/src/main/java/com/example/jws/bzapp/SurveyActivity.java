@@ -167,25 +167,25 @@ public class SurveyActivity extends AppCompatActivity {
                 RadioButton rbGender = (RadioButton) findViewById(checkedId);
                 switch (checkedId) {
                     case R.id.rbRetail:
-                        type = "소매";
+                        type = "retail";
                         break;
                     case R.id.rbLife:
-                        type = "생활서비스";
+                        type = "life";
                         break;
                     case R.id.rbTour:
-                        type = "관광/여가/오락";
+                        type = "tour";
                         break;
                     case R.id.rbStay:
-                        type = "숙박";
+                        type = "stay";
                         break;
                     case R.id.rbSports:
-                        type = "스포츠";
+                        type = "sports";
                         break;
                     case R.id.rbFood:
-                        type = "음식";
+                        type = "food";
                         break;
                     case R.id.rbEdu:
-                        type = "학문/교육";
+                        type = "edu";
                         break;
                 }
             }
@@ -223,22 +223,22 @@ public class SurveyActivity extends AppCompatActivity {
                 RadioButton rbGender = (RadioButton) findViewById(checkedId);
                 switch (checkedId) {
                     case R.id.rbS1:
-                        sales = "2000미만";
+                        sales = "1";
                         break;
                     case R.id.rbS2:
-                        sales = "2000 ~ 2500";
+                        sales = "2";
                         break;
                     case R.id.rbS3:
-                        sales = "2500 ~ 3000";
+                        sales = "3";
                         break;
                     case R.id.rbS4:
-                        sales = "3000 ~ 3500";
+                        sales = "4";
                         break;
                     case R.id.rbS5:
-                        sales = "3500 ~ 4000";
+                        sales = "5";
                         break;
                     case R.id.rbS6:
-                        sales = "4000이상";
+                        sales = "6";
                         break;
                 }
             }
