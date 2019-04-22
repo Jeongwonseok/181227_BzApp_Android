@@ -60,6 +60,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 
     private GoogleMap mMap;
 
+    String consumer_key = "280b76187800465f82e7";
+    String consumer_secret = "0b1a959895d74aa2a418";
     double mLat = 0;
     double mLong = 0;
     ImageButton btnBack;
@@ -646,7 +648,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         protected String doInBackground(String... strings) {
             try {
                 //서버에 있는 php 실행
-                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.json?consumer_key=d2afa112ac134fe1a52a&consumer_secret=e3f889ddddd3499da8f3");
+                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.json?consumer_key="+consumer_key+"&consumer_secret="+consumer_secret);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
