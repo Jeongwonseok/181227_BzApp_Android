@@ -319,25 +319,25 @@
                                     android:id="@+id/rbL1"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="1" />
+                                    android:text="집과 가까워서" />
 
                                 <RadioButton
                                     android:id="@+id/rbL2"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="2" />
+                                    android:text="해당 지역이 창업에 유리할 것 같아서" />
 
                                 <RadioButton
                                     android:id="@+id/rbL3"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="3" />
+                                    android:text="초기 비용이 적게 들 것 같아서" />
 
                                 <RadioButton
                                     android:id="@+id/rbL4"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="4" />
+                                    android:text="이 지역을 잘 알아서" />
 
 
                             </RadioGroup>
@@ -453,25 +453,30 @@
                                     android:id="@+id/rbT1"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="1" />
+                                    android:text="매출 수익이 높아서" />
 
                                 <RadioButton
                                     android:id="@+id/rbT2"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="2" />
+                                    android:text="이 업종에 대하여 잘 알아서" />
 
                                 <RadioButton
                                     android:id="@+id/rbT3"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="3" />
+                                    android:text="창업 후 운영이 상대적으로 쉬워서" />
 
                                 <RadioButton
                                     android:id="@+id/rbT4"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="4" />
+                                    android:text="요즘 뜨는 업종으로 빠른 투자금 회수가 가능 할 것 같아서" />
+                                <RadioButton
+                                    android:id="@+id/rbT5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="유행 안타는 업종이라 오래 할 수 있어서" />
                             </RadioGroup>
 
                         </LinearLayout>
@@ -509,25 +514,35 @@
                                     android:id="@+id/rbS1"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="1" />
+                                    android:text="2000미만" />
 
                                 <RadioButton
                                     android:id="@+id/rbS2"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="2" />
+                                    android:text="2000 ~ 2500" />
 
                                 <RadioButton
                                     android:id="@+id/rbS3"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="3" />
+                                    android:text="2500 ~ 3000" />
 
                                 <RadioButton
                                     android:id="@+id/rbS4"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="4" />
+                                    android:text="3000 ~ 3500" />
+                                <RadioButton
+                                    android:id="@+id/rbS5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="3500 ~ 4000" />
+                                <RadioButton
+                                    android:id="@+id/rbS6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="4000이상" />
 
 
                             </RadioGroup>
