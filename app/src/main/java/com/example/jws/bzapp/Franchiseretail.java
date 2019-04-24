@@ -25,6 +25,7 @@ public class Franchiseretail extends AppCompatActivity {
 
     ImageButton btnBack;
     ImageButton btnFilter;
+    Button FranSearch;
 
     //카드뷰에 표시될 정보 배열
 
@@ -32,7 +33,7 @@ public class Franchiseretail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_franchisereatail);
-        Button FranSearch;
+
         //카드뷰 추가 시킬 리사이클뷰 선언
 
         btnBack = (ImageButton)findViewById(R.id.btnBack);

@@ -26,6 +26,8 @@ public class Franchisedrink extends AppCompatActivity {
     ImageButton btnBack;
     //카드뷰에 표시될 정보 배열
     Button FranSearch;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

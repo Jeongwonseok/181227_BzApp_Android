@@ -3,11 +3,14 @@ package com.example.jws.bzapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class RecommendActivity extends AppCompatActivity {
 
     TextView text1,text2,text3;
+    Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,15 @@ public class RecommendActivity extends AppCompatActivity {
         text1.setText(a);
         text2.setText(b);
         text3.setText(c);
+
+        btn = (Button)findViewById(R.id.btn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RecommendActivity.this, Recommenddetail.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

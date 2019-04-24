@@ -22,4 +22,11 @@
         android:layout_height="wrap_content"
         android:text="type"
         android:id="@+id/test3"/>
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="상권추천 디테일"/>
 </LinearLayout>
