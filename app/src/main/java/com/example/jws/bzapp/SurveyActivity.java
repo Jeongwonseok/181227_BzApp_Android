@@ -89,51 +89,22 @@ public class SurveyActivity extends AppCompatActivity {
                     case R.id.rbGyeonggi:
                         location = "경기도";
                         break;
-                    case R.id.rbGyeongsangS:
-                        location = "경상남도";
-                        break;
-                    case R.id.rbGyeongsangN:
-                        location = "경상북도";
-                        break;
-                    case R.id.rbGwangju:
-                        location = "광주광역시";
-                        break;
-                    case R.id.rbDeagu:
-                        location = "대구";
-                        break;
-                    case R.id.rbDeajeon:
-                        location = "대전";
-                        break;
-                    case R.id.rbBusan:
-                        location = "부산광역시";
+                    case R.id.rbGyeongsang:
+                        location = "경상도";
                         break;
                     case R.id.rbSeoul:
                         location = "서울특별시";
                         break;
-                    case R.id.rbSejong:
-                        location = "세종특별시";
-                        break;
-                    case R.id.rbUlsan:
-                        location = "울산광역시";
-                        break;
-                    case R.id.rbIncheon:
-                        location = "인천광역시";
-                        break;
-                    case R.id.rbJeonraS:
-                        location = "전라남도";
-                        break;
-                    case R.id.rbJeonraN:
-                        location = "전라북도";
+                    case R.id.rbJeonra:
+                        location = "전라도";
                         break;
                     case R.id.rbJeju:
                         location = "제주특별시";
                         break;
-                    case R.id.rbchungS:
-                        location = "충청남도";
+                    case R.id.rbchung:
+                        location = "충청도";
                         break;
-                    case R.id.rbchungN:
-                        location = "충청북도";
-                        break;
+
                 }
             }
         });

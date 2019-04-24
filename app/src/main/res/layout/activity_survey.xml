@@ -164,101 +164,41 @@
 
 
                                 <RadioButton
+                                    android:id="@+id/rbSeoul"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="서울특별시" />
+
+                                <RadioButton
+                                    android:id="@+id/rbGyeonggi"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="경기도(인천)" />
+
+
+                                <RadioButton
                                     android:id="@+id/rbGangwon"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="강원도" />
 
 
-                                <RadioButton
-                                    android:id="@+id/rbGyeonggi"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="경기도" />
-
 
                                 <RadioButton
-                                    android:id="@+id/rbGyeongsangS"
+                                    android:id="@+id/rbGyeongsang"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="경상남도" />
 
 
-                                <RadioButton
-                                    android:id="@+id/rbGyeongsangN"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="경상북도" />
 
 
                                 <RadioButton
-                                    android:id="@+id/rbGwangju"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="광주광역시" />
-
-
-                                <RadioButton
-                                    android:id="@+id/rbDeagu"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="대구광역시" />
-
-
-                                <RadioButton
-                                    android:id="@+id/rbDeajeon"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="대전광역시" />
-
-
-                                <RadioButton
-                                    android:id="@+id/rbBusan"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="부산광역시" />
-
-
-                                <RadioButton
-                                    android:id="@+id/rbSeoul"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="서울특별시" />
-
-
-                                <RadioButton
-                                    android:id="@+id/rbSejong"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="세종특별시" />
-
-
-                                <RadioButton
-                                    android:id="@+id/rbUlsan"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="울산광역시" />
-
-
-                                <RadioButton
-                                    android:id="@+id/rbIncheon"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="인천광역시" />
-
-
-                                <RadioButton
-                                    android:id="@+id/rbJeonraS"
+                                    android:id="@+id/rbJeonra"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="전라남도" />
 
-
-                                <RadioButton
-                                    android:id="@+id/rbJeonraN"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="전라북도" />
 
 
                                 <RadioButton
@@ -269,17 +209,12 @@
 
 
                                 <RadioButton
-                                    android:id="@+id/rbchungS"
+                                    android:id="@+id/rbchung"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="충청남도" />
 
 
-                                <RadioButton
-                                    android:id="@+id/rbchungN"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="충청북도" />
 
 
                             </RadioGroup>
