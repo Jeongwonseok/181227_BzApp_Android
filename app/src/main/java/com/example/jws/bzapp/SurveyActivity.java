@@ -1,13 +1,16 @@
 package com.example.jws.bzapp;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,8 +25,16 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class SurveyActivity extends AppCompatActivity {
 
@@ -31,7 +42,11 @@ public class SurveyActivity extends AppCompatActivity {
     Button btncancel, btnok;
     RadioGroup rgGender, rgLocation, rgLreason, rgType, rgTreason, rgSales;
     String ID, gender, location, age, lReason, type, tReason, sales;
-
+    String Type;
+    String Sales;
+    String Location;
+    String mJsonString;
+    private static final String TAG = "Login";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +114,7 @@ public class SurveyActivity extends AppCompatActivity {
                         location = "전라도";
                         break;
                     case R.id.rbJeju:
-                        location = "제주특별시";
+                        location = "제주";
                         break;
                     case R.id.rbchung:
                         location = "충청도";
@@ -292,8 +307,8 @@ public class SurveyActivity extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             finish();
-                                            Intent intent = new Intent(SurveyActivity.this, RecommendActivity.class);
-                                            startActivity(intent);
+                                            getsurvey task = new getsurvey();
+                                            task.execute(ID);
                                         }
                                     });
                                     builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -325,4 +340,131 @@ public class SurveyActivity extends AppCompatActivity {
 
 
     }
+
+
+    private class getsurvey extends AsyncTask<String, Void, String> {
+
+        ProgressDialog progressDialog;
+        String errorString = null;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressDialog = ProgressDialog.show(SurveyActivity.this,
+                    "성격 급하시네 시발라꺼", null, true, true);
+        }
+
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            progressDialog.dismiss();
+            Log.d(TAG, "response - " + result);
+            if (result == null){
+                Toast.makeText(getApplicationContext(),"오류",Toast.LENGTH_SHORT).show();
+            }
+            else {
+                mJsonString = result;
+                showResult();
+            }
+        }
+
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String ID = params[0];
+
+            String serverURL = "http://qwerr784.cafe24.com/findsurvey.php";
+            String postParameters = "ID=" + ID;
+
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.connect();
+
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG, "response code - " + responseStatusCode);
+
+                InputStream inputStream;
+                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                }
+                else{
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line;
+
+                while((line = bufferedReader.readLine()) != null){
+                    sb.append(line);
+                }
+
+
+                bufferedReader.close();
+
+
+                return sb.toString().trim();
+
+
+            } catch (Exception e) {
+
+                Log.d(TAG, "InsertData: Error ", e);
+                errorString = e.toString();
+
+                return null;
+            }
+
+        }
+    }
+
+
+    private void showResult(){
+        try {
+            JSONObject jsonObject = new JSONObject(mJsonString);
+            JSONArray jsonArray = jsonObject.getJSONArray("response");
+
+            for(int i=0;i<jsonArray.length();i++){
+
+                JSONObject item = jsonArray.getJSONObject(i);
+
+                Location = item.getString("location");
+                Type = item.getString("type");
+                Sales = item.getString("sales");
+                Intent intent = new Intent(SurveyActivity.this, RecommendActivity.class);
+                intent.putExtra("location",Location);
+                intent.putExtra("sales",Sales);
+                intent.putExtra("type",Type);
+                startActivity(intent);
+
+            }
+        } catch (JSONException e) {
+
+            Log.d(TAG, "showResult : ", e);
+        }
+
+    }
+
 }
+
+

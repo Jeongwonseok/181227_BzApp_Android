@@ -205,7 +205,7 @@
                                     android:id="@+id/rbJeju"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="제주특별시" />
+                                    android:text="제주도" />
 
 
                                 <RadioButton

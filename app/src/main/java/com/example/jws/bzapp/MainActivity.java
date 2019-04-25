@@ -416,9 +416,8 @@ String url;
                                 }).setNegativeButton("아니요", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent(MainActivity.this, RecommendActivity.class);
-                                intent.putExtra("ID", loginID);
-                                startActivity(intent);
+                                getsurvey task = new getsurvey();
+                                task.execute(loginID);
                             }
                         });
 
