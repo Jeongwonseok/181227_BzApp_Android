@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity
     ImageButton btnMypage;
     ImageButton btnLogout;
     ImageButton btnManager;
+    ImageButton btnShare;
 
     Boolean logincheck, surveycheck;
     String loginID;
@@ -143,6 +144,7 @@ String url;
         btnLogout = (ImageButton) nav_header_view.findViewById(R.id.btnLogout);
         btnMypage = (ImageButton) nav_header_view.findViewById(R.id.btnMypage);
         btnManager = (ImageButton) nav_header_view.findViewById(R.id.nav_manage);
+        btnShare = (ImageButton) nav_header_view.findViewById(R.id.nav_share);
 
         textid = (TextView)nav_header_view.findViewById(R.id.loginid);
 
@@ -672,7 +674,8 @@ String url;
             startActivity(intent);
 
         } else if (id == R.id.nav_share) {
-
+            Intent intent = new Intent(MainActivity.this, HelpActivity.class);
+            startActivity(intent);
         }
 
         drawer.closeDrawer(GravityCompat.START);
