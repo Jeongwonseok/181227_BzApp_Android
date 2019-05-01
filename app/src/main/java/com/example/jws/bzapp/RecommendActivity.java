@@ -70,7 +70,7 @@ public class RecommendActivity extends AppCompatActivity {
         }
         else if(sales.equals("6")){
             Fsale="4000";
-            Lsale="100000";
+            Lsale="10000";
         }
         text1.setText(Location+sales+Category+Fsale+Lsale);
 

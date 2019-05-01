@@ -217,6 +217,7 @@ String url;
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
                                         intent.putExtra("ID", loginID);
+                                        intent.putExtra("Update",1);
                                         startActivity(intent);
                                     }
                                 }).setNegativeButton("아니요", new DialogInterface.OnClickListener() {
@@ -234,6 +235,7 @@ String url;
                     else {
                         Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
                         intent.putExtra("ID", loginID);
+                        intent.putExtra("Update",0);
                         startActivity(intent);
                     }
                 }
@@ -429,6 +431,7 @@ String url;
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
                                         intent.putExtra("ID", loginID);
+                                        intent.putExtra("Update",1);
                                         startActivity(intent);
                                     }
                                 }).setNegativeButton("아니요", new DialogInterface.OnClickListener() {
@@ -446,6 +449,7 @@ String url;
                     else {
                         Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
                         intent.putExtra("ID", loginID);
+                        intent.putExtra("Update",0);
                         startActivity(intent);
                     }
                 }
