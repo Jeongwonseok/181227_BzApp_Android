@@ -267,7 +267,7 @@ public class SurveyActivity extends AppCompatActivity {
             }
         });
 
-        if(UPdate==0){
+        if(UPdate==0){  //insert문실행
         btnok = (Button) findViewById(R.id.ok);
         btnok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -338,9 +338,10 @@ public class SurveyActivity extends AppCompatActivity {
                     queue.add(sRegister);
                 }
             }
-        });}
+        });
+        }
 
-        else if(UPdate==1){
+        else if(UPdate==1){  //UPdate문실행
             btnok = (Button) findViewById(R.id.ok);
             btnok.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -414,14 +415,12 @@ public class SurveyActivity extends AppCompatActivity {
             });
         }
 
-
     }
 
 
 
 
-
-
+    //등록한 설문조사 가지고오는 곳
     private class getsurvey extends AsyncTask<String, Void, String> {
 
         ProgressDialog progressDialog;
