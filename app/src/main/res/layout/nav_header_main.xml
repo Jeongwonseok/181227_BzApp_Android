@@ -21,10 +21,10 @@
             android:id="@+id/imageView"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="13dp"
             android:contentDescription="@string/nav_header_desc"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
-            android:background="#000000" />
+            android:background="@drawable/logo3" />
 
     </LinearLayout>
 
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/nav_header_vertical_spacing"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="5dp"
                 android:text="로그인을 하시오."
                 android:textSize="20dp"
@@ -51,7 +51,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="8dp">
 
             <ImageButton
                 android:id="@+id/btnMypage"
