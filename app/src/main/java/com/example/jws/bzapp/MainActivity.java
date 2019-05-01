@@ -319,8 +319,24 @@ String url;
             btnRec.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this, RecommendActivity.class);
-                    startActivity(intent);
+                    AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this
+                    );
+                    alert.setTitle("상권 분석");
+                    alert.setMessage("로그인이 필요한 서비스입니다. 로그인하시겠습니까").setCancelable(false)
+                            .setPositiveButton("예", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                    startActivity(intent);
+                                }
+                            }).setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+
+                    AlertDialog alertDialog = alert.create();
+                    alertDialog.show();
                 }
             });
 
@@ -520,8 +536,24 @@ String url;
             btnRec.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this, RecommendActivity.class);
-                    startActivity(intent);
+                    AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this
+                    );
+                    alert.setTitle("상권 분석");
+                    alert.setMessage("로그인이 필요한 서비스입니다. 로그인하시겠습니까").setCancelable(false)
+                            .setPositiveButton("예", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                    startActivity(intent);
+                                }
+                            }).setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+
+                    AlertDialog alertDialog = alert.create();
+                    alertDialog.show();
                 }
             });
 
