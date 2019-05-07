@@ -3,13 +3,14 @@ package com.example.jws.bzapp;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -72,6 +73,8 @@ public class Recommenddetail extends AppCompatActivity {
     //상권개요
     LinearLayout pLayout1;
     ImageView pbtn1;
+    ShopApi shopApi;
+    TextView jumpo;
     //페업자 정보
     TextView tvsido, tvclosure, tvsclosure;
     //평균업력 차트
@@ -129,6 +132,9 @@ public class Recommenddetail extends AppCompatActivity {
         //상권개요
         pLayout1 = (LinearLayout) findViewById(R.id.pLayout1);
         pbtn1 = (ImageView) findViewById(R.id.pbtn1);
+        shopApi=new ShopApi();
+        jumpo = (TextView)findViewById(R.id.jumpo);
+
         //페업자
         tvsido = (TextView) findViewById(R.id.tvsido);
         tvclosure = (TextView) findViewById(R.id.tvclosure);
@@ -240,6 +246,7 @@ public class Recommenddetail extends AppCompatActivity {
 
                 Changecode changecode = new Changecode();
                 changecode.execute();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -299,6 +306,8 @@ public class Recommenddetail extends AppCompatActivity {
 
                 ChangeLatLng changeLatLng = new ChangeLatLng();
                 changeLatLng.execute();
+
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -349,6 +358,28 @@ public class Recommenddetail extends AppCompatActivity {
 
                 Lat = object.getDouble("posY");
                 Lng = object.getDouble("posX");
+                String a =String.valueOf(Lat);
+                Toast.makeText(getApplicationContext(),a,Toast.LENGTH_SHORT).show();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // TODO Auto-generated method stub
+                        String Lat2=String.valueOf(Lat);
+                        String Lng2=String.valueOf(Lng);
+                        final String location[]=shopApi.location("1000",Lng2,Lat2);
+                        final String hangjung[];
+                        hangjung=ShopApi.hangjungData("signguCd", location[1]);
+                        runOnUiThread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                // TODO Auto-generated method stub
+                                jumpo.setText( hangjung[1]+ "개");
+                            }
+                        });
+
+                    }
+                }).start();
 
                 //지도 중심을 변환한 위도경도로 설정
                 SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
