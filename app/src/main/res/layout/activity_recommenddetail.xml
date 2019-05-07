@@ -121,10 +121,10 @@
                                 android:textSize="15dp"/>
 
                             <TextView
-                                android:id="@+id/txtgrade"
+                                android:id="@+id/tvgrade"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="'1등급'"
+                                android:text="1등급"
                                 android:textColor="#ed3050"
                                 android:textSize="18dp"/>
 
@@ -151,10 +151,10 @@
                                 android:textSize="15dp"/>
 
                             <TextView
-                                android:id="@+id/high"
+                                android:id="@+id/tvhigh"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="'영업력'"
+                                android:text="영업력"
                                 android:textColor="#ed3050"
                                 android:textSize="18dp"/>
 
@@ -181,10 +181,10 @@
                                 android:textSize="15dp"/>
 
                             <TextView
-                                android:id="@+id/low"
+                                android:id="@+id/tvlow"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="'안정성'"
+                                android:text="안정성"
                                 android:textColor="#ed3050"
                                 android:textSize="18dp"/>
 
@@ -318,7 +318,7 @@
                                     android:textSize="13dp" />
 
                                 <TextView
-                                    android:id="@+id/tvsung"
+                                    android:id="@+id/tvsungscore"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
@@ -330,7 +330,7 @@
                                     android:textSize="16dp" />
 
                                 <TextView
-                                    android:id="@+id/tvan"
+                                    android:id="@+id/tvstabscore"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
@@ -342,7 +342,7 @@
                                     android:textStyle="bold"/>
 
                                 <TextView
-                                    android:id="@+id/tvgu"
+                                    android:id="@+id/tvbuyscore"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
@@ -354,7 +354,7 @@
                                     android:textColor="#000000" />
 
                                 <TextView
-                                    android:id="@+id/tvzip"
+                                    android:id="@+id/tvpopulscore"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
@@ -366,7 +366,7 @@
                                     android:textColor="#000000"/>
 
                                 <TextView
-                                    android:id="@+id/tvresult"
+                                    android:id="@+id/tvtotalscore"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
@@ -423,7 +423,7 @@
                         android:gravity="center">
 
                         <ImageView
-                            android:id="@+id/pbtn3"
+                            android:id="@+id/pbtn1"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/under" />
@@ -438,7 +438,7 @@
                     android:background="#cdcdcd" />
 
                 <LinearLayout
-                    android:id="@+id/pLayout3"
+                    android:id="@+id/pLayout1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#f8f8f8"
@@ -627,7 +627,7 @@
                             android:layout_weight="8">
 
                             <com.github.mikephil.charting.charts.PieChart
-                                android:id="@+id/piechart2"
+                                android:id="@+id/pieChartavgcareer"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent" />
 
@@ -653,7 +653,7 @@
                         android:textSize="13dp" />
 
                     <com.github.mikephil.charting.charts.BarChart
-                        android:id="@+id/barChart3"
+                        android:id="@+id/barChartAvg"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:layout_marginLeft="10dp"
@@ -741,7 +741,7 @@
                         android:textSize="13dp" />
 
                     <com.github.mikephil.charting.charts.BarChart
-                        android:id="@+id/barChart"
+                        android:id="@+id/barChartAvgsales"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:layout_marginLeft="10dp"
@@ -759,7 +759,7 @@
                         android:textSize="13dp" />
 
                     <com.github.mikephil.charting.charts.BarChart
-                        android:id="@+id/barChart2"
+                        android:id="@+id/barChartPercost"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:layout_marginLeft="10dp"
@@ -807,7 +807,7 @@
                         android:gravity="center">
 
                         <ImageView
-                            android:id="@+id/pbtn1"
+                            android:id="@+id/pbtn3"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/under" />
@@ -822,7 +822,7 @@
                     android:background="#cdcdcd" />
 
                 <LinearLayout
-                    android:id="@+id/pLayout1"
+                    android:id="@+id/pLayout3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#f8f8f8"
@@ -955,7 +955,7 @@
                             android:layout_weight="8">
 
                             <com.github.mikephil.charting.charts.PieChart
-                                android:id="@+id/piechart"
+                                android:id="@+id/pieChartPopulation"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent" />
 
