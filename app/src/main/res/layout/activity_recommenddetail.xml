@@ -36,7 +36,7 @@
                 android:textSize="20dp" />
 
             <ImageButton
-                android:id="@+id/btnList"
+                android:id="@+id/btnHome"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="right"
@@ -1060,8 +1060,9 @@
                         android:paddingLeft="5dp"
                         android:text="범위를 선택해주세요."
                         android:textAllCaps="false"
+                        android:onClick="mOnPopupClick"
                         android:textColor="#000000" />
-                    <!--android:onClick="mOnPopupClick"-->
+
 
                     <Button
                         android:id="@+id/btnCategory"
@@ -1076,8 +1077,9 @@
                         android:paddingLeft="5dp"
                         android:text="업종을 선택해주세요."
                         android:textAllCaps="false"
+                    android:onClick="mOnPopupClick2"
                         android:textColor="#000000" />
-                    <!--android:onClick="mOnPopupClick2"-->
+
 
                     <LinearLayout
                         android:id="@+id/jumpoResult"

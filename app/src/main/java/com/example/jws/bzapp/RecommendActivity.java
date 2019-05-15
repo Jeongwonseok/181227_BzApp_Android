@@ -74,7 +74,7 @@ public class RecommendActivity extends AppCompatActivity {
             Fsale="4000";
             Lsale="10000";
         }
-        text1.setText(Location+sales+Category+Fsale+Lsale);
+
 
         getClosure();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

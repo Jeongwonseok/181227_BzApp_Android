@@ -7,10 +7,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -36,6 +37,8 @@ import com.google.android.gms.maps.model.LatLng;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -70,6 +73,10 @@ public class Recommenddetail extends AppCompatActivity {
     String max = "성장성", min = "성장성";
     Double sungscore, stabscore, buyscore, populscore, totalscore, maxscore, minscore;
 
+    ImageButton btnBack;
+    ImageButton btnHome;
+
+
     //상권개요
     LinearLayout pLayout1;
     ImageView pbtn1;
@@ -102,12 +109,45 @@ public class Recommenddetail extends AppCompatActivity {
     //해당 지역 연령별 비율
     PieChart pieChartPopulation;
 
+    //점포현황
+    int a=100;
+    LinearLayout pLayout4 ;
+    ImageView pbtn4 ;
+    String RtotalCount, sido, hangjung, hangjungNm, sidoNm;
+    String jumpoRadius;
+    String LargeCode[] = new String[21];
+    String LargeName[] = new String[21];
+    String Alllat, Alllong;
+    TextView tvsi, tvgu, tvarea, tvsiResult, tvguResult, tvareaResult;
+    Button btnArea;
+    Button btnCategory;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommenddetail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        btnBack =(ImageButton)findViewById(R.id.btnBack);
+        btnHome=(ImageButton)findViewById(R.id.btnHome);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Recommenddetail.this, MapActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Recommenddetail.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+
 
         //선택 지역 주소 값 불러오기
         Intent intent = getIntent();
@@ -199,7 +239,50 @@ public class Recommenddetail extends AppCompatActivity {
                 }
             }
         });
+
+        pLayout4 =(LinearLayout) findViewById(R.id.pLayout4);
+        pbtn4 = (ImageView) findViewById(R.id.pbtn4);
+        btnCategory = (Button) findViewById(R.id.btnCategory);
+        btnArea = (Button) findViewById(R.id.btnArea);
+
+        if (a == 100) {
+            btnArea.setText("100m");
+            jumpoRadius = "100";
+        } else if (a == 200) {
+            btnArea.setText("200m");
+            jumpoRadius = "200";
+        } else if (a == 500) {
+            btnArea.setText("500m");
+            jumpoRadius = "500";
+        } else if (a == 1000) {
+            btnArea.setText("1km");
+            jumpoRadius = "1000";
+        }
+
+        //테이블레이아웃 변수
+        tvsi = (TextView) findViewById(R.id.tvSi);
+        tvgu = (TextView) findViewById(R.id.tvGu);
+        tvarea = (TextView) findViewById(R.id.tvArea);
+        tvsiResult = (TextView) findViewById(R.id.tvsiResult);
+        tvguResult = (TextView) findViewById(R.id.tvguResult);
+        tvareaResult = (TextView) findViewById(R.id.tvareaResult);
+
+
+        pbtn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (pLayout4.getVisibility() == View.VISIBLE) {
+                    pLayout4.setVisibility(View.GONE);
+                    pbtn4.setImageResource(R.drawable.under);
+                } else {
+                    pLayout4.setVisibility(View.VISIBLE);
+                    pbtn4.setImageResource(R.drawable.over);
+                }
+            }
+        });
+
     }
+
 
     //API 토큰
     public class getToken extends AsyncTask<String, Void, String> {
@@ -358,15 +441,14 @@ public class Recommenddetail extends AppCompatActivity {
 
                 Lat = object.getDouble("posY");
                 Lng = object.getDouble("posX");
-                String a =String.valueOf(Lat);
-                Toast.makeText(getApplicationContext(),a,Toast.LENGTH_SHORT).show();
+
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         // TODO Auto-generated method stub
-                        String Lat2=String.valueOf(Lat);
-                        String Lng2=String.valueOf(Lng);
-                        final String location[]=shopApi.location("1000",Lng2,Lat2);
+                        Alllat=String.valueOf(Lat);
+                        Alllong=String.valueOf(Lng);
+                        final String location[]=shopApi.location("1000",Alllong,Alllat);
                         final String hangjung[];
                         hangjung=ShopApi.hangjungData("signguCd", location[1]);
                         runOnUiThread(new Runnable() {
@@ -1602,6 +1684,120 @@ public class Recommenddetail extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    //anal.xml의 android:onClick 이용해서 메서드 정의
+    public void mOnPopupClick(View v) {
+        //데이터 담아서 팝업(액티비티) 호출
+        Intent intent = new Intent(this, Dialog_Area.class);
+        intent.putExtra("area", a);
+        startActivityForResult(intent, 1);
+    }
+
+    public void mOnPopupClick2(View v) {
+        //데이터 담아서 팝업(액티비티) 호출
+        final Intent intent = new Intent(this, Dialog_Category.class);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                LgetData();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        intent.putExtra("JumpoRadius", jumpoRadius);
+                        intent.putExtra("LargeName", LargeName);
+                        intent.putExtra("LargeCode", LargeCode);
+                        intent.putExtra("mLong", Alllong);
+                        intent.putExtra("mLat", Alllat);
+                        startActivityForResult(intent, 2);
+                    }
+                });
+            }
+        }).start();
+
+    }
+
+    //다이얼로그 실행후 결과값 받는 메서드
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                //데이터 받기
+                jumpoRadius = data.getStringExtra("result");
+                btnArea.setText(jumpoRadius);
+            }
+        } else if (requestCode == 2) {
+            if (resultCode == RESULT_OK) {
+                final LinearLayout jumpoResult = (LinearLayout) findViewById(R.id.jumpoResult);
+                jumpoResult.setVisibility(View.VISIBLE);
+                //데이터 받기
+                String result = data.getStringExtra("category");
+                RtotalCount = data.getStringExtra("RtotalCount");
+                sido = data.getStringExtra("sidosu");
+                hangjung = data.getStringExtra("hangjungsu");
+                sidoNm = data.getStringExtra("sidoNm");
+                hangjungNm = data.getStringExtra("hangjungNm");
+                btnCategory.setText(result);
+
+                // 테이블 레이아웃 세팅
+                tvsi.setText(sidoNm);
+                tvsiResult.setText(sido + "개");
+                tvgu.setText(hangjungNm);
+                tvguResult.setText(hangjung + "개");
+                tvarea.setText("반경 내");
+                tvareaResult.setText(RtotalCount + "개");
+
+            }
+        }
+    }
+
+    public void LgetData() {
+        StringBuffer buffer = new StringBuffer();
+        String queryUrl = "http://apis.data.go.kr/B553077/api/open/sdsc/largeUpjongList?" +
+                "ServiceKey=MxfED6C3Sd6Ja7QuU2BNU8xqBX5Yiy26t4sWS0PWUm%2B6WFjChgI3KoNQRMdO9LM5xvKfXOtMIh40XqadzCbTfw%3D%3D";
+        int su = 0;
+        try {
+            URL url = new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
+            InputStream is = url.openStream(); //url위치로 입력스트림 연결
+
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            XmlPullParser xpp = factory.newPullParser();
+            xpp.setInput(new InputStreamReader(is, "UTF-8")); //inputstream 으로부터 xml 입력받기
+            String tag;
+            xpp.next();
+            int eventType = xpp.getEventType();
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                switch (eventType) {
+                    case XmlPullParser.START_DOCUMENT:
+                        buffer.append("파싱 시작...\n\n");
+                        break;
+
+                    case XmlPullParser.START_TAG:
+                        tag = xpp.getName();//태그 이름 얻어오기
+
+                        if (tag.equals("item")) ;// 첫번째 검색결과
+                        else if (tag.equals("indsLclsCd")) {
+                            xpp.next();
+                            LargeCode[su] = xpp.getText();
+                        } else if (tag.equals("indsLclsNm")) {
+                            xpp.next();
+                            LargeName[su] = xpp.getText();
+                            su++;
+                        }
+                        break;
+                    case XmlPullParser.TEXT:
+                        break;
+
+                    case XmlPullParser.END_TAG:
+                        tag = xpp.getName(); //태그 이름 얻어오기
+                        if (tag.equals("item")) buffer.append("\n");// 첫번째 검색결과종료..줄바꿈
+                        break;
+                }
+                eventType = xpp.next();
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch blocke.printStackTrace();
         }
     }
 
