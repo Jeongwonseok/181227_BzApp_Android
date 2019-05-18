@@ -80,8 +80,6 @@ public class RecommendActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Toast.makeText(getApplicationContext(),list.get(position),Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(RecommendActivity.this,Recommenddetail.class);
                 intent.putExtra("Location",list.get(position));
                 startActivity(intent);
