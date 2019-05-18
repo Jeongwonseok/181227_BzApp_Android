@@ -77,15 +77,27 @@
 
                 </FrameLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="380dp"
                 android:orientation="vertical"
                 android:background="#ffffff">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="10dp"/>
+                    android:layout_height="40dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="bottom"
+                        android:text="상세평가지수"
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

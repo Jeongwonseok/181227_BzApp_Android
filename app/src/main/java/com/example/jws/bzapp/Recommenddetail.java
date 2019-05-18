@@ -134,7 +134,7 @@ public class Recommenddetail extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Recommenddetail.this, MapActivity.class);
+                Intent intent = new Intent(Recommenddetail.this, RecommendActivity.class);
                 startActivity(intent);
             }
         });
