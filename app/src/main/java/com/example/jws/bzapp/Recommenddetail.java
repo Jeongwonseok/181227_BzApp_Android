@@ -244,8 +244,8 @@ public class Recommenddetail extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-//            progressDialog = ProgressDialog.show(Recommenddetail.this,
-//                    "안내", "정보를 불러오는 중입니다.", true, true);
+            progressDialog = ProgressDialog.show(Recommenddetail.this,
+                    "안내", "정보를 불러오는 중입니다.", true, true);
         }
 
         @Override
@@ -872,11 +872,6 @@ public class Recommenddetail extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            getClosure();
-            getavgcareer();
-            getavgsales();
-            getPercost();
-            getPopulation();
             return null;
         }
 
@@ -948,6 +943,11 @@ public class Recommenddetail extends AppCompatActivity {
                     ivgrage.setBackgroundResource(R.drawable.grade5);
                     tvgrade.setText("5등급");
                 }
+                getClosure();
+                getavgcareer();
+                getavgsales();
+                getPercost();
+                getPopulation();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -1637,7 +1637,7 @@ public class Recommenddetail extends AppCompatActivity {
                     String percent = String.format("%.2f", (onehouse_cnt / totalpopul) * 100) + " %";
                     tvonehouse.setText(percent);
                 }
-//                progressDialog.dismiss();
+                progressDialog.dismiss();
             } catch (Exception e) {
                 e.printStackTrace();
             }
