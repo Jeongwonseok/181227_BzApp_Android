@@ -926,6 +926,7 @@ public class Recommenddetail extends AppCompatActivity {
                 tvlow.setText(min);
 
                 totalscore = sungscore + stabscore + buyscore + populscore;
+                totalscore = (Math.round(totalscore * 10) / 10.0);
                 tvtotalscore.setText(String.valueOf(totalscore) + "점");
                 if (totalscore > 80) {
                     ivgrage.setBackgroundResource(R.drawable.grade1);
