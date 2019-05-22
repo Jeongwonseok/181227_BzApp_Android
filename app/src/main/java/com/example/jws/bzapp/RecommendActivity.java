@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -28,7 +27,6 @@ public class RecommendActivity extends AppCompatActivity {
     ArrayList<String> list = new ArrayList<String>();;
     ArrayAdapter<String>Adapter;
     ListView listView;
-    String mJsonString;
     String Location;
     String sales;
     String Fsale;
@@ -41,7 +39,7 @@ public class RecommendActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommend);
-     text1=(TextView)findViewById(R.id.test1);
+       text1=(TextView)findViewById(R.id.test1);
 
 
         Adapter = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1,list);
