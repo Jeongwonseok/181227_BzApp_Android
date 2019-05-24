@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ public class surveylist extends AppCompatActivity {
     ArrayList<String>list = new ArrayList<String>();
     surveylistAdapter adapter;
     ListView listView;
+    ImageButton btnHome;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_surveylist);
@@ -36,6 +38,17 @@ public class surveylist extends AppCompatActivity {
         test=(TextView)findViewById(R.id.test1);
         adapter = new surveylistAdapter();
         listView = (ListView)findViewById(R.id.surveylist) ;
+        btnHome=(ImageButton)findViewById(R.id.btnHome);
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(surveylist.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+
 
         getClosure();
 

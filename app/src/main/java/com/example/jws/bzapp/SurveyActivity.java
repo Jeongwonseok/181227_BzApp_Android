@@ -297,7 +297,7 @@ public class SurveyActivity extends AppCompatActivity {
                                     //등록후 응답받은 값이 true이면 성공 다이얼로그 출력
                                     AlertDialog.Builder builder = new AlertDialog.Builder(SurveyActivity.this);
                                     builder.setTitle("설문완료");
-                                    builder.setMessage("상권 분석 화면으로 넘어가시겠습니까?");
+                                    builder.setMessage("설문조사를 완료하시겠습니까?");
 
                                     SharedPreferences test = getSharedPreferences("check", Activity.MODE_PRIVATE);
                                     SharedPreferences.Editor checkLogin = test.edit();
@@ -431,7 +431,7 @@ public class SurveyActivity extends AppCompatActivity {
             super.onPreExecute();
 
             progressDialog = ProgressDialog.show(SurveyActivity.this,
-                    "성격 급하시네 시발라꺼", null, true, true);
+                    "로딩중..", null, true, true);
         }
 
 

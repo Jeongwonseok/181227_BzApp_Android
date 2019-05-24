@@ -273,7 +273,7 @@ String url;
                 public void onClick(View v) {
                     AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this
                     );
-                    alert.setTitle("설문조사");
+                    alert.setTitle("설문조사 기록");
                     alert.setMessage("로그인이 필요한 서비스입니다. 로그인하시겠습니까").setCancelable(false)
                             .setPositiveButton("예", new DialogInterface.OnClickListener() {
                                 @Override
@@ -297,7 +297,7 @@ String url;
                 public void onClick(View v) {
                     AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this
                     );
-                    alert.setTitle("상권 분석");
+                    alert.setTitle("상권 추천");
                     alert.setMessage("로그인이 필요한 서비스입니다. 로그인하시겠습니까").setCancelable(false)
                             .setPositiveButton("예", new DialogInterface.OnClickListener() {
                                 @Override
@@ -466,7 +466,7 @@ String url;
                 @Override
                 public void onClick(View v) {
                     AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-                    alert.setTitle("설문조사");
+                    alert.setTitle("설문조사 기록");
                     alert.setMessage("로그인이 필요한 서비스 입니다. 로그인 하시겠습니까?").setCancelable(false)
                             .setPositiveButton("예", new DialogInterface.OnClickListener() {
                                 @Override
@@ -490,7 +490,7 @@ String url;
                 public void onClick(View v) {
                     AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this
                     );
-                    alert.setTitle("상권 분석");
+                    alert.setTitle("상권 추천");
                     alert.setMessage("로그인이 필요한 서비스입니다. 로그인하시겠습니까").setCancelable(false)
                             .setPositiveButton("예", new DialogInterface.OnClickListener() {
                                 @Override
