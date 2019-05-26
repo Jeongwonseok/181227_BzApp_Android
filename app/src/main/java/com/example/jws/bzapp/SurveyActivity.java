@@ -38,7 +38,7 @@ import java.net.URL;
 
 public class SurveyActivity extends AppCompatActivity {
 
-    ImageButton btnBack;
+    ImageButton btnBack,btnList;
     Button btncancel, btnok;
     RadioGroup rgGender, rgLocation, rgLreason, rgType, rgTreason, rgSales;
     String ID, gender, location, age, lReason, type, tReason, sales;
@@ -46,7 +46,7 @@ public class SurveyActivity extends AppCompatActivity {
     String Sales;
     String Location;
     String mJsonString;
-    int UPdate;
+
     private static final String TAG = "Login";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +57,19 @@ public class SurveyActivity extends AppCompatActivity {
 //        UPdate =intent.getIntExtra("Update",0);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        btnList=(ImageButton)findViewById(R.id.btnList);
+        btnList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SurveyActivity.this,surveylist.class);
+                intent.putExtra("ID",ID);
+                startActivity(intent);
+            }
+
+        });
+
+
 
         final String[] ages = {"선택", "10대", "20대", "30대", "40대", "50대", "60대 이상"};
 
