@@ -13,8 +13,8 @@
             <!-- 배경 -->
             <item>
                 <shape>
-                    <corners android:radius="4dp" />
-                    <solid android:color="#ffffff" />
+                    <corners android:radius="4dp"/>
+                    <solid android:color="#ffffff"/>
                 </shape>
             </item>
             <!-- 이미지 영역 -->

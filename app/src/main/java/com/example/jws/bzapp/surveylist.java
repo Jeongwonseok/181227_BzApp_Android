@@ -1,13 +1,17 @@
 package com.example.jws.bzapp;
 
+import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -102,6 +106,29 @@ public class surveylist extends AppCompatActivity {
                 intent.putExtra("sales",sales);
 
                startActivity(intent);
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            public boolean onItemLongClick(final AdapterView<?> parent, View view,
+                                           final int position, long id) {
+
+                AlertDialog diaBox = new AlertDialog.Builder(surveylist.this)
+                        .setTitle("삭제")
+                        .setMessage("정말 삭제하십니까?")
+                        .setPositiveButton("네",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int whichButton) {
+                                        surveylist_item surveyData = (surveylist_item)parent.getItemAtPosition(position);
+                                        String location=surveyData.getLocation();
+                                        String type=surveyData.getType();
+                                        String sales=surveyData.getSales();
+                                        Toast.makeText(getApplicationContext(), location + "/" + type + "/" + sales, Toast.LENGTH_LONG).show();
+                                    }
+                                }).setNegativeButton("아니요", null).create();
+                diaBox.show();
+                return true;
             }
         });
     }
