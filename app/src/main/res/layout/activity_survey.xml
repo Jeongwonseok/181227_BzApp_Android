@@ -515,28 +515,28 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="70dp"
             android:background="#CDCDCD"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/cancel"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
+                android:layout_width="130dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/round_button1"
                 android:text="취소"
                 android:textColor="#ffffff" />
 
             <LinearLayout
-                android:layout_width="50dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent" />
 
             <Button
                 android:id="@+id/ok"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
+                android:layout_width="130dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/round_button1"
                 android:text="확인"
