@@ -66,6 +66,7 @@ public class RecommendActivity extends AppCompatActivity {
                 finish();
             }
         });
+
        text1=(TextView)findViewById(R.id.test1);
 
 

@@ -437,6 +437,7 @@ public class SurveyActivity extends AppCompatActivity {
                         intent.putExtra("location",location);
                         intent.putExtra("type",type);
                         intent.putExtra("sales",sales);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                         count++;
                     }
