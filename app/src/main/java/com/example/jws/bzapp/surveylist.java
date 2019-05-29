@@ -1,6 +1,5 @@
 package com.example.jws.bzapp;
 
-import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -52,10 +50,7 @@ public class surveylist extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
         getClosure();
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -124,7 +119,8 @@ public class surveylist extends AppCompatActivity {
                                         String location=surveyData.getLocation();
                                         String type=surveyData.getType();
                                         String sales=surveyData.getSales();
-                                        Toast.makeText(getApplicationContext(), location + "/" + type + "/" + sales, Toast.LENGTH_LONG).show();
+                                        getDelete(location,type,sales);
+
                                     }
                                 }).setNegativeButton("아니요", null).create();
                 diaBox.show();
@@ -134,7 +130,7 @@ public class surveylist extends AppCompatActivity {
     }
 
     public void getClosure() {
-
+         
 //        Toast.makeText(getApplicationContext(), addrnm, Toast.LENGTH_LONG).show();
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
@@ -146,6 +142,7 @@ public class surveylist extends AppCompatActivity {
                     String location,type,sales;
                     String sale2="";
                     String category="";
+
                     while (count < jsonArray.length()) {
                         JSONObject object = jsonArray.getJSONObject(count);
                         location = object.getString("location");
@@ -208,5 +205,71 @@ public class surveylist extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(surveylist.this);
         queue.add(findsurvey);
     }
+
+
+
+    public void getDelete(final String location2, final String type2, final String sales2) {
+        String type=type2;
+        String location=location2;
+        String sales=sales2;
+        if(type.equals("소매")){
+            type="retail";
+        }else   if(type.equals("생활서비스")){
+            type="life";
+        }
+        else   if(type.equals("관광/여가/오락")){
+            type="tour";
+        }
+        else   if(type.equals("숙박")){
+            type="stay";
+        }
+        else   if(type.equals("스포츠")){
+            type="sports";
+        }
+        else   if(type.equals("음식")){
+            type="food";
+        }
+        else   if(type.equals("학문/교육")){
+            type="edu";
+        }
+        if(sales.equals("2000미만")){
+            sales="0";
+        }else   if(sales.equals("2000 ~ 2500")){
+            sales="1";
+        }
+        else   if(sales.equals("2500 ~ 3000")){
+            sales="2";
+        }
+        else   if(sales.equals("3000 ~ 3500")){
+            sales="3";
+        }
+        else   if(sales.equals("3500 ~ 4000")){
+            sales="4";
+        }
+        else   if(sales.equals("4000이상")){
+            sales="5";
+        }
+//        Toast.makeText(getApplicationContext(), addrnm, Toast.LENGTH_LONG).show();
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                try {
+                    JSONObject jsonObject = new JSONObject(s);
+                    JSONArray jsonArray = jsonObject.getJSONArray("response");
+                    int count = 0;
+
+                    while (count < jsonArray.length()) {
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        DeleteSurvey deletesurvey = new DeleteSurvey(loginID,location2,type,sales,responseListener);
+        RequestQueue queue = Volley.newRequestQueue(surveylist.this);
+        queue.add(deletesurvey);
+    }
+
+
 
 }
