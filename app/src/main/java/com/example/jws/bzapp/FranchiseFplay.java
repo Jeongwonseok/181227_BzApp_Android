@@ -39,8 +39,7 @@ public class FranchiseFplay extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FranchiseFplay.this, FranchiseActivity1.class);
-                startActivity(intent);
+                finish();
             }
         });
         FranSearch=(Button)findViewById(R.id.franSearch);

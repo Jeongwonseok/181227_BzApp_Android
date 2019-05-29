@@ -1,16 +1,13 @@
 package com.example.jws.bzapp;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,13 +25,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class SurveyActivity extends AppCompatActivity {
 
@@ -321,9 +311,7 @@ public class SurveyActivity extends AppCompatActivity {
                                     builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                            finish();
-                                            getsurvey task = new getsurvey();
-                                            task.execute(ID);
+                                            getSurvey();
                                         }
                                     });
                                     builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -429,131 +417,41 @@ public class SurveyActivity extends AppCompatActivity {
 //        }
 
     }
+    public void getSurvey() {
 
+//        Toast.makeText(getApplicationContext(), addrnm, Toast.LENGTH_LONG).show();
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                try {
+                    JSONObject jsonObject = new JSONObject(s);
+                    JSONArray jsonArray = jsonObject.getJSONArray("response");
+                    int count = 0;
+                    String location,type,sales;
+                    while (count < jsonArray.length()) {
+                        JSONObject object = jsonArray.getJSONObject(count);
+                        location = object.getString("location");
+                        type=object.getString("type");
+                        sales=object.getString("sales");
+                        Intent intent = new Intent(SurveyActivity.this,RecommendActivity.class);
+                        intent.putExtra("location",location);
+                        intent.putExtra("type",type);
+                        intent.putExtra("sales",sales);
+                        startActivity(intent);
+                        count++;
+                    }
 
-    //등록한 설문조사 가지고오는 곳
-    private class getsurvey extends AsyncTask<String, Void, String> {
-
-        ProgressDialog progressDialog;
-        String errorString = null;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            progressDialog = ProgressDialog.show(SurveyActivity.this,
-                    "로딩중..", null, true, true);
-        }
-
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            progressDialog.dismiss();
-            Log.d(TAG, "response - " + result);
-            if (result == null) {
-                Toast.makeText(getApplicationContext(), "오류", Toast.LENGTH_SHORT).show();
-            } else {
-                mJsonString = result;
-                showResult();
-            }
-        }
-
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            String ID = params[0];
-
-            String serverURL = "http://qwerr784.cafe24.com/findsurvey.php";
-            String postParameters = "ID=" + ID + "&gender=" + gender + "&age=" + age + "&location=" + location + "&lReason=" + lReason
-                    + "&type=" + type + "&tReason=" + tReason + "&sales=" + sales;
-
-            try {
-
-                URL url = new URL(serverURL);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
-
-                httpURLConnection.setReadTimeout(5000);
-                httpURLConnection.setConnectTimeout(5000);
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoInput(true);
-                httpURLConnection.connect();
-
-
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                outputStream.write(postParameters.getBytes("UTF-8"));
-                outputStream.flush();
-                outputStream.close();
-
-
-                int responseStatusCode = httpURLConnection.getResponseCode();
-                Log.d(TAG, "response code - " + responseStatusCode);
-
-                InputStream inputStream;
-                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
-                    inputStream = httpURLConnection.getInputStream();
-                } else {
-                    inputStream = httpURLConnection.getErrorStream();
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-
-
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-                StringBuilder sb = new StringBuilder();
-                String line;
-
-                while ((line = bufferedReader.readLine()) != null) {
-                    sb.append(line);
-                }
-
-
-                bufferedReader.close();
-
-
-                return sb.toString().trim();
-
-
-            } catch (Exception e) {
-
-                Log.d(TAG, "InsertData: Error ", e);
-                errorString = e.toString();
-
-                return null;
             }
-
-        }
+        };
+        findsurveylist findsurvey = new findsurveylist(ID,gender,age,location,lReason,type,tReason,sales,responseListener);
+        RequestQueue queue = Volley.newRequestQueue(SurveyActivity.this);
+        queue.add(findsurvey);
     }
 
 
-    private void showResult() {
-        try {
-            JSONObject jsonObject = new JSONObject(mJsonString);
-            JSONArray jsonArray = jsonObject.getJSONArray("response");
-
-            for (int i = 0; i < jsonArray.length(); i++) {
-
-                JSONObject item = jsonArray.getJSONObject(i);
-
-                Location = item.getString("location");
-                Type = item.getString("type");
-                Sales = item.getString("sales");
-            }
-
-
-            Intent intent = new Intent(SurveyActivity.this, RecommendActivity.class);
-            intent.putExtra("location", Location);
-            intent.putExtra("sales", Sales);
-            intent.putExtra("type", Type);
-            startActivity(intent);
-        } catch (JSONException e) {
-
-            Log.d(TAG, "showResult : ", e);
-        }
-
-    }
 
 }
 

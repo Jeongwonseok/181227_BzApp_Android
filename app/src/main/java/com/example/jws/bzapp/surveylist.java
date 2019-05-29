@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -119,6 +120,14 @@ public class surveylist extends AppCompatActivity {
                                         String location=surveyData.getLocation();
                                         String type=surveyData.getType();
                                         String sales=surveyData.getSales();
+                                        int pos = position;
+                                        String pos2=String.valueOf(pos);
+                                        Toast.makeText(getApplicationContext(),pos2,Toast.LENGTH_SHORT).show();
+                                        if(pos>=0 && pos<list.size()){
+                                            list.remove(pos);
+                                            listView.clearChoices();
+                                            adapter.notifyDataSetChanged();
+                                        }
                                         getDelete(location,type,sales);
 
                                     }

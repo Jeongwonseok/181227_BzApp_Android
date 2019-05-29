@@ -39,8 +39,7 @@ public class Franchisedrink extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Franchisedrink.this, FranchiseActivity1.class);
-                startActivity(intent);
+                finish();
             }
         });
 

@@ -60,7 +60,6 @@ public class RecommendActivity extends AppCompatActivity {
         });
 
         btnBack =(ImageButton)findViewById(R.id.btnBack);
-
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
