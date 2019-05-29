@@ -38,7 +38,7 @@ import java.net.URL;
 
 public class SurveyActivity extends AppCompatActivity {
 
-    ImageButton btnBack,btnList;
+    ImageButton btnBack, btnList;
     Button btncancel, btnok;
     RadioGroup rgGender, rgLocation, rgLreason, rgType, rgTreason, rgSales;
     String ID, gender, location, age, lReason, type, tReason, sales;
@@ -48,6 +48,7 @@ public class SurveyActivity extends AppCompatActivity {
     String mJsonString;
 
     private static final String TAG = "Login";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,17 +59,16 @@ public class SurveyActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        btnList=(ImageButton)findViewById(R.id.btnList);
+        btnList = (ImageButton) findViewById(R.id.btnList);
         btnList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SurveyActivity.this,surveylist.class);
-                intent.putExtra("ID",ID);
+                Intent intent = new Intent(SurveyActivity.this, surveylist.class);
+                intent.putExtra("ID", ID);
                 startActivity(intent);
             }
 
         });
-
 
 
         final String[] ages = {"선택", "10대", "20대", "30대", "40대", "50대", "60대 이상"};
@@ -147,7 +147,7 @@ public class SurveyActivity extends AppCompatActivity {
                     case R.id.rbL1:
                         lReason = "집과 가까워서서";
                         break;
-                   case R.id.rbL2:
+                    case R.id.rbL2:
                         lReason = "해당 지역이 창업에 유리할 것 같아서 (풍부한 유동인구)";
                         break;
                     case R.id.rbL3:
@@ -431,8 +431,6 @@ public class SurveyActivity extends AppCompatActivity {
     }
 
 
-
-
     //등록한 설문조사 가지고오는 곳
     private class getsurvey extends AsyncTask<String, Void, String> {
 
@@ -453,10 +451,9 @@ public class SurveyActivity extends AppCompatActivity {
             super.onPostExecute(result);
             progressDialog.dismiss();
             Log.d(TAG, "response - " + result);
-            if (result == null){
-                Toast.makeText(getApplicationContext(),"오류",Toast.LENGTH_SHORT).show();
-            }
-            else {
+            if (result == null) {
+                Toast.makeText(getApplicationContext(), "오류", Toast.LENGTH_SHORT).show();
+            } else {
                 mJsonString = result;
                 showResult();
             }
@@ -469,7 +466,8 @@ public class SurveyActivity extends AppCompatActivity {
             String ID = params[0];
 
             String serverURL = "http://qwerr784.cafe24.com/findsurvey.php";
-            String postParameters = "ID=" + ID;
+            String postParameters = "ID=" + ID + "&gender=" + gender + "&age=" + age + "&location=" + location + "&lReason=" + lReason
+                    + "&type=" + type + "&tReason=" + tReason + "&sales=" + sales;
 
             try {
 
@@ -494,10 +492,9 @@ public class SurveyActivity extends AppCompatActivity {
                 Log.d(TAG, "response code - " + responseStatusCode);
 
                 InputStream inputStream;
-                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
                     inputStream = httpURLConnection.getInputStream();
-                }
-                else{
+                } else {
                     inputStream = httpURLConnection.getErrorStream();
                 }
 
@@ -508,7 +505,7 @@ public class SurveyActivity extends AppCompatActivity {
                 StringBuilder sb = new StringBuilder();
                 String line;
 
-                while((line = bufferedReader.readLine()) != null){
+                while ((line = bufferedReader.readLine()) != null) {
                     sb.append(line);
                 }
 
@@ -531,25 +528,26 @@ public class SurveyActivity extends AppCompatActivity {
     }
 
 
-    private void showResult(){
+    private void showResult() {
         try {
             JSONObject jsonObject = new JSONObject(mJsonString);
             JSONArray jsonArray = jsonObject.getJSONArray("response");
 
-            for(int i=0;i<jsonArray.length();i++){
+            for (int i = 0; i < jsonArray.length(); i++) {
 
                 JSONObject item = jsonArray.getJSONObject(i);
 
                 Location = item.getString("location");
                 Type = item.getString("type");
                 Sales = item.getString("sales");
-                Intent intent = new Intent(SurveyActivity.this, RecommendActivity.class);
-                intent.putExtra("location",Location);
-                intent.putExtra("sales",Sales);
-                intent.putExtra("type",Type);
-                startActivity(intent);
-
             }
+
+
+            Intent intent = new Intent(SurveyActivity.this, RecommendActivity.class);
+            intent.putExtra("location", Location);
+            intent.putExtra("sales", Sales);
+            intent.putExtra("type", Type);
+            startActivity(intent);
         } catch (JSONException e) {
 
             Log.d(TAG, "showResult : ", e);

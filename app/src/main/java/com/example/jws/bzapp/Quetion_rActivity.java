@@ -70,6 +70,7 @@ public class Quetion_rActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(Quetion_rActivity.this,QuestionActivity.class);
                         startActivity(intent);
+                        finish();
                     }
                 });
                 builder.setNegativeButton("취소", null);
@@ -126,6 +127,7 @@ public class Quetion_rActivity extends AppCompatActivity {
                                             public void onClick(DialogInterface dialog, int which) {
                                                 Intent intent = new Intent(Quetion_rActivity.this,QuestionActivity.class);
                                                 startActivity(intent);
+                                                finish();
                                             }
                                         })
                                         .create()
