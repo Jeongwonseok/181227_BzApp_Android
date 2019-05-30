@@ -214,22 +214,22 @@ public class SurveyActivity extends AppCompatActivity {
                 RadioButton rbGender = (RadioButton) findViewById(checkedId);
                 switch (checkedId) {
                     case R.id.rbS1:
-                        sales = "1";
+                        sales = "0";
                         break;
                     case R.id.rbS2:
-                        sales = "2";
+                        sales = "1";
                         break;
                     case R.id.rbS3:
-                        sales = "3";
+                        sales = "2";
                         break;
                     case R.id.rbS4:
-                        sales = "4";
+                        sales = "3";
                         break;
                     case R.id.rbS5:
-                        sales = "5";
+                        sales = "4";
                         break;
                     case R.id.rbS6:
-                        sales = "6";
+                        sales = "5";
                         break;
                 }
             }
