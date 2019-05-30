@@ -67,5 +67,8 @@ public class surveylistAdapter extends BaseAdapter {
 
         listViewItemList.add(0,item);
     }
+    public void clearitem(){
+        listViewItemList.clear();
+    }
 
 }
