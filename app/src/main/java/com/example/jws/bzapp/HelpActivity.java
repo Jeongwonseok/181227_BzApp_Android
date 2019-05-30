@@ -12,9 +12,9 @@ import android.widget.LinearLayout;
 
 public class HelpActivity extends AppCompatActivity {
 
-    ImageView btnif1,btnif2,btnif3,btnif4,btnif5;
-    LinearLayout ifView1,ifView2,ifView3,ifView4,ifView5;
-    ImageButton url1_1,url1_2,url1_3,url1_4,url2_1,url2_2,url3_1,url3_2,url3_3,url4_1,url5_1;
+    ImageView btnif1, btnif2, btnif3, btnif4, btnif5;
+    LinearLayout ifView1, ifView2, ifView3, ifView4, ifView5;
+    ImageButton url1_1, url1_2, url1_3, url1_4, url2_1, url2_2, url3_1, url3_2, url3_3, url4_1, url5_1;
     ImageButton btnBack;
 
     @Override
@@ -22,7 +22,7 @@ public class HelpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         btnBack = (ImageButton) findViewById(R.id.btnBack);
@@ -37,16 +37,16 @@ public class HelpActivity extends AppCompatActivity {
             }
         });
 
-        btnif1 = (ImageView)findViewById(R.id.btnif1);
-        btnif2 = (ImageView)findViewById(R.id.btnif2);
-        btnif3 = (ImageView)findViewById(R.id.btnif3);
-        btnif4 = (ImageView)findViewById(R.id.btnif4);
-        btnif5 = (ImageView)findViewById(R.id.btnif5);
-        ifView1 = (LinearLayout)findViewById(R.id.ifLayout1);
-        ifView2 = (LinearLayout)findViewById(R.id.ifLayout2);
-        ifView3 = (LinearLayout)findViewById(R.id.ifLayout3);
-        ifView4 = (LinearLayout)findViewById(R.id.ifLayout4);
-        ifView5 = (LinearLayout)findViewById(R.id.ifLayout5);
+        btnif1 = (ImageView) findViewById(R.id.btnif1);
+        btnif2 = (ImageView) findViewById(R.id.btnif2);
+        btnif3 = (ImageView) findViewById(R.id.btnif3);
+        btnif4 = (ImageView) findViewById(R.id.btnif4);
+        btnif5 = (ImageView) findViewById(R.id.btnif5);
+        ifView1 = (LinearLayout) findViewById(R.id.ifLayout1);
+        ifView2 = (LinearLayout) findViewById(R.id.ifLayout2);
+        ifView3 = (LinearLayout) findViewById(R.id.ifLayout3);
+        ifView4 = (LinearLayout) findViewById(R.id.ifLayout4);
+        ifView5 = (LinearLayout) findViewById(R.id.ifLayout5);
         url1_1 = (ImageButton) findViewById(R.id.url1_1);
         url1_2 = (ImageButton) findViewById(R.id.url1_2);
         url1_3 = (ImageButton) findViewById(R.id.url1_3);
@@ -64,7 +64,7 @@ public class HelpActivity extends AppCompatActivity {
         btnif1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ifView1.getVisibility() == View.VISIBLE) {
+                if (ifView1.getVisibility() == View.VISIBLE) {
                     ifView1.setVisibility(View.GONE);
                     btnif1.setImageResource(R.drawable.under);
                 } else {
@@ -78,7 +78,7 @@ public class HelpActivity extends AppCompatActivity {
         btnif2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ifView2.getVisibility() == View.VISIBLE) {
+                if (ifView2.getVisibility() == View.VISIBLE) {
                     ifView2.setVisibility(View.GONE);
                     btnif2.setImageResource(R.drawable.under);
                 } else {
@@ -92,7 +92,7 @@ public class HelpActivity extends AppCompatActivity {
         btnif3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ifView3.getVisibility() == View.VISIBLE) {
+                if (ifView3.getVisibility() == View.VISIBLE) {
                     ifView3.setVisibility(View.GONE);
                     btnif3.setImageResource(R.drawable.under);
                 } else {
@@ -106,7 +106,7 @@ public class HelpActivity extends AppCompatActivity {
         btnif4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ifView4.getVisibility() == View.VISIBLE) {
+                if (ifView4.getVisibility() == View.VISIBLE) {
                     ifView4.setVisibility(View.GONE);
                     btnif4.setImageResource(R.drawable.under);
                 } else {
@@ -120,7 +120,7 @@ public class HelpActivity extends AppCompatActivity {
         btnif5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ifView5.getVisibility() == View.VISIBLE) {
+                if (ifView5.getVisibility() == View.VISIBLE) {
                     ifView5.setVisibility(View.GONE);
                     btnif5.setImageResource(R.drawable.under);
                 } else {

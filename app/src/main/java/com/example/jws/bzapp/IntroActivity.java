@@ -11,18 +11,18 @@ public class IntroActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.intro_layout); //xml , java 소스 연결
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable(){
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent (getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent); //다음화면으로 넘어감
                 finish();
             }
-        },500); //3초 뒤에 Runner객체 실행하도록 함
+        }, 500); //3초 뒤에 Runner객체 실행하도록 함
     }
 
     @Override
-    protected void onPause(){
+    protected void onPause() {
         super.onPause();
         finish();
     }

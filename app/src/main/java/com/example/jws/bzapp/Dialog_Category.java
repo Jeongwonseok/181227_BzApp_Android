@@ -30,7 +30,7 @@ public class Dialog_Category extends Activity {
     String SelectLarge;
     String SelectMiddle;
     String SelectShort;
-    String Long,Lat;
+    String Long, Lat;
     ShopApi shopapi;
     int i;
     int count;
@@ -38,16 +38,17 @@ public class Dialog_Category extends Activity {
     String SelectMiddleCode;
     String SelectShortCode;
     String jumpoRadius;
-    String LargeCode[]=new String[21];
-    String LargeName[]=new String[21];
-    List<String> MCode=new ArrayList<>();
-    List<String>Mname=new ArrayList<>();
-    List<String>Scode=new ArrayList<>();
-    List<String>Sname=new ArrayList<>();
+    String LargeCode[] = new String[21];
+    String LargeName[] = new String[21];
+    List<String> MCode = new ArrayList<>();
+    List<String> Mname = new ArrayList<>();
+    List<String> Scode = new ArrayList<>();
+    List<String> Sname = new ArrayList<>();
     ListViewAdapter Middleadapter;
     ListView Middlelistview;
     ListViewAdapter Shortadapter;
     ListView Shortlistview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +58,7 @@ public class Dialog_Category extends Activity {
         layoutParams.dimAmount = 0.7f;
         getWindow().setAttributes(layoutParams);
         setContentView(R.layout.activity_dialog__category);
-        shopapi=new ShopApi();
+        shopapi = new ShopApi();
 
 
         Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
@@ -72,19 +73,19 @@ public class Dialog_Category extends Activity {
 
         getWindow().setGravity(Gravity.TOP);
         Intent intent = getIntent();
-        jumpoRadius=intent.getStringExtra("JumpoRadius");
-        LargeCode=intent.getStringArrayExtra("LargeCode");
-        LargeName=intent.getStringArrayExtra("LargeName");
-        Long=intent.getStringExtra("mLong");
-        Lat=intent.getStringExtra("mLat");
-        if(jumpoRadius.equals("100m"))
-            jumpoRadius="200";
-        else if(jumpoRadius.equals("200m"))
-            jumpoRadius="200";
-        else if(jumpoRadius.equals("500m"))
-            jumpoRadius="500";
-        else if(jumpoRadius.equals(" 1km  "))
-            jumpoRadius="1000";
+        jumpoRadius = intent.getStringExtra("JumpoRadius");
+        LargeCode = intent.getStringArrayExtra("LargeCode");
+        LargeName = intent.getStringArrayExtra("LargeName");
+        Long = intent.getStringExtra("mLong");
+        Lat = intent.getStringExtra("mLat");
+        if (jumpoRadius.equals("100m"))
+            jumpoRadius = "200";
+        else if (jumpoRadius.equals("200m"))
+            jumpoRadius = "200";
+        else if (jumpoRadius.equals("500m"))
+            jumpoRadius = "500";
+        else if (jumpoRadius.equals(" 1km  "))
+            jumpoRadius = "1000";
 
 
         /////////////////////////////////////////////////////////////////////////////////////////
@@ -96,7 +97,7 @@ public class Dialog_Category extends Activity {
         // 리스트뷰 참조 및 Adapter달기
         Largelistview = (ListView) findViewById(R.id.listview1);
         Largelistview.setAdapter(Largeadapter);
-        for (int i=0;i<LargeName.length;i++){
+        for (int i = 0; i < LargeName.length; i++) {
             Largeadapter.addItem(LargeName[i]);
         }
         // 첫 번째 아이템 추가.
@@ -132,7 +133,7 @@ public class Dialog_Category extends Activity {
                         Mname.clear();
                         for (int i = 0; i < 21; i++) {
                             if (SelectLarge.equals(LargeName[i]))
-                                SelectLargeCode=LargeCode[i];//대분류 알파벳
+                                SelectLargeCode = LargeCode[i];//대분류 알파벳
                         }
                         new Thread(new Runnable() {
                             @Override
@@ -142,7 +143,7 @@ public class Dialog_Category extends Activity {
                                     @Override
                                     public void run() {
                                         // 리스트뷰 참조 및 Adapter달기
-                                        for (int i = 0; i <MCode.size(); i++) {
+                                        for (int i = 0; i < MCode.size(); i++) {
                                             Middlelistview.setAdapter(Middleadapter);
                                             Middleadapter.addItem(Mname.get(i));
                                         }
@@ -182,19 +183,19 @@ public class Dialog_Category extends Activity {
                                         Shortlistview.setAdapter(Shortadapter);
                                         Scode.clear();
                                         Sname.clear();
-                                        for (int i = 0; i <Mname.size(); i++) {
+                                        for (int i = 0; i < Mname.size(); i++) {
                                             if (SelectMiddle.equals(Mname.get(i)))
-                                                SelectMiddleCode=MCode.get(i);//대분류 알파벳
+                                                SelectMiddleCode = MCode.get(i);//대분류 알파벳
                                         }
                                         new Thread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                SgetData(SelectLargeCode,SelectMiddleCode);
+                                                SgetData(SelectLargeCode, SelectMiddleCode);
                                                 runOnUiThread(new Runnable() {
                                                     @Override
                                                     public void run() {
                                                         // 리스트뷰 참조 및 Adapter달기
-                                                        for (int i = 0; i <Sname.size(); i++) {
+                                                        for (int i = 0; i < Sname.size(); i++) {
                                                             Shortlistview.setAdapter(Shortadapter);
                                                             Shortadapter.addItem(Sname.get(i));
                                                         }
@@ -206,7 +207,6 @@ public class Dialog_Category extends Activity {
                                         Shortadapter.addItem("전체");
                                         // 두 번째 아이템 추가.
                                         btnNext.setText("확인");
-
 
 
                                         btnNext.setEnabled(false);
@@ -231,43 +231,45 @@ public class Dialog_Category extends Activity {
                                                 btnNext.setOnClickListener(new View.OnClickListener() {
                                                     @Override
                                                     public void onClick(View v) {
-                                                        for(int i=0;i<Sname.size();i++){
-                                                            if(SelectShort.equals(Sname.get(i)))
-                                                                SelectShortCode=Scode.get(i);
+                                                        for (int i = 0; i < Sname.size(); i++) {
+                                                            if (SelectShort.equals(Sname.get(i)))
+                                                                SelectShortCode = Scode.get(i);
                                                         }
                                                         new Thread(new Runnable() {
                                                             @Override
                                                             public void run() {
-                                                                final String RtotalCount[]=new String[1];
-                                                                final String location[]=shopapi.location(jumpoRadius, Long,Lat);//시도랑 행정동 코드 가져오기
+                                                                final String RtotalCount[] = new String[1];
+                                                                final String location[] = shopapi.location(jumpoRadius, Long, Lat);//시도랑 행정동 코드 가져오기
                                                                 final String sido[];
                                                                 final String hangjung[];
-                                                                if(SelectShort.equals("전체")){
-                                                                    sido=shopapi.sidoData("ctprvnCd", location[0], SelectLargeCode,SelectMiddleCode);//시도
-                                                                    hangjung=shopapi.hangjungData("signguCd", location[1],SelectLargeCode,SelectMiddleCode);
-                                                                    RtotalCount[0]=shopapi.radiusData(jumpoRadius, Long,Lat,SelectLargeCode,SelectMiddleCode);//반경내토탈
-                                                                }
-                                                               else {
-                                                                   sido= shopapi.sidoData("ctprvnCd", location[0], SelectLargeCode,SelectMiddleCode,SelectShortCode);//시도}
-                                                                    hangjung=shopapi.hangjungData("signguCd", location[1],SelectLargeCode,SelectMiddleCode,SelectShortCode);//행정동
-                                                                    RtotalCount[0]=shopapi.radiusData(jumpoRadius, Long,Lat,SelectLargeCode,SelectMiddleCode,SelectShortCode);//반경내토탈
+                                                                if (SelectShort.equals("전체")) {
+                                                                    sido = shopapi.sidoData("ctprvnCd", location[0], SelectLargeCode, SelectMiddleCode);//시도
+                                                                    hangjung = shopapi.hangjungData("signguCd", location[1], SelectLargeCode, SelectMiddleCode);
+                                                                    RtotalCount[0] = shopapi.radiusData(jumpoRadius, Long, Lat, SelectLargeCode, SelectMiddleCode);//반경내토탈
+                                                                } else {
+                                                                    sido = shopapi.sidoData("ctprvnCd", location[0], SelectLargeCode, SelectMiddleCode, SelectShortCode);//시도}
+                                                                    hangjung = shopapi.hangjungData("signguCd", location[1], SelectLargeCode, SelectMiddleCode, SelectShortCode);//행정동
+                                                                    RtotalCount[0] = shopapi.radiusData(jumpoRadius, Long, Lat, SelectLargeCode, SelectMiddleCode, SelectShortCode);//반경내토탈
                                                                 }
                                                                 runOnUiThread(new Runnable() {
                                                                     @Override
                                                                     public void run() {
                                                                         Intent intent = new Intent();
-                                                                        if(sido[0]==null){//시도에 없을때
-                                                                            sido[0]="-";sido[1]="-";hangjung[0]="-";hangjung[1]="-";
+                                                                        if (sido[0] == null) {//시도에 없을때
+                                                                            sido[0] = "-";
+                                                                            sido[1] = "-";
+                                                                            hangjung[0] = "-";
+                                                                            hangjung[1] = "-";
+                                                                        } else if (hangjung[0] == null) { //시도에는 있고 구에는 없을때
+                                                                            hangjung[0] = "-";
+                                                                            hangjung[1] = "-";
                                                                         }
-                                                                        else if(hangjung[0]==null){ //시도에는 있고 구에는 없을때
-                                                                            hangjung[0]="-";hangjung[1]="-";
-                                                                        }
-                                                                        intent.putExtra("RtotalCount",RtotalCount[0]);
-                                                                        intent.putExtra("sidoNm",location[2]);
+                                                                        intent.putExtra("RtotalCount", RtotalCount[0]);
+                                                                        intent.putExtra("sidoNm", location[2]);
                                                                         intent.putExtra("sidosu", sido[1]);
                                                                         intent.putExtra("hangjungNm", location[3]);
                                                                         intent.putExtra("hangjungsu", hangjung[1]);
-                                                                        intent.putExtra("category",SelectLarge+" > "+SelectMiddle+" > "+SelectShort);
+                                                                        intent.putExtra("category", SelectLarge + " > " + SelectMiddle + " > " + SelectShort);
 
                                                                         setResult(RESULT_OK, intent);
 
@@ -294,42 +296,39 @@ public class Dialog_Category extends Activity {
         });
 
 
-
-
         //count = adapter.getCount();
         //tv = adapter.getItem(count).toString();
     }
 
-    public void MgetData(String Lcls){
-        StringBuffer buffer=new StringBuffer();
-        String queryUrl="http://apis.data.go.kr/B553077/api/open/sdsc/middleUpjongList?"+
-                "indsLclsCd="+Lcls+"&ServiceKey=MxfED6C3Sd6Ja7QuU2BNU8xqBX5Yiy26t4sWS0PWUm%2B6WFjChgI3KoNQRMdO9LM5xvKfXOtMIh40XqadzCbTfw%3D%3D";
-        int su=0;
+    public void MgetData(String Lcls) {
+        StringBuffer buffer = new StringBuffer();
+        String queryUrl = "http://apis.data.go.kr/B553077/api/open/sdsc/middleUpjongList?" +
+                "indsLclsCd=" + Lcls + "&ServiceKey=MxfED6C3Sd6Ja7QuU2BNU8xqBX5Yiy26t4sWS0PWUm%2B6WFjChgI3KoNQRMdO9LM5xvKfXOtMIh40XqadzCbTfw%3D%3D";
+        int su = 0;
         try {
-            URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
-            InputStream is= url.openStream(); //url위치로 입력스트림 연결
+            URL url = new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
+            InputStream is = url.openStream(); //url위치로 입력스트림 연결
 
-            XmlPullParserFactory factory= XmlPullParserFactory.newInstance();
-            XmlPullParser xpp= factory.newPullParser();
-            xpp.setInput( new InputStreamReader(is, "UTF-8") ); //inputstream 으로부터 xml 입력받기
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            XmlPullParser xpp = factory.newPullParser();
+            xpp.setInput(new InputStreamReader(is, "UTF-8")); //inputstream 으로부터 xml 입력받기
             String tag;
             xpp.next();
-            int eventType= xpp.getEventType();
-            while( eventType != XmlPullParser.END_DOCUMENT ){
-                switch( eventType ){
+            int eventType = xpp.getEventType();
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                switch (eventType) {
                     case XmlPullParser.START_DOCUMENT:
                         buffer.append("파싱 시작...\n\n");
                         break;
 
                     case XmlPullParser.START_TAG:
-                        tag= xpp.getName();//태그 이름 얻어오기
+                        tag = xpp.getName();//태그 이름 얻어오기
 
-                        if(tag.equals("item")) ;// 첫번째 검색결과
-                        else if(tag.equals("indsMclsCd")){
+                        if (tag.equals("item")) ;// 첫번째 검색결과
+                        else if (tag.equals("indsMclsCd")) {
                             xpp.next();
                             MCode.add(xpp.getText());
-                        }
-                        else if(tag.equals("indsMclsNm")){
+                        } else if (tag.equals("indsMclsNm")) {
                             xpp.next();
                             Mname.add(xpp.getText());
                             su++;
@@ -339,46 +338,46 @@ public class Dialog_Category extends Activity {
                         break;
 
                     case XmlPullParser.END_TAG:
-                        tag= xpp.getName(); //태그 이름 얻어오기
-                        if(tag.equals("item")) buffer.append("\n");// 첫번째 검색결과종료..줄바꿈
+                        tag = xpp.getName(); //태그 이름 얻어오기
+                        if (tag.equals("item")) buffer.append("\n");// 첫번째 검색결과종료..줄바꿈
                         break;
                 }
-                eventType= xpp.next();
+                eventType = xpp.next();
             }
         } catch (Exception e) {
             // TODO Auto-generated catch blocke.printStackTrace();
         }
     }
-    public void SgetData(String Lcls,String Mcls){
-        StringBuffer buffer=new StringBuffer();
-        String queryUrl="http://apis.data.go.kr/B553077/api/open/sdsc/smallUpjongList?"+
-                "indsLclsCd="+Lcls+"&indsMclsCd="+Mcls+"&ServiceKey=MxfED6C3Sd6Ja7QuU2BNU8xqBX5Yiy26t4sWS0PWUm%2B6WFjChgI3KoNQRMdO9LM5xvKfXOtMIh40XqadzCbTfw%3D%3D";
-        int su=0;
-        try {
-            URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
-            InputStream is= url.openStream(); //url위치로 입력스트림 연결
 
-            XmlPullParserFactory factory= XmlPullParserFactory.newInstance();
-            XmlPullParser xpp= factory.newPullParser();
-            xpp.setInput( new InputStreamReader(is, "UTF-8") ); //inputstream 으로부터 xml 입력받기
+    public void SgetData(String Lcls, String Mcls) {
+        StringBuffer buffer = new StringBuffer();
+        String queryUrl = "http://apis.data.go.kr/B553077/api/open/sdsc/smallUpjongList?" +
+                "indsLclsCd=" + Lcls + "&indsMclsCd=" + Mcls + "&ServiceKey=MxfED6C3Sd6Ja7QuU2BNU8xqBX5Yiy26t4sWS0PWUm%2B6WFjChgI3KoNQRMdO9LM5xvKfXOtMIh40XqadzCbTfw%3D%3D";
+        int su = 0;
+        try {
+            URL url = new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
+            InputStream is = url.openStream(); //url위치로 입력스트림 연결
+
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            XmlPullParser xpp = factory.newPullParser();
+            xpp.setInput(new InputStreamReader(is, "UTF-8")); //inputstream 으로부터 xml 입력받기
             String tag;
             xpp.next();
-            int eventType= xpp.getEventType();
-            while( eventType != XmlPullParser.END_DOCUMENT ){
-                switch( eventType ){
+            int eventType = xpp.getEventType();
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                switch (eventType) {
                     case XmlPullParser.START_DOCUMENT:
                         buffer.append("파싱 시작...\n\n");
                         break;
 
                     case XmlPullParser.START_TAG:
-                        tag= xpp.getName();//태그 이름 얻어오기
+                        tag = xpp.getName();//태그 이름 얻어오기
 
-                        if(tag.equals("item")) ;// 첫번째 검색결과
-                        else if(tag.equals("indsSclsCd")){
+                        if (tag.equals("item")) ;// 첫번째 검색결과
+                        else if (tag.equals("indsSclsCd")) {
                             xpp.next();
                             Scode.add(xpp.getText());
-                        }
-                        else if(tag.equals("indsSclsNm")){
+                        } else if (tag.equals("indsSclsNm")) {
                             xpp.next();
                             Sname.add(xpp.getText());
                             su++;
@@ -388,12 +387,12 @@ public class Dialog_Category extends Activity {
                         break;
 
                     case XmlPullParser.END_TAG:
-                        tag= xpp.getName(); //태그 이름 얻어오기
-                        if(tag.equals("item")) buffer.append("\n");// 첫번째 검색결과종료..줄바꿈
+                        tag = xpp.getName(); //태그 이름 얻어오기
+                        if (tag.equals("item")) buffer.append("\n");// 첫번째 검색결과종료..줄바꿈
                         buffer.append("파싱끝");
                         break;
                 }
-                eventType= xpp.next();
+                eventType = xpp.next();
             }
         } catch (Exception e) {
             // TODO Auto-generated catch blocke.printStackTrace();

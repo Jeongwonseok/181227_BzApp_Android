@@ -35,7 +35,7 @@ public class Franchisefastfood extends AppCompatActivity {
 
         //카드뷰 추가 시킬 리사이클뷰 선언
 
-        btnBack = (ImageButton)findViewById(R.id.btnBack);
+        btnBack = (ImageButton) findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,20 +43,19 @@ public class Franchisefastfood extends AppCompatActivity {
             }
         });
 
-        FranSearch=(Button)findViewById(R.id.franSearch);
+        FranSearch = (Button) findViewById(R.id.franSearch);
 
         FranSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(Franchisefastfood.this,FranchiseSearch.class);
+                Intent intent = new Intent(Franchisefastfood.this, FranchiseSearch.class);
                 startActivity(intent);
             }
         });
 
 
-
         //탭호스트 선언, 탭추가
-        TabHost tabHost = (TabHost)findViewById(R.id.Host);
+        TabHost tabHost = (TabHost) findViewById(R.id.Host);
         tabHost.setup();
         tabHost.addTab(tabHost.newTabSpec("전체").setContent(R.id.tab1).setIndicator("전체"));
         tabHost.addTab(tabHost.newTabSpec("치킨").setContent(R.id.tab2).setIndicator("치킨"));
@@ -64,29 +63,30 @@ public class Franchisefastfood extends AppCompatActivity {
         tabHost.addTab(tabHost.newTabSpec("피자").setContent(R.id.tab4).setIndicator("피자"));
         tabHost.addTab(tabHost.newTabSpec("패스트푸드").setContent(R.id.tab5).setIndicator("패스트푸드"));
         tabHost.setCurrentTab(0);
-        for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++)
-        {tabHost.getTabWidget().getChildAt(i).setPadding(0,0,0,0);}
+        for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
+            tabHost.getTabWidget().getChildAt(i).setPadding(0, 0, 0, 0);
+        }
 
 
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
-               if(tabId.equals("전체")){
-                FranchiseList franchiseList = new FranchiseList("전체");
-                franchiseList.execute();}
-                else if (tabId.equals("치킨")) {
-                   FranchiseList franchiseList = new FranchiseList("치킨");
-                   franchiseList.execute();}
-               else if (tabId.equals("주점")) {
-                   FranchiseList franchiseList = new FranchiseList("주점");
-                   franchiseList.execute();
-               }  else if (tabId.equals("피자")) {
-                   FranchiseList franchiseList = new FranchiseList("피자");
-                   franchiseList.execute();
-               }  else if (tabId.equals("패스트푸드")) {
-                   FranchiseList franchiseList = new FranchiseList("패스트푸드");
-                   franchiseList.execute();
-               }
+                if (tabId.equals("전체")) {
+                    FranchiseList franchiseList = new FranchiseList("전체");
+                    franchiseList.execute();
+                } else if (tabId.equals("치킨")) {
+                    FranchiseList franchiseList = new FranchiseList("치킨");
+                    franchiseList.execute();
+                } else if (tabId.equals("주점")) {
+                    FranchiseList franchiseList = new FranchiseList("주점");
+                    franchiseList.execute();
+                } else if (tabId.equals("피자")) {
+                    FranchiseList franchiseList = new FranchiseList("피자");
+                    franchiseList.execute();
+                } else if (tabId.equals("패스트푸드")) {
+                    FranchiseList franchiseList = new FranchiseList("패스트푸드");
+                    franchiseList.execute();
+                }
             }
         });
 
@@ -96,12 +96,14 @@ public class Franchisefastfood extends AppCompatActivity {
         franchiseList.execute();
     }
 
-   class FranchiseList extends AsyncTask<Void, Void, String> {
+    class FranchiseList extends AsyncTask<Void, Void, String> {
 
         String Kind;
-        public FranchiseList(String Kind){
-            this.Kind=Kind;
+
+        public FranchiseList(String Kind) {
+            this.Kind = Kind;
         }
+
         @Override
         protected void onPreExecute() {
         }
@@ -145,15 +147,20 @@ public class Franchisefastfood extends AppCompatActivity {
             ArrayList<FranchiseInfo> fastfoodarrayList = new ArrayList<>();
 
 
-            RecyclerView recyclerView = (RecyclerView)findViewById(R.id.RV1);RecyclerView.LayoutManager manager = new LinearLayoutManager(Franchisefastfood.this);
+            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.RV1);
+            RecyclerView.LayoutManager manager = new LinearLayoutManager(Franchisefastfood.this);
             recyclerView.setLayoutManager(manager);
-            RecyclerView recyclerView2 = (RecyclerView)findViewById(R.id.RV2); RecyclerView.LayoutManager manager2 = new LinearLayoutManager(Franchisefastfood.this);
+            RecyclerView recyclerView2 = (RecyclerView) findViewById(R.id.RV2);
+            RecyclerView.LayoutManager manager2 = new LinearLayoutManager(Franchisefastfood.this);
             recyclerView2.setLayoutManager(manager2);
-            RecyclerView recyclerView3 = (RecyclerView)findViewById(R.id.RV3); RecyclerView.LayoutManager manager3 = new LinearLayoutManager(Franchisefastfood.this);
+            RecyclerView recyclerView3 = (RecyclerView) findViewById(R.id.RV3);
+            RecyclerView.LayoutManager manager3 = new LinearLayoutManager(Franchisefastfood.this);
             recyclerView3.setLayoutManager(manager3);
-            RecyclerView recyclerView4 = (RecyclerView)findViewById(R.id.RV4); RecyclerView.LayoutManager manager4 = new LinearLayoutManager(Franchisefastfood.this);
+            RecyclerView recyclerView4 = (RecyclerView) findViewById(R.id.RV4);
+            RecyclerView.LayoutManager manager4 = new LinearLayoutManager(Franchisefastfood.this);
             recyclerView4.setLayoutManager(manager4);
-            RecyclerView recyclerView5 = (RecyclerView)findViewById(R.id.RV5); RecyclerView.LayoutManager manager5 = new LinearLayoutManager(Franchisefastfood.this);
+            RecyclerView recyclerView5 = (RecyclerView) findViewById(R.id.RV5);
+            RecyclerView.LayoutManager manager5 = new LinearLayoutManager(Franchisefastfood.this);
             recyclerView5.setLayoutManager(manager5);
 
 
@@ -161,7 +168,7 @@ public class Franchisefastfood extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("response");
                 int count = 0;
-                String Name,Storesu, Ownermoney, Asales17,Interior,Category;
+                String Name, Storesu, Ownermoney, Asales17, Interior, Category;
                 while (count < jsonArray.length()) {
                     JSONObject object = jsonArray.getJSONObject(count);
                     Name = object.getString("Shopname");
@@ -172,27 +179,24 @@ public class Franchisefastfood extends AppCompatActivity {
                     Category = object.getString("Category");
                     ///
                     //매출
-                    if(Storesu.equals("정보없음")){
-                        Storesu="정보없음";
-                    }else  Storesu+="개";
+                    if (Storesu.equals("정보없음")) {
+                        Storesu = "정보없음";
+                    } else Storesu += "개";
                     //////////////////////////
-                    FranchiseInfo ALLfranchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
+                    FranchiseInfo ALLfranchiseInfo = new FranchiseInfo(Name, Storesu, Ownermoney, Asales17, Interior, Category);
                     ALLarrayList.add(ALLfranchiseInfo);
                     count++;
-                    if (Category.equals("치킨")){
-                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
+                    if (Category.equals("치킨")) {
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name, Storesu, Ownermoney, Asales17, Interior, Category);
                         ChickensarrayList.add(franchiseInfo);
-                    }
-                    else if(Category.equals("주점")){
-                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
+                    } else if (Category.equals("주점")) {
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name, Storesu, Ownermoney, Asales17, Interior, Category);
                         BeararrayList.add(franchiseInfo);
-                    }
-                    else if(Category.equals("피자")){
-                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
+                    } else if (Category.equals("피자")) {
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name, Storesu, Ownermoney, Asales17, Interior, Category);
                         PizzaarrayList.add(franchiseInfo);
-                    }
-                    else if(Category.equals("패스트푸드")){
-                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name,Storesu,Ownermoney,Asales17,Interior,Category);
+                    } else if (Category.equals("패스트푸드")) {
+                        FranchiseInfo franchiseInfo = new FranchiseInfo(Name, Storesu, Ownermoney, Asales17, Interior, Category);
                         fastfoodarrayList.add(franchiseInfo);
                     }
                 }
@@ -206,19 +210,17 @@ public class Franchisefastfood extends AppCompatActivity {
             FranchiseAdapter PizzafranchiseAdapter = new FranchiseAdapter(PizzaarrayList);
             FranchiseAdapter fastfoddfranchiseAdapter = new FranchiseAdapter(fastfoodarrayList);
 
-            if(Kind.equals("전체")){
-                recyclerView.setAdapter(AllfranchiseAdapter);}
-            else  if(Kind.equals("치킨")){
-                recyclerView2.setAdapter(ChickenfranchiseAdapter);}
-
-            else if(Kind.equals("주점")){
-                recyclerView3.setAdapter(BearfranchiseAdapter);}
-
-            else if(Kind.equals("피자")){
-                recyclerView4.setAdapter(PizzafranchiseAdapter);}
-
-            else if(Kind.equals("패스트푸드")){
-                recyclerView5.setAdapter(fastfoddfranchiseAdapter);}
+            if (Kind.equals("전체")) {
+                recyclerView.setAdapter(AllfranchiseAdapter);
+            } else if (Kind.equals("치킨")) {
+                recyclerView2.setAdapter(ChickenfranchiseAdapter);
+            } else if (Kind.equals("주점")) {
+                recyclerView3.setAdapter(BearfranchiseAdapter);
+            } else if (Kind.equals("피자")) {
+                recyclerView4.setAdapter(PizzafranchiseAdapter);
+            } else if (Kind.equals("패스트푸드")) {
+                recyclerView5.setAdapter(fastfoddfranchiseAdapter);
+            }
         }
 
         @Override

@@ -100,11 +100,11 @@ public class LoginActivity extends AppCompatActivity {
                                 SharedPreferences test = getSharedPreferences("check", Activity.MODE_PRIVATE);
                                 SharedPreferences.Editor checkLogin = test.edit();
                                 checkLogin.putBoolean("check", true);
-                                checkLogin.putString("id",ID);
-                                if (questionYN.equals("1")){
-                                    checkLogin.putBoolean("surveycheck",true);
+                                checkLogin.putString("id", ID);
+                                if (questionYN.equals("1")) {
+                                    checkLogin.putBoolean("surveycheck", true);
                                 } else {
-                                    checkLogin.putBoolean("surveycheck",false);
+                                    checkLogin.putBoolean("surveycheck", false);
                                 }
                                 //꼭 commit()을 해줘야 값이 저장됩니다 ㅎㅎ
                                 checkLogin.commit();

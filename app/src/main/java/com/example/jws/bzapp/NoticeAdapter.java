@@ -43,7 +43,7 @@ public class NoticeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         return noticeInfos.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView imgbtnUnder1;
         LinearLayout updateView1;
         TextView TVtitle, TVdatetime, TVContent;

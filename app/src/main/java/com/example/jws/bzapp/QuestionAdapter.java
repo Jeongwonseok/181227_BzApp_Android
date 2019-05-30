@@ -19,7 +19,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         LinearLayout updateView1;
         TextView TVtitle, TVdatetime, TVContent;
 
-        MyViewHolder(View view){
+        MyViewHolder(View view) {
             super(view);
             view.setOnClickListener(this);
             imgbtnUnder1 = view.findViewById(R.id.imgbtnUnder1);
@@ -31,7 +31,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             imgbtnUnder1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(updateView1.getVisibility() == View.VISIBLE) {
+                    if (updateView1.getVisibility() == View.VISIBLE) {
                         updateView1.setVisibility(View.GONE);
                         imgbtnUnder1.setImageResource(R.drawable.under);
                     } else {
@@ -49,9 +49,11 @@ public class QuestionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     private ArrayList<QuestionInfo> questionInfos;
-    QuestionAdapter(ArrayList<QuestionInfo> questionInfos){
+
+    QuestionAdapter(ArrayList<QuestionInfo> questionInfos) {
         this.questionInfos = questionInfos;
     }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -62,7 +64,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
-        MyViewHolder myViewHolder = (MyViewHolder)viewHolder;
+        MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
         //텍스트 삽입
         myViewHolder.TVtitle.setText(questionInfos.get(i).Title);
         myViewHolder.TVdatetime.setText(questionInfos.get(i).Date);

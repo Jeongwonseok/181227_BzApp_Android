@@ -38,8 +38,8 @@ public class Quetion_rActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quetion_r);
 
-        btnBack = (ImageButton)findViewById(R.id.btnBack);
-        btnList = (ImageButton)findViewById(R.id.btnList);
+        btnBack = (ImageButton) findViewById(R.id.btnBack);
+        btnList = (ImageButton) findViewById(R.id.btnList);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +49,7 @@ public class Quetion_rActivity extends AppCompatActivity {
                 builder.setPositiveButton("이동", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(Quetion_rActivity.this,MainActivity.class);
+                        Intent intent = new Intent(Quetion_rActivity.this, MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
@@ -68,7 +68,7 @@ public class Quetion_rActivity extends AppCompatActivity {
                 builder.setPositiveButton("이동", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(Quetion_rActivity.this,QuestionActivity.class);
+                        Intent intent = new Intent(Quetion_rActivity.this, QuestionActivity.class);
                         startActivity(intent);
                         finish();
                     }
@@ -79,12 +79,12 @@ public class Quetion_rActivity extends AppCompatActivity {
         });
 
         //질문 타입 스피너 설정
-        final String[] number = {"문의유형을 선택하세요.","업데이트","오류 및 버그","기타"};
+        final String[] number = {"문의유형을 선택하세요.", "업데이트", "오류 및 버그", "기타"};
 
-        final Spinner spinner = (Spinner)findViewById(R.id.spinner1);
+        final Spinner spinner = (Spinner) findViewById(R.id.spinner1);
 
         ArrayAdapter<String> adapter;
-        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,number);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, number);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -99,7 +99,7 @@ public class Quetion_rActivity extends AppCompatActivity {
             }
         });
 
-        btnResult = (Button)findViewById(R.id.btnResult);
+        btnResult = (Button) findViewById(R.id.btnResult);
         final EditText Ename = (EditText) findViewById(R.id.Qname);
         final EditText Eemail = (EditText) findViewById(R.id.Qemail);
         final EditText EQcontent = (EditText) findViewById(R.id.Qcontents);
@@ -125,7 +125,7 @@ public class Quetion_rActivity extends AppCompatActivity {
                                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-                                                Intent intent = new Intent(Quetion_rActivity.this,QuestionActivity.class);
+                                                Intent intent = new Intent(Quetion_rActivity.this, QuestionActivity.class);
                                                 startActivity(intent);
                                                 finish();
                                             }
@@ -147,19 +147,19 @@ public class Quetion_rActivity extends AppCompatActivity {
                 };
 
                 //입력받아야하는 값 중에서 사용자가 입력하지 않으면 토스트메세지 출력후 리턴
-                if (isEmpty(name)){
-                    Toast.makeText(getApplicationContext(),"이름을 입력해주새요.", Toast.LENGTH_LONG).show();
+                if (isEmpty(name)) {
+                    Toast.makeText(getApplicationContext(), "이름을 입력해주새요.", Toast.LENGTH_LONG).show();
                     return;
-                } else if (isEmpty(email)){
-                    Toast.makeText(getApplicationContext(),"이메일을 입력해주세요.", Toast.LENGTH_LONG).show();
+                } else if (isEmpty(email)) {
+                    Toast.makeText(getApplicationContext(), "이메일을 입력해주세요.", Toast.LENGTH_LONG).show();
                     return;
-                }  else if (questiontype.equals("문의유형을 선택하세요.")){
-                    Toast.makeText(getApplicationContext(),"문의유형을 선택해주세요.", Toast.LENGTH_LONG).show();
+                } else if (questiontype.equals("문의유형을 선택하세요.")) {
+                    Toast.makeText(getApplicationContext(), "문의유형을 선택해주세요.", Toast.LENGTH_LONG).show();
                     return;
-                }else if (isEmpty(questioncontent)){
-                    Toast.makeText(getApplicationContext(),"내용을 입력하세요.", Toast.LENGTH_LONG).show();
+                } else if (isEmpty(questioncontent)) {
+                    Toast.makeText(getApplicationContext(), "내용을 입력하세요.", Toast.LENGTH_LONG).show();
                     return;
-                }   else {
+                } else {
                     //모든 값을 입력했으면 php실행 후 DB 저장
                     QRegister qregister = new QRegister(name, email, questiontype, questioncontent, responseListener);
                     RequestQueue queue = Volley.newRequestQueue(Quetion_rActivity.this);

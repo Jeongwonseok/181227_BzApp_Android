@@ -313,8 +313,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         });
 
 
-
-
     }
 
 //////////////////////////////////////////////create종료///////////////////////////////////////////////////////////////
@@ -352,8 +350,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     LoginCheck loginCheck = new LoginCheck(MapActivity.this);
                     loginCheck.Logout();
                     Intent intent = getIntent();
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
                 }
@@ -543,16 +539,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 mLong = mGoogleMap.getCameraPosition().target.longitude;
                 //Assign mCenterMarker reference:
 
-                if (radius==100) {
+                if (radius == 100) {
                     mGoogleMap.clear();
                     onAddCircle100(radius);
-                } else if (radius==200) {
+                } else if (radius == 200) {
                     mGoogleMap.clear();
                     onAddCircle200(radius);
-                } else if (radius==500) {
+                } else if (radius == 500) {
                     mGoogleMap.clear();
                     onAddCircle500(radius);
-                } else if (radius==1000) {
+                } else if (radius == 1000) {
                     mGoogleMap.clear();
                     onAddCircle1000(radius);
                 }
@@ -606,7 +602,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     public void setCurrentLocation(Location location, String markerTitle, String markerSnippet) {
 
-        if ( mCenterMarker != null ) mCenterMarker.remove();
+        if (mCenterMarker != null) mCenterMarker.remove();
 
         //현재위치의 위도 경도 가져옴
         LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());

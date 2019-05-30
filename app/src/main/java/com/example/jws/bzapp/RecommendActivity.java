@@ -25,9 +25,8 @@ import java.util.ArrayList;
 public class RecommendActivity extends AppCompatActivity {
 
     TextView text1;
-    Button btn;
-    ArrayList<String> list = new ArrayList<String>();;
-    ArrayAdapter<String>Adapter;
+    ArrayList<String> list = new ArrayList<String>();
+    ArrayAdapter<String> Adapter;
     ListView listView;
     String Location;
     String sales;
@@ -46,7 +45,7 @@ public class RecommendActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        btnHome=(ImageButton)findViewById(R.id.btnHome);
+        btnHome = (ImageButton) findViewById(R.id.btnHome);
 
 
         btnHome.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +58,7 @@ public class RecommendActivity extends AppCompatActivity {
             }
         });
 
-        btnBack =(ImageButton)findViewById(R.id.btnBack);
+        btnBack = (ImageButton) findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,38 +66,34 @@ public class RecommendActivity extends AppCompatActivity {
             }
         });
 
-       text1=(TextView)findViewById(R.id.test1);
+        text1 = (TextView) findViewById(R.id.test1);
 
 
-        Adapter = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1,list);
-        listView=(ListView)findViewById(R.id.Recomlistview);
+        Adapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, list);
+        listView = (ListView) findViewById(R.id.Recomlistview);
         Intent intent = getIntent();
-        Location=intent.getStringExtra("location");
-        sales=intent.getStringExtra("sales");
-        Category=intent.getStringExtra("type");
+        Location = intent.getStringExtra("location");
+        sales = intent.getStringExtra("sales");
+        Category = intent.getStringExtra("type");
 
-        if(sales.equals("1")){
-            Fsale="0";
-            Lsale="2000";
-        }else if(sales.equals("2")){
-            Fsale="2000";
-            Lsale="2500";
-        }
-        else if(sales.equals("3")){
-            Fsale="2500";
-            Lsale="3000";
-        }
-        else if(sales.equals("4")){
-            Fsale="3000";
-            Lsale="3500";
-        }
-        else if(sales.equals("5")){
-            Fsale="3500";
-            Lsale="4000";
-        }
-        else if(sales.equals("6")){
-            Fsale="4000";
-            Lsale="10000";
+        if (sales.equals("1")) {
+            Fsale = "0";
+            Lsale = "2000";
+        } else if (sales.equals("2")) {
+            Fsale = "2000";
+            Lsale = "2500";
+        } else if (sales.equals("3")) {
+            Fsale = "2500";
+            Lsale = "3000";
+        } else if (sales.equals("4")) {
+            Fsale = "3000";
+            Lsale = "3500";
+        } else if (sales.equals("5")) {
+            Fsale = "3500";
+            Lsale = "4000";
+        } else if (sales.equals("6")) {
+            Fsale = "4000";
+            Lsale = "10000";
         }
 
 
@@ -106,8 +101,8 @@ public class RecommendActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(RecommendActivity.this,Recommenddetail.class);
-                intent.putExtra("Location",list.get(position));
+                Intent intent = new Intent(RecommendActivity.this, Recommenddetail.class);
+                intent.putExtra("Location", list.get(position));
                 startActivity(intent);
             }
         });
@@ -116,10 +111,7 @@ public class RecommendActivity extends AppCompatActivity {
     }
 
 
-
     public void getClosure() {
-
-//        Toast.makeText(getApplicationContext(), addrnm, Toast.LENGTH_LONG).show();
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
@@ -141,7 +133,7 @@ public class RecommendActivity extends AppCompatActivity {
                 }
             }
         };
-        Findrecommend findrecommend = new Findrecommend(Location,Category,Fsale,Lsale, responseListener);
+        Findrecommend findrecommend = new Findrecommend(Location, Category, Fsale, Lsale, responseListener);
         RequestQueue queue = Volley.newRequestQueue(RecommendActivity.this);
         queue.add(findrecommend);
     }

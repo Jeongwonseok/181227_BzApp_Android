@@ -10,26 +10,25 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class surveylistAdapter extends BaseAdapter {
-    private ArrayList<surveylist_item> listViewItemList  = new ArrayList<surveylist_item>();
+    private ArrayList<surveylist_item> listViewItemList = new ArrayList<surveylist_item>();
 
-    public  surveylistAdapter()
-    {
+    public surveylistAdapter() {
 
     }
 
     @Override
     public int getCount() {
-        return listViewItemList.size() ;
+        return listViewItemList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return listViewItemList.get(position) ;
+        return listViewItemList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return position ;
+        return position;
     }
 
     @Override
@@ -69,4 +68,4 @@ public class surveylistAdapter extends BaseAdapter {
         listViewItemList.add(item);
     }
 
-    }
+}

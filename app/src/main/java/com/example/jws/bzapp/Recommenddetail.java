@@ -126,8 +126,8 @@ public class Recommenddetail extends AppCompatActivity {
         Intent intent = getIntent();
         Location = intent.getStringExtra("Location");
 
-        btnBack =(ImageButton)findViewById(R.id.btnBack);
-        btnHome=(ImageButton)findViewById(R.id.btnHome);
+        btnBack = (ImageButton) findViewById(R.id.btnBack);
+        btnHome = (ImageButton) findViewById(R.id.btnHome);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,7 +146,7 @@ public class Recommenddetail extends AppCompatActivity {
             }
         });
 
-        tvretitle = (TextView)findViewById(R.id.tvretitle);
+        tvretitle = (TextView) findViewById(R.id.tvretitle);
         tvretitle.setText(Location);
 
         ivgrage = (ImageView) findViewById(R.id.ivgrage);
@@ -168,8 +168,8 @@ public class Recommenddetail extends AppCompatActivity {
         //상권개요
         pLayout1 = (LinearLayout) findViewById(R.id.pLayout1);
         pbtn1 = (ImageView) findViewById(R.id.pbtn1);
-        shopApi=new ShopApi();
-        jumpo = (TextView)findViewById(R.id.jumpo);
+        shopApi = new ShopApi();
+        jumpo = (TextView) findViewById(R.id.jumpo);
 
         //페업자
         tvsido = (TextView) findViewById(R.id.tvsido);
@@ -403,16 +403,16 @@ public class Recommenddetail extends AppCompatActivity {
                     @Override
                     public void run() {
                         // TODO Auto-generated method stub
-                        Alllat=String.valueOf(Lat);
-                        Alllong=String.valueOf(Lng);
-                        final String location[]=shopApi.location("1000",Alllong,Alllat);
+                        Alllat = String.valueOf(Lat);
+                        Alllong = String.valueOf(Lng);
+                        final String location[] = shopApi.location("1000", Alllong, Alllat);
                         final String hangjung[];
-                        hangjung=ShopApi.hangjungData("signguCd", location[1]);
+                        hangjung = ShopApi.hangjungData("signguCd", location[1]);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 // TODO Auto-generated method stub
-                                jumpo.setText( hangjung[1]+ "개");
+                                jumpo.setText(hangjung[1] + "개");
                             }
                         });
 

@@ -58,8 +58,7 @@ public class UpdateActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UpdateActivity.this, Mypage.class);
-                startActivity(intent);
+                finish();
             }
         });
 
@@ -71,8 +70,7 @@ public class UpdateActivity extends AppCompatActivity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UpdateActivity.this, Mypage.class);
-                startActivity(intent);
+                finish();
             }
         });
         btnSave.setOnClickListener(new View.OnClickListener() {
@@ -119,20 +117,20 @@ public class UpdateActivity extends AppCompatActivity {
                 };
 
                 //각 정보를 입력안했을때는 Toast메세지 출력 후 리턴
-                if (isEmpty(id)){
-                    Toast.makeText(getApplicationContext(),"아이디를 입력해주새요.", Toast.LENGTH_LONG).show();
+                if (isEmpty(id)) {
+                    Toast.makeText(getApplicationContext(), "아이디를 입력해주새요.", Toast.LENGTH_LONG).show();
                     return;
-                } else if (isEmpty(pw)){
-                    Toast.makeText(getApplicationContext(),"비밀번호를 입력해주세요.", Toast.LENGTH_LONG).show();
+                } else if (isEmpty(pw)) {
+                    Toast.makeText(getApplicationContext(), "비밀번호를 입력해주세요.", Toast.LENGTH_LONG).show();
                     return;
-                } else if (isEmpty(email)){
-                    Toast.makeText(getApplicationContext(),"이메일을 입력해주세요.", Toast.LENGTH_LONG).show();
+                } else if (isEmpty(email)) {
+                    Toast.makeText(getApplicationContext(), "이메일을 입력해주세요.", Toast.LENGTH_LONG).show();
                     return;
-                } else if (question.equals("선택하세요.")){
-                    Toast.makeText(getApplicationContext(),"질문을 선택해주세요.", Toast.LENGTH_LONG).show();
+                } else if (question.equals("선택하세요.")) {
+                    Toast.makeText(getApplicationContext(), "질문을 선택해주세요.", Toast.LENGTH_LONG).show();
                     return;
-                } else if (isEmpty(answer)){
-                    Toast.makeText(getApplicationContext(),"질문 대답을 입력해주세요.", Toast.LENGTH_LONG).show();
+                } else if (isEmpty(answer)) {
+                    Toast.makeText(getApplicationContext(), "질문 대답을 입력해주세요.", Toast.LENGTH_LONG).show();
                     return;
                 } else {
                     //모든 값이 다 있으면 DB에 저장하는 메소드 실행

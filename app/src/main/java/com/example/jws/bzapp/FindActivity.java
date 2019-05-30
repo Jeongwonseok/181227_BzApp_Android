@@ -38,7 +38,7 @@ public class FindActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         btnBack = (ImageButton) findViewById(R.id.btnBack);
@@ -100,7 +100,7 @@ public class FindActivity extends AppCompatActivity {
                             int count = 0;
                             String fid = "아이디 : ";
                             while (count < jsonArray.length()) {
-                                if(count >= 1) {
+                                if (count >= 1) {
                                     fid = fid + ", ";
                                 }
                                 JSONObject object = jsonArray.getJSONObject(count);
@@ -143,28 +143,28 @@ public class FindActivity extends AppCompatActivity {
                 };
 
                 //각 정보를 입력안했을때는 Toast메세지 출력 후 리턴
-                if (isEmpty(name)){
-                    Toast.makeText(getApplicationContext(),"이름을 입력해주새요.", Toast.LENGTH_LONG).show();
+                if (isEmpty(name)) {
+                    Toast.makeText(getApplicationContext(), "이름을 입력해주새요.", Toast.LENGTH_LONG).show();
                     return;
-                } else if (isEmpty(email)){
-                    Toast.makeText(getApplicationContext(),"이메일을 입력해주세요.", Toast.LENGTH_LONG).show();
+                } else if (isEmpty(email)) {
+                    Toast.makeText(getApplicationContext(), "이메일을 입력해주세요.", Toast.LENGTH_LONG).show();
                     return;
-                } else if (isEmpty(Ephone2.getText().toString())){
-                    Toast.makeText(getApplicationContext(),"휴대폰 번호를 확인하세요", Toast.LENGTH_LONG).show();
+                } else if (isEmpty(Ephone2.getText().toString())) {
+                    Toast.makeText(getApplicationContext(), "휴대폰 번호를 확인하세요", Toast.LENGTH_LONG).show();
                     return;
-                } else if (isEmpty(Ephone3.getText().toString())){
-                    Toast.makeText(getApplicationContext(),"휴대폰 번호를 확인하세요", Toast.LENGTH_LONG).show();
+                } else if (isEmpty(Ephone3.getText().toString())) {
+                    Toast.makeText(getApplicationContext(), "휴대폰 번호를 확인하세요", Toast.LENGTH_LONG).show();
                     return;
                 } else {
                     //모든 값이 다 있으면 DB에 저장하는 메소드 실행
-                    Findid findid = new Findid(name, email, phone,responseListener );
+                    Findid findid = new Findid(name, email, phone, responseListener);
                     RequestQueue queue = Volley.newRequestQueue(FindActivity.this);
                     queue.add(findid);
                 }
             }
         });
 
-        pwFind = (Button)findViewById(R.id.pwFind);
+        pwFind = (Button) findViewById(R.id.pwFind);
         pwFind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,7 +181,7 @@ public class FindActivity extends AppCompatActivity {
                             int count = 0;
                             String fid = "비밀번호 : ";
                             while (count < jsonArray.length()) {
-                                if(count >= 1) {
+                                if (count >= 1) {
                                     fid = fid + ", ";
                                 }
                                 JSONObject object = jsonArray.getJSONObject(count);
@@ -226,14 +226,14 @@ public class FindActivity extends AppCompatActivity {
                 };
 
                 //각 정보를 입력안했을때는 Toast메세지 출력 후 리턴
-                if (isEmpty(id)){
-                    Toast.makeText(getApplicationContext(),"아이디를 입력해주새요.", Toast.LENGTH_LONG).show();
+                if (isEmpty(id)) {
+                    Toast.makeText(getApplicationContext(), "아이디를 입력해주새요.", Toast.LENGTH_LONG).show();
                     return;
-                } else if (question.equals("선택하세요.")){
-                    Toast.makeText(getApplicationContext(),"질문을 선택해주세요.", Toast.LENGTH_LONG).show();
+                } else if (question.equals("선택하세요.")) {
+                    Toast.makeText(getApplicationContext(), "질문을 선택해주세요.", Toast.LENGTH_LONG).show();
                     return;
-                } else if (isEmpty(answer)){
-                    Toast.makeText(getApplicationContext(),"답변을 입력해주세요.", Toast.LENGTH_LONG).show();
+                } else if (isEmpty(answer)) {
+                    Toast.makeText(getApplicationContext(), "답변을 입력해주세요.", Toast.LENGTH_LONG).show();
                     return;
                 } else {
                     //모든 값이 다 있으면 DB에 저장하는 메소드 실행

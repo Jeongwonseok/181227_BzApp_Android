@@ -15,13 +15,13 @@ public class ShopApi extends Activity {
     static String ServiceKey = "MxfED6C3Sd6Ja7QuU2BNU8xqBX5Yiy26t4sWS0PWUm%2B6WFjChgI3KoNQRMdO9LM5xvKfXOtMIh40XqadzCbTfw%3D%3D";
 
 
-    String RadiuAll(String radius, String mLong, String mLat){
+    String RadiuAll(String radius, String mLong, String mLat) {
         StringBuffer buffer = new StringBuffer();
         String total = "";
         String queryUrl = "http://apis.data.go.kr/B553077/api/open/sdsc/storeListInRadius?" +
-                "radius="+radius+
-                "&cx="+mLong+
-                "&cy="+mLat+
+                "radius=" + radius +
+                "&cx=" + mLong +
+                "&cy=" + mLat +
                 "&ServiceKey=MxfED6C3Sd6Ja7QuU2BNU8xqBX5Yiy26t4sWS0PWUm%2B6WFjChgI3KoNQRMdO9LM5xvKfXOtMIh40XqadzCbTfw%3D%3D";
 
         try {
@@ -63,57 +63,57 @@ public class ShopApi extends Activity {
         } catch (Exception e) {
             // TODO Auto-generated catch blocke.printStackTrace();
         }
-        if(buffer.length()==0)
+        if (buffer.length() == 0)
             buffer.append("-");
 
         return buffer.toString();
     }
 
-    String radiusData(String radius,String mLong, String mLat,String Lcls,String Mcls,String Scls){
-        StringBuffer buffer=new StringBuffer();
-        String queryUrl="http://apis.data.go.kr/B553077/api/open/sdsc/storeListInRadius?" +
-                "radius="+radius+"&cx="+mLong+"&cy="+mLat+
+    String radiusData(String radius, String mLong, String mLat, String Lcls, String Mcls, String Scls) {
+        StringBuffer buffer = new StringBuffer();
+        String queryUrl = "http://apis.data.go.kr/B553077/api/open/sdsc/storeListInRadius?" +
+                "radius=" + radius + "&cx=" + mLong + "&cy=" + mLat +
                 "&indsLclsCd=" + Lcls +
                 "&indsMclsCd=" + Mcls +
                 "&indsSclsCd=" + Scls +
-                "&ServiceKey="+ServiceKey;
-        String total ="-";
+                "&ServiceKey=" + ServiceKey;
+        String total = "-";
         try {
-            URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
-            InputStream is= url.openStream(); //url위치로 입력스트림 연결
+            URL url = new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
+            InputStream is = url.openStream(); //url위치로 입력스트림 연결
 
-            XmlPullParserFactory factory= XmlPullParserFactory.newInstance();
-            XmlPullParser xpp= factory.newPullParser();
-            xpp.setInput( new InputStreamReader(is, "UTF-8") ); //inputstream 으로부터 xml 입력받기
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            XmlPullParser xpp = factory.newPullParser();
+            xpp.setInput(new InputStreamReader(is, "UTF-8")); //inputstream 으로부터 xml 입력받기
 
             String tag;
             xpp.next();
-            int eventType= xpp.getEventType();
+            int eventType = xpp.getEventType();
 
-            while( eventType != XmlPullParser.END_DOCUMENT ){
-                switch( eventType ){
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                switch (eventType) {
                     case XmlPullParser.START_DOCUMENT:
                         buffer.append("파싱 시작...\n\n");
                         break;
 
                     case XmlPullParser.START_TAG:
-                        tag= xpp.getName();//테그 이름 얻어오기
+                        tag = xpp.getName();//테그 이름 얻어오기
 
-                        if(tag.equals("item")) ;// 첫번째 검색결과
-                        else if(tag.equals("totalCount")){
+                        if (tag.equals("item")) ;// 첫번째 검색결과
+                        else if (tag.equals("totalCount")) {
                             xpp.next();
-                            total=xpp.getText();
+                            total = xpp.getText();
                         }
                         break;
                     case XmlPullParser.TEXT:
                         break;
                     case XmlPullParser.END_TAG:
-                        tag= xpp.getName(); //테그 이름 얻어오기
-                        if(tag.equals("item")) buffer.append("\n");// 첫번째 검색결과종료..줄바꿈
+                        tag = xpp.getName(); //테그 이름 얻어오기
+                        if (tag.equals("item")) buffer.append("\n");// 첫번째 검색결과종료..줄바꿈
                         break;
                 }
 
-                eventType= xpp.next();
+                eventType = xpp.next();
             }
 
         } catch (Exception e) {
@@ -124,50 +124,51 @@ public class ShopApi extends Activity {
         return total;//StringBuffer 문자열 객체 반환
 
     }//getXmlData method....
-    String radiusData(String radius,String mLong, String mLat,String Lcls,String Mcls){
-        StringBuffer buffer=new StringBuffer();
-        String queryUrl="http://apis.data.go.kr/B553077/api/open/sdsc/storeListInRadius?" +
-                "radius="+radius+"&cx="+mLong+"&cy="+mLat+
+
+    String radiusData(String radius, String mLong, String mLat, String Lcls, String Mcls) {
+        StringBuffer buffer = new StringBuffer();
+        String queryUrl = "http://apis.data.go.kr/B553077/api/open/sdsc/storeListInRadius?" +
+                "radius=" + radius + "&cx=" + mLong + "&cy=" + mLat +
                 "&indsLclsCd=" + Lcls +
                 "&indsMclsCd=" + Mcls +
-                "&ServiceKey="+ServiceKey;
-        String total ="-";
+                "&ServiceKey=" + ServiceKey;
+        String total = "-";
         try {
-            URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
-            InputStream is= url.openStream(); //url위치로 입력스트림 연결
+            URL url = new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
+            InputStream is = url.openStream(); //url위치로 입력스트림 연결
 
-            XmlPullParserFactory factory= XmlPullParserFactory.newInstance();
-            XmlPullParser xpp= factory.newPullParser();
-            xpp.setInput( new InputStreamReader(is, "UTF-8") ); //inputstream 으로부터 xml 입력받기
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            XmlPullParser xpp = factory.newPullParser();
+            xpp.setInput(new InputStreamReader(is, "UTF-8")); //inputstream 으로부터 xml 입력받기
 
             String tag;
             xpp.next();
-            int eventType= xpp.getEventType();
+            int eventType = xpp.getEventType();
 
-            while( eventType != XmlPullParser.END_DOCUMENT ){
-                switch( eventType ){
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                switch (eventType) {
                     case XmlPullParser.START_DOCUMENT:
                         buffer.append("파싱 시작...\n\n");
                         break;
 
                     case XmlPullParser.START_TAG:
-                        tag= xpp.getName();//테그 이름 얻어오기
+                        tag = xpp.getName();//테그 이름 얻어오기
 
-                        if(tag.equals("item")) ;// 첫번째 검색결과
-                        else if(tag.equals("totalCount")){
+                        if (tag.equals("item")) ;// 첫번째 검색결과
+                        else if (tag.equals("totalCount")) {
                             xpp.next();
-                            total=xpp.getText();
+                            total = xpp.getText();
                         }
                         break;
                     case XmlPullParser.TEXT:
                         break;
                     case XmlPullParser.END_TAG:
-                        tag= xpp.getName(); //테그 이름 얻어오기
-                        if(tag.equals("item")) buffer.append("\n");// 첫번째 검색결과종료..줄바꿈
+                        tag = xpp.getName(); //테그 이름 얻어오기
+                        if (tag.equals("item")) buffer.append("\n");// 첫번째 검색결과종료..줄바꿈
                         break;
                 }
 
-                eventType= xpp.next();
+                eventType = xpp.next();
             }
 
         } catch (Exception e) {
@@ -179,61 +180,57 @@ public class ShopApi extends Activity {
 
     }//getXmlData method....
 
-    String[] location(String radius,String mLong, String mLat){
-        StringBuffer buffer=new StringBuffer();
-        String queryUrl="http://apis.data.go.kr/B553077/api/open/sdsc/storeListInRadius?" +
-                "radius="+radius+"&cx="+mLong+"&cy="+mLat+
-                "&ServiceKey="+ServiceKey;
-        String location[]= new String[4];
+    String[] location(String radius, String mLong, String mLat) {
+        StringBuffer buffer = new StringBuffer();
+        String queryUrl = "http://apis.data.go.kr/B553077/api/open/sdsc/storeListInRadius?" +
+                "radius=" + radius + "&cx=" + mLong + "&cy=" + mLat +
+                "&ServiceKey=" + ServiceKey;
+        String location[] = new String[4];
         try {
-            URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
-            InputStream is= url.openStream(); //url위치로 입력스트림 연결
+            URL url = new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
+            InputStream is = url.openStream(); //url위치로 입력스트림 연결
 
-            XmlPullParserFactory factory= XmlPullParserFactory.newInstance();
-            XmlPullParser xpp= factory.newPullParser();
-            xpp.setInput( new InputStreamReader(is, "UTF-8") ); //inputstream 으로부터 xml 입력받기
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            XmlPullParser xpp = factory.newPullParser();
+            xpp.setInput(new InputStreamReader(is, "UTF-8")); //inputstream 으로부터 xml 입력받기
 
             String tag;
             xpp.next();
-            int eventType= xpp.getEventType();
+            int eventType = xpp.getEventType();
 
-            while( eventType != XmlPullParser.END_DOCUMENT ){
-                switch( eventType ){
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                switch (eventType) {
                     case XmlPullParser.START_DOCUMENT:
                         buffer.append("파싱 시작...\n\n");
                         break;
 
                     case XmlPullParser.START_TAG:
-                        tag= xpp.getName();//테그 이름 얻어오기
+                        tag = xpp.getName();//테그 이름 얻어오기
 
-                        if(tag.equals("item")) ;// 첫번째 검색결과
-                        else if(tag.equals("ctprvnCd")){
+                        if (tag.equals("item")) ;// 첫번째 검색결과
+                        else if (tag.equals("ctprvnCd")) {
                             xpp.next();
-                            location[0]=xpp.getText();
-                        }
-                        else if(tag.equals("signguCd")){
+                            location[0] = xpp.getText();
+                        } else if (tag.equals("signguCd")) {
                             xpp.next();
-                            location[1]=xpp.getText();
-                        }
-                        else if(tag.equals("ctprvnNm"))
-                        {
+                            location[1] = xpp.getText();
+                        } else if (tag.equals("ctprvnNm")) {
                             xpp.next();
-                            location[2]=xpp.getText();
-                        }
-                        else if(tag.equals("signguNm"))
-                        { xpp.next();
-                            location[3]=xpp.getText();
+                            location[2] = xpp.getText();
+                        } else if (tag.equals("signguNm")) {
+                            xpp.next();
+                            location[3] = xpp.getText();
                         }
                         break;
                     case XmlPullParser.TEXT:
                         break;
                     case XmlPullParser.END_TAG:
-                        tag= xpp.getName(); //테그 이름 얻어오기
-                        if(tag.equals("item")) buffer.append("\n");// 첫번째 검색결과종료..줄바꿈
+                        tag = xpp.getName(); //테그 이름 얻어오기
+                        if (tag.equals("item")) buffer.append("\n");// 첫번째 검색결과종료..줄바꿈
                         break;
                 }
 
-                eventType= xpp.next();
+                eventType = xpp.next();
             }
 
         } catch (Exception e) {
@@ -257,7 +254,7 @@ public class ShopApi extends Activity {
                 "&indsMclsCd=" + Mcls +
                 "&indsSclsCd=" + Scls +
                 "&ServiceKey=" + ServiceKey;
-        String sido[]= new String[2];
+        String sido[] = new String[2];
         try {
             URL url = new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
             InputStream is = url.openStream(); //url위치로 입력스트림 연결
@@ -278,13 +275,12 @@ public class ShopApi extends Activity {
                         tag = xpp.getName();//태그 이름 얻어오기
 
                         if (tag.equals("item")) ;// 첫번째 검색결과
-                        else  if(tag.equals("ctprvnNm")){
+                        else if (tag.equals("ctprvnNm")) {
                             xpp.next();
-                            sido[0]=xpp.getText();
-                        }
-                        else if (tag.equals("totalCount")) {
+                            sido[0] = xpp.getText();
+                        } else if (tag.equals("totalCount")) {
                             xpp.next();
-                            sido[1]=xpp.getText();//addr 요소의 TEXT 읽어와서 문자열버퍼에 추가
+                            sido[1] = xpp.getText();//addr 요소의 TEXT 읽어와서 문자열버퍼에 추가
                         }
 
                         break;
@@ -302,6 +298,7 @@ public class ShopApi extends Activity {
         return sido;//StringBuffer 문자열 객체 반환
 
     }
+
     String[] sidoData(String divId, String key, String Lcls, String Mcls) {
         StringBuffer buffer = new StringBuffer();
         String queryUrl = "http://apis.data.go.kr/B553077/api/open/sdsc/storeListInDong?" +
@@ -310,7 +307,7 @@ public class ShopApi extends Activity {
                 "&indsLclsCd=" + Lcls +
                 "&indsMclsCd=" + Mcls +
                 "&ServiceKey=" + ServiceKey;
-        String sido[]= new String[2];
+        String sido[] = new String[2];
         try {
             URL url = new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
             InputStream is = url.openStream(); //url위치로 입력스트림 연결
@@ -331,13 +328,12 @@ public class ShopApi extends Activity {
                         tag = xpp.getName();//태그 이름 얻어오기
 
                         if (tag.equals("item")) ;// 첫번째 검색결과
-                        else  if(tag.equals("ctprvnNm")){
+                        else if (tag.equals("ctprvnNm")) {
                             xpp.next();
-                            sido[0]=xpp.getText();
-                        }
-                        else if (tag.equals("totalCount")) {
+                            sido[0] = xpp.getText();
+                        } else if (tag.equals("totalCount")) {
                             xpp.next();
-                            sido[1]=xpp.getText();//addr 요소의 TEXT 읽어와서 문자열버퍼에 추가
+                            sido[1] = xpp.getText();//addr 요소의 TEXT 읽어와서 문자열버퍼에 추가
                         }
 
                         break;
@@ -355,7 +351,6 @@ public class ShopApi extends Activity {
         return sido;//StringBuffer 문자열 객체 반환
 
     }
-
 
 
     String[] hangjungData(String divId, String key, String Lcls, String Mcls, String Scls) {
@@ -367,7 +362,7 @@ public class ShopApi extends Activity {
                 "&indsMclsCd=" + Mcls +
                 "&indsSclsCd=" + Scls +
                 "&ServiceKey=" + ServiceKey;
-        String hangjung[]=new String[2];
+        String hangjung[] = new String[2];
         try {
             URL url = new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
             InputStream is = url.openStream(); //url위치로 입력스트림 연결
@@ -390,13 +385,12 @@ public class ShopApi extends Activity {
                         tag = xpp.getName();//태그 이름 얻어오기
 
                         if (tag.equals("item")) ;// 첫번째 검색결과
-                        else if(tag.equals("signguNm")){
+                        else if (tag.equals("signguNm")) {
                             xpp.next();
-                            hangjung[0]=xpp.getText();
-                        }
-                        else if (tag.equals("totalCount")) {
+                            hangjung[0] = xpp.getText();
+                        } else if (tag.equals("totalCount")) {
                             xpp.next();
-                            hangjung[1]=xpp.getText();
+                            hangjung[1] = xpp.getText();
                         }
 
                         break;
@@ -423,7 +417,7 @@ public class ShopApi extends Activity {
                 "&indsLclsCd=" + Lcls +
                 "&indsMclsCd=" + Mcls +
                 "&ServiceKey=" + ServiceKey;
-        String hangjung[]=new String[2];
+        String hangjung[] = new String[2];
         try {
             URL url = new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
             InputStream is = url.openStream(); //url위치로 입력스트림 연결
@@ -446,13 +440,12 @@ public class ShopApi extends Activity {
                         tag = xpp.getName();//태그 이름 얻어오기
 
                         if (tag.equals("item")) ;// 첫번째 검색결과
-                        else if(tag.equals("signguNm")){
+                        else if (tag.equals("signguNm")) {
                             xpp.next();
-                            hangjung[0]=xpp.getText();
-                        }
-                        else if (tag.equals("totalCount")) {
+                            hangjung[0] = xpp.getText();
+                        } else if (tag.equals("totalCount")) {
                             xpp.next();
-                            hangjung[1]=xpp.getText();
+                            hangjung[1] = xpp.getText();
                         }
 
                         break;
@@ -470,13 +463,14 @@ public class ShopApi extends Activity {
         return hangjung;//StringBuffer 문자열 객체 반환
 
     }
+
     static String[] hangjungData(String divId, String key) {
         StringBuffer buffer = new StringBuffer();
         String queryUrl = "http://apis.data.go.kr/B553077/api/open/sdsc/storeListInDong?" +
                 "divId=" + divId +
                 "&key=" + key +
                 "&ServiceKey=" + ServiceKey;
-        String hangjung[]=new String[2];
+        String hangjung[] = new String[2];
         try {
             URL url = new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
             InputStream is = url.openStream(); //url위치로 입력스트림 연결
@@ -499,13 +493,12 @@ public class ShopApi extends Activity {
                         tag = xpp.getName();//태그 이름 얻어오기
 
                         if (tag.equals("item")) ;// 첫번째 검색결과
-                        else if(tag.equals("signguNm")){
+                        else if (tag.equals("signguNm")) {
                             xpp.next();
-                            hangjung[0]=xpp.getText();
-                        }
-                        else if (tag.equals("totalCount")) {
+                            hangjung[0] = xpp.getText();
+                        } else if (tag.equals("totalCount")) {
                             xpp.next();
-                            hangjung[1]=xpp.getText();
+                            hangjung[1] = xpp.getText();
                         }
 
                         break;

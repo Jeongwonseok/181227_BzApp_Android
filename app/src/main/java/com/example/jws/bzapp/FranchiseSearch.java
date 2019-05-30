@@ -23,7 +23,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FranchiseSearch  extends AppCompatActivity {
+public class FranchiseSearch extends AppCompatActivity {
     // 데이터를 넣은 리스트변수
     private ListView listView;          // 검색을 보여줄 리스트변수
     private EditText Search;        // 검색어를 입력할 Input 창

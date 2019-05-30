@@ -9,17 +9,17 @@ import java.util.Map;
 public class Findpw extends StringRequest {
 
     final static private String URL = "http://qwerr784.cafe24.com/Findpw.php";
-    private Map<String,String> parameters;
+    private Map<String, String> parameters;
 
-    public Findpw(String ID, String question, String answer, Response.Listener<String> listener){
+    public Findpw(String ID, String question, String answer, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
         parameters = new HashMap<>();
-        parameters.put("ID",ID);
-        parameters.put("question",question);
-        parameters.put("answer",answer);
+        parameters.put("ID", ID);
+        parameters.put("question", question);
+        parameters.put("answer", answer);
     }
 
-    public Map<String, String> getParams(){
+    public Map<String, String> getParams() {
         return parameters;
     }
 }

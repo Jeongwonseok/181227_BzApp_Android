@@ -91,7 +91,6 @@ public class NoticeActivity extends AppCompatActivity {
         public void show(String s) {
 
 
-
             ArrayList<NoticeInfo> arrayList = new ArrayList<>();
 
             RecyclerView recyclerView = (RecyclerView) findViewById(R.id.NRV);

@@ -312,14 +312,10 @@ public class SurveyActivity extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             getSurvey();
-                                        }
-                                    });
-                                    builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
                                             finish();
                                         }
                                     });
+                                    builder.setNegativeButton("취소", null);
                                     builder.show();
                                 } else {
                                     //등록 실패 했을때 실패 다이얼로그 출력
@@ -340,86 +336,9 @@ public class SurveyActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-//        else if(UPdate==1){  //UPdate문실행
-//            btnok = (Button) findViewById(R.id.ok);
-//            btnok.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    if (-1 == rgGender.getCheckedRadioButtonId()) {
-//                        Toast.makeText(getApplicationContext(), "성별을 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
-//                    } else if (age == null) {
-//                        Toast.makeText(getApplicationContext(), "나이를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
-//                    } else if (-1 == rgLocation.getCheckedRadioButtonId()) {
-//                        Toast.makeText(getApplicationContext(), "지역을 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
-//                    } else if (-1 == rgLreason.getCheckedRadioButtonId()) {
-//                        Toast.makeText(getApplicationContext(), "지역 선택 이유를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
-//                    } else if (-1 == rgType.getCheckedRadioButtonId()) {
-//                        Toast.makeText(getApplicationContext(), "업종을 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
-//                    } else if (-1 == rgTreason.getCheckedRadioButtonId()) {
-//                        Toast.makeText(getApplicationContext(), "업종 선택 이유를 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
-//                    } else if (-1 == rgSales.getCheckedRadioButtonId()) {
-//                        Toast.makeText(getApplicationContext(), "원하는 매출을 선택하지 않았습니다.", Toast.LENGTH_LONG).show();
-//                    } else {
-//                        Response.Listener<String> responseListener = new Response.Listener<String>() {
-//                            @Override
-//                            public void onResponse(String response) {
-//                                try {
-//                                    JSONObject jsonResponse = new JSONObject(response);
-//                                    boolean success = jsonResponse.getBoolean("success");
-//                                    if (success) {
-//                                        //등록후 응답받은 값이 true이면 성공 다이얼로그 출력
-//                                        AlertDialog.Builder builder = new AlertDialog.Builder(SurveyActivity.this);
-//                                        builder.setTitle("설문완료");
-//                                        builder.setMessage("상권 분석 화면으로 넘어가시겠습니까?");
-//
-//                                        SharedPreferences test = getSharedPreferences("check", Activity.MODE_PRIVATE);
-//                                        SharedPreferences.Editor checkLogin = test.edit();
-//                                        checkLogin.putBoolean("surveycheck", true);
-//                                        //꼭 commit()을 해줘야 값이 저장됩니다 ㅎㅎ
-//                                        checkLogin.commit();
-//
-//                                        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-//                                            @Override
-//                                            public void onClick(DialogInterface dialog, int which) {
-//                                                finish();
-//                                                getsurvey task = new getsurvey();
-//                                                task.execute(ID);
-//                                            }
-//                                        });
-//                                        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-//                                            @Override
-//                                            public void onClick(DialogInterface dialog, int which) {
-//                                                finish();
-//                                            }
-//                                        });
-//                                        builder.show();
-//                                    } else {
-//                                        //등록 실패 했을때 실패 다이얼로그 출력
-//                                        AlertDialog.Builder builder = new AlertDialog.Builder(SurveyActivity.this);
-//                                        builder.setTitle("등록실패");
-//                                        builder.setMessage("등록실패했습니다. 다시 한번 확인 해주세요.");
-//                                        builder.setPositiveButton("확인", null);
-//                                        builder.show();
-//                                    }
-//                                } catch (JSONException e) {
-//                                    e.printStackTrace();
-//                                }
-//                            }
-//                        };
-//                        SUpdate Supdate = new SUpdate(ID, gender, age, location, lReason, type, tReason, sales, responseListener);
-//                        RequestQueue queue = Volley.newRequestQueue(SurveyActivity.this);
-//                        queue.add(Supdate);
-//                    }
-//                }
-//            });
-//        }
-
     }
-    public void getSurvey() {
 
-//        Toast.makeText(getApplicationContext(), addrnm, Toast.LENGTH_LONG).show();
+    public void getSurvey() {
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
@@ -427,16 +346,16 @@ public class SurveyActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(s);
                     JSONArray jsonArray = jsonObject.getJSONArray("response");
                     int count = 0;
-                    String location,type,sales;
+                    String location, type, sales;
                     while (count < jsonArray.length()) {
                         JSONObject object = jsonArray.getJSONObject(count);
                         location = object.getString("location");
-                        type=object.getString("type");
-                        sales=object.getString("sales");
-                        Intent intent = new Intent(SurveyActivity.this,RecommendActivity.class);
-                        intent.putExtra("location",location);
-                        intent.putExtra("type",type);
-                        intent.putExtra("sales",sales);
+                        type = object.getString("type");
+                        sales = object.getString("sales");
+                        Intent intent = new Intent(SurveyActivity.this, RecommendActivity.class);
+                        intent.putExtra("location", location);
+                        intent.putExtra("type", type);
+                        intent.putExtra("sales", sales);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                         count++;
@@ -447,11 +366,10 @@ public class SurveyActivity extends AppCompatActivity {
                 }
             }
         };
-        findsurveylist findsurvey = new findsurveylist(ID,gender,age,location,lReason,type,tReason,sales,responseListener);
+        findsurveylist findsurvey = new findsurveylist(ID, gender, age, location, lReason, type, tReason, sales, responseListener);
         RequestQueue queue = Volley.newRequestQueue(SurveyActivity.this);
         queue.add(findsurvey);
     }
-
 
 
 }

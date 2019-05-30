@@ -11,13 +11,14 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
-public class FlipAdapter extends PagerAdapter{
+public class FlipAdapter extends PagerAdapter {
     Context context;
 
-    ArrayList<Integer>data;
-    public FlipAdapter(Context context, ArrayList<Integer>data) {
+    ArrayList<Integer> data;
+
+    public FlipAdapter(Context context, ArrayList<Integer> data) {
         this.context = context;
-        this.data=data;
+        this.data = data;
     }
 
     @Override
@@ -25,20 +26,20 @@ public class FlipAdapter extends PagerAdapter{
 
         //뷰페이지 슬라이딩 할 레이아웃 인플레이션
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = inflater.inflate(R.layout.slider,null);
+        View v = inflater.inflate(R.layout.slider, null);
         ImageView image_container = (ImageView) v.findViewById(R.id.image_container);
-        position=position%data.size();
+        position = position % data.size();
         image_container.setImageResource(data.get(position));
 
-        if (position==0) {
+        if (position == 0) {
             image_container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse( "http://www.sbiz.or.kr/sup/main.do"));
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.sbiz.or.kr/sup/main.do"));
                     context.startActivity(intent);
                 }
             });
-        } else if (position==1) {
+        } else if (position == 1) {
             image_container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -47,7 +48,7 @@ public class FlipAdapter extends PagerAdapter{
 
                 }
             });
-        } else if (position==2) {
+        } else if (position == 2) {
             image_container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -63,13 +64,13 @@ public class FlipAdapter extends PagerAdapter{
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
 
-        container.removeView((View)object);
+        container.removeView((View) object);
 
     }
 
     @Override
     public int getCount() {
-        return data.size()*3;
+        return data.size() * 3;
     }
 
     @Override

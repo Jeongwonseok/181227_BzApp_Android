@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity
     String Location;
     String mJsonString;
 
-String url;
+    String url;
     private static final String TAG = "Login";
 
     @Override
@@ -78,12 +78,12 @@ String url;
         //오토뷰페이저
 
         final ArrayList<Integer> data = new ArrayList<>(); //이미지 url를 저장하는 arraylist
-        viewtext = (TextView)findViewById(R.id.viewtext);
-        autoViewPager = (AutoScrollViewPager)findViewById(R.id.autoViewPager);
+        viewtext = (TextView) findViewById(R.id.viewtext);
+        autoViewPager = (AutoScrollViewPager) findViewById(R.id.autoViewPager);
         data.add(R.drawable.sosang1);
         data.add(R.drawable.chang1);
         data.add(R.drawable.kpren1);
-        flipadapter = new FlipAdapter(this,data);
+        flipadapter = new FlipAdapter(this, data);
         autoViewPager.setAdapter(flipadapter); //Auto Viewpager에 Adapter 장착
         autoViewPager.setInterval(2000); // 페이지 넘어갈 시간 간격 설정
         autoViewPager.startAutoScroll(); //Auto Scroll 시작
@@ -91,25 +91,26 @@ String url;
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
+
             @Override
             public void onPageSelected(int position) {
-                if(position<data.size()){
-                    autoViewPager.setCurrentItem(position+data.size(),false);
+                if (position < data.size()) {
+                    autoViewPager.setCurrentItem(position + data.size(), false);
+                } else if (position >= data.size() * 2) {
+                    autoViewPager.setCurrentItem(position - data.size(), false);
                 }
-                else if(position>=data.size()*2){
-                    autoViewPager.setCurrentItem(position-data.size(),false);
-                }
-                position=position%data.size();
-                if (position == 0){  // 첫 페이지
+                position = position % data.size();
+                if (position == 0) {  // 첫 페이지
                     viewtext.setText("1/3");
 
-                } else if (position == 1){   //두번째 페이지
+                } else if (position == 1) {   //두번째 페이지
                     viewtext.setText("2/3");
 
-                }else if(position==2){
+                } else if (position == 2) {
                     viewtext.setText("3/3");
                 }
             }
+
             @Override
             public void onPageScrollStateChanged(int state) {
 
@@ -142,7 +143,7 @@ String url;
         btnManager = (ImageButton) nav_header_view.findViewById(R.id.nav_manage);
         btnShare = (ImageButton) nav_header_view.findViewById(R.id.nav_share);
 
-        textid = (TextView)nav_header_view.findViewById(R.id.loginid);
+        textid = (TextView) nav_header_view.findViewById(R.id.loginid);
 
         //리사이클뷰에 공지사항 데이터 추가하는 클래스 선언후 실행
         HotList hotList = new HotList();
@@ -152,11 +153,11 @@ String url;
         SharedPreferences test = getSharedPreferences("check", Activity.MODE_PRIVATE);
         logincheck = test.getBoolean("check", false);
         surveycheck = test.getBoolean("surveycheck", false);
-        loginID = test.getString("id",null);
+        loginID = test.getString("id", null);
 
         //로그인이 되어있을때 실핼될 코드
         if (logincheck) {
-            textid.setText(loginID+" 님");
+            textid.setText(loginID + " 님");
             btnLogout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -203,9 +204,9 @@ String url;
             btnSurvey.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                        Intent intent = new Intent(MainActivity.this, surveylist.class);
-                        intent.putExtra("ID", loginID);
-                        startActivity(intent);
+                    Intent intent = new Intent(MainActivity.this, surveylist.class);
+                    intent.putExtra("ID", loginID);
+                    startActivity(intent);
                 }
             });
 
@@ -214,8 +215,8 @@ String url;
                 public void onClick(View v) {
 //                    getsurvey task = new getsurvey();
 //                    task.execute(loginID);
-                    Intent intent =new Intent(MainActivity.this,SurveyActivity.class);
-                    intent.putExtra("ID",loginID);
+                    Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
+                    intent.putExtra("ID", loginID);
                     startActivity(intent);
                 }
             });
@@ -234,7 +235,6 @@ String url;
             item_join.setVisible(false);
             //getAppKeyHash();
         }
-
 
 
         //로그인이 되어있지 않을때 실핼될 코드
@@ -340,7 +340,7 @@ String url;
         SharedPreferences test = getSharedPreferences("check", Activity.MODE_PRIVATE);
         logincheck = test.getBoolean("check", false);
         surveycheck = test.getBoolean("surveycheck", false);
-        loginID = test.getString("id",null);
+        loginID = test.getString("id", null);
 
         //로그인이 되어있을때 실핼될 코드
         if (logincheck) {
@@ -349,7 +349,7 @@ String url;
             Menu menu = navigationView.getMenu();
             MenuItem item_Manage = menu.findItem(R.id.nav_manage);
             item_Manage.setVisible(true);
-            textid.setText(loginID+" 님");
+            textid.setText(loginID + " 님");
             btnLogout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -406,8 +406,8 @@ String url;
             btnRec.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent =new Intent(MainActivity.this,SurveyActivity.class);
-                    intent.putExtra("ID",loginID);
+                    Intent intent = new Intent(MainActivity.this, SurveyActivity.class);
+                    intent.putExtra("ID", loginID);
                     startActivity(intent);
                 }
             });
@@ -619,8 +619,7 @@ String url;
     @Override
     public void onBackPressed() {
         //2초 이내에 뒤로가기 버튼을 재 클릭 시 앱 종료
-        if (System.currentTimeMillis() - lastTimeBackPressed < 2000)
-        {
+        if (System.currentTimeMillis() - lastTimeBackPressed < 2000) {
             finish();
             return;
         }
@@ -665,11 +664,6 @@ String url;
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
-
-
-
 
 
 //    private class getsurvey extends AsyncTask<String, Void, String>{
