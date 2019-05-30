@@ -313,6 +313,7 @@ public class SurveyActivity extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             getSurvey();
+                                            finish();
                                         }
                                     });
                                     builder.setNegativeButton("취소", null);
