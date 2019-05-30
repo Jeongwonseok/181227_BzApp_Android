@@ -37,6 +37,7 @@ public class SurveyActivity extends AppCompatActivity {
     String Location;
     String mJsonString;
 
+
     private static final String TAG = "Login";
 
     @Override
@@ -312,7 +313,6 @@ public class SurveyActivity extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             getSurvey();
-                                            finish();
                                         }
                                     });
                                     builder.setNegativeButton("취소", null);

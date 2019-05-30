@@ -65,7 +65,7 @@ public class surveylistAdapter extends BaseAdapter {
         item.setType(type);
         item.setSales(sales);
 
-        listViewItemList.add(item);
+        listViewItemList.add(0,item);
     }
 
 }
