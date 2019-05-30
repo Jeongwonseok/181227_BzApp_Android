@@ -114,8 +114,7 @@ public class FindActivity extends AppCompatActivity {
                                         .setPositiveButton("로그인 이동", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-                                                Intent intent = new Intent(FindActivity.this, LoginActivity.class);
-                                                startActivity(intent);
+                                                finish();
                                             }
                                         })
                                         .create()
@@ -195,8 +194,7 @@ public class FindActivity extends AppCompatActivity {
                                         .setPositiveButton("로그인 이동", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-                                                Intent intent = new Intent(FindActivity.this, LoginActivity.class);
-                                                startActivity(intent);
+                                                finish();
                                             }
                                         })
                                         .create()
