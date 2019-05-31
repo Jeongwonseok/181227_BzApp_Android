@@ -113,10 +113,6 @@ public class surveylist extends AppCompatActivity {
                                         String type = surveyData.getType();
                                         String sales = surveyData.getSales();
                                         getDelete(location, type, sales);
-                                        adapter.clearitem();
-                                        adapter.notifyDataSetChanged();
-                                        listView.setAdapter(adapter);
-                                        getClosure();
                                     }
                                 }).setNegativeButton("아니요", null).create();
                 diaBox.show();
@@ -230,7 +226,10 @@ public class surveylist extends AppCompatActivity {
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
-
+                adapter.clearitem();
+                adapter.notifyDataSetChanged();
+                listView.setAdapter(adapter);
+                getClosure();
             }
         };
         DeleteSurvey deletesurvey = new DeleteSurvey(loginID, location2, type, sales, responseListener);
