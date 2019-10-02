@@ -60,8 +60,8 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
 
     private GoogleMap mMap;
 
-    String consumer_key = "280b76187800465f82e7";
-    String consumer_secret = "0b1a959895d74aa2a418";
+    String consumer_key = "ac20c423ac084fc594b8";
+    String consumer_secret = "5b8edfa10f4345289e05";
     double mLat = 0;
     double mLong = 0;
     ImageButton btnBack;
@@ -648,7 +648,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         protected String doInBackground(String... strings) {
             try {
                 //서버에 있는 php 실행
-                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.json?consumer_key=" + consumer_key + "&consumer_secret=" + consumer_secret);
+                URL url = new URL("http://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.json?consumer_key=" + consumer_key + "&consumer_secret=" + consumer_secret);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -698,7 +698,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         protected String doInBackground(String... voids) {
             try {
                 //서버에 있는 php 실행
-                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/transformation/transcoord.json?accessToken=" + token + "&src=4326&dst=5179&posX=" + mLong + "&posY=" + mLat);
+                URL url = new URL("http://sgisapi.kostat.go.kr/OpenAPI3/transformation/transcoord.json?accessToken=" + token + "&src=4326&dst=5179&posX=" + mLong + "&posY=" + mLat);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -754,7 +754,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         protected String doInBackground(String... voids) {
             try {
                 //서버에 있는 php 실행
-                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/addr/rgeocode.json?accessToken=" + token + "&x_coor=" + UTM_KX + "&y_coor=" + UTM_KY + "&addr_type=20");
+                URL url = new URL("http://sgisapi.kostat.go.kr/OpenAPI3/addr/rgeocode.json?accessToken=" + token + "&x_coor=" + UTM_KX + "&y_coor=" + UTM_KY + "&addr_type=20");
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -823,7 +823,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnMapReadyCal
         protected String doInBackground(String... voids) {
             try {
                 //서버에 있는 php 실행
-                URL url = new URL("https://sgisapi.kostat.go.kr/OpenAPI3/stats/household.json?accessToken=" + token + "&year=2017&adm_cd=" + addrcd + "&household_type=A0");
+                URL url = new URL("http://sgisapi.kostat.go.kr/OpenAPI3/stats/household.json?accessToken=" + token + "&year=2017&adm_cd=" + addrcd + "&household_type=A0");
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
