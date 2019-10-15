@@ -58,8 +58,8 @@ public class Recommenddetail extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     //API 아이디, 키값
-    String consumer_key = "280b76187800465f82e7";
-    String consumer_secret = "0b1a959895d74aa2a418";
+    String consumer_key = "ac20c423ac084fc594b8";
+    String consumer_secret = "5b8edfa10f4345289e05";
     //API 토큰
     String token;
     //주소 코드 값
