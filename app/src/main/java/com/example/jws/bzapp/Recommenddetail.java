@@ -821,7 +821,7 @@ public class Recommenddetail extends AppCompatActivity {
         }
     }
 
-    //접객력
+    //집객력
     class Population extends AsyncTask<String, Void, String> {
 
         @Override
