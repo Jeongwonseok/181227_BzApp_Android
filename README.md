@@ -1,7 +1,6 @@
-# Bz Application (Android)
+Bz Application (Android)
 
-****
-## 1. 개요
+# 1. 개요
 ## 1.1. 주제
 상권 정보 안내 & 추천 App (Android)
 
@@ -21,7 +20,7 @@
 * Python 3.1
 
 ****
-## 2. 구성 및 설계
+# 2. 구성 및 설계
 ## 2.1. 시스템 구성도
 시스템 구성도 사진
 
