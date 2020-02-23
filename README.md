@@ -1,5 +1,6 @@
 # Bz Application (Android)
 
+****
 ## 1. 개요
 ## 1.1. 주제
 상권 정보 안내 & 추천 App (Android)
