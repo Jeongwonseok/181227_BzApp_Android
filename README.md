@@ -23,7 +23,7 @@ Bz Application (Android)
 ****
 # 2. 구성 및 설계
 ## 2.1. 시스템 구성도
-![시스템 구성도](file:///Users/jws/Downloads/깃허브%20이미지/bz/시스템%20구성도.png)
+![시스템 구성도](./Portfolio_JWS/image/시스템 구성도.png)
 
 ## 2.2. Use Case Diagram
 Use Case Diagram 사진
