@@ -101,6 +101,12 @@ Bz Application (Android)
 설명 : 사용자는 문의사항을 작성할 수 있다.
 ```
 
+* **설문 조사**
+![설문 조사](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/기록.png)
+```
+설명 : 사용자는 이전에 시행했던 설문 조사 기록 및 내용을 조회할 수 있다.
+```
+
 * **관심 목록**
 ![관심목록](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/관심목록.png)
 ```
