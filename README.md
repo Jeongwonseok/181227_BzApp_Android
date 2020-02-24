@@ -76,63 +76,67 @@ Bz Application (Android)
 * **로그인 / ID,PW 찾기 / 회원 가입**
 ![로그인](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/로그인.png)
 ```
-설명 : 사용자는 원하는 프랜차이즈의 상세정보를 출력한다.
-출력 데이터 : 연 평균 매출액, 초기 부담금, 초기 인테리어 비용, 가맹점 수, 광고비, 판촉비, 가맹 계약기간
+설명
+- 사용자는 아이디, 비밀번호, 이름, 이메일 주소, 핸드폰 번호, 비밀번호 찾기 질문 입력을 통해 회원 가입을 진행한다.
+- 회원가입 한 아이디, 비밀번호 입력을 통해 로그인이 가능하다.
+- 회원가입 시 입력한 이름, 핸드폰 번호, 이메일 주소를 이용하여 ID 찾기가 가능하다.
+- ID, PW 질문 & 답변을 통해 PW 찾기가 가능하다.
 ```
 
 * **마이페이지**
 ![마이페이지](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/마이페이지.png)
 ```
-설명 : 사용자는 원하는 프랜차이즈의 상세정보를 출력한다.
-출력 데이터 : 연 평균 매출액, 초기 부담금, 초기 인테리어 비용, 가맹점 수, 광고비, 판촉비, 가맹 계약기간
+설명 : 사용자는 회원 가입 시 작성한 개인 정보를 조회 및 수정이 가능하다.
 ```
 
 * **공지 사항**
 ![공지사항](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/공지.png)
 ```
-설명 : 사용자는 원하는 프랜차이즈의 상세정보를 출력한다.
-출력 데이터 : 연 평균 매출액, 초기 부담금, 초기 인테리어 비용, 가맹점 수, 광고비, 판촉비, 가맹 계약기간
+설명 : 사용자는 관리자가 게시한 창업 관련 프로그램, 업데이트 예정 등의 공지사항 조회가 가능하다.
 ```
 
 * **문의 사항**
 ![문의사항](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/문의.png)
 ```
-설명 : 사용자는 원하는 프랜차이즈의 상세정보를 출력한다.
-출력 데이터 : 연 평균 매출액, 초기 부담금, 초기 인테리어 비용, 가맹점 수, 광고비, 판촉비, 가맹 계약기간
+설명 : 사용자는 문의사항을 작성할 수 있다.
 ```
 
 * **관심 목록**
 ![관심목록](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/관심목록.png)
 ```
-설명 : 사용자는 원하는 프랜차이즈의 상세정보를 출력한다.
-출력 데이터 : 연 평균 매출액, 초기 부담금, 초기 인테리어 비용, 가맹점 수, 광고비, 판촉비, 가맹 계약기간
+설명 : 로그인 한 사용자는 상권 분석 기능 이용 중에 관심있는 지역을 저장할 수 있다.
 ```
 
 * **광고 배너 / 핫이슈**
 ![광고](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/광고.png)
 ```
-설명 : 사용자는 원하는 프랜차이즈의 상세정보를 출력한다.
-출력 데이터 : 연 평균 매출액, 초기 부담금, 초기 인테리어 비용, 가맹점 수, 광고비, 판촉비, 가맹 계약기간
+설명 : 상권 관련 광고를 제공해주는 광고 배너 기능과, 최근 이슈인 뉴스들을 제공해주는 핫이슈 기능이 있다.
 ```
 
 ****
 # 4. 사용 기술
-## 4.1. 추천 알고리즘
-추천 알고리즘 이미지
+## 4.1. 추천 알고리즘 - ex) 성장성
+![성장성1](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/성장성1.png)
 ```
-추천 알고리즘 설명
+설명 : 각 double형 변수에 해당 값을 저장하고, 이를 이용해 수식을 계산한다.
+```
+![성장성2](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/성장성2.png)
+```
+설명 : 성장성(매출 규모 증감률)에 관한 증감률을 계산, 성장성(매출 규모 증감률)에 관한 최대값 반환
+```
+![성장성3](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/성장성3.png)
+```
+설명 : 성장성(매출 규모 증감률)에 관한 최소값 반환
 ```
 
 ## 4.2. 데이터 크롤링
-데이터 크롤링 이미지
+![크롤링1](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/크롤링1.png)
 ```
-데이터 크롤링 설명
+설명 : BASE_URL 설정 및 파일 저장 형식을 설정한다.
 ```
-
-## 4.3. 데이터 분석법
-데이터 분석법 이미지
+![크롤링2](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/크롤링2.png)
 ```
-데이터 분석법 설명
+설명 : 상호, 영업표지, 대표자, 업종, 사업자등록일, 대표번호 등 총 13가지 종류의 프랜차이즈 정보를 출력한다.
 ```
 
 ****
