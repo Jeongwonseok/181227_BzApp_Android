@@ -46,7 +46,7 @@ Bz Application (Android)
 # 3. 제공 기능
 ## 3.1. 핵심 기능
 * **상권 분석**
-![ERD2](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/분석.png)
+<img src="https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/분석.png" width="450px" height="300px" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 ```
 설명 : 사용자는 설정한 범위 내의 상권 관련 데이터를 출력한다.
 출력 데이터 : 상권 개요, 매출 분석, 인구 분석, 점포 현황
