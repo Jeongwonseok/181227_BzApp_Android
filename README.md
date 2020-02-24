@@ -23,12 +23,14 @@ Bz Application (Android)
 ****
 # 2. 구성 및 설계
 ## 2.1. 시스템 구성도
-![시스템 구성도](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/시스템%20구성도.png)
+![시스템 구성도](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/시스템구성도.png)
 
 ## 2.2. Use Case Diagram
-Use Case Diagram 사진
+![Use Case Diagram](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/UseCaseDiagram.png)
 ## 2.3. ERD
-ERD 사진
+![Use Case Diagram](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/ERD1.png)
+
+![Use Case Diagram](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/ERD2.png)
 
 ## 2.4. 개발 범위
 * **상권 분석** - 지도상에 반경 설정 후 설정한 범위 내의 상권 관련 데이터 출력
