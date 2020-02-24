@@ -45,13 +45,25 @@ Bz Application (Android)
 ****
 # 3. 제공 기능
 ## 3.1. 핵심 기능
-<p float="left">
-  <img src="https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/분석.png" width="100" />
-  <img src="https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/추천.png" width="100" />
-  <img src="https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/프랜차이즈.png" width="100" />
-</p>
+* **상권 분석**
+![ERD2](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/분석.png)
 ```
-핵심 기능 설명
+설명 : 사용자는 설정한 범위 내의 상권 관련 데이터를 출력한다.
+출력 데이터 : 상권 개요, 매출 분석, 인구 분석, 점포 현황
+```
+
+* **상권 추천**
+![ERD2](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/추천.png)
+```
+설명 : 사용자는 실시한 설문조사 결과와 분석한 데이터를 비교하고, 상권을 추천받는다.
+출력 데이터 : 상권 개요, 매출 분석, 인구 분석, 점포 현황, 상세평가지수
+```
+
+* **프랜차이즈**
+![ERD2](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/프랜차이즈.png)
+```
+설명 : 사용자는 원하는 프랜차이즈의 상세정보를 출력한다.
+출력 데이터 : 연 평균 매출액, 초기 부담금, 초기 인테리어 비용, 가맹점 수, 광고비, 판촉비, 가맹 계약기간
 ```
 
 ## 3.2. 부가 기능
