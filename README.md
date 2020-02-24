@@ -31,7 +31,7 @@ Bz Application (Android)
 ## 2.3. ERD
 ![Use Case Diagram](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/ERD1.png)
 ```
-프랜차이즈 서비스에 대한 물리적 ERD이다.
+* 프랜차이즈 서비스에 대한 물리적 ERD이다.
 ```
 
 ![Use Case Diagram](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/ERD2.png)
