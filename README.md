@@ -45,7 +45,11 @@ Bz Application (Android)
 ****
 # 3. 제공 기능
 ## 3.1. 핵심 기능
-핵심 기능 이미지
+<p float="left">
+  <img src="https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/분석.png" width="100" />
+  <img src="https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/추천.png" width="100" />
+  <img src="https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/프랜차이즈.png" width="100" />
+</p>
 ```
 핵심 기능 설명
 ```
