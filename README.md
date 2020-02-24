@@ -45,34 +45,74 @@ Bz Application (Android)
 ****
 # 3. 제공 기능
 ## 3.1. 핵심 기능
-* **상권 분석**
+* **메인 화면**
+![메인](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/메인.png)
+```
+설명 : 사용자는 좌측 상단의 메뉴 버튼을 통해 부가 기능을 이용할 수 있다.
+```
 
-<img src="https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/분석.png" width="450px" height="400px"></img><br/>
+* **상권 분석**
+![상권분석](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/분석.png)
 ```
 설명 : 사용자는 설정한 범위 내의 상권 관련 데이터를 출력한다.
 출력 데이터 : 상권 개요, 매출 분석, 인구 분석, 점포 현황
 ```
 
 * **상권 추천**
-
-<img src="https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/추천.png" width="500px" height="370px"></img><br/>
+![상권추천](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/추천.png)
 ```
 설명 : 사용자는 실시한 설문조사 결과와 분석한 데이터를 비교하고, 상권을 추천받는다.
 출력 데이터 : 상권 개요, 매출 분석, 인구 분석, 점포 현황, 상세평가지수
 ```
 
 * **프랜차이즈**
-
-<img src="https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/프랜차이즈.png" width="500px" height="370px"></img><br/>
+![프랜차이즈](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/프랜차이즈.png)
 ```
 설명 : 사용자는 원하는 프랜차이즈의 상세정보를 출력한다.
 출력 데이터 : 연 평균 매출액, 초기 부담금, 초기 인테리어 비용, 가맹점 수, 광고비, 판촉비, 가맹 계약기간
 ```
 
 ## 3.2. 부가 기능
-부가 기능 이미지
+* **로그인 / ID,PW 찾기 / 회원 가입**
+![로그인](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/로그인.png)
 ```
-부가 기능 설명
+설명 : 사용자는 원하는 프랜차이즈의 상세정보를 출력한다.
+출력 데이터 : 연 평균 매출액, 초기 부담금, 초기 인테리어 비용, 가맹점 수, 광고비, 판촉비, 가맹 계약기간
+```
+
+* **마이페이지**
+![마이페이지](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/마이페이지.png)
+```
+설명 : 사용자는 원하는 프랜차이즈의 상세정보를 출력한다.
+출력 데이터 : 연 평균 매출액, 초기 부담금, 초기 인테리어 비용, 가맹점 수, 광고비, 판촉비, 가맹 계약기간
+```
+
+* **공지 사항**
+![공지사항](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/공지.png)
+```
+설명 : 사용자는 원하는 프랜차이즈의 상세정보를 출력한다.
+출력 데이터 : 연 평균 매출액, 초기 부담금, 초기 인테리어 비용, 가맹점 수, 광고비, 판촉비, 가맹 계약기간
+```
+
+* **문의 사항**
+![문의사항](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/문의.png)
+```
+설명 : 사용자는 원하는 프랜차이즈의 상세정보를 출력한다.
+출력 데이터 : 연 평균 매출액, 초기 부담금, 초기 인테리어 비용, 가맹점 수, 광고비, 판촉비, 가맹 계약기간
+```
+
+* **관심 목록**
+![관심목록](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/관심목록.png)
+```
+설명 : 사용자는 원하는 프랜차이즈의 상세정보를 출력한다.
+출력 데이터 : 연 평균 매출액, 초기 부담금, 초기 인테리어 비용, 가맹점 수, 광고비, 판촉비, 가맹 계약기간
+```
+
+* **광고 배너 / 핫이슈**
+![광고](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/광고.png)
+```
+설명 : 사용자는 원하는 프랜차이즈의 상세정보를 출력한다.
+출력 데이터 : 연 평균 매출액, 초기 부담금, 초기 인테리어 비용, 가맹점 수, 광고비, 판촉비, 가맹 계약기간
 ```
 
 ****
