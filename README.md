@@ -27,10 +27,20 @@ Bz Application (Android)
 
 ## 2.2. Use Case Diagram
 ![Use Case Diagram](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/UseCaseDiagram.png)
+
 ## 2.3. ERD
 ![Use Case Diagram](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/ERD1.png)
+```
+프랜차이즈 서비스에 대한 물리적 ERD이다.
+```
 
 ![Use Case Diagram](https://github.com/Jeongwonseok/Portfolio_JWS/blob/master/image/ERD2.png)
+```
+* member(회원 정보) 테이블의 ID 애트리뷰트를 Bookmark(즐겨찾기) 테이블의 외래키로 설정한다.
+  각 문의사항에는 하나의 답변만이 가능하므로 1:1 관계이다.
+* member(회원 정보) 테이블의 ID 애트리뷰트를 survey(설문조사 결과) 테이블의 외래키로 설정한다.
+  각 회원의 설문조사 결과는 하나이므로 1:1관계이다.
+```
 
 ## 2.4. 개발 범위
 * **상권 분석** - 지도상에 반경 설정 후 설정한 범위 내의 상권 관련 데이터 출력
